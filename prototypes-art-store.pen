@@ -53,7 +53,8 @@
                   "content": "Acrylic on canvas, 24×30\"",
                   "lineHeight": 1.4,
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -65,7 +66,8 @@
               "content": "$1,200",
               "lineHeight": 1.3,
               "fontFamily": "Funnel Sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             }
           ]
         }
@@ -98,9 +100,10 @@
               "id": "5A62a",
               "name": "navBrand",
               "fill": "$text-primary",
-              "content": "Elena Moreau",
+              "content": "Ester Batllori",
               "fontFamily": "Funnel Sans",
               "fontSize": 16,
+              "fontWeight": "normal",
               "letterSpacing": 2
             },
             {
@@ -118,6 +121,7 @@
                   "content": "Works",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 0.5
                 },
                 {
@@ -128,6 +132,7 @@
                   "content": "About",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 0.5
                 },
                 {
@@ -138,6 +143,7 @@
                   "content": "Contact",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 0.5
                 },
                 {
@@ -148,6 +154,7 @@
                   "content": "Inquire",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 0.5
                 }
               ]
@@ -183,10 +190,11 @@
                   "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": 660,
-                  "content": "Where Color\nMeets Emotion",
+                  "content": "What words cannot express. Subconciousness",
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 80,
+                  "fontWeight": "normal",
                   "letterSpacing": -2
                 },
                 {
@@ -195,12 +203,13 @@
                   "name": "heroSub",
                   "fill": "$text-secondary",
                   "textGrowth": "fixed-width",
-                  "width": 360,
-                  "content": "Original abstract paintings by Elena Moreau.\nEach piece is a one-of-a-kind exploration\nof form, movement, and feeling.",
+                  "width": 450,
+                  "content": "Original abstract paintings by Ester Batllori.\nEach piece is a piece of subconciousness. \nTo know what I'm drawing is a discovery of my most innerself",
                   "lineHeight": 1.7,
                   "textAlign": "right",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -210,11 +219,11 @@
               "name": "Hero Image",
               "clip": true,
               "width": "fill_container",
-              "height": 560,
+              "height": "fit_content(625)",
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1772817967797.png",
+                "url": "egipte-editada-retallada.png",
                 "mode": "fill"
               }
             }
@@ -256,6 +265,7 @@
                   "content": "Selected Works",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 3
                 },
                 {
@@ -266,6 +276,7 @@
                   "content": "16 paintings",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 0.5
                 }
               ]
@@ -299,7 +310,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818016424.png",
+                            "url": "egipte-horitzontal-editada.png",
                             "mode": "fill"
                           }
                         },
@@ -311,19 +322,19 @@
                           "y": 0
                         },
                         "xRoEk": {
-                          "content": "Amber Reverie",
+                          "content": "Memories of Egypt",
                           "fill": "$text-primary",
                           "fontStyle": "normal",
-                          "fontWeight": "400"
+                          "fontWeight": "600"
                         },
                         "BvS2M": {
-                          "content": "Acrylic on canvas, 24×30\"",
+                          "content": "Acrylic on paper, 24×30\"",
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,400",
+                          "content": "300€",
                           "fill": "$text-primary",
-                          "x": 265.5,
+                          "x": 276.5,
                           "y": 0
                         }
                       }
@@ -342,20 +353,20 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818014400.png",
+                            "url": "boli-blanc-editat.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Coastal Drift",
+                          "content": "Wondering",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
-                          "content": "Mixed media, 20×20\"",
+                          "content": "Acrylic and alcohol pen, 20×20\"",
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$980",
+                          "content": "500€",
                           "fill": "$text-primary"
                         }
                       }
@@ -374,20 +385,20 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818015667.png",
+                            "url": "Period-edited.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Crimson Pulse",
+                          "content": "Endometriosis",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
-                          "content": "Acrylic on canvas, 30×40\"",
+                          "content": "Acrylic on paper, 30×40\"",
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$2,200",
+                          "content": "300€",
                           "fill": "$text-primary"
                         }
                       }
@@ -406,21 +417,21 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818013996.png",
+                            "url": "pluja-edited.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Golden Hour",
-                          "fill": "$text-primary"
+                          "content": "Sonnstiges Rain",
+                          "fill": "#3e372bff"
                         },
                         "BvS2M": {
                           "content": "Oil on canvas, 24×24\"",
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,650",
-                          "fill": "$text-primary"
+                          "content": "200€",
+                          "fill": "#2f2b21ff"
                         }
                       }
                     }
@@ -443,8 +454,16 @@
                       "x": 0,
                       "y": 0,
                       "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "peanut-edited.png",
+                            "mode": "fill"
+                          }
+                        },
                         "xRoEk": {
-                          "content": "Verdant Whisper",
+                          "content": "Acuatic Peanut",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -452,7 +471,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$890",
+                          "content": "300€",
                           "fill": "$text-primary"
                         }
                       }
@@ -467,8 +486,16 @@
                       "x": 345.5,
                       "y": 0,
                       "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "egipt-tiny-edited.png",
+                            "mode": "fill"
+                          }
+                        },
                         "xRoEk": {
-                          "content": "Midnight Bloom",
+                          "content": "The Nile",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -491,8 +518,16 @@
                       "x": 691,
                       "y": 0,
                       "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "menstruation-edited.png",
+                            "mode": "fill"
+                          }
+                        },
                         "xRoEk": {
-                          "content": "Terra Nova",
+                          "content": "Period.",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -515,145 +550,16 @@
                       "x": 1036.5,
                       "y": 0,
                       "descendants": {
-                        "xRoEk": {
-                          "content": "Cerulean Dream",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "1gxJO",
-                  "name": "Row 2",
-                  "width": "fill_container",
-                  "gap": 38,
-                  "children": [
-                    {
-                      "id": "MwLEi",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p5",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
                         "JCRrh": {
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818021611.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Verdant Whisper",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 18×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$890",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "Yjoju",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p6",
-                      "height": "fit_content",
-                      "x": 345.5,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "./images/generated-1772818022583.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Midnight Bloom",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on canvas, 36×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$2,800",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "MViXq",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p7",
-                      "height": "fit_content",
-                      "x": 691,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "./images/generated-1772818029975.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Terra Nova",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on linen, 20×28\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,100",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "7AASJ",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p8",
-                      "height": "fit_content",
-                      "x": 1036.5,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "./images/generated-1772818033581.png",
+                            "url": "egipt-detailed-edited.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
                           "content": "Cerulean Dream",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil on canvas, 24×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,500",
                           "fill": "$text-primary"
                         }
                       }
@@ -681,12 +587,12 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818039302.png",
+                            "url": "twin-girl-dizzy-edited.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Ember & Ash",
+                          "content": "Twin girl",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -713,7 +619,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818042926.png",
+                            "url": "twin-boy-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -745,7 +651,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818043013.png",
+                            "url": "mar-edited-1.png",
                             "mode": "fill"
                           }
                         },
@@ -777,7 +683,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818044480.png",
+                            "url": "frigopie-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -818,7 +724,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818050473.png",
+                            "url": "tardor-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -850,12 +756,12 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818053985.png",
+                            "url": "tiny-1-edited.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Ivory Cascade",
+                          "content": "Getting over Autum",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -882,7 +788,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818061524.png",
+                            "url": "fosforito-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -914,7 +820,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "./images/generated-1772818067728.png",
+                            "url": "lila-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -985,6 +891,7 @@
                   "content": "The Artist",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 3
                 },
                 {
@@ -998,6 +905,7 @@
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 52,
+                  "fontWeight": "normal",
                   "letterSpacing": -1.5
                 },
                 {
@@ -1010,7 +918,8 @@
                   "content": "I’ve been painting for over fifteen years, drawn to the way color and texture can evoke feelings that words never quite capture. My work lives at the intersection of intuition and intention — each piece begins without a plan and finds its own way.",
                   "lineHeight": 1.7,
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -1022,7 +931,8 @@
                   "content": "Inspired by natural landscapes, shifting light, and the emotional weight of everyday moments, I work primarily with acrylics and mixed media on canvas.",
                   "lineHeight": 1.7,
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -1052,7 +962,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "https://images.unsplash.com/photo-1509318048290-e4fddf8eb7d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgxMTh8&ixlib=rb-4.1.0&q=80&w=1080",
+                "url": "frigopie-edited.png",
                 "mode": "fill"
               }
             },
@@ -1078,6 +988,7 @@
                   "content": "Featured Work",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 3
                 },
                 {
@@ -1091,6 +1002,7 @@
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 48,
+                  "fontWeight": "normal",
                   "letterSpacing": -1.5
                 },
                 {
@@ -1100,7 +1012,8 @@
                   "fill": "$text-light-muted",
                   "content": "Acrylic on canvas · 30×40\" · 2024",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -1112,7 +1025,8 @@
                   "content": "This piece was born from a single brushstroke that refused to be contained. What began as an experiment with deep reds became a meditation on passion and restraint — the tension between letting go and holding on.",
                   "lineHeight": 1.7,
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -1135,7 +1049,8 @@
                       "fill": "$text-light",
                       "content": "$2,200",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 24
+                      "fontSize": 24,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1144,7 +1059,8 @@
                       "fill": "$accent",
                       "content": "Inquire about this piece →",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -1190,6 +1106,7 @@
                   "lineHeight": 1.6,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 17,
+                  "fontWeight": "normal",
                   "fontStyle": "italic"
                 },
                 {
@@ -1200,6 +1117,7 @@
                   "content": "Sarah M. — New York",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 12,
+                  "fontWeight": "normal",
                   "letterSpacing": 1
                 }
               ]
@@ -1231,6 +1149,7 @@
                   "lineHeight": 1.6,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 17,
+                  "fontWeight": "normal",
                   "fontStyle": "italic"
                 },
                 {
@@ -1241,6 +1160,7 @@
                   "content": "David L. — London",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 12,
+                  "fontWeight": "normal",
                   "letterSpacing": 1
                 }
               ]
@@ -1272,6 +1192,7 @@
                   "lineHeight": 1.6,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 17,
+                  "fontWeight": "normal",
                   "fontStyle": "italic"
                 },
                 {
@@ -1282,6 +1203,7 @@
                   "content": "Miko T. — Tokyo",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 12,
+                  "fontWeight": "normal",
                   "letterSpacing": 1
                 }
               ]
@@ -1323,6 +1245,7 @@
                   "content": "Get in Touch",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
+                  "fontWeight": "normal",
                   "letterSpacing": 3
                 },
                 {
@@ -1336,6 +1259,7 @@
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 52,
+                  "fontWeight": "normal",
                   "letterSpacing": -1.5
                 },
                 {
@@ -1348,7 +1272,8 @@
                   "content": "Interested in a custom piece or have questions about availability? Every commission begins with a conversation about your space, your tastes, and the feeling you want to bring home.",
                   "lineHeight": 1.7,
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -1449,6 +1374,7 @@
                           "content": "First Name",
                           "fontFamily": "Funnel Sans",
                           "fontSize": 12,
+                          "fontWeight": "normal",
                           "letterSpacing": 1
                         },
                         {
@@ -1477,6 +1403,7 @@
                           "content": "Last Name",
                           "fontFamily": "Funnel Sans",
                           "fontSize": 12,
+                          "fontWeight": "normal",
                           "letterSpacing": 1
                         },
                         {
@@ -1507,6 +1434,7 @@
                       "content": "Email Address",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 12,
+                      "fontWeight": "normal",
                       "letterSpacing": 1
                     },
                     {
@@ -1535,6 +1463,7 @@
                       "content": "Your Message",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 12,
+                      "fontWeight": "normal",
                       "letterSpacing": 1
                     },
                     {
@@ -1567,6 +1496,7 @@
                       "content": "Send Message",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 14,
+                      "fontWeight": "normal",
                       "letterSpacing": 0.5
                     }
                   ]
@@ -1610,7 +1540,8 @@
                   "fill": "$text-primary",
                   "content": "Elena Moreau",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 16
+                  "fontSize": 16,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -1619,7 +1550,8 @@
                   "fill": "$text-tertiary",
                   "content": "Original abstract paintings",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1678,7 +1610,8 @@
               "fill": "$text-tertiary",
               "content": "© 2026",
               "fontFamily": "Funnel Sans",
-              "fontSize": 12
+              "fontSize": 12,
+              "fontWeight": "normal"
             }
           ]
         }
@@ -1708,9 +1641,10 @@
               "id": "mnJ4K",
               "name": "navBrand",
               "fill": "$text-primary",
-              "content": "Elena Moreau",
+              "content": "Ester Batllori",
               "fontFamily": "Funnel Sans",
               "fontSize": 15,
+              "fontWeight": "normal",
               "letterSpacing": 2
             },
             {
@@ -1750,6 +1684,7 @@
               "lineHeight": 0.95,
               "fontFamily": "Funnel Sans",
               "fontSize": 44,
+              "fontWeight": "normal",
               "letterSpacing": -1
             },
             {
@@ -1762,7 +1697,8 @@
               "content": "Original abstract paintings by Elena Moreau. Each piece is a one-of-a-kind exploration of form, movement, and feeling.",
               "lineHeight": 1.7,
               "fontFamily": "Funnel Sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -1822,6 +1758,7 @@
                   "content": "Selected Works",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 12,
+                  "fontWeight": "normal",
                   "letterSpacing": 3
                 },
                 {
@@ -1831,7 +1768,8 @@
                   "fill": "$text-tertiary",
                   "content": "16 paintings",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
