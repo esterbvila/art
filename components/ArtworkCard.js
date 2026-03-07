@@ -43,21 +43,21 @@ export default function ArtworkCard({ artwork }) {
       </div>
 
       {/* ── Card info strip (dark background) ─────────────────────────── */}
-      <div className="bg-bg-deep flex items-start justify-between gap-3 px-0 pt-3 pb-1">
+      <div className="flex items-start justify-between gap-3 px-0 pt-3 pb-1">
         {/* Left: title + medium */}
         <div className="flex flex-col gap-[2px] min-w-0">
-          <span className="font-sans font-semibold text-text-light text-[14px] leading-[1.3] truncate">
+          <span className="font-sans font-semibold text-text-primary text-[14px] leading-[1.3] truncate">
             {title}
           </span>
           {medium && (
-            <span className="font-sans font-normal text-text-light-muted text-[12px] leading-[1.4] truncate">
+            <span className="font-sans font-normal text-text-primary text-[12px] leading-[1.4] truncate">
               {medium}
             </span>
           )}
         </div>
 
         {/* Right: price */}
-        <span className="font-sans font-normal text-text-light text-[14px] leading-[1.3] whitespace-nowrap flex-shrink-0">
+        <span className="font-sans font-normal text-text-primary text-[14px] leading-[1.3] whitespace-nowrap flex-shrink-0">
           {formatPrice(price)}
         </span>
       </div>

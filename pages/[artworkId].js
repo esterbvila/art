@@ -46,7 +46,7 @@ export default function ArtworkDetail({ artwork }) {
         <Navigation />
 
         {/* ── Back link ──────────────────────────────────────────────── */}
-        <div className="px-[80px] py-5">
+        <div className="pl-6 pr-5 md:px-[80px] py-5">
           <Link
             href="/#works"
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
@@ -62,8 +62,8 @@ export default function ArtworkDetail({ artwork }) {
         {/* Mobile: stacked | Desktop: image left · info right          */}
         <div className="flex flex-col md:flex-row flex-1">
 
-          {/* Left — image / slider */}
-          <div className="md:flex-1 min-h-[360px] md:min-h-[620px]">
+          {/* Left — image */}
+          <div className="md:w-1/2 min-h-[300px] md:min-h-[620px]">
             <ImageSlider
               images={artwork.images?.length > 0 ? artwork.images : [artwork.image_url]}
               alt={artwork.title}
@@ -71,94 +71,97 @@ export default function ArtworkDetail({ artwork }) {
             />
           </div>
 
-          {/* Right — all artwork info */}
-          <div className="md:flex-1 flex flex-col gap-8 p-8 md:p-[56px]">
+          {/* Right — artwork info */}
+          <div className="md:w-1/2 flex flex-col gap-8 p-5 md:p-[56px]">
 
-            {/* Title + meta ────────────────────────────────────────── */}
-            <div className="flex flex-col gap-5">
-              <h1
+          {/* Title + meta */}
+          <div className="flex flex-col gap-5">
+            <h1
+              className="font-sans font-normal text-text-primary"
+              style={{ fontSize: 'clamp(26px, 3vw, 42px)', letterSpacing: '-1px', lineHeight: 1.05 }}
+            >
+              {artwork.title}
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
+                {artwork.medium}
+              </span>
+              {artwork.dimensions && (
+                <>
+                  <span className="text-text-tertiary font-sans text-[13px]">·</span>
+                  <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
+                    {artwork.dimensions}
+                  </span>
+                </>
+              )}
+              {artwork.year && (
+                <>
+                  <span className="text-text-tertiary font-sans text-[13px]">·</span>
+                  <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
+                    {artwork.year}
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Price + purchase button */}
+          <div className="flex flex-col gap-6 w-full max-w-[360px]">
+            <div className="flex flex-col gap-2">
+              <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
+                Price
+              </p>
+              <p
                 className="font-sans font-normal text-text-primary"
-                style={{ fontSize: 'clamp(32px, 3vw, 42px)', letterSpacing: '-1px', lineHeight: 1.05 }}
+                style={{ fontSize: '32px', letterSpacing: '-0.5px' }}
               >
-                {artwork.title}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-4">
-                <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
-                  {artwork.medium}
-                </span>
-                {artwork.dimensions && (
-                  <>
-                    <span className="text-text-tertiary font-sans text-[13px]">·</span>
-                    <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
-                      {artwork.dimensions}
-                    </span>
-                  </>
-                )}
-                {artwork.year && (
-                  <>
-                    <span className="text-text-tertiary font-sans text-[13px]">·</span>
-                    <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
-                      {artwork.year}
-                    </span>
-                  </>
-                )}
-              </div>
+                {formatPrice(artwork.price)}
+              </p>
             </div>
 
-            {/* Price + purchase button (constrained to 360px) ─────── */}
-            <div className="flex flex-col gap-6 max-w-[360px]">
-              <div className="flex flex-col gap-2">
-                <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
-                  Price
-                </p>
-                <p
-                  className="font-sans font-normal text-text-primary"
-                  style={{ fontSize: '32px', letterSpacing: '-0.5px' }}
-                >
-                  {formatPrice(artwork.price)}
-                </p>
-              </div>
+            <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
 
-              <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
+            <div className="w-full h-px bg-divider" />
+          </div>
 
-              <div className="w-full h-px bg-divider" />
-            </div>
-
-            {/* About ──────────────────────────────────────────────── */}
+          {/* About + Process */}
+          <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-4">
               <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
                 About
               </p>
-              <p className="text-text-secondary font-sans text-[15px] leading-[1.7]">
+              <p className="text-text-secondary font-sans text-[15px] leading-[1.8]">
                 {artwork.description}
               </p>
             </div>
 
-            {/* Process ────────────────────────────────────────────── */}
+            <div className="w-full h-px bg-divider" />
+
             <div className="flex flex-col gap-4">
               <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
                 Process
               </p>
-              <p className="text-text-secondary font-sans text-[15px] leading-[1.7]">
+              <p className="text-text-secondary font-sans text-[15px] leading-[1.8]">
                 {artwork.process}
               </p>
             </div>
+          </div>
 
-            {/* Divider ────────────────────────────────────────────── */}
-            <div className="w-full h-px bg-divider" />
+          {/* Divider */}
+          <div className="w-full h-px bg-divider" />
 
-            {/* Details grid ───────────────────────────────────────── */}
-            <div className="flex flex-col gap-[14px]">
-              {details.map(({ label, value, accent }) => (
-                <div key={label} className="flex justify-between items-center">
-                  <span className="text-text-tertiary font-sans text-[13px]">{label}</span>
-                  <span className={`font-sans text-[13px] ${accent ? 'text-accent' : 'text-text-primary'}`}>
-                    {value}
-                  </span>
-                </div>
-              ))}
-            </div>
+          {/* Details grid */}
+          <div className="flex flex-col gap-[14px]">
+            {details.map(({ label, value, accent }) => (
+              <div key={label} className="flex justify-between items-center">
+                <span className="text-text-tertiary font-sans text-[13px]">{label}</span>
+                <span className={`font-sans text-[13px] ${accent ? 'text-accent' : 'text-text-primary'}`}>
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
 
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function Hero() {
         <h1
           className="font-sans font-normal text-text-primary leading-tight95 w-full md:max-w-[66%]"
           style={{
-            fontSize:      'clamp(44px, 5.5vw, 80px)',
+            fontSize:      'clamp(34px, 5.5vw, 80px)',
             letterSpacing: 'clamp(-1px, -0.15vw, -2px)',
             lineHeight:    0.95,
           }}
