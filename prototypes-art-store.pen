@@ -189,8 +189,8 @@
                   "name": "heroHeadline",
                   "fill": "$text-primary",
                   "textGrowth": "fixed-width",
-                  "width": 660,
-                  "content": "What words cannot express. Subconciousness",
+                  "width": 956,
+                  "content": "Abstract paintings exploring subconscious landscapes.",
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 80,
@@ -203,8 +203,8 @@
                   "name": "heroSub",
                   "fill": "$text-secondary",
                   "textGrowth": "fixed-width",
-                  "width": 450,
-                  "content": "Original abstract paintings by Ester Batllori.\nEach piece is a piece of subconciousness. \nTo know what I'm drawing is a discovery of my most innerself",
+                  "width": 296,
+                  "content": "Each piece emerges through an intuitive process where color, movement and texture reveal forms that cannot be planned.",
                   "lineHeight": 1.7,
                   "textAlign": "right",
                   "fontFamily": "Funnel Sans",
@@ -251,33 +251,53 @@
           "children": [
             {
               "type": "frame",
-              "id": "NCJ3M",
-              "name": "Gallery Header",
+              "id": "RFi48",
+              "name": "Frame 1",
               "width": "fill_container",
-              "justifyContent": "space_between",
-              "alignItems": "center",
+              "layout": "vertical",
+              "gap": 6,
               "children": [
                 {
-                  "type": "text",
-                  "id": "ns844",
-                  "name": "galTitle",
-                  "fill": "$text-tertiary",
-                  "content": "Selected Works",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
+                  "type": "frame",
+                  "id": "NCJ3M",
+                  "name": "Gallery Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ns844",
+                      "name": "galTitle",
+                      "fill": "$text-tertiary",
+                      "content": "Available works",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "f2WKc",
+                      "name": "galCount",
+                      "fill": "$text-tertiary",
+                      "content": "16 paintings",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    }
+                  ]
                 },
                 {
                   "type": "text",
-                  "id": "f2WKc",
-                  "name": "galCount",
+                  "id": "Fr3VH",
+                  "name": "galTitle",
                   "fill": "$text-tertiary",
-                  "content": "16 paintings",
+                  "content": "Each painting is an original, one-of-a-kind artwork.",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal",
-                  "letterSpacing": 0.5
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -310,7 +330,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "egipte-horitzontal-editada.png",
+                            "url": "egypt-hor-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -332,9 +352,9 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "300€",
+                          "content": "360€",
                           "fill": "$text-primary",
-                          "x": 276.5,
+                          "x": 391.6666666666667,
                           "y": 0
                         }
                       }
@@ -346,19 +366,19 @@
                       "width": "fill_container",
                       "name": "p2",
                       "height": "fit_content",
-                      "x": 345.5,
+                      "x": 460.6666666666667,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "boli-blanc-editat.png",
+                            "url": "boli-editat-2.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Wondering",
+                          "content": "Everything is possible",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -366,7 +386,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "500€",
+                          "content": "480€",
                           "fill": "$text-primary"
                         }
                       }
@@ -378,7 +398,7 @@
                       "width": "fill_container",
                       "name": "p3",
                       "height": "fit_content",
-                      "x": 691,
+                      "x": 921.3333333333334,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
@@ -398,26 +418,35 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "300€",
+                          "content": "280€",
                           "fill": "$text-primary"
                         }
                       }
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eu54Z",
+                  "name": "Row 1",
+                  "width": "fill_container",
+                  "gap": 38,
+                  "children": [
                     {
-                      "id": "UKF8X",
+                      "id": "wjXKG",
                       "type": "ref",
                       "ref": "fWUFs",
                       "width": "fill_container",
                       "name": "p4",
                       "height": "fit_content",
-                      "x": 1036.5,
+                      "x": 0,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "pluja-edited.png",
+                            "url": "pluja-edited-1.png",
                             "mode": "fill"
                           }
                         },
@@ -430,8 +459,68 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "200€",
+                          "content": "180€",
                           "fill": "#2f2b21ff"
+                        }
+                      }
+                    },
+                    {
+                      "id": "gnczf",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "name": "p8",
+                      "height": "fit_content",
+                      "x": 460.6666666666667,
+                      "y": 0,
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "e-details-edited.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "Touched by the sun",
+                          "fill": "$text-primary"
+                        },
+                        "SPLEE": {
+                          "fill": "$text-primary",
+                          "content": "680€"
+                        }
+                      }
+                    },
+                    {
+                      "id": "3gAxe",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "name": "p12",
+                      "height": "fit_content",
+                      "x": 921.3333333333334,
+                      "y": 0,
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "frigopie-edited.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "The pink panther",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Mixed media, 30×36\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "660€",
+                          "fill": "$text-primary"
                         }
                       }
                     }
@@ -458,7 +547,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "peanut-edited.png",
+                            "url": "peanut-edited-1.png",
                             "mode": "fill"
                           }
                         },
@@ -471,7 +560,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "300€",
+                          "content": "160€",
                           "fill": "$text-primary"
                         }
                       }
@@ -483,14 +572,14 @@
                       "width": "fill_container",
                       "name": "p6",
                       "height": "fit_content",
-                      "x": 345.5,
+                      "x": 460.6666666666667,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "egipt-tiny-edited.png",
+                            "url": "egipt-tiny-edited-1.png",
                             "mode": "fill"
                           }
                         },
@@ -503,7 +592,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$2,800",
+                          "content": "160€",
                           "fill": "$text-primary"
                         }
                       }
@@ -515,7 +604,7 @@
                       "width": "fill_container",
                       "name": "p7",
                       "height": "fit_content",
-                      "x": 691,
+                      "x": 921.3333333333334,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
@@ -535,31 +624,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,100",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "LPU6W",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p8",
-                      "height": "fit_content",
-                      "x": 1036.5,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "egipt-detailed-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Cerulean Dream",
+                          "content": "240€",
                           "fill": "$text-primary"
                         }
                       }
@@ -600,7 +665,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,900",
+                          "content": "120€",
                           "fill": "$text-primary"
                         }
                       }
@@ -612,7 +677,7 @@
                       "width": "fill_container",
                       "name": "p10",
                       "height": "fit_content",
-                      "x": 345.5,
+                      "x": 460.6666666666667,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
@@ -624,7 +689,7 @@
                           }
                         },
                         "xRoEk": {
-                          "content": "Morning Fog",
+                          "content": "Twin boy",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -632,7 +697,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,050",
+                          "content": "120€",
                           "fill": "$text-primary"
                         }
                       }
@@ -644,19 +709,19 @@
                       "width": "fill_container",
                       "name": "p11",
                       "height": "fit_content",
-                      "x": 691,
+                      "x": 921.3333333333334,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "mar-edited-1.png",
+                            "url": "mar-edited-2.png",
                             "mode": "fill"
                           }
                         },
                         "xRoEk": {
-                          "content": "Solstice",
+                          "content": "Alien sea",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -664,39 +729,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,350",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "rjAJe",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p12",
-                      "height": "fit_content",
-                      "x": 1036.5,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "frigopie-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Violet Horizon",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 30×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$2,400",
+                          "content": "620€",
                           "fill": "$text-primary"
                         }
                       }
@@ -729,7 +762,7 @@
                           }
                         },
                         "xRoEk": {
-                          "content": "Rust & Rain",
+                          "content": "Touched by Autum",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -737,7 +770,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,250",
+                          "content": "240€",
                           "fill": "$text-primary"
                         }
                       }
@@ -749,7 +782,7 @@
                       "width": "fill_container",
                       "name": "p14",
                       "height": "fit_content",
-                      "x": 345.5,
+                      "x": 460.6666666666667,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
@@ -769,7 +802,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,800",
+                          "content": "80€",
                           "fill": "$text-primary"
                         }
                       }
@@ -781,7 +814,7 @@
                       "width": "fill_container",
                       "name": "p15",
                       "height": "fit_content",
-                      "x": 691,
+                      "x": 921.3333333333334,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
@@ -793,7 +826,7 @@
                           }
                         },
                         "xRoEk": {
-                          "content": "Dusk Palette",
+                          "content": "Just do it",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -801,19 +834,28 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$1,600",
+                          "content": "80€",
                           "fill": "$text-primary"
                         }
                       }
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KCn5U",
+                  "name": "Row 4",
+                  "width": "fill_container",
+                  "gap": 38,
+                  "children": [
                     {
-                      "id": "GYomp",
+                      "id": "8NATI",
                       "type": "ref",
                       "ref": "fWUFs",
                       "width": "fill_container",
                       "name": "p16",
                       "height": "fit_content",
-                      "x": 1036.5,
+                      "x": 0,
                       "y": 0,
                       "descendants": {
                         "JCRrh": {
@@ -825,7 +867,7 @@
                           }
                         },
                         "xRoEk": {
-                          "content": "Coral Reef",
+                          "content": "Decaff week.",
                           "fill": "$text-primary"
                         },
                         "BvS2M": {
@@ -833,7 +875,7 @@
                           "fill": "$text-tertiary"
                         },
                         "SPLEE": {
-                          "content": "$950",
+                          "content": "70€",
                           "fill": "$text-primary"
                         }
                       }
@@ -901,7 +943,7 @@
                   "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Elena\nMoreau",
+                  "content": "Ester\nBatllori",
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 52,
@@ -910,12 +952,12 @@
                 },
                 {
                   "type": "text",
-                  "id": "6Zp5a",
+                  "id": "w08R0",
                   "name": "aboutP1",
                   "fill": "$text-secondary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "I’ve been painting for over fifteen years, drawn to the way color and texture can evoke feelings that words never quite capture. My work lives at the intersection of intuition and intention — each piece begins without a plan and finds its own way.",
+                  "content": "I paint intuitively, allowing color and movement to guide the process. My work explores emotions, memories and inner landscapes that are difficult to describe with words.",
                   "lineHeight": 1.7,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 15,
@@ -923,12 +965,25 @@
                 },
                 {
                   "type": "text",
-                  "id": "nsuHt",
-                  "name": "aboutP2",
+                  "id": "lZjnx",
+                  "name": "aboutP1",
                   "fill": "$text-secondary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Inspired by natural landscapes, shifting light, and the emotional weight of everyday moments, I work primarily with acrylics and mixed media on canvas.",
+                  "content": "Each painting develops without a fixed plan. Through layers of color and spontaneous gestures, abstract forms emerge that reflect a dialogue between intuition and composition.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "h7ekS",
+                  "name": "aboutP1",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Inspired by nature, everyday moments and subconscious imagery, I work primarily with acrylics and mixed media on canvas.",
                   "lineHeight": 1.7,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 15,
@@ -998,7 +1053,7 @@
                   "fill": "$text-light",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Crimson\nPulse",
+                  "content": "Frigopie",
                   "lineHeight": 0.95,
                   "fontFamily": "Funnel Sans",
                   "fontSize": 48,
@@ -1010,7 +1065,7 @@
                   "id": "t9VyZ",
                   "name": "featMeta",
                   "fill": "$text-light-muted",
-                  "content": "Acrylic on canvas · 30×40\" · 2024",
+                  "content": "Acrylic on paper · 30×40\" · 2024",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
                   "fontWeight": "normal"
@@ -1047,7 +1102,7 @@
                       "id": "QR6zt",
                       "name": "featPrice",
                       "fill": "$text-light",
-                      "content": "$2,200",
+                      "content": "$600",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 24,
                       "fontWeight": "normal"
@@ -1538,7 +1593,7 @@
                   "id": "eK64K",
                   "name": "footerBrand",
                   "fill": "$text-primary",
-                  "content": "Elena Moreau",
+                  "content": "Ester Batllori",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 16,
                   "fontWeight": "normal"
@@ -1548,7 +1603,7 @@
                   "id": "TkXCH",
                   "name": "footerTag",
                   "fill": "$text-tertiary",
-                  "content": "Original abstract paintings",
+                  "content": "Original abstract paintings exploring emotion, intuition and subconscious landscapes.",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 13,
                   "fontWeight": "normal"
@@ -1680,7 +1735,7 @@
               "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
-              "content": "Where\nColor Meets\nEmotion",
+              "content": "Abstract paintings exploring subconscious landscapes.",
               "lineHeight": 0.95,
               "fontFamily": "Funnel Sans",
               "fontSize": 44,
@@ -1694,7 +1749,7 @@
               "fill": "$text-secondary",
               "textGrowth": "fixed-width",
               "width": 300,
-              "content": "Original abstract paintings by Elena Moreau. Each piece is a one-of-a-kind exploration of form, movement, and feeling.",
+              "content": "Each piece emerges through an intuitive process where color, movement and texture reveal forms that cannot be planned.",
               "lineHeight": 1.7,
               "fontFamily": "Funnel Sans",
               "fontSize": 14,
@@ -1716,7 +1771,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "https://images.unsplash.com/photo-1725794953948-5f38ad69d7f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgyMjJ8&ixlib=rb-4.1.0&q=80&w=1080",
+                "url": "egipte-editada-retallada.png",
                 "mode": "fill"
               }
             }
@@ -1744,31 +1799,52 @@
           "children": [
             {
               "type": "frame",
-              "id": "2yh2j",
-              "name": "Gallery Header",
+              "id": "bRQZg",
+              "name": "Frame 1",
               "width": "fill_container",
-              "justifyContent": "space_between",
-              "alignItems": "center",
+              "layout": "vertical",
+              "gap": 4,
               "children": [
                 {
-                  "type": "text",
-                  "id": "HVf5h",
-                  "name": "galTitle",
-                  "fill": "$text-tertiary",
-                  "content": "Selected Works",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
+                  "type": "frame",
+                  "id": "jRsH2",
+                  "name": "Gallery Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YpDQB",
+                      "name": "galTitle",
+                      "fill": "$text-tertiary",
+                      "content": "Available works",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "yxOWW",
+                      "name": "galCount",
+                      "fill": "$text-tertiary",
+                      "content": "16 paintings",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    }
+                  ]
                 },
                 {
                   "type": "text",
-                  "id": "CyzDZ",
-                  "name": "galCount",
+                  "id": "Khokm",
+                  "name": "galTitle",
                   "fill": "$text-tertiary",
-                  "content": "16 paintings",
+                  "content": "Each painting is an original, one-of-a-kind artwork.",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
+                  "fontSize": 10,
                   "fontWeight": "normal"
                 }
               ]
@@ -1786,7 +1862,8 @@
                   "id": "iiay1",
                   "name": "row1",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "i2CRL",
@@ -1799,7 +1876,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1731652469577-9eebf01ea070?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgyNDl8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "url": "egypt-hor-edited.png",
                             "mode": "fill"
                           }
                         },
@@ -1828,7 +1905,7 @@
                           "fill": {
                             "type": "image",
                             "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1649107098056-0a908efe71c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgyNDl8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "url": "boli-editat-2.png",
                             "mode": "fill"
                           }
                         },
@@ -1853,7 +1930,8 @@
                   "id": "aydSf",
                   "name": "row2",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "qSxr2",
@@ -1920,7 +1998,8 @@
                   "id": "nORvo",
                   "name": "row3",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "VqaJ8",
@@ -1987,7 +2066,8 @@
                   "id": "DITMA",
                   "name": "row4",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "9aLom",
@@ -2054,7 +2134,8 @@
                   "id": "VKkOT",
                   "name": "row5",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "O1rk3",
@@ -2121,7 +2202,8 @@
                   "id": "7yAnz",
                   "name": "row6",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "LCW1s",
@@ -2188,7 +2270,8 @@
                   "id": "nmlnC",
                   "name": "row7",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "sw2a0",
@@ -2255,7 +2338,8 @@
                   "id": "Csfbe",
                   "name": "row8",
                   "width": "fill_container",
-                  "gap": 16,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "id": "JuLcJ",
@@ -2451,7 +2535,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "https://images.unsplash.com/photo-1648630279103-f3b08fcd4a7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTg1MDN8&ixlib=rb-4.1.0&q=80&w=1080",
+                "url": "frigopie-edited.png",
                 "mode": "fill"
               }
             },
@@ -3064,6 +3148,1229 @@
               "type": "text",
               "id": "ZuA9R",
               "name": "footerCopy",
+              "fill": "$text-tertiary",
+              "content": "© 2026",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "xGwaH",
+      "x": 0,
+      "y": 5800,
+      "name": "Artwork Detail - Desktop",
+      "width": 1440,
+      "fill": "$bg-main",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "5tIxw",
+          "name": "Navigation",
+          "width": "fill_container",
+          "padding": [
+            28,
+            48
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "s5s72",
+              "name": "brand",
+              "fill": "$text-primary",
+              "content": "Ester Batllori",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "oadJO",
+              "name": "Nav Links",
+              "gap": 40,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1jPyg",
+                  "name": "nl1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "wGgLv",
+                  "name": "nl2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "BHh3T",
+                  "name": "nl3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "HawVh",
+                  "name": "nl4",
+                  "fill": "$accent",
+                  "content": "Inquire",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nab8E",
+          "name": "Back Row",
+          "width": "fill_container",
+          "padding": [
+            16,
+            48
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "tkQzE",
+              "name": "backLink",
+              "fill": "$text-tertiary",
+              "content": "← Back to works",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Mcs33",
+          "name": "Hero Image",
+          "width": "fill_container",
+          "padding": [
+            0,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "dy4dO",
+              "name": "Image Container",
+              "clip": true,
+              "width": "fill_container",
+              "height": 700,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "egypt-hor-edited.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OXNIT",
+          "name": "Artwork Info",
+          "width": "fill_container",
+          "gap": 80,
+          "padding": [
+            64,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "YtViQ",
+              "name": "Info Left",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SliaZ",
+                  "name": "titleText",
+                  "fill": "$text-primary",
+                  "content": "Memories of Egypt",
+                  "lineHeight": 0.95,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 52,
+                  "fontWeight": "normal",
+                  "letterSpacing": -1.5
+                },
+                {
+                  "type": "frame",
+                  "id": "dqfoU",
+                  "name": "Meta Row",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6DtPP",
+                      "name": "medium",
+                      "fill": "$text-secondary",
+                      "content": "Acrylic on paper",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "v9mwR",
+                      "name": "metaDot1",
+                      "fill": "$text-tertiary",
+                      "content": "·",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "toIXm",
+                      "name": "sizeText",
+                      "fill": "$text-secondary",
+                      "content": "24×30\"",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Hmrug",
+                      "name": "metaDot2",
+                      "fill": "$text-tertiary",
+                      "content": "·",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Fp4Gy",
+                      "name": "yearText",
+                      "fill": "$text-secondary",
+                      "content": "2024",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "rRflc",
+                  "name": "desc",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "This painting emerged from a journey through the ancient landscapes of Egypt — the dusty ochres, sun-bleached walls, and golden light that saturates everything. Working from memory rather than photographs, each brushstroke attempts to capture not what I saw, but what I felt: the weight of history, the warmth of stone, the quiet reverence of standing before something timeless.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "PGKNR",
+                  "name": "Divider",
+                  "width": 60,
+                  "height": 1,
+                  "fill": "$divider"
+                },
+                {
+                  "type": "text",
+                  "id": "xYHRF",
+                  "name": "processLabel",
+                  "fill": "$text-tertiary",
+                  "content": "Process",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "7IJhX",
+                  "name": "processText",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Built up in thin, translucent layers — each one drying before the next is applied. The texture comes from letting the brush move instinctively, guided by the memory of place rather than a planned composition.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KHIoc",
+              "name": "Info Right",
+              "width": 360,
+              "layout": "vertical",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rZaG4",
+                  "name": "priceLabel",
+                  "fill": "$text-tertiary",
+                  "content": "Price",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "5Ov6R",
+                  "name": "price",
+                  "fill": "$text-primary",
+                  "content": "360€",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 36,
+                  "fontWeight": "normal",
+                  "letterSpacing": -1
+                },
+                {
+                  "type": "frame",
+                  "id": "hRDn7",
+                  "name": "Inquire Button",
+                  "fill": "$accent",
+                  "padding": [
+                    16,
+                    48
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LUU8V",
+                      "name": "btnText",
+                      "fill": "#FFFFFF",
+                      "content": "Inquire about this piece",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nB0Wl",
+                  "name": "Divider",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "$divider"
+                },
+                {
+                  "type": "frame",
+                  "id": "0GdI1",
+                  "name": "Details Grid",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "A6sKK",
+                      "name": "Detail Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "phzfR",
+                          "name": "dr1l",
+                          "fill": "$text-tertiary",
+                          "content": "Medium",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "BYU7h",
+                          "name": "dr1v",
+                          "fill": "$text-primary",
+                          "content": "Acrylic on paper",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "2ThmP",
+                      "name": "Detail Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MAyTb",
+                          "name": "dr2l",
+                          "fill": "$text-tertiary",
+                          "content": "Dimensions",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "sXFlt",
+                          "name": "dr2v",
+                          "fill": "$text-primary",
+                          "content": "24 × 30 inches",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IvrAt",
+                      "name": "Detail Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Kvi4D",
+                          "name": "dr3l",
+                          "fill": "$text-tertiary",
+                          "content": "Year",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Vss4w",
+                          "name": "dr3v",
+                          "fill": "$text-primary",
+                          "content": "2024",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "akJKD",
+                      "name": "Detail Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RLom2",
+                          "name": "dr4l",
+                          "fill": "$text-tertiary",
+                          "content": "Availability",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "aCzqS",
+                          "name": "dr4v",
+                          "fill": "$accent",
+                          "content": "Available",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "4CNA3",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "Zqsw5",
+          "name": "More Works",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            64,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "rOnk3",
+              "name": "More Header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "cM3Zw",
+                  "name": "moreTitle",
+                  "fill": "$text-tertiary",
+                  "content": "More works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "Zzs4Y",
+                  "name": "moreLink",
+                  "fill": "$text-tertiary",
+                  "content": "View all works →",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "O5h7V",
+              "name": "More Grid",
+              "width": "fill_container",
+              "gap": 38,
+              "children": [
+                {
+                  "id": "EddHq",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "rp1",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "boli-editat-2.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Everything is possible",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic and alcohol pen, 20×20\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "480€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "PuzB4",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "rp2",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "Period-edited.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Endometriosis",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic on paper, 30×40\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "280€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "Uojqc",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "rp3",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "pluja-edited-1.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Sonnstiges Rain",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Oil on canvas, 24×24\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "180€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "s2aT1",
+          "name": "Footer Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "kUbrM",
+          "name": "Footer",
+          "width": "fill_container",
+          "padding": [
+            40,
+            48,
+            48,
+            48
+          ],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "J6nwO",
+              "name": "Footer Left",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "D6xOP",
+                  "name": "fBrand",
+                  "fill": "$text-primary",
+                  "content": "Ester Batllori",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "TjjSX",
+                  "name": "fSub",
+                  "fill": "$text-tertiary",
+                  "content": "Original abstract paintings",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZCIDf",
+              "name": "Footer Nav",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1cS5u",
+                  "name": "fn1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "LQOsL",
+                  "name": "fn2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "UAmJk",
+                  "name": "fn3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "cgXvH",
+              "name": "fCopy",
+              "fill": "$text-tertiary",
+              "content": "© 2026",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "fvjUp",
+      "x": 2064,
+      "y": 0,
+      "name": "Artwork Detail - Mobile",
+      "width": 390,
+      "fill": "$bg-main",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "9dXPL",
+          "name": "Navigation",
+          "width": "fill_container",
+          "padding": 20,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "7FafV",
+              "name": "mbrand",
+              "fill": "$text-primary",
+              "content": "Ester Batllori",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 15,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "icon_font",
+              "id": "ui5Q6",
+              "name": "mmenu",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "menu",
+              "iconFontFamily": "lucide",
+              "fill": "$text-primary"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XLj1K",
+          "name": "Back Row",
+          "width": "fill_container",
+          "padding": [
+            8,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "HA8Vg",
+              "name": "mbackText",
+              "fill": "$text-tertiary",
+              "content": "← Back to works",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YX1tT",
+          "name": "Hero Image",
+          "clip": true,
+          "width": "fill_container",
+          "height": 360,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "egypt-hor-edited.png",
+            "mode": "fill"
+          }
+        },
+        {
+          "type": "frame",
+          "id": "yXIsE",
+          "name": "Artwork Info",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            40,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "VXz4v",
+              "name": "mtitle",
+              "fill": "$text-primary",
+              "content": "Memories of Egypt",
+              "lineHeight": 0.95,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 36,
+              "fontWeight": "normal",
+              "letterSpacing": -1
+            },
+            {
+              "type": "frame",
+              "id": "fEH1w",
+              "name": "Meta Row",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3PIfj",
+                  "name": "mm1",
+                  "fill": "$text-secondary",
+                  "content": "Acrylic on paper",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bgSZ8",
+                  "name": "mmd1",
+                  "fill": "$text-tertiary",
+                  "content": "·",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "A1qPE",
+                  "name": "mm2",
+                  "fill": "$text-secondary",
+                  "content": "24×30\"",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "0ZHpw",
+                  "name": "mmd2",
+                  "fill": "$text-tertiary",
+                  "content": "·",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "W2P8y",
+                  "name": "mm3",
+                  "fill": "$text-secondary",
+                  "content": "2024",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "29VnO",
+              "name": "mprice",
+              "fill": "$text-primary",
+              "content": "360€",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 28,
+              "fontWeight": "normal",
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "frame",
+              "id": "4MAyo",
+              "name": "Inquire Button",
+              "width": "fill_container",
+              "fill": "$accent",
+              "padding": [
+                16,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OlEzz",
+                  "name": "mbtnTxt",
+                  "fill": "#FFFFFF",
+                  "content": "Buy",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1LZAf",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "S7rC9",
+          "name": "Description",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            40,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "kNLoo",
+              "name": "mdescText",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "This painting emerged from a journey through the ancient landscapes of Egypt — the dusty ochres, sun-bleached walls, and golden light that saturates everything. Working from memory rather than photographs, each brushstroke attempts to capture not what I saw, but what I felt: the weight of history, the warmth of stone, the quiet reverence of standing before something timeless.",
+              "lineHeight": 1.7,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "R65mh",
+              "name": "Divider",
+              "width": 40,
+              "height": 1,
+              "fill": "$divider"
+            },
+            {
+              "type": "text",
+              "id": "Sn2JH",
+              "name": "mplabel",
+              "fill": "$text-tertiary",
+              "content": "Process",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "FIVb0",
+              "name": "mptext",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Built up in thin, translucent layers — each one drying before the next is applied. The texture comes from letting the brush move instinctively, guided by the memory of place rather than a planned composition.",
+              "lineHeight": 1.7,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hsYLO",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "Tn7ub",
+          "name": "Details",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "padding": [
+            32,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "rXTXG",
+              "name": "Detail Row",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "k8WmG",
+                  "name": "mdr1l",
+                  "fill": "$text-tertiary",
+                  "content": "Medium",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Ahlef",
+                  "name": "mdr1v",
+                  "fill": "$text-primary",
+                  "content": "Acrylic on paper",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YBtlY",
+              "name": "Detail Row",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FvIJl",
+                  "name": "mdr2l",
+                  "fill": "$text-tertiary",
+                  "content": "Dimensions",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Tx2M5",
+                  "name": "mdr2v",
+                  "fill": "$text-primary",
+                  "content": "24 × 30 inches",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YCI3I",
+              "name": "Detail Row",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "5oy5X",
+                  "name": "mdr3l",
+                  "fill": "$text-tertiary",
+                  "content": "Year",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "kdXMu",
+                  "name": "mdr3v",
+                  "fill": "$text-primary",
+                  "content": "2024",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0mZhD",
+              "name": "Detail Row",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q9NQi",
+                  "name": "mdr4l",
+                  "fill": "$text-tertiary",
+                  "content": "Availability",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "nEy0P",
+                  "name": "mdr4v",
+                  "fill": "$accent",
+                  "content": "Available",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hf9md",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "qkHmF",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "ccJ7g",
+          "name": "Footer",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            32,
+            20,
+            40,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "u2Ncw",
+              "name": "mfBrand",
+              "fill": "$text-primary",
+              "content": "Ester Batllori",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "a0amD",
+              "name": "Footer Nav",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fp3wP",
+                  "name": "mfn1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "PBpvC",
+                  "name": "mfn2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "MLCpl",
+                  "name": "mfn3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "XQUXi",
+              "name": "mfCopy",
               "fill": "$text-tertiary",
               "content": "© 2026",
               "fontFamily": "Funnel Sans",
