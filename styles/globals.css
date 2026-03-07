@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Font: Funnel Sans ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;600&display=swap');
+
+/* ─── Base resets ──────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-main text-text-primary font-sans;
+    margin: 0;
+  }
+
+  /* Remove default button styles */
+  button {
+    cursor: pointer;
+  }
+}
+
+/* ─── Utility layer ────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Tight headline leading matching the .95 lineHeight from the design */
+  .leading-tight95 {
+    line-height: 0.95;
+  }
+
+  /* Minimal underline form fields used in the contact form */
+  .input-line {
+    @apply w-full border-0 border-b border-divider bg-transparent
+           pb-3 pt-1 text-text-primary placeholder-text-tertiary
+           text-sm font-sans outline-none transition-colors
+           focus:border-text-secondary resize-none;
+  }
+}

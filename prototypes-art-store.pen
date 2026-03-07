@@ -1133,140 +1133,6 @@
         },
         {
           "type": "frame",
-          "id": "aozBj",
-          "name": "Testimonials",
-          "width": "fill_container",
-          "gap": 48,
-          "padding": [
-            72,
-            48
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "pPtqO",
-              "name": "Quote 1",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 20,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "B2j0h",
-                  "name": "q1Text",
-                  "fill": "$text-primary",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "“The painting completely transformed our living room. There’s a warmth and energy to it that photographs simply can’t capture.”",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 17,
-                  "fontWeight": "normal",
-                  "fontStyle": "italic"
-                },
-                {
-                  "type": "text",
-                  "id": "fzLx3",
-                  "name": "q1Author",
-                  "fill": "$text-tertiary",
-                  "content": "Sarah M. — New York",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
-                  "letterSpacing": 1
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "h2qDK",
-              "name": "Divider",
-              "width": 1,
-              "height": "fill_container",
-              "fill": "$divider"
-            },
-            {
-              "type": "frame",
-              "id": "eXNDa",
-              "name": "Quote 2",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 20,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "vXiqn",
-                  "name": "q2Text",
-                  "fill": "$text-primary",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "“I’ve collected art for twenty years. Elena’s work stands apart — it’s honest, deeply felt, and impossible to walk past without pausing.”",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 17,
-                  "fontWeight": "normal",
-                  "fontStyle": "italic"
-                },
-                {
-                  "type": "text",
-                  "id": "zGF1M",
-                  "name": "q2Author",
-                  "fill": "$text-tertiary",
-                  "content": "David L. — London",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
-                  "letterSpacing": 1
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "qQwsc",
-              "name": "Divider 2",
-              "width": 1,
-              "height": "fill_container",
-              "fill": "$divider"
-            },
-            {
-              "type": "frame",
-              "id": "Ej4HQ",
-              "name": "Quote 3",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 20,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "XaXPo",
-                  "name": "q3Text",
-                  "fill": "$text-primary",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "“Buying directly from Elena was such a personal experience. She helped me choose the perfect piece and shared the story behind it.”",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 17,
-                  "fontWeight": "normal",
-                  "fontStyle": "italic"
-                },
-                {
-                  "type": "text",
-                  "id": "jfNnA",
-                  "name": "q3Author",
-                  "fill": "$text-tertiary",
-                  "content": "Miko T. — Tokyo",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
-                  "letterSpacing": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
           "id": "xwoNG",
           "name": "Divider",
           "width": "fill_container",
@@ -3161,8 +3027,8 @@
     {
       "type": "frame",
       "id": "xGwaH",
-      "x": 0,
-      "y": 5800,
+      "x": 2734,
+      "y": 0,
       "name": "Artwork Detail - Desktop",
       "width": 1440,
       "fill": "$bg-main",
@@ -3252,8 +3118,8 @@
           "name": "Back Row",
           "width": "fill_container",
           "padding": [
-            16,
-            48
+            20,
+            80
           ],
           "children": [
             {
@@ -3271,225 +3137,270 @@
         },
         {
           "type": "frame",
-          "id": "Mcs33",
-          "name": "Hero Image",
+          "id": "uBxP3",
+          "name": "Top Divider",
           "width": "fill_container",
-          "padding": [
-            0,
-            48
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "dy4dO",
-              "name": "Image Container",
-              "clip": true,
-              "width": "fill_container",
-              "height": 700,
-              "fill": {
-                "type": "image",
-                "enabled": true,
-                "url": "egypt-hor-edited.png",
-                "mode": "fill"
-              }
-            }
-          ]
+          "height": 1,
+          "fill": "$divider"
         },
         {
           "type": "frame",
-          "id": "OXNIT",
-          "name": "Artwork Info",
+          "id": "lQlaX",
+          "name": "Frame 2",
           "width": "fill_container",
-          "gap": 80,
-          "padding": [
-            64,
-            48
-          ],
           "children": [
             {
               "type": "frame",
-              "id": "YtViQ",
-              "name": "Info Left",
+              "id": "Mcs33",
+              "name": "Hero Image",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 32,
+              "height": "fit_content(620)",
               "children": [
                 {
-                  "type": "text",
-                  "id": "SliaZ",
-                  "name": "titleText",
-                  "fill": "$text-primary",
-                  "content": "Memories of Egypt",
-                  "lineHeight": 0.95,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 52,
-                  "fontWeight": "normal",
-                  "letterSpacing": -1.5
-                },
-                {
                   "type": "frame",
-                  "id": "dqfoU",
-                  "name": "Meta Row",
-                  "gap": 24,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "6DtPP",
-                      "name": "medium",
-                      "fill": "$text-secondary",
-                      "content": "Acrylic on paper",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "v9mwR",
-                      "name": "metaDot1",
-                      "fill": "$text-tertiary",
-                      "content": "·",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "toIXm",
-                      "name": "sizeText",
-                      "fill": "$text-secondary",
-                      "content": "24×30\"",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "Hmrug",
-                      "name": "metaDot2",
-                      "fill": "$text-tertiary",
-                      "content": "·",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "Fp4Gy",
-                      "name": "yearText",
-                      "fill": "$text-secondary",
-                      "content": "2024",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "rRflc",
-                  "name": "desc",
-                  "fill": "$text-secondary",
-                  "textGrowth": "fixed-width",
+                  "id": "dy4dO",
+                  "name": "Image Container",
+                  "clip": true,
                   "width": "fill_container",
-                  "content": "This painting emerged from a journey through the ancient landscapes of Egypt — the dusty ochres, sun-bleached walls, and golden light that saturates everything. Working from memory rather than photographs, each brushstroke attempts to capture not what I saw, but what I felt: the weight of history, the warmth of stone, the quiet reverence of standing before something timeless.",
-                  "lineHeight": 1.7,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 15,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "frame",
-                  "id": "PGKNR",
-                  "name": "Divider",
-                  "width": 60,
-                  "height": 1,
-                  "fill": "$divider"
-                },
-                {
-                  "type": "text",
-                  "id": "xYHRF",
-                  "name": "processLabel",
-                  "fill": "$text-tertiary",
-                  "content": "Process",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
-                },
-                {
-                  "type": "text",
-                  "id": "7IJhX",
-                  "name": "processText",
-                  "fill": "$text-secondary",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Built up in thin, translucent layers — each one drying before the next is applied. The texture comes from letting the brush move instinctively, guided by the memory of place rather than a planned composition.",
-                  "lineHeight": 1.7,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 15,
-                  "fontWeight": "normal"
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "egypt-hor-edited.png",
+                    "mode": "fill"
+                  }
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "KHIoc",
-              "name": "Info Right",
-              "width": 360,
+              "id": "OXNIT",
+              "name": "Artwork Info",
+              "width": "fill_container",
               "layout": "vertical",
               "gap": 32,
+              "padding": 56,
               "children": [
                 {
-                  "type": "text",
-                  "id": "rZaG4",
-                  "name": "priceLabel",
-                  "fill": "$text-tertiary",
-                  "content": "Price",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
-                },
-                {
-                  "type": "text",
-                  "id": "5Ov6R",
-                  "name": "price",
-                  "fill": "$text-primary",
-                  "content": "360€",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 36,
-                  "fontWeight": "normal",
-                  "letterSpacing": -1
-                },
-                {
                   "type": "frame",
-                  "id": "hRDn7",
-                  "name": "Inquire Button",
-                  "fill": "$accent",
-                  "padding": [
-                    16,
-                    48
-                  ],
-                  "justifyContent": "center",
-                  "alignItems": "center",
+                  "id": "YtViQ",
+                  "name": "Info Left",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
                   "children": [
                     {
                       "type": "text",
-                      "id": "LUU8V",
-                      "name": "btnText",
-                      "fill": "#FFFFFF",
-                      "content": "Inquire about this piece",
+                      "id": "SliaZ",
+                      "name": "titleText",
+                      "fill": "$text-primary",
+                      "content": "Memories of Egypt",
+                      "lineHeight": 1.05,
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
+                      "fontSize": 42,
                       "fontWeight": "normal",
-                      "letterSpacing": 0.5
+                      "letterSpacing": -1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dqfoU",
+                      "name": "Meta Row",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "6DtPP",
+                          "name": "medium",
+                          "fill": "$text-secondary",
+                          "content": "Acrylic on paper",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "v9mwR",
+                          "name": "metaDot1",
+                          "fill": "$text-tertiary",
+                          "content": "·",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "toIXm",
+                          "name": "sizeText",
+                          "fill": "$text-secondary",
+                          "content": "24×30\"",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "Hmrug",
+                          "name": "metaDot2",
+                          "fill": "$text-tertiary",
+                          "content": "·",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Fp4Gy",
+                          "name": "yearText",
+                          "fill": "$text-secondary",
+                          "content": "2024",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
+                        }
+                      ]
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "nB0Wl",
+                  "id": "KHIoc",
+                  "name": "Info Right",
+                  "width": 360,
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rZaG4",
+                      "name": "priceLabel",
+                      "fill": "$text-tertiary",
+                      "content": "Price",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 11,
+                      "fontWeight": "normal",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "5Ov6R",
+                      "name": "price",
+                      "fill": "$text-primary",
+                      "content": "360€",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 32,
+                      "fontWeight": "normal",
+                      "letterSpacing": -0.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hRDn7",
+                      "name": "Inquire Button",
+                      "width": "fill_container",
+                      "fill": "$accent",
+                      "cornerRadius": 2,
+                      "padding": [
+                        14,
+                        40
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "LUU8V",
+                          "name": "btnText",
+                          "fill": "#FFFFFF",
+                          "content": "Inquire about this piece",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nB0Wl",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$divider"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fly3m",
+                  "name": "Frame 3",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "OMuCT",
+                      "name": "descLabel",
+                      "fill": "$text-tertiary",
+                      "content": "About",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 11,
+                      "fontWeight": "normal",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "rRflc",
+                      "name": "desc",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "This painting emerged from a journey through the ancient landscapes of Egypt — the dusty ochres, sun-bleached walls, and golden light that saturates everything. Working from memory rather than photographs, each brushstroke attempts to capture not what I saw, but what I felt: the weight of history, the warmth of stone, the quiet reverence of standing before something timeless.",
+                      "lineHeight": 1.8,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PGKNR",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$divider"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xYHRF",
+                      "name": "processLabel",
+                      "fill": "$text-tertiary",
+                      "content": "Process",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 11,
+                      "fontWeight": "normal",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "7IJhX",
+                      "name": "processText",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Built up in thin, translucent layers — each one drying before the next is applied. The texture comes from letting the brush move instinctively, guided by the memory of place rather than a planned composition.",
+                      "lineHeight": 1.8,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sljBl",
                   "name": "Divider",
                   "width": "fill_container",
                   "height": 1,
@@ -3501,7 +3412,7 @@
                   "name": "Details Grid",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 20,
+                  "gap": 14,
                   "children": [
                     {
                       "type": "frame",
@@ -3627,159 +3538,6 @@
         },
         {
           "type": "frame",
-          "id": "4CNA3",
-          "name": "Divider",
-          "width": "fill_container",
-          "height": 1,
-          "fill": "$divider"
-        },
-        {
-          "type": "frame",
-          "id": "Zqsw5",
-          "name": "More Works",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 40,
-          "padding": [
-            64,
-            48
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "rOnk3",
-              "name": "More Header",
-              "width": "fill_container",
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "cM3Zw",
-                  "name": "moreTitle",
-                  "fill": "$text-tertiary",
-                  "content": "More works",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
-                },
-                {
-                  "type": "text",
-                  "id": "Zzs4Y",
-                  "name": "moreLink",
-                  "fill": "$text-tertiary",
-                  "content": "View all works →",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal",
-                  "letterSpacing": 0.5
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "O5h7V",
-              "name": "More Grid",
-              "width": "fill_container",
-              "gap": 38,
-              "children": [
-                {
-                  "id": "EddHq",
-                  "type": "ref",
-                  "ref": "fWUFs",
-                  "width": "fill_container",
-                  "height": "fit_content",
-                  "name": "rp1",
-                  "descendants": {
-                    "JCRrh": {
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "boli-editat-2.png",
-                        "mode": "fill"
-                      }
-                    },
-                    "xRoEk": {
-                      "content": "Everything is possible",
-                      "fill": "$text-primary"
-                    },
-                    "BvS2M": {
-                      "content": "Acrylic and alcohol pen, 20×20\"",
-                      "fill": "$text-tertiary"
-                    },
-                    "SPLEE": {
-                      "content": "480€",
-                      "fill": "$text-primary"
-                    }
-                  }
-                },
-                {
-                  "id": "PuzB4",
-                  "type": "ref",
-                  "ref": "fWUFs",
-                  "width": "fill_container",
-                  "height": "fit_content",
-                  "name": "rp2",
-                  "descendants": {
-                    "JCRrh": {
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "Period-edited.png",
-                        "mode": "fill"
-                      }
-                    },
-                    "xRoEk": {
-                      "content": "Endometriosis",
-                      "fill": "$text-primary"
-                    },
-                    "BvS2M": {
-                      "content": "Acrylic on paper, 30×40\"",
-                      "fill": "$text-tertiary"
-                    },
-                    "SPLEE": {
-                      "content": "280€",
-                      "fill": "$text-primary"
-                    }
-                  }
-                },
-                {
-                  "id": "Uojqc",
-                  "type": "ref",
-                  "ref": "fWUFs",
-                  "width": "fill_container",
-                  "height": "fit_content",
-                  "name": "rp3",
-                  "descendants": {
-                    "JCRrh": {
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "pluja-edited-1.png",
-                        "mode": "fill"
-                      }
-                    },
-                    "xRoEk": {
-                      "content": "Sonnstiges Rain",
-                      "fill": "$text-primary"
-                    },
-                    "BvS2M": {
-                      "content": "Oil on canvas, 24×24\"",
-                      "fill": "$text-tertiary"
-                    },
-                    "SPLEE": {
-                      "content": "180€",
-                      "fill": "$text-primary"
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
           "id": "s2aT1",
           "name": "Footer Divider",
           "width": "fill_container",
@@ -3885,7 +3643,7 @@
     {
       "type": "frame",
       "id": "fvjUp",
-      "x": 2064,
+      "x": 2269,
       "y": 0,
       "name": "Artwork Detail - Mobile",
       "width": 390,
