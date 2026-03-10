@@ -21,7 +21,7 @@ export default function Hero() {
             lineHeight:    0.95,
           }}
         >
-          Abstract paintings exploring subconscious landscapes.
+          Where Chaos Becomes Form.
         </h1>
 
         {/* Sub-headline — right-aligned on desktop */}
@@ -29,8 +29,7 @@ export default function Hero() {
           className="font-sans font-normal text-text-secondary leading-[1.7] md:text-right md:max-w-[296px]"
           style={{ fontSize: 'clamp(14px, 1.2vw, 15px)' }}
         >
-          Each piece emerges through an intuitive process where color,
-          movement and texture reveal forms that cannot be planned.
+          I paint without intention — the canvas uncovers what lives beneath thought.
         </p>
       </div>
 

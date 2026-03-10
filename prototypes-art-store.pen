@@ -272,7 +272,7 @@
                       "id": "ns844",
                       "name": "galTitle",
                       "fill": "$text-tertiary",
-                      "content": "Collections",
+                      "content": "COLLECTIONS",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 15,
                       "fontWeight": "normal",
@@ -564,6 +564,207 @@
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "0tXsU",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "lHbAY",
+          "name": "Unique Artworks Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            60,
+            48,
+            80,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "7AjPW",
+              "name": "Section Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sgpML",
+                  "name": "Header Row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tmfKy",
+                      "name": "sectionTitle",
+                      "fill": "$text-tertiary",
+                      "content": "UNIQUE PIECES",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "cda2O",
+                      "name": "sectionCount",
+                      "fill": "$text-tertiary",
+                      "content": "4 works",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Ltm9r",
+                  "name": "sectionSubtitle",
+                  "fill": "$text-tertiary",
+                  "content": "Original works that stand on their own — not part of any collection.",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "8twC6",
+              "name": "Artworks Grid",
+              "width": "fill_container",
+              "gap": 32,
+              "children": [
+                {
+                  "id": "mYSYG",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 1",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177032591.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Quiet Hours",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Oil on linen, 60×80 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "480€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "WmfCX",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 2",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177042451.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Threshold",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic on canvas, 50×70 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "320€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "WS9j6",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 3",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177067493.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Morning Ritual",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Mixed media on paper, 40×50 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "220€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "Umpos",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 4",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177089074.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Untitled No. 7",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Oil on canvas, 70×90 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "560€",
+                      "fill": "$text-primary"
+                    }
+                  }
                 }
               ]
             }
@@ -1237,7 +1438,7 @@
                       "id": "YpDQB",
                       "name": "galTitle",
                       "fill": "$text-tertiary",
-                      "content": "Collections",
+                      "content": "COLLECTIONS",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 13,
                       "fontWeight": "normal",
@@ -1530,6 +1731,206 @@
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mYXNw",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "JHY7W",
+          "name": "Unique Artworks Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            60,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Hm95H",
+              "name": "Section Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "F2ymL",
+                  "name": "Header Row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "hnzdC",
+                      "name": "sectionTitle",
+                      "fill": "$text-tertiary",
+                      "content": "UNIQUE PIECES",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "H7C4v",
+                      "name": "sectionCount",
+                      "fill": "$text-tertiary",
+                      "content": "4 works",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "qVLNO",
+                  "name": "sectionSubtitle",
+                  "fill": "$text-tertiary",
+                  "content": "Original works that stand on their own — not part of any collection.",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eIOAg",
+              "name": "Artworks Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 48,
+              "children": [
+                {
+                  "id": "RLFHt",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 1",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177163626.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Quiet Hours",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Oil on linen, 60×80 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "480€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "qUgES",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 2",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177181876.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Threshold",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic on canvas, 50×70 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "320€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "TbeEA",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 3",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177200866.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Morning Ritual",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Mixed media on paper, 40×50 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "220€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                },
+                {
+                  "id": "oKkBl",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "name": "Artwork 4",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1773177220395.png",
+                        "mode": "fill"
+                      }
+                    },
+                    "xRoEk": {
+                      "content": "Untitled No. 7",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Oil on canvas, 70×90 cm",
+                      "fill": "$text-secondary"
+                    },
+                    "SPLEE": {
+                      "content": "560€",
+                      "fill": "$text-primary"
+                    }
+                  }
                 }
               ]
             }
@@ -2457,12 +2858,14 @@
                       ]
                     },
                     {
-                      "type": "frame",
-                      "id": "nB0Wl",
-                      "name": "Divider",
-                      "width": "fill_container",
-                      "height": 1,
-                      "fill": "$divider"
+                      "type": "text",
+                      "id": "nJvQ0",
+                      "name": "shippingNote",
+                      "fill": "$text-tertiary",
+                      "content": "Shipping: 12€ DE · 22€ EU · 35€ Worldwide",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2972,6 +3375,16 @@
                   "letterSpacing": 0.5
                 }
               ]
+            },
+            {
+              "type": "text",
+              "id": "c8W9v",
+              "name": "shippingNote",
+              "fill": "$text-tertiary",
+              "content": "Shipping: 12€ DE · 22€ EU · 35€ Worldwide",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 11,
+              "fontWeight": "normal"
             }
           ]
         },

@@ -7,12 +7,13 @@ import AboutArtist from '../components/AboutArtist';
 import FeaturedPainting from '../components/FeaturedPainting';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
+import UniquePieces from '../components/UniquePieces';
 
 /**
  * Landing page — fetches all artworks server-side so the gallery
  * is always up to date with Supabase on every request.
  */
-export default function Home({ collections, featuredArtwork }) {
+export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
   return (
     <>
       <Head>
@@ -44,6 +45,12 @@ export default function Home({ collections, featuredArtwork }) {
         <section id="works">
           <Gallery collections={collections} />
         </section>
+
+        {/* ── Divider ──────────────────────────────────────────────────── */}
+        <div className="w-full h-px bg-divider" />
+
+        {/* ── Unique Pieces ─────────────────────────────────────────────── */}
+        <UniquePieces artworks={uniqueArtworks} />
 
         {/* ── About the Artist ─────────────────────────────────────────── */}
         <section id="about">
@@ -93,6 +100,13 @@ export async function getServerSideProps() {
     min_price:     artworks?.length > 0 ? Math.min(...artworks.map((a) => a.price)) : null,
   }));
 
+  // Fetch artworks not assigned to any collection
+  const { data: uniqueArtworks } = await supabase
+    .from('artworks')
+    .select('id, title, medium, dimensions, price, image_url, stock')
+    .is('collection_id', null)
+    .order('created_at', { ascending: false });
+
   // Fetch featured artwork separately for the FeaturedPainting section
   const { data: featuredArtwork } = await supabase
     .from('artworks')
@@ -103,6 +117,7 @@ export async function getServerSideProps() {
   return {
     props: {
       collections,
+      uniqueArtworks: uniqueArtworks ?? [],
       featuredArtwork: featuredArtwork ?? null,
     },
   };

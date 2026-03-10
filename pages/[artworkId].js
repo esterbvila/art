@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import PurchaseButton from '../components/PurchaseButton';
 import ImageSlider from '../components/ImageSlider';
 import { formatPrice } from '../lib/utils';
+import { getShippingRates } from '../lib/shipping';
 
 /**
  * Artwork detail page.
@@ -22,6 +23,7 @@ export default function ArtworkDetail({ artwork, collection }) {
   }
 
   const isAvailable = artwork.stock > 0;
+  const shipping = getShippingRates(artwork.size_category);
 
   const details = [
     { label: 'Medium',       value: artwork.medium },
@@ -118,9 +120,14 @@ export default function ArtworkDetail({ artwork, collection }) {
               >
                 {formatPrice(artwork.price)}
               </p>
+
             </div>
 
             <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
+
+            <p className="font-sans text-text-tertiary text-[11px]">
+              Shipping: {formatPrice(shipping.de)} DE · {formatPrice(shipping.eu)} EU · {formatPrice(shipping.world)} Worldwide
+            </p>
 
             <div className="w-full h-px bg-divider" />
           </div>

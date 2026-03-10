@@ -1,5 +1,6 @@
 import { stripe } from '../../lib/stripe';
 import { supabase } from '../../lib/supabase';
+import { getShippingOptions } from '../../lib/shipping';
 
 /**
  * POST /api/checkout
@@ -23,7 +24,7 @@ export default async function handler(req, res) {
   // 1. Fetch artwork from Supabase to validate it exists and is in stock
   const { data: artwork, error } = await supabase
     .from('artworks')
-    .select('id, title, description, price, image_url, stock')
+    .select('id, title, description, price, size_category, image_url, stock')
     .eq('id', artworkId)
     .single();
 
@@ -57,12 +58,12 @@ export default async function handler(req, res) {
               description: artwork.description?.slice(0, 500) ?? undefined,
               images,
             },
-            // artwork.price is stored in euro cents (e.g. 36000 = 360€)
             unit_amount: artwork.price,
           },
           quantity: 1,
         },
       ],
+      shipping_options: getShippingOptions(artwork.size_category),
       mode: 'payment',
 
       // Collect the buyer's full name + email (always on by default, made explicit here)
