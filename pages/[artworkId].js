@@ -12,7 +12,7 @@ import { formatPrice } from '../lib/utils';
  * Route: /[artworkId] where artworkId is the Supabase UUID.
  * Two-column desktop layout: image left, info right — matching the prototype.
  */
-export default function ArtworkDetail({ artwork }) {
+export default function ArtworkDetail({ artwork, collection }) {
   if (!artwork) {
     return (
       <div className="bg-bg-main min-h-screen flex items-center justify-center">
@@ -48,10 +48,10 @@ export default function ArtworkDetail({ artwork }) {
         {/* ── Back link ──────────────────────────────────────────────── */}
         <div className="pl-6 pr-5 md:px-[80px] py-5">
           <Link
-            href="/#works"
+            href={collection ? `/collections/${collection.slug}` : '/#works'}
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
-            ← Back to works
+            ← {collection ? 'Back to collection' : 'Back to works'}
           </Link>
         </div>
 
@@ -161,6 +161,17 @@ export default function ArtworkDetail({ artwork }) {
                 </span>
               </div>
             ))}
+            {collection && (
+              <div className="flex justify-between items-center">
+                <span className="text-text-tertiary font-sans text-[13px]">Collection</span>
+                <Link
+                  href={`/collections/${collection.slug}`}
+                  className="font-sans text-[13px] text-accent hover:opacity-80 transition-opacity"
+                >
+                  {collection.name}
+                </Link>
+              </div>
+            )}
           </div>
 
           </div>
@@ -181,7 +192,7 @@ export async function getServerSideProps({ params }) {
 
   const { data: artwork, error } = await supabase
     .from('artworks')
-    .select('*')
+    .select('*, collections(id, slug, name)')
     .eq('id', artworkId)
     .single();
 
@@ -189,5 +200,7 @@ export async function getServerSideProps({ params }) {
     return { notFound: true };
   }
 
-  return { props: { artwork } };
+  const { collections: collection, ...artworkData } = artwork;
+
+  return { props: { artwork: artworkData, collection: collection ?? null } };
 }

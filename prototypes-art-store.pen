@@ -243,9 +243,11 @@
           "name": "Gallery Section",
           "width": "fill_container",
           "layout": "vertical",
-          "gap": 30,
+          "gap": 40,
           "padding": [
             60,
+            48,
+            80,
             48
           ],
           "children": [
@@ -270,7 +272,7 @@
                       "id": "ns844",
                       "name": "galTitle",
                       "fill": "$text-tertiary",
-                      "content": "Available works",
+                      "content": "Collections",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 15,
                       "fontWeight": "normal",
@@ -281,7 +283,7 @@
                       "id": "f2WKc",
                       "name": "galCount",
                       "fill": "$text-tertiary",
-                      "content": "16 paintings",
+                      "content": "3 collections",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 15,
                       "fontWeight": "normal",
@@ -294,7 +296,7 @@
                   "id": "Fr3VH",
                   "name": "galTitle",
                   "fill": "$text-tertiary",
-                  "content": "Each painting is an original, one-of-a-kind artwork.",
+                  "content": "Browse original artworks organized by thematic collections.",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 11,
                   "fontWeight": "normal"
@@ -304,581 +306,262 @@
             {
               "type": "frame",
               "id": "m5cc8",
-              "name": "Gallery Grid",
+              "name": "Collections Grid",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 48,
+              "gap": 32,
               "children": [
                 {
                   "type": "frame",
-                  "id": "Fj8cH",
-                  "name": "Row 1",
+                  "id": "NQ4xw",
+                  "name": "Collection 1",
                   "width": "fill_container",
-                  "gap": 38,
+                  "layout": "vertical",
                   "children": [
                     {
-                      "id": "AIWny",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "cA7AH",
+                      "name": "Cover Image",
+                      "clip": true,
                       "width": "fill_container",
-                      "name": "p1",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "egypt-hor-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "VyzW4": {
-                          "layout": "horizontal"
-                        },
-                        "Ty9j3": {
-                          "x": 0,
-                          "y": 0
-                        },
-                        "xRoEk": {
-                          "content": "Memories of Egypt",
+                      "height": 380,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1772982214957.png",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hStQH",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        24,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "FhCoV",
+                          "name": "col1title",
                           "fill": "$text-primary",
-                          "fontStyle": "normal",
-                          "fontWeight": "600"
+                          "content": "Inner Landscapes",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 22,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.5
                         },
-                        "BvS2M": {
-                          "content": "Acrylic on paper, 24×30\"",
-                          "fill": "$text-tertiary"
+                        {
+                          "type": "text",
+                          "id": "2VQ7i",
+                          "name": "col1desc",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Paintings exploring emotions, memories and the terrain of the subconscious mind. Warm palettes and organic forms.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
-                        "SPLEE": {
-                          "content": "360€",
+                        {
+                          "type": "text",
+                          "id": "eOWca",
+                          "name": "col1count",
+                          "fill": "$text-tertiary",
+                          "content": "6 works · From 280€",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "kX7rA",
+                          "name": "col1cta",
+                          "fill": "$accent",
+                          "content": "View Collection →",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500",
+                          "letterSpacing": 0.5
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "k57A7",
+                  "name": "Collection 2",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qhIOD",
+                      "name": "Cover Image",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 380,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1772982239220.png",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "6VRNV",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        24,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rSE6b",
+                          "name": "col2title",
                           "fill": "$text-primary",
-                          "x": 391.6666666666667,
-                          "y": 0
+                          "content": "Nature Studies",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 22,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "P23ad",
+                          "name": "col2desc",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Interpretations of natural phenomena — rain, seasons, growth. Intuitive responses to the rhythms of the natural world.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lyn9h",
+                          "name": "col2count",
+                          "fill": "$text-tertiary",
+                          "content": "5 works · From 180€",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "4y6s5",
+                          "name": "col2cta",
+                          "fill": "$accent",
+                          "content": "View Collection →",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500",
+                          "letterSpacing": 0.5
                         }
-                      }
-                    },
-                    {
-                      "id": "Yoa4o",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p2",
-                      "height": "fit_content",
-                      "x": 460.6666666666667,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "boli-editat-2.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Everything is possible",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic and alcohol pen, 20×20\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "480€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "Y8ykk",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p3",
-                      "height": "fit_content",
-                      "x": 921.3333333333334,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "Period-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Endometriosis",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on paper, 30×40\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "280€",
-                          "fill": "$text-primary"
-                        }
-                      }
+                      ]
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "eu54Z",
-                  "name": "Row 1",
+                  "id": "n8C9A",
+                  "name": "Collection 3",
                   "width": "fill_container",
-                  "gap": 38,
+                  "layout": "vertical",
                   "children": [
                     {
-                      "id": "wjXKG",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "Gr7gg",
+                      "name": "Cover Image",
+                      "clip": true,
                       "width": "fill_container",
-                      "name": "p4",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "pluja-edited-1.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Sonnstiges Rain",
-                          "fill": "#3e372bff"
-                        },
-                        "BvS2M": {
-                          "content": "Oil on canvas, 24×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "180€",
-                          "fill": "#2f2b21ff"
-                        }
+                      "height": 380,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1772982265503.png",
+                        "mode": "fill"
                       }
                     },
                     {
-                      "id": "gnczf",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "gOq7D",
+                      "name": "Info",
                       "width": "fill_container",
-                      "name": "p8",
-                      "height": "fit_content",
-                      "x": 460.6666666666667,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "e-details-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Touched by the sun",
-                          "fill": "$text-primary"
-                        },
-                        "SPLEE": {
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        24,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KpfeC",
+                          "name": "col3title",
                           "fill": "$text-primary",
-                          "content": "680€"
+                          "content": "Body & Identity",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 22,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "B7pYK",
+                          "name": "col3desc",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Works centered on the human experience — embodiment, health, and personal narratives told through color and gesture.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "p83gF",
+                          "name": "col3count",
+                          "fill": "$text-tertiary",
+                          "content": "5 works · From 360€",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "zrZYY",
+                          "name": "col3cta",
+                          "fill": "$accent",
+                          "content": "View Collection →",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500",
+                          "letterSpacing": 0.5
                         }
-                      }
-                    },
-                    {
-                      "id": "3gAxe",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p12",
-                      "height": "fit_content",
-                      "x": 921.3333333333334,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "frigopie-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "The pink panther",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 30×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "660€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "RVB23",
-                  "name": "Row 2",
-                  "width": "fill_container",
-                  "gap": 38,
-                  "children": [
-                    {
-                      "id": "2tHKN",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p5",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "peanut-edited-1.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Acuatic Peanut",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 18×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "160€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "mZkD8",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p6",
-                      "height": "fit_content",
-                      "x": 460.6666666666667,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "egipt-tiny-edited-1.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "The Nile",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on canvas, 36×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "160€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "y7I33",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p7",
-                      "height": "fit_content",
-                      "x": 921.3333333333334,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "menstruation-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Period.",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on linen, 20×28\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "240€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "jOL6I",
-                  "name": "Row 3",
-                  "width": "fill_container",
-                  "gap": 38,
-                  "children": [
-                    {
-                      "id": "MmTiL",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p9",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "twin-girl-dizzy-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Twin girl",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on canvas, 30×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "120€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "ETYBp",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p10",
-                      "height": "fit_content",
-                      "x": 460.6666666666667,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "twin-boy-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Twin boy",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil on canvas, 18×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "120€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "hWsfL",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p11",
-                      "height": "fit_content",
-                      "x": 921.3333333333334,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "mar-edited-2.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Alien sea",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on wood, 24×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "620€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "o8UAq",
-                  "name": "Row 4",
-                  "width": "fill_container",
-                  "gap": 38,
-                  "children": [
-                    {
-                      "id": "c4VxB",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p13",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "tardor-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Touched by Autum",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on canvas, 20×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "240€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "LVTVo",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p14",
-                      "height": "fit_content",
-                      "x": 460.6666666666667,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "tiny-1-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Getting over Autum",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil on linen, 24×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "80€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "eVgy9",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p15",
-                      "height": "fit_content",
-                      "x": 921.3333333333334,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "fosforito-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Just do it",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on canvas, 28×28\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "80€",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "KCn5U",
-                  "name": "Row 4",
-                  "width": "fill_container",
-                  "gap": 38,
-                  "children": [
-                    {
-                      "id": "8NATI",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p16",
-                      "height": "fit_content",
-                      "x": 0,
-                      "y": 0,
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "lila-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Decaff week.",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 20×20\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "70€",
-                          "fill": "$text-primary"
-                        }
-                      }
+                      ]
                     }
                   ]
                 }
@@ -988,136 +671,6 @@
                   "fontFamily": "Funnel Sans",
                   "fontSize": 15,
                   "fontWeight": "normal"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "G8bup",
-          "name": "Featured Painting",
-          "width": "fill_container",
-          "height": 560,
-          "fill": "$bg-deep",
-          "children": [
-            {
-              "type": "frame",
-              "id": "6MLEL",
-              "name": "Featured Image",
-              "metadata": {
-                "type": "unsplash",
-                "username": "mattartz",
-                "link": "https://unsplash.com/@mattartz",
-                "author": "Matt Artz"
-              },
-              "clip": true,
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": {
-                "type": "image",
-                "enabled": true,
-                "url": "frigopie-edited.png",
-                "mode": "fill"
-              }
-            },
-            {
-              "type": "frame",
-              "id": "lNSYB",
-              "name": "Featured Content",
-              "width": 500,
-              "height": "fill_container",
-              "layout": "vertical",
-              "gap": 20,
-              "padding": [
-                64,
-                56
-              ],
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "CJ3nI",
-                  "name": "featLabel",
-                  "fill": "$text-light-muted",
-                  "content": "Featured Work",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
-                },
-                {
-                  "type": "text",
-                  "id": "9F11d",
-                  "name": "featTitle",
-                  "fill": "$text-light",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Frigopie",
-                  "lineHeight": 0.95,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 48,
-                  "fontWeight": "normal",
-                  "letterSpacing": -1.5
-                },
-                {
-                  "type": "text",
-                  "id": "t9VyZ",
-                  "name": "featMeta",
-                  "fill": "$text-light-muted",
-                  "content": "Acrylic on paper · 30×40\" · 2024",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "v3jsu",
-                  "name": "featStory",
-                  "fill": "$text-light-muted",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "This piece was born from a single brushstroke that refused to be contained. What began as an experiment with deep reds became a meditation on passion and restraint — the tension between letting go and holding on.",
-                  "lineHeight": 1.7,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 15,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "frame",
-                  "id": "nrrxp",
-                  "name": "Price Row",
-                  "width": "fill_container",
-                  "gap": 32,
-                  "padding": [
-                    12,
-                    0,
-                    0,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "QR6zt",
-                      "name": "featPrice",
-                      "fill": "$text-light",
-                      "content": "$600",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 24,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "rY2hU",
-                      "name": "featLink",
-                      "fill": "$accent",
-                      "content": "Inquire about this piece →",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
                 }
               ]
             }
@@ -1684,7 +1237,7 @@
                       "id": "YpDQB",
                       "name": "galTitle",
                       "fill": "$text-tertiary",
-                      "content": "Available works",
+                      "content": "Collections",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 13,
                       "fontWeight": "normal",
@@ -1695,7 +1248,7 @@
                       "id": "yxOWW",
                       "name": "galCount",
                       "fill": "$text-tertiary",
-                      "content": "16 paintings",
+                      "content": "3 collections",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 13,
                       "fontWeight": "normal",
@@ -1708,7 +1261,7 @@
                   "id": "Khokm",
                   "name": "galTitle",
                   "fill": "$text-tertiary",
-                  "content": "Each painting is an original, one-of-a-kind artwork.",
+                  "content": "Browse original artworks organized by thematic collections.",
                   "fontFamily": "Funnel Sans",
                   "fontSize": 10,
                   "fontWeight": "normal"
@@ -1717,553 +1270,264 @@
             },
             {
               "type": "frame",
-              "id": "5n46x",
-              "name": "Gallery Grid",
+              "id": "lG9l2",
+              "name": "Collections Grid",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 32,
+              "gap": 48,
               "children": [
                 {
                   "type": "frame",
-                  "id": "iiay1",
-                  "name": "row1",
+                  "id": "afJ65",
+                  "name": "Collection 1",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 32,
                   "children": [
                     {
-                      "id": "i2CRL",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "adQxL",
+                      "name": "Cover Image",
+                      "clip": true,
                       "width": "fill_container",
-                      "name": "p1",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "egypt-hor-edited.png",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Amber Reverie",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic, 24×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,400",
-                          "fill": "$text-primary"
-                        }
+                      "height": 380,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1772982214957.png",
+                        "mode": "fill"
                       }
                     },
                     {
-                      "id": "vZAMI",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "H8uC7",
+                      "name": "Info",
                       "width": "fill_container",
-                      "name": "p2",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "boli-editat-2.png",
-                            "mode": "fill"
-                          }
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        24,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "s5gJn",
+                          "name": "col1title",
+                          "fill": "$text-primary",
+                          "content": "Inner Landscapes",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 22,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.5
                         },
-                        "xRoEk": {
-                          "content": "Coastal Drift",
-                          "fill": "$text-primary"
+                        {
+                          "type": "text",
+                          "id": "2LKzT",
+                          "name": "col1desc",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Paintings exploring emotions, memories and the terrain of the subconscious mind. Warm palettes and organic forms.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
-                        "BvS2M": {
-                          "content": "Mixed media, 20×20\"",
-                          "fill": "$text-tertiary"
+                        {
+                          "type": "text",
+                          "id": "3FqAe",
+                          "name": "col1count",
+                          "fill": "$text-tertiary",
+                          "content": "6 works · From 280€",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
                         },
-                        "SPLEE": {
-                          "content": "$980",
-                          "fill": "$text-primary"
+                        {
+                          "type": "text",
+                          "id": "ZH6L7",
+                          "name": "col1cta",
+                          "fill": "$accent",
+                          "content": "View Collection →",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500",
+                          "letterSpacing": 0.5
                         }
-                      }
+                      ]
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "aydSf",
-                  "name": "row2",
+                  "id": "gInxg",
+                  "name": "Collection 2",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 32,
                   "children": [
                     {
-                      "id": "qSxr2",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "SLGF1",
+                      "name": "Cover Image",
+                      "clip": true,
                       "width": "fill_container",
-                      "name": "p3",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1668439159161-6ea84b9a5c0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgyNzF8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Crimson Pulse",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic, 30×40\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$2,200",
-                          "fill": "$text-primary"
-                        }
+                      "height": 380,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1772982239220.png",
+                        "mode": "fill"
                       }
                     },
                     {
-                      "id": "oxdly",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "oGgJs",
+                      "name": "Info",
                       "width": "fill_container",
-                      "name": "p4",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1599527398744-ae6e1833256e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgyOTJ8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        24,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OACYx",
+                          "name": "col2title",
+                          "fill": "$text-primary",
+                          "content": "Nature Studies",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 22,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.5
                         },
-                        "xRoEk": {
-                          "content": "Golden Hour",
-                          "fill": "$text-primary"
+                        {
+                          "type": "text",
+                          "id": "QEPpk",
+                          "name": "col2desc",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Interpretations of natural phenomena — rain, seasons, growth. Intuitive responses to the rhythms of the natural world.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
-                        "BvS2M": {
-                          "content": "Oil, 24×24\"",
-                          "fill": "$text-tertiary"
+                        {
+                          "type": "text",
+                          "id": "KaUJL",
+                          "name": "col2count",
+                          "fill": "$text-tertiary",
+                          "content": "5 works · From 180€",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
                         },
-                        "SPLEE": {
-                          "content": "$1,650",
-                          "fill": "$text-primary"
+                        {
+                          "type": "text",
+                          "id": "HBYMe",
+                          "name": "col2cta",
+                          "fill": "$accent",
+                          "content": "View Collection →",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500",
+                          "letterSpacing": 0.5
                         }
-                      }
+                      ]
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "nORvo",
-                  "name": "row3",
+                  "id": "y9EKX",
+                  "name": "Collection 3",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 32,
                   "children": [
                     {
-                      "id": "VqaJ8",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "9JfWK",
+                      "name": "Cover Image",
+                      "clip": true,
                       "width": "fill_container",
-                      "name": "p5",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1767482061893-5513d3a2c4d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzMDV8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Verdant Whisper",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 18×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$890",
-                          "fill": "$text-primary"
-                        }
+                      "height": 380,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1772982265503.png",
+                        "mode": "fill"
                       }
                     },
                     {
-                      "id": "3Ye9q",
-                      "type": "ref",
-                      "ref": "fWUFs",
+                      "type": "frame",
+                      "id": "fzzeB",
+                      "name": "Info",
                       "width": "fill_container",
-                      "name": "p6",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1764438717590-934b89b031ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzMDZ8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        24,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CDrrj",
+                          "name": "col3title",
+                          "fill": "$text-primary",
+                          "content": "Body & Identity",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 22,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.5
                         },
-                        "xRoEk": {
-                          "content": "Midnight Bloom",
-                          "fill": "$text-primary"
+                        {
+                          "type": "text",
+                          "id": "nKInU",
+                          "name": "col3desc",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Works centered on the human experience — embodiment, health, and personal narratives told through color and gesture.",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
-                        "BvS2M": {
-                          "content": "Acrylic, 36×36\"",
-                          "fill": "$text-tertiary"
+                        {
+                          "type": "text",
+                          "id": "YCQUu",
+                          "name": "col3count",
+                          "fill": "$text-tertiary",
+                          "content": "5 works · From 360€",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 0.5
                         },
-                        "SPLEE": {
-                          "content": "$2,800",
-                          "fill": "$text-primary"
+                        {
+                          "type": "text",
+                          "id": "PD1oE",
+                          "name": "col3cta",
+                          "fill": "$accent",
+                          "content": "View Collection →",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500",
+                          "letterSpacing": 0.5
                         }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "DITMA",
-                  "name": "row4",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 32,
-                  "children": [
-                    {
-                      "id": "9aLom",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p7",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1659645920252-74c8fd104887?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzMjF8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Terra Nova",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on linen, 20×28\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,100",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "37JrF",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p8",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1693846818851-320622d1210b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzMjF8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Cerulean Dream",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil, 24×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,500",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "VKkOT",
-                  "name": "row5",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 32,
-                  "children": [
-                    {
-                      "id": "O1rk3",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p9",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1578538495992-8cb861684e3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzMzV8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Ember & Ash",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic, 30×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,900",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "vbKLA",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p10",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1636548970297-a90fa7add3e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzMzV8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Morning Fog",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil, 18×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,050",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "7yAnz",
-                  "name": "row6",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 32,
-                  "children": [
-                    {
-                      "id": "LCW1s",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p11",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1669327365251-d9b5e88520da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzNTB8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Solstice",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic on wood, 24×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,350",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "5wv3B",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p12",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1659386930859-a79d703e4d12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzNTF8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Violet Horizon",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Mixed media, 30×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$2,400",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "nmlnC",
-                  "name": "row7",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 32,
-                  "children": [
-                    {
-                      "id": "sw2a0",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p13",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1693219674125-726b84370276?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzNjR8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Rust & Rain",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic, 20×30\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,250",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "RiHtS",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "width": "fill_container",
-                      "name": "p14",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1747102224358-0ddabf5989a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTgzNjR8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Ivory Cascade",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil on linen, 24×36\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,800",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Csfbe",
-                  "name": "row8",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 32,
-                  "children": [
-                    {
-                      "id": "JuLcJ",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "name": "p15",
-                      "width": "fill_container",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1653597296443-8e3744ca4ca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTg0NjJ8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Dusk Palette",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Oil, 20×24\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$1,600",
-                          "fill": "$text-primary"
-                        }
-                      }
-                    },
-                    {
-                      "id": "GmSgE",
-                      "type": "ref",
-                      "ref": "fWUFs",
-                      "name": "p16",
-                      "width": "fill_container",
-                      "descendants": {
-                        "JCRrh": {
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "https://images.unsplash.com/photo-1644602111540-e5615091dfa7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI4MTg0NjV8&ixlib=rb-4.1.0&q=80&w=1080",
-                            "mode": "fill"
-                          }
-                        },
-                        "xRoEk": {
-                          "content": "Coral Reef",
-                          "fill": "$text-primary"
-                        },
-                        "BvS2M": {
-                          "content": "Acrylic, 18×18\"",
-                          "fill": "$text-tertiary"
-                        },
-                        "SPLEE": {
-                          "content": "$950",
-                          "fill": "$text-primary"
-                        }
-                      }
+                      ]
                     }
                   ]
                 }
@@ -2372,136 +1636,6 @@
                   "fontFamily": "Funnel Sans",
                   "fontSize": 14,
                   "fontWeight": "normal"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "eZEec",
-          "name": "Featured Painting",
-          "width": "fill_container",
-          "fill": "$bg-deep",
-          "layout": "vertical",
-          "children": [
-            {
-              "type": "frame",
-              "id": "sbqRL",
-              "name": "Featured Image",
-              "metadata": {
-                "type": "unsplash",
-                "username": "rlldied",
-                "link": "https://unsplash.com/@rlldied",
-                "author": "Valeria Nikitina"
-              },
-              "clip": true,
-              "width": "fill_container",
-              "height": 340,
-              "fill": {
-                "type": "image",
-                "enabled": true,
-                "url": "frigopie-edited.png",
-                "mode": "fill"
-              }
-            },
-            {
-              "type": "frame",
-              "id": "sGKE2",
-              "name": "Featured Content",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 20,
-              "padding": [
-                32,
-                20,
-                48,
-                20
-              ],
-              "children": [
-                {
-                  "type": "text",
-                  "id": "cvFNf",
-                  "name": "featLabel",
-                  "fill": "$text-light-muted",
-                  "content": "Featured Work",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
-                  "letterSpacing": 3
-                },
-                {
-                  "type": "text",
-                  "id": "ajRf6",
-                  "name": "featTitle",
-                  "fill": "$text-light",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Crimson\nPulse",
-                  "lineHeight": 0.95,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 38,
-                  "fontWeight": "normal",
-                  "letterSpacing": -1.5
-                },
-                {
-                  "type": "text",
-                  "id": "sEs7t",
-                  "name": "featMeta",
-                  "fill": "$text-light-muted",
-                  "content": "Acrylic on canvas · 30×40\" · 2024",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "1d8oW",
-                  "name": "featStory",
-                  "fill": "$text-light-muted",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "This piece was born from a single brushstroke that refused to be contained. What began as an experiment with deep reds became a meditation on passion and restraint — the tension between letting go and holding on.",
-                  "lineHeight": 1.7,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "frame",
-                  "id": "DmA8S",
-                  "name": "Price Row",
-                  "width": "fill_container",
-                  "gap": 24,
-                  "padding": [
-                    12,
-                    0,
-                    0,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "fH9Hp",
-                      "name": "featPrice",
-                      "fill": "$text-light",
-                      "content": "$2,200",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 22,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "XWC3J",
-                      "name": "featLink",
-                      "fill": "$accent",
-                      "content": "Inquire about this piece →",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
                 }
               ]
             }
@@ -4128,6 +3262,1053 @@
             {
               "type": "text",
               "id": "XQUXi",
+              "name": "mfCopy",
+              "fill": "$text-tertiary",
+              "content": "© 2026",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "USQNO",
+      "x": 4580,
+      "y": 0,
+      "name": "Collection Page - Desktop",
+      "width": 1440,
+      "fill": "$bg-main",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "H1wRV",
+          "name": "nav",
+          "width": "fill_container",
+          "padding": [
+            28,
+            48
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "GcJIU",
+              "name": "brand",
+              "fill": "$text-primary",
+              "content": "Ester Batllori",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "r7Q6Z",
+              "name": "Nav Links",
+              "gap": 40,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JR4PB",
+                  "name": "nl1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "yctMY",
+                  "name": "nl2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "sK2au",
+                  "name": "nl3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "s6HUX",
+                  "name": "nl4",
+                  "fill": "$accent",
+                  "content": "Inquire",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vUcZD",
+          "name": "backRow",
+          "width": "fill_container",
+          "padding": [
+            20,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "4ff3a",
+              "name": "backLink",
+              "fill": "$text-tertiary",
+              "content": "← Back to collections",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "yWX08",
+          "name": "Top Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "RyaOo",
+          "name": "Collection Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            56,
+            48,
+            0,
+            48
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "KjmjX",
+              "name": "headerLabel",
+              "fill": "$text-tertiary",
+              "content": "Collection",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "LdK5X",
+              "name": "headerTitle",
+              "fill": "$text-primary",
+              "content": "Inner Landscapes",
+              "lineHeight": 0.95,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 48,
+              "fontWeight": "normal",
+              "letterSpacing": -1.5
+            },
+            {
+              "type": "text",
+              "id": "Q2qQI",
+              "name": "headerDesc",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 640,
+              "content": "Paintings exploring emotions, memories and the terrain of the subconscious mind. Each piece emerges through an intuitive process where warm palettes and organic forms reveal inner worlds that cannot be planned.",
+              "lineHeight": 1.7,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "9EsBL",
+              "name": "headerMeta",
+              "fill": "$text-tertiary",
+              "content": "6 works · Prices from 280€",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "AuK7M",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "7i52p",
+          "name": "Artwork Grid Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            48,
+            48,
+            80,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "ryNUa",
+              "name": "Row 1",
+              "width": "fill_container",
+              "gap": 38,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qPXIH",
+                  "name": "Artwork 1",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "JtdMt",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "name": "c1",
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "egypt-hor-edited.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "Memories of Egypt",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Acrylic on paper, 24×30\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "360€",
+                          "fill": "$text-primary"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8dO4f",
+                  "name": "Artwork 2",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "nNRDz",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "name": "c2",
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "boli-editat-2.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "Everything is possible",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Acrylic and alcohol pen, 20×20\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "480€",
+                          "fill": "$text-primary"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RzzYa",
+                  "name": "Artwork 3",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "1FqyQ",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "name": "c3",
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "Period-edited.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "Endometriosis",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Acrylic on paper, 30×40\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "280€",
+                          "fill": "$text-primary"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "s4v3Q",
+              "name": "Row 2",
+              "width": "fill_container",
+              "gap": 38,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "d1N9t",
+                  "name": "Artwork 4",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "Pd9s0",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "name": "c4",
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "pluja-edited-1.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "Sonnstiges Rain",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Oil on canvas, 24×24\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "180€",
+                          "fill": "$text-primary"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gloHf",
+                  "name": "Artwork 5",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "Dsqiv",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "name": "c5",
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "e-details-edited.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "Touched by the sun",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Acrylic on canvas, 36×48\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "680€",
+                          "fill": "$text-primary"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M205N",
+                  "name": "Artwork 6",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "MZ6SJ",
+                      "type": "ref",
+                      "ref": "fWUFs",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "name": "c6",
+                      "descendants": {
+                        "JCRrh": {
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "frigopie-edited.png",
+                            "mode": "fill"
+                          }
+                        },
+                        "xRoEk": {
+                          "content": "The pink panther",
+                          "fill": "$text-primary"
+                        },
+                        "BvS2M": {
+                          "content": "Mixed media, 30×36\"",
+                          "fill": "$text-tertiary"
+                        },
+                        "SPLEE": {
+                          "content": "660€",
+                          "fill": "$text-primary"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "5qbyJ",
+          "name": "Footer Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "3jcg8",
+          "name": "footer",
+          "width": "fill_container",
+          "padding": [
+            40,
+            48,
+            48,
+            48
+          ],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "yWHqr",
+              "name": "Footer Left",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z7fIw",
+                  "name": "fBrand",
+                  "fill": "$text-primary",
+                  "content": "Ester Batllori",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "NKX5N",
+                  "name": "fSub",
+                  "fill": "$text-tertiary",
+                  "content": "Original abstract paintings",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mBJdu",
+              "name": "Footer Nav",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DCR3c",
+                  "name": "fn1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "IiFqw",
+                  "name": "fn2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "HihjV",
+                  "name": "fn3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "4L09w",
+              "name": "fCopy",
+              "fill": "$text-tertiary",
+              "content": "© 2026",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "K7r05",
+      "x": 6060,
+      "y": 0,
+      "name": "Collection Page - Mobile",
+      "width": 390,
+      "fill": "$bg-main",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "nlLfv",
+          "name": "nav",
+          "width": "fill_container",
+          "padding": 20,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "o0c8w",
+              "name": "mbrand",
+              "fill": "$text-primary",
+              "content": "Ester Batllori",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 15,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "icon_font",
+              "id": "N3mSR",
+              "name": "mmenu",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "menu",
+              "iconFontFamily": "lucide",
+              "fill": "$text-primary"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "iRBw8",
+          "name": "back",
+          "width": "fill_container",
+          "padding": [
+            8,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "JcVvt",
+              "name": "mbackText",
+              "fill": "$text-tertiary",
+              "content": "← Back to collections",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Neiu6",
+          "name": "Top Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "TK8CR",
+          "name": "Collection Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            40,
+            20,
+            0,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "H8a8V",
+              "name": "headerLabel",
+              "fill": "$text-tertiary",
+              "content": "Collection",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "oIzp0",
+              "name": "headerTitle",
+              "fill": "$text-primary",
+              "content": "Inner Landscapes",
+              "lineHeight": 0.95,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 36,
+              "fontWeight": "normal",
+              "letterSpacing": -1
+            },
+            {
+              "type": "text",
+              "id": "uZVOZ",
+              "name": "headerDesc",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Paintings exploring emotions, memories and the terrain of the subconscious mind. Each piece emerges through an intuitive process where warm palettes and organic forms reveal inner worlds.",
+              "lineHeight": 1.7,
+              "fontFamily": "Funnel Sans",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Ui96o",
+              "name": "headerMeta",
+              "fill": "$text-tertiary",
+              "content": "6 works · Prices from 280€",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "c36Bp",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "jmarH",
+          "name": "Artwork Grid",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            40,
+            20,
+            60,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "3GHZo",
+              "name": "Artwork 1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "ywA43",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "c1",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "egypt-hor-edited.png",
+                        "mode": "fill"
+                      },
+                      "height": 260
+                    },
+                    "xRoEk": {
+                      "content": "Memories of Egypt",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic on paper, 24×30\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "360€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vUUjq",
+              "name": "Artwork 2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "by8gc",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "c2",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "boli-editat-2.png",
+                        "mode": "fill"
+                      },
+                      "height": 260
+                    },
+                    "xRoEk": {
+                      "content": "Everything is possible",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic and alcohol pen, 20×20\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "480€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VrrPW",
+              "name": "Artwork 3",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "i428b",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "c3",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "Period-edited.png",
+                        "mode": "fill"
+                      },
+                      "height": 260
+                    },
+                    "xRoEk": {
+                      "content": "Endometriosis",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic on paper, 30×40\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "280€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0CsDP",
+              "name": "Artwork 4",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "Us82b",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "c4",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "pluja-edited-1.png",
+                        "mode": "fill"
+                      },
+                      "height": 260
+                    },
+                    "xRoEk": {
+                      "content": "Sonnstiges Rain",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Oil on canvas, 24×24\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "180€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YztNq",
+              "name": "Artwork 5",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "54tkD",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "c5",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "e-details-edited.png",
+                        "mode": "fill"
+                      },
+                      "height": 260
+                    },
+                    "xRoEk": {
+                      "content": "Touched by the sun",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Acrylic on canvas, 36×48\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "680€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IdbOM",
+              "name": "Artwork 6",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "lphGA",
+                  "type": "ref",
+                  "ref": "fWUFs",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "name": "c6",
+                  "descendants": {
+                    "JCRrh": {
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "frigopie-edited.png",
+                        "mode": "fill"
+                      },
+                      "height": 260
+                    },
+                    "xRoEk": {
+                      "content": "The pink panther",
+                      "fill": "$text-primary"
+                    },
+                    "BvS2M": {
+                      "content": "Mixed media, 30×36\"",
+                      "fill": "$text-tertiary"
+                    },
+                    "SPLEE": {
+                      "content": "660€",
+                      "fill": "$text-primary"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "0WoaU",
+          "name": "Footer Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "STpys",
+          "name": "footer",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            32,
+            20,
+            40,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "wzTts",
+              "name": "mfBrand",
+              "fill": "$text-primary",
+              "content": "Ester Batllori",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "xZCb7",
+              "name": "Footer Nav",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3fNcP",
+                  "name": "mfn1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "OpDn4",
+                  "name": "mfn2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "rrnma",
+                  "name": "mfn3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "4mWf2",
               "name": "mfCopy",
               "fill": "$text-tertiary",
               "content": "© 2026",

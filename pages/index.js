@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
  * Landing page — fetches all artworks server-side so the gallery
  * is always up to date with Supabase on every request.
  */
-export default function Home({ artworks, featuredArtwork }) {
+export default function Home({ collections, featuredArtwork }) {
   return (
     <>
       <Head>
@@ -42,7 +42,7 @@ export default function Home({ artworks, featuredArtwork }) {
 
         {/* ── Gallery ──────────────────────────────────────────────────── */}
         <section id="works">
-          <Gallery artworks={artworks} />
+          <Gallery collections={collections} />
         </section>
 
         {/* ── About the Artist ─────────────────────────────────────────── */}
@@ -76,22 +76,34 @@ export default function Home({ artworks, featuredArtwork }) {
  * ISR (revalidate) would also work but SSR ensures stock is always fresh.
  */
 export async function getServerSideProps() {
-  const { data: artworks, error } = await supabase
-    .from('artworks')
-    .select('id, title, medium, dimensions, price, image_url, stock, featured')
-    .order('created_at', { ascending: true });
+  // Fetch collections with their artworks to compute count + min price
+  const { data: collectionsRaw, error: colError } = await supabase
+    .from('collections')
+    .select('id, slug, name, description, cover_image_url, sort_order, artworks(id, price)')
+    .order('sort_order', { ascending: true });
 
-  if (error) {
-    console.error('Error fetching artworks:', error.message);
-    return { props: { artworks: [], featuredArtwork: null } };
+  if (colError) {
+    console.error('Error fetching collections:', colError.message);
   }
 
-  const featuredArtwork = artworks?.find((a) => a.featured) ?? null;
+  // Compute artwork_count and min_price for each collection
+  const collections = (collectionsRaw ?? []).map(({ artworks, ...col }) => ({
+    ...col,
+    artwork_count: artworks?.length ?? 0,
+    min_price:     artworks?.length > 0 ? Math.min(...artworks.map((a) => a.price)) : null,
+  }));
+
+  // Fetch featured artwork separately for the FeaturedPainting section
+  const { data: featuredArtwork } = await supabase
+    .from('artworks')
+    .select('id, title, description, price, image_url, stock')
+    .eq('featured', true)
+    .single();
 
   return {
     props: {
-      artworks: artworks ?? [],
-      featuredArtwork,
+      collections,
+      featuredArtwork: featuredArtwork ?? null,
     },
   };
 }
