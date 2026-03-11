@@ -271,10 +271,10 @@
                       "type": "text",
                       "id": "ns844",
                       "name": "galTitle",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "COLLECTIONS",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 15,
+                      "fontSize": 16,
                       "fontWeight": "normal",
                       "letterSpacing": 3
                     },
@@ -282,10 +282,10 @@
                       "type": "text",
                       "id": "f2WKc",
                       "name": "galCount",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "3 collections",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 15,
+                      "fontSize": 12,
                       "fontWeight": "normal",
                       "letterSpacing": 0.5
                     }
@@ -295,10 +295,10 @@
                   "type": "text",
                   "id": "Fr3VH",
                   "name": "galTitle",
-                  "fill": "$text-tertiary",
+                  "fill": "$text-secondary",
                   "content": "Browse original artworks organized by thematic collections.",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 11,
+                  "fontSize": 12,
                   "fontWeight": "normal"
                 }
               ]
@@ -611,10 +611,10 @@
                       "type": "text",
                       "id": "tmfKy",
                       "name": "sectionTitle",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "UNIQUE PIECES",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 15,
+                      "fontSize": 16,
                       "fontWeight": "normal",
                       "letterSpacing": 3
                     },
@@ -622,10 +622,10 @@
                       "type": "text",
                       "id": "cda2O",
                       "name": "sectionCount",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "4 works",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 15,
+                      "fontSize": 12,
                       "fontWeight": "normal",
                       "letterSpacing": 0.5
                     }
@@ -635,10 +635,10 @@
                   "type": "text",
                   "id": "Ltm9r",
                   "name": "sectionSubtitle",
-                  "fill": "$text-tertiary",
+                  "fill": "$text-secondary",
                   "content": "Original works that stand on their own — not part of any collection.",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 11,
+                  "fontSize": 12,
                   "fontWeight": "normal"
                 }
               ]
@@ -1419,15 +1419,15 @@
           "children": [
             {
               "type": "frame",
-              "id": "bRQZg",
+              "id": "PAGXD",
               "name": "Frame 1",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 4,
+              "gap": 6,
               "children": [
                 {
                   "type": "frame",
-                  "id": "jRsH2",
+                  "id": "t2UhB",
                   "name": "Gallery Header",
                   "width": "fill_container",
                   "justifyContent": "space_between",
@@ -1435,23 +1435,23 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "YpDQB",
+                      "id": "4lwoM",
                       "name": "galTitle",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "COLLECTIONS",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 13,
+                      "fontSize": 16,
                       "fontWeight": "normal",
                       "letterSpacing": 3
                     },
                     {
                       "type": "text",
-                      "id": "yxOWW",
+                      "id": "vbv7q",
                       "name": "galCount",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "3 collections",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 13,
+                      "fontSize": 12,
                       "fontWeight": "normal",
                       "letterSpacing": 0.5
                     }
@@ -1459,12 +1459,12 @@
                 },
                 {
                   "type": "text",
-                  "id": "Khokm",
+                  "id": "wuDWY",
                   "name": "galTitle",
-                  "fill": "$text-tertiary",
+                  "fill": "$text-secondary",
                   "content": "Browse original artworks organized by thematic collections.",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 10,
+                  "fontSize": 12,
                   "fontWeight": "normal"
                 }
               ]
@@ -1758,15 +1758,15 @@
           "children": [
             {
               "type": "frame",
-              "id": "Hm95H",
+              "id": "nrPIF",
               "name": "Section Header",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 4,
+              "gap": 6,
               "children": [
                 {
                   "type": "frame",
-                  "id": "F2ymL",
+                  "id": "mDiNB",
                   "name": "Header Row",
                   "width": "fill_container",
                   "justifyContent": "space_between",
@@ -1774,23 +1774,23 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "hnzdC",
+                      "id": "8X2MK",
                       "name": "sectionTitle",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "UNIQUE PIECES",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 13,
+                      "fontSize": 16,
                       "fontWeight": "normal",
                       "letterSpacing": 3
                     },
                     {
                       "type": "text",
-                      "id": "H7C4v",
+                      "id": "J7XQ6",
                       "name": "sectionCount",
-                      "fill": "$text-tertiary",
+                      "fill": "$text-secondary",
                       "content": "4 works",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 13,
+                      "fontSize": 12,
                       "fontWeight": "normal",
                       "letterSpacing": 0.5
                     }
@@ -1798,12 +1798,12 @@
                 },
                 {
                   "type": "text",
-                  "id": "qVLNO",
+                  "id": "kNOgD",
                   "name": "sectionSubtitle",
-                  "fill": "$text-tertiary",
+                  "fill": "$text-secondary",
                   "content": "Original works that stand on their own — not part of any collection.",
                   "fontFamily": "Funnel Sans",
-                  "fontSize": 10,
+                  "fontSize": 12,
                   "fontWeight": "normal"
                 }
               ]
