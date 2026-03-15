@@ -1,6 +1,8 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import { supabase } from '../../lib/supabase';
+import { resolveFirstImage } from '../../lib/storage';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import ArtworkCard from '../../components/ArtworkCard';
@@ -9,9 +11,14 @@ import { formatPrice } from '../../lib/utils';
 /**
  * Collection detail page.
  * Route: /collections/[slug]
- * Shows the collection header (label, title, description, meta)
- * followed by a 3-column grid of artwork cards.
- * Matches "Collection Page - Desktop" and "Collection Page - Mobile" prototypes.
+ *
+ * Layout (matches "Collection Page v2" prototypes):
+ *   1. Navigation
+ *   2. Back link
+ *   3. Full-width hero image (cover_image_url or first artwork)
+ *   4. Two-column header: title/tagline/meta (left) + description (right)
+ *   5. 3-column artwork grid (1-col on mobile)
+ *   6. Footer
  */
 export default function CollectionPage({ collection, artworks }) {
   if (!collection) {
@@ -23,12 +30,19 @@ export default function CollectionPage({ collection, artworks }) {
   }
 
   const minPrice = artworks.length > 0 ? Math.min(...artworks.map((a) => a.price)) : null;
+  const heroImage = collection.hero_image || collection.cover_image_url || (artworks[0]?.image_url ?? null);
+  const ogImage = heroImage || (artworks[0]?.image_url ?? null);
 
   return (
     <>
       <Head>
         <title>{collection.name} — Ester Batllori</title>
         <meta name="description" content={collection.description} />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        <meta property="og:title" content={`${collection.name} — Ester Batllori`} />
+        {collection.description && (
+          <meta property="og:description" content={collection.description} />
+        )}
       </Head>
 
       <div className="bg-bg-main min-h-screen flex flex-col">
@@ -37,47 +51,72 @@ export default function CollectionPage({ collection, artworks }) {
         <Navigation />
 
         {/* ── Back link ──────────────────────────────────────────────── */}
-        <div className="px-5 md:px-[80px] py-5">
+        <div className="px-5 md:px-[48px] py-5">
           <Link
-            href="/#works"
+            href="/"
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
-            ← Back to collections
+            ← Back to home
           </Link>
         </div>
 
         {/* ── Top divider ────────────────────────────────────────────── */}
         <div className="w-full h-px bg-divider" />
 
+        {/* ── Hero image ─────────────────────────────────────────────── */}
+        {heroImage && (
+          <div className="relative w-full h-[280px] md:h-[480px] overflow-hidden">
+            <Image
+              src={heroImage}
+              alt={collection.name}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/25" />
+          </div>
+        )}
+
         {/* ── Collection header ──────────────────────────────────────── */}
-        <div className="flex flex-col gap-5 px-5 md:px-[48px] pt-[56px] pb-0">
-          <p className="font-sans font-normal text-text-tertiary text-[13px] tracking-[3px] uppercase">
-            Collection
-          </p>
-          <h1
-            className="font-sans font-normal text-text-primary"
-            style={{ fontSize: 'clamp(36px, 4vw, 48px)', letterSpacing: '-1.5px', lineHeight: 0.95 }}
-          >
-            {collection.name}
-          </h1>
-          {collection.description && (
-            <p
-              className="font-sans font-normal text-text-secondary text-[15px] leading-[1.7] max-w-[640px]"
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-end md:gap-20 px-5 md:px-[48px] py-10 md:py-16">
+
+          {/* Left: label + title + tagline + meta */}
+          <div className="flex flex-col gap-4 md:gap-5">
+            <p className="font-sans font-normal text-text-tertiary text-[12px] tracking-[3px] uppercase">
+              Collection
+            </p>
+            <h1
+              className="font-sans font-normal text-text-primary"
+              style={{ fontSize: 'clamp(36px, 4vw, 52px)', letterSpacing: '-1.5px', lineHeight: 0.95 }}
             >
+              {collection.name}
+            </h1>
+            {collection.tagline && (
+              <p className="font-sans font-normal text-text-secondary text-[14px] md:text-[15px] leading-[1.7] italic">
+                {collection.tagline}
+              </p>
+            )}
+            <p className="font-sans font-normal text-text-tertiary text-[12px] md:text-[13px] tracking-[0.5px]">
+              {artworks.length} work{artworks.length !== 1 ? 's' : ''}
+              {minPrice ? ` · Prices from ${formatPrice(minPrice)}` : ''}
+            </p>
+          </div>
+
+          {/* Right: description (desktop beside, mobile below) */}
+          {collection.description && (
+            <p className="font-sans font-normal text-text-secondary text-[14px] md:text-[15px] leading-[1.7] md:max-w-[420px] md:flex-shrink-0">
               {collection.description}
             </p>
           )}
-          <p className="font-sans font-normal text-text-tertiary text-[13px] tracking-[0.5px]">
-            {artworks.length} work{artworks.length !== 1 ? 's' : ''}
-            {minPrice ? ` · Prices from ${formatPrice(minPrice)}` : ''}
-          </p>
+
         </div>
 
         {/* ── Divider ────────────────────────────────────────────────── */}
-        <div className="w-full h-px bg-divider mt-[48px]" />
+        <div className="w-full h-px bg-divider" />
 
         {/* ── Artwork grid ───────────────────────────────────────────── */}
-        <div className="px-5 md:px-[48px] py-[48px] pb-[80px]">
+        <div className="px-5 md:px-[48px] py-10 md:py-[48px] md:pb-[80px]">
           {artworks.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-[38px]">
               {artworks.map((artwork) => (
@@ -107,7 +146,7 @@ export async function getServerSideProps({ params }) {
   // Fetch the collection
   const { data: collection, error: colError } = await supabase
     .from('collections')
-    .select('id, slug, name, description, cover_image_url')
+    .select('id, slug, name, description, tagline, cover_image_url, hero_image')
     .eq('slug', slug)
     .single();
 
@@ -116,16 +155,32 @@ export async function getServerSideProps({ params }) {
   }
 
   // Fetch artworks belonging to this collection
-  const { data: artworks } = await supabase
+  const { data: artworksRaw } = await supabase
     .from('artworks')
     .select('id, title, medium, dimensions, price, image_url, stock')
     .eq('collection_id', collection.id)
     .order('created_at', { ascending: true });
 
+  const artworks = await Promise.all(
+    (artworksRaw ?? []).map(async (a) => ({
+      ...a,
+      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
+    }))
+  );
+
+  // Resolve the collection cover and hero images
+  const cover_image_url = collection.cover_image_url
+    ? (await resolveFirstImage(collection.cover_image_url)) ?? collection.cover_image_url
+    : null;
+
+  const hero_image = collection.hero_image
+    ? (await resolveFirstImage(collection.hero_image)) ?? collection.hero_image
+    : null;
+
   return {
     props: {
-      collection,
-      artworks: artworks ?? [],
+      collection: { ...collection, cover_image_url, hero_image },
+      artworks,
     },
   };
 }

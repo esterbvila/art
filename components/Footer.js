@@ -20,7 +20,7 @@ export default function Footer() {
           href="/"
           className="font-sans font-normal text-text-primary text-[15px] md:text-[16px] tracking-[2px] hover:opacity-80 transition-opacity"
         >
-          Ester Batllori
+          esterii creates
         </Link>
         <p className="font-sans font-normal text-text-tertiary text-[13px]">
           Original abstract paintings exploring emotion, intuition

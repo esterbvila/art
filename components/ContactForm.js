@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Instagram } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 /**
  * Contact section — two-column layout matching the prototype.
@@ -14,6 +14,7 @@ export default function ContactForm() {
     lastName:  '',
     email:     '',
     message:   '',
+    website:   '', // honeypot — must stay empty
   });
   const [errors,  setErrors]  = useState({});
   const [status,  setStatus]  = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
@@ -51,7 +52,7 @@ export default function ContactForm() {
         setStatus('error');
       } else {
         setStatus('success');
-        setForm({ firstName: '', lastName: '', email: '', message: '' });
+        setForm({ firstName: '', lastName: '', email: '', message: '', website: '' });
       }
     } catch {
       setApiError('Could not send message. Please try again.');
@@ -93,21 +94,18 @@ export default function ContactForm() {
         {/* Divider */}
         <div className="w-10 h-px bg-divider" />
 
-        {/* Email row */}
-        <div className="flex items-center gap-2.5">
-          <Mail size={16} className="text-text-tertiary flex-shrink-0" />
-          <span className="font-sans font-normal text-text-secondary text-[14px]">
-            elena@moreaustudio.com
-          </span>
-        </div>
-
         {/* Instagram row */}
-        <div className="flex items-center gap-2.5">
+        <a
+          href="https://instagram.com/esterii_creates"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2.5 hover:opacity-70 transition-opacity"
+        >
           <Instagram size={16} className="text-text-tertiary flex-shrink-0" />
           <span className="font-sans font-normal text-text-secondary text-[14px]">
-            @elena.moreau.art
+            @esterii_creates
           </span>
-        </div>
+        </a>
       </div>
 
       {/* ── Contact Form (right column) ──────────────────────────────── */}
@@ -125,6 +123,18 @@ export default function ContactForm() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-7 md:gap-[28px]">
+            {/* Honeypot — hidden from humans, bots fill it in */}
+            <div style={{ position: 'absolute', left: '-9999px', opacity: 0 }} aria-hidden="true">
+              <input
+                type="text"
+                name="website"
+                value={form.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             {/* Name row */}
             <div className="flex gap-6 w-full">
               <FieldLine

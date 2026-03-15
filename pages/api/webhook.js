@@ -1,7 +1,7 @@
 import { buffer } from 'micro';
 import { stripe } from '../../lib/stripe';
 import { createAdminClient } from '../../lib/supabase';
-import { sendOrderConfirmation } from '../../lib/email';
+import { sendOrderConfirmation, notifySale } from '../../lib/email';
 
 /**
  * Disable Next.js body parsing — Stripe requires the raw request body
@@ -11,18 +11,6 @@ export const config = {
   api: { bodyParser: false },
 };
 
-/**
- * POST /api/webhook
- *
- * Stripe webhook handler.
- * Listens for `checkout.session.completed` events and:
- *   1. Decrements the artwork stock via a Supabase RPC function.
- *   2. Inserts a record into the `orders` table.
- *
- * Configure this endpoint in your Stripe Dashboard →
- * Developers → Webhooks → Add endpoint → https://your-domain.com/api/webhook
- * Events to listen for: checkout.session.completed
- */
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).end('Method not allowed');
@@ -43,35 +31,41 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Only handle successful payments
   if (event.type === 'checkout.session.completed') {
-    const session    = event.data.object;
-    const artworkId  = session.metadata?.artworkId;
+    // Re-fetch the session to get the full object including shipping_details
+    // (the webhook payload may be truncated for some payment methods like PayPal)
+    const session = await stripe.checkout.sessions.retrieve(event.data.object.id);
 
-    if (!artworkId) {
-      console.error('Webhook: no artworkId in session metadata');
-      return res.status(400).json({ error: 'Missing artworkId in metadata' });
+    // Support both old format (artworkId) and new format (artworkIds)
+    const rawIds    = session.metadata?.artworkIds ?? session.metadata?.artworkId ?? '';
+    const artworkIds = rawIds.split(',').filter(Boolean);
+
+    if (!artworkIds.length) {
+      console.error('Webhook: no artworkIds in session metadata');
+      return res.status(400).json({ error: 'Missing artworkIds in metadata' });
     }
 
-    // Use the admin client so we bypass Row-Level Security for server operations
     const adminSupabase = createAdminClient();
 
-    // 1. Decrement stock (the RPC function is defined in supabase/schema.sql)
-    const { error: rpcError } = await adminSupabase.rpc('decrement_stock', {
-      artwork_id: artworkId,
-    });
-    if (rpcError) {
-      console.error('Failed to decrement stock:', rpcError.message);
+    // 1. Resolve payment method
+    let paymentMethod = null;
+    if (session.payment_intent) {
+      try {
+        const pi = await stripe.paymentIntents.retrieve(session.payment_intent, {
+          expand: ['payment_method'],
+        });
+        paymentMethod = pi.payment_method?.type ?? null;
+      } catch (e) {
+        console.error('Failed to retrieve payment intent:', e.message);
+      }
     }
 
-    // 2. Record the order — include full shipping details for fulfilment
-    // Stripe puts address in shipping_details OR customer_details depending on checkout flow
+    // 2. Shared order fields
     const shippingDetails = session.shipping_details ?? null;
     const addr            = shippingDetails?.address ?? session.customer_details?.address ?? null;
     const shippingName    = shippingDetails?.name ?? session.customer_details?.name ?? null;
 
-    const { error: orderError } = await adminSupabase.from('orders').insert({
-      artwork_id:           artworkId,
+    const sharedFields = {
       stripe_session_id:    session.id,
       amount_cents:         session.amount_total,
       customer_email:       session.customer_details?.email ?? null,
@@ -84,37 +78,73 @@ export default async function handler(req, res) {
       shipping_state:       addr?.state ?? null,
       shipping_postal_code: addr?.postal_code ?? null,
       shipping_country:     addr?.country ?? null,
+      payment_method:       paymentMethod,
       status:               'completed',
+    };
+
+    // 3. Decrement stock and insert order for each artwork
+    // Only the first artwork's insert failing with 23505 means the whole session
+    // was already processed (duplicate webhook delivery). Later failures for other
+    // artworks in the same session would be a constraint issue, not a duplicate.
+    const firstId = artworkIds[0];
+    const { error: firstOrderError } = await adminSupabase.from('orders').insert({
+      ...sharedFields,
+      artwork_id: firstId,
     });
-    if (orderError) {
-      console.error('Failed to insert order:', orderError.message);
-      // Duplicate session = already processed; skip email to avoid double-sending
-      if (orderError.code === '23505') {
+
+    if (firstOrderError) {
+      console.error(`Failed to insert order for ${firstId}:`, firstOrderError.message);
+      if (firstOrderError.code === '23505') {
+        // Duplicate webhook delivery — already processed
         return res.status(200).json({ received: true });
+      }
+    } else {
+      await adminSupabase.rpc('decrement_stock', { artwork_id: firstId });
+    }
+
+    for (const artworkId of artworkIds.slice(1)) {
+      await adminSupabase.rpc('decrement_stock', { artwork_id: artworkId });
+
+      const { error: orderError } = await adminSupabase.from('orders').insert({
+        ...sharedFields,
+        artwork_id: artworkId,
+      });
+
+      if (orderError) {
+        console.error(`Failed to insert order for ${artworkId}:`, orderError.message);
       }
     }
 
-    // 3. Send confirmation email to the buyer
+    // 4. Fetch all artwork details for the emails
     const customerEmail = session.customer_details?.email;
     if (customerEmail) {
-      // Fetch artwork title for the email
-      const { data: artwork } = await adminSupabase
+      const { data: artworksData } = await adminSupabase
         .from('artworks')
         .select('title, price')
-        .eq('id', artworkId)
-        .single();
+        .in('id', artworkIds);
+
+      const artworks = artworksData ?? artworkIds.map(() => ({ title: 'your painting', price: 0 }));
 
       await sendOrderConfirmation({
         to:           customerEmail,
         customerName: session.customer_details?.name ?? 'there',
-        artworkTitle: artwork?.title ?? 'your painting',
+        artworks,
         amountCents:  session.amount_total,
         shipping:     { ...addr, name: shippingName },
         phone:        session.customer_details?.phone ?? null,
       });
+
+      await notifySale({
+        customerName:  session.customer_details?.name ?? 'Unknown',
+        customerEmail,
+        artworks,
+        amountCents:   session.amount_total,
+        phone:         session.customer_details?.phone ?? null,
+        shipping:      { ...addr, name: shippingName },
+        paymentMethod,
+      });
     }
   }
 
-  // Acknowledge receipt to Stripe
   return res.status(200).json({ received: true });
 }

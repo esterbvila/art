@@ -6,7 +6,8 @@ import Footer from '../components/Footer';
 import PurchaseButton from '../components/PurchaseButton';
 import ImageSlider from '../components/ImageSlider';
 import { formatPrice } from '../lib/utils';
-import { getShippingRates } from '../lib/shipping';
+import { resolveImages } from '../lib/storage';
+import { useCart } from '../context/CartContext';
 
 /**
  * Artwork detail page.
@@ -14,6 +15,8 @@ import { getShippingRates } from '../lib/shipping';
  * Two-column desktop layout: image left, info right — matching the prototype.
  */
 export default function ArtworkDetail({ artwork, collection }) {
+  const { addItem, isInCart, setIsOpen } = useCart();
+
   if (!artwork) {
     return (
       <div className="bg-bg-main min-h-screen flex items-center justify-center">
@@ -23,8 +26,7 @@ export default function ArtworkDetail({ artwork, collection }) {
   }
 
   const isAvailable = artwork.stock > 0;
-  const shipping = getShippingRates(artwork.size_category);
-
+  const inCart = isInCart(artwork.id);
   const details = [
     { label: 'Medium',       value: artwork.medium },
     { label: 'Dimensions',   value: artwork.dimensions },
@@ -48,12 +50,12 @@ export default function ArtworkDetail({ artwork, collection }) {
         <Navigation />
 
         {/* ── Back link ──────────────────────────────────────────────── */}
-        <div className="pl-6 pr-5 md:px-[80px] py-5">
+        <div className="px-5 md:px-[48px] py-5">
           <Link
-            href={collection ? `/collections/${collection.slug}` : '/#works'}
+            href={collection ? `/collections/${collection.slug}` : '/'}
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
-            ← {collection ? 'Back to collection' : 'Back to works'}
+            ← {collection ? 'Back to collection' : 'Back to home'}
           </Link>
         </div>
 
@@ -67,7 +69,7 @@ export default function ArtworkDetail({ artwork, collection }) {
           {/* Left — image */}
           <div className="md:w-1/2 min-h-[300px] md:min-h-[620px]">
             <ImageSlider
-              images={artwork.images?.length > 0 ? artwork.images : [artwork.image_url]}
+              images={artwork.images ?? []}
               alt={artwork.title}
               fullHeight
             />
@@ -85,27 +87,11 @@ export default function ArtworkDetail({ artwork, collection }) {
               {artwork.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
-                {artwork.medium}
-              </span>
-              {artwork.dimensions && (
-                <>
-                  <span className="text-text-tertiary font-sans text-[13px]">·</span>
-                  <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
-                    {artwork.dimensions}
-                  </span>
-                </>
-              )}
-              {artwork.year && (
-                <>
-                  <span className="text-text-tertiary font-sans text-[13px]">·</span>
-                  <span className="text-text-secondary font-sans text-[13px] tracking-[0.5px]">
-                    {artwork.year}
-                  </span>
-                </>
-              )}
-            </div>
+            {artwork.tagline && (
+              <p className="font-sans font-normal text-text-secondary text-[15px] leading-[1.6] italic">
+                {artwork.tagline}
+              </p>
+            )}
           </div>
 
           {/* Price + purchase button */}
@@ -125,9 +111,25 @@ export default function ArtworkDetail({ artwork, collection }) {
 
             <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
 
-            <p className="font-sans text-text-tertiary text-[11px]">
-              Shipping: {formatPrice(shipping.de)} DE · {formatPrice(shipping.eu)} EU · {formatPrice(shipping.world)} Worldwide
-            </p>
+            {isAvailable && (
+              <button
+                onClick={() => {
+                  if (inCart) {
+                    setIsOpen(true);
+                  } else {
+                    addItem({
+                      id:       artwork.id,
+                      title:    artwork.title,
+                      price:    artwork.price,
+                      imageUrl: artwork.images?.[0] ?? null,
+                    });
+                  }
+                }}
+                className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-main transition-colors cursor-pointer"
+              >
+                {inCart ? 'View Cart' : 'Add to Cart'}
+              </button>
+            )}
 
             <div className="w-full h-px bg-divider" />
           </div>
@@ -208,6 +210,9 @@ export async function getServerSideProps({ params }) {
   }
 
   const { collections: collection, ...artworkData } = artwork;
+
+  // Resolve folder name to array of public URLs for the carousel
+  artworkData.images = await resolveImages(artworkData.image_url);
 
   return { props: { artwork: artworkData, collection: collection ?? null } };
 }

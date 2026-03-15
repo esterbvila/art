@@ -11,7 +11,7 @@ import { formatPrice } from '../lib/utils';
  *   - Info: name, description, count + min price, "View Collection →" CTA
  */
 export default function CollectionCard({ collection }) {
-  const { slug, name, description, cover_image_url, artwork_count, min_price } = collection;
+  const { slug, name, tagline, cover_image_url, artwork_count, min_price } = collection;
 
   return (
     <Link
@@ -43,9 +43,9 @@ export default function CollectionCard({ collection }) {
           {name}
         </h3>
 
-        {description && (
+        {tagline && (
           <p className="font-sans font-normal text-text-secondary text-[14px] leading-[1.6]">
-            {description}
+            {tagline}
           </p>
         )}
 

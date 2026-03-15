@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 /**
  * Site-wide navigation.
@@ -10,6 +11,7 @@ import { Menu, X } from 'lucide-react';
  */
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { items, setIsOpen } = useCart();
 
   const links = [
     { label: 'Works',   href: '/#works'   },
@@ -25,7 +27,7 @@ export default function Navigation() {
           href="/"
           className="font-sans font-normal text-text-primary tracking-[2px] text-[15px] md:text-[16px] hover:opacity-80 transition-opacity"
         >
-          Ester Batllori
+          esterii creates
         </Link>
 
         {/* Desktop nav links */}
@@ -46,16 +48,43 @@ export default function Navigation() {
           >
             Inquire
           </Link>
+          {/* Cart icon */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative text-text-secondary hover:text-text-primary transition-colors"
+            aria-label="Open cart"
+          >
+            <ShoppingBag size={18} />
+            {items.length > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
+                {items.length}
+              </span>
+            )}
+          </button>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-text-primary"
-          onClick={() => setMobileOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile right side: cart + hamburger */}
+        <div className="flex md:hidden items-center gap-4">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative text-text-secondary hover:text-text-primary transition-colors"
+            aria-label="Open cart"
+          >
+            <ShoppingBag size={18} />
+            {items.length > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
+                {items.length}
+              </span>
+            )}
+          </button>
+          <button
+            className="text-text-primary"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile dropdown */}

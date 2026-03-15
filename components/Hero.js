@@ -36,7 +36,7 @@ export default function Hero() {
       {/* ── Hero image ───────────────────────────────────────────────── */}
       <div className="relative w-full h-[400px] md:h-[625px] overflow-hidden">
         <Image
-          src="/artworks/egipte-editada-retallada.png"
+          src="/hero-img.png"
           alt="Abstract painting by Ester Batllori"
           fill
           className="object-cover"

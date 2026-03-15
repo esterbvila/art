@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { supabase } from '../lib/supabase';
+import { resolveFirstImage } from '../lib/storage';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import Gallery from '../components/Gallery';
@@ -41,16 +42,16 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
         {/* ── Divider ──────────────────────────────────────────────────── */}
         <div className="w-full h-px bg-divider" />
 
-        {/* ── Gallery ──────────────────────────────────────────────────── */}
-        <section id="works">
-          <Gallery collections={collections} />
-        </section>
+        {/* ── Unique Pieces ─────────────────────────────────────────────── */}
+        <UniquePieces artworks={uniqueArtworks} />
 
         {/* ── Divider ──────────────────────────────────────────────────── */}
         <div className="w-full h-px bg-divider" />
 
-        {/* ── Unique Pieces ─────────────────────────────────────────────── */}
-        <UniquePieces artworks={uniqueArtworks} />
+        {/* ── Gallery ──────────────────────────────────────────────────── */}
+        <section id="works">
+          <Gallery collections={collections} />
+        </section>
 
         {/* ── About the Artist ─────────────────────────────────────────── */}
         <section id="about">
@@ -86,7 +87,7 @@ export async function getServerSideProps() {
   // Fetch collections with their artworks to compute count + min price
   const { data: collectionsRaw, error: colError } = await supabase
     .from('collections')
-    .select('id, slug, name, description, cover_image_url, sort_order, artworks(id, price)')
+    .select('id, slug, name, tagline, cover_image_url, sort_order, artworks(id, price)')
     .order('sort_order', { ascending: true });
 
   if (colError) {
@@ -101,24 +102,35 @@ export async function getServerSideProps() {
   }));
 
   // Fetch artworks not assigned to any collection
-  const { data: uniqueArtworks } = await supabase
+  const { data: uniqueArtworksRaw } = await supabase
     .from('artworks')
-    .select('id, title, medium, dimensions, price, image_url, stock')
+    .select('id, title, medium, dimensions, price, image_url, stock, tagline')
     .is('collection_id', null)
     .order('created_at', { ascending: false });
 
+  const uniqueArtworks = await Promise.all(
+    (uniqueArtworksRaw ?? []).map(async (a) => ({
+      ...a,
+      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
+    }))
+  );
+
   // Fetch featured artwork separately for the FeaturedPainting section
-  const { data: featuredArtwork } = await supabase
+  const { data: featuredRaw } = await supabase
     .from('artworks')
     .select('id, title, description, price, image_url, stock')
     .eq('featured', true)
     .single();
 
+  const featuredArtwork = featuredRaw
+    ? { ...featuredRaw, image_url: (await resolveFirstImage(featuredRaw.image_url)) ?? featuredRaw.image_url }
+    : null;
+
   return {
     props: {
       collections,
-      uniqueArtworks: uniqueArtworks ?? [],
-      featuredArtwork: featuredArtwork ?? null,
+      uniqueArtworks,
+      featuredArtwork,
     },
   };
 }

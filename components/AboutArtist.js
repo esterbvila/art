@@ -12,7 +12,7 @@ export default function AboutArtist() {
       {/* ── Portrait image ────────────────────────────────────────────── */}
       <div className="relative w-full md:w-[560px] flex-shrink-0 h-[360px] md:h-full overflow-hidden">
         <Image
-          src="/artworks/egipte-editada.png"
+          src="/artist-photo.png"
           alt="Portrait of Ester Batllori in her studio"
           fill
           className="object-cover"

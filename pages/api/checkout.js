@@ -1,78 +1,72 @@
 import { stripe } from '../../lib/stripe';
 import { supabase } from '../../lib/supabase';
-import { getShippingOptions } from '../../lib/shipping';
 
 /**
  * POST /api/checkout
  *
- * Creates a Stripe Checkout Session for a single artwork purchase.
+ * Creates a Stripe Checkout Session.
+ * Accepts either a single artwork (Buy Now) or multiple artworks (Cart).
  *
- * Request body: { artworkId: string }
- * Response:     { url: string }  — redirect the client to this URL
+ * Request body: { artworkId: string }            — single / Buy Now
+ *             | { artworkIds: string[] }          — cart checkout
+ * Response:    { url: string }
  */
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { artworkId } = req.body;
+  const { artworkId, artworkIds: artworkIdsRaw } = req.body;
+  const ids = Array.isArray(artworkIdsRaw)
+    ? artworkIdsRaw
+    : artworkId
+    ? [artworkId]
+    : [];
 
-  if (!artworkId) {
+  if (!ids.length) {
     return res.status(400).json({ error: 'artworkId is required' });
   }
 
-  // 1. Fetch artwork from Supabase to validate it exists and is in stock
-  const { data: artwork, error } = await supabase
+  // 1. Fetch all artworks
+  const { data: artworks, error } = await supabase
     .from('artworks')
-    .select('id, title, description, price, size_category, image_url, stock')
-    .eq('id', artworkId)
-    .single();
+    .select('id, title, description, price, image_url, stock')
+    .in('id', ids);
 
-  if (error || !artwork) {
+  if (error || !artworks?.length) {
     return res.status(404).json({ error: 'Artwork not found' });
   }
 
-  if (artwork.stock <= 0) {
-    return res.status(400).json({ error: 'This artwork is no longer available' });
+  // 2. Validate all are in stock
+  const outOfStock = artworks.find(a => a.stock <= 0);
+  if (outOfStock) {
+    return res.status(400).json({ error: `"${outOfStock.title}" is no longer available` });
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
-  // 2. Build image list for Stripe — only pass fully-qualified HTTPS URLs.
-  // Local paths like /artworks/foo.png are rejected by Stripe's API.
-  const images =
-    artwork.image_url?.startsWith('http')
-      ? [artwork.image_url]
-      : [];
+  // 3. Build line items
+  const line_items = artworks.map(artwork => ({
+    price_data: {
+      currency: 'eur',
+      product_data: {
+        name: artwork.title,
+        description: artwork.description?.slice(0, 500) ?? undefined,
+        images: artwork.image_url?.startsWith('http') ? [artwork.image_url] : [],
+      },
+      unit_amount: artwork.price,
+    },
+    quantity: 1,
+  }));
 
-  // 3. Create a Stripe Checkout Session
+  // 4. Create a Stripe Checkout Session
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'eur',
-            product_data: {
-              name: artwork.title,
-              description: artwork.description?.slice(0, 500) ?? undefined,
-              images,
-            },
-            unit_amount: artwork.price,
-          },
-          quantity: 1,
-        },
-      ],
-      shipping_options: getShippingOptions(artwork.size_category),
+      payment_method_types: ['card', 'paypal', 'klarna'],
+      line_items,
       mode: 'payment',
-
-      // Collect the buyer's full name + email (always on by default, made explicit here)
       customer_creation: 'always',
-
-      // Collect a shipping address — required to know where to send the artwork
       shipping_address_collection: {
-        // Full list of countries Stripe accepts for shipping address collection.
-        // Remove entries for regions you don't ship to.
         allowed_countries: [
           'AC','AD','AE','AF','AG','AI','AL','AM','AO','AQ','AR','AT','AU','AW','AX','AZ',
           'BA','BB','BD','BE','BF','BG','BH','BI','BJ','BL','BM','BN','BO','BQ','BR','BS','BT','BV','BW','BY','BZ',
@@ -102,14 +96,10 @@ export default async function handler(req, res) {
           'ZA','ZM','ZW','ZZ',
         ],
       },
-
-      // Collect phone number — helpful for courier contact on delivery
       phone_number_collection: { enabled: true },
-
-      // Pass artworkId in metadata so the webhook can update inventory
-      metadata: { artworkId: artwork.id },
+      metadata: { artworkIds: ids.join(',') },
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url:  `${baseUrl}/${artworkId}`,
+      cancel_url:  ids.length === 1 ? `${baseUrl}/${ids[0]}` : `${baseUrl}/`,
     });
 
     return res.status(200).json({ url: session.url });
