@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import useCart from '../context/useCart';
 import { formatPrice } from '../lib/utils';
 
 export default function CartDrawer() {

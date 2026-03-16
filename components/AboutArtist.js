@@ -10,18 +10,18 @@ export default function AboutArtist() {
   return (
     <section className="flex flex-col md:flex-row bg-bg-warm w-full md:h-[600px]">
       {/* ── Portrait image ────────────────────────────────────────────── */}
-      <div className="relative w-full md:w-[560px] flex-shrink-0 h-[360px] md:h-full overflow-hidden">
+      <div className="relative w-full md:w-[38%] lg:w-[560px] flex-shrink-0 h-[360px] md:h-full overflow-hidden">
         <Image
           src="/artist-photo.png"
           alt="Portrait of Ester Batllori in her studio"
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%] md:object-center"
           sizes="(max-width: 768px) 100vw, 560px"
         />
       </div>
 
       {/* ── About text ────────────────────────────────────────────────── */}
-      <div className="flex flex-col justify-center gap-6 px-5 pt-0 pb-10 md:p-[72px]">
+      <div className="flex flex-col justify-center gap-6 px-5 pt-8 pb-10 md:p-10 lg:p-[72px]">
         {/* Label */}
         <p className="font-sans font-normal text-text-tertiary text-[13px] tracking-[3px] uppercase">
           The Artist

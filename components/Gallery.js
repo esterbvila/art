@@ -13,7 +13,7 @@ export default function Gallery({ collections = [] }) {
           <span className="font-sans font-normal text-text-tertiary text-[15px] tracking-[3px] uppercase">
             Collections
           </span>
-          <span className="font-sans font-normal text-text-tertiary text-[15px] tracking-[0.5px]">
+          <span className="font-sans font-normal text-text-tertiary text-[13px] tracking-[0.5px]">
             {collections.length} collection{collections.length !== 1 ? 's' : ''}
           </span>
         </div>

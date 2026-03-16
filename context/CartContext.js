@@ -1,12 +1,10 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { CartContext } from './cartContextDef';
 
-const CartContext = createContext(null);
-
-export function CartProvider({ children }) {
+export default function CartProvider({ children }) {
   const [items, setItems]   = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Hydrate from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem('cart');
@@ -14,12 +12,10 @@ export function CartProvider({ children }) {
     } catch {}
   }, []);
 
-  // Persist to localStorage on change
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items));
   }, [items]);
 
-  // artwork: { id, title, price, imageUrl }
   function addItem(artwork) {
     setItems(prev => prev.some(i => i.id === artwork.id) ? prev : [...prev, artwork]);
     setIsOpen(true);
@@ -40,8 +36,4 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
-
-export function useCart() {
-  return useContext(CartContext);
 }

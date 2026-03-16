@@ -15,7 +15,7 @@ export default function UniquePieces({ artworks = [] }) {
           <span className="font-sans font-normal text-text-tertiary text-[15px] tracking-[3px] uppercase">
             Unique Pieces
           </span>
-          <span className="font-sans font-normal text-text-tertiary text-[15px] tracking-[0.5px]">
+          <span className="font-sans font-normal text-text-tertiary text-[13px] tracking-[0.5px]">
             {artworks.length} work{artworks.length !== 1 ? 's' : ''}
           </span>
         </div>

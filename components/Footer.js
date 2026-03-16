@@ -41,10 +41,17 @@ export default function Footer() {
         ))}
       </nav>
 
-      {/* ── Right: copyright ───────────────────────────────────────────── */}
-      <p className="font-sans font-normal text-text-tertiary text-[11px] md:text-[12px]">
-        © 2026
-      </p>
+      {/* ── Right: legal links + copyright ─────────────────────────────── */}
+      <div className="flex flex-col items-center md:items-end gap-2">
+        <div className="flex items-center gap-4">
+          <Link href="/impressum" className="font-sans font-normal text-text-tertiary text-[11px] md:text-[12px] hover:text-text-secondary transition-colors">Impressum</Link>
+          <Link href="/datenschutz" className="font-sans font-normal text-text-tertiary text-[11px] md:text-[12px] hover:text-text-secondary transition-colors">Datenschutz</Link>
+          <Link href="/agb" className="font-sans font-normal text-text-tertiary text-[11px] md:text-[12px] hover:text-text-secondary transition-colors">AGB</Link>
+        </div>
+        <p className="font-sans font-normal text-text-tertiary text-[11px] md:text-[12px]">
+          © 2026
+        </p>
+      </div>
     </footer>
   );
 }

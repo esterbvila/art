@@ -35,7 +35,7 @@ export default function CollectionCard({ collection }) {
       </div>
 
       {/* ── Info ─────────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-4 pt-6">
+      <div className="flex flex-col gap-2 pt-4">
         <h3
           className="font-sans font-semibold text-text-primary"
           style={{ fontSize: '22px', letterSpacing: '-0.5px' }}
@@ -53,10 +53,6 @@ export default function CollectionCard({ collection }) {
           {artwork_count ?? 0} work{artwork_count !== 1 ? 's' : ''}
           {min_price ? ` · From ${formatPrice(min_price)}` : ''}
         </p>
-
-        <span className="font-sans font-medium text-accent text-[13px] tracking-[0.5px] group-hover:opacity-80 transition-opacity">
-          View Collection →
-        </span>
       </div>
     </Link>
   );

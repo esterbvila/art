@@ -7,7 +7,8 @@ import PurchaseButton from '../components/PurchaseButton';
 import ImageSlider from '../components/ImageSlider';
 import { formatPrice } from '../lib/utils';
 import { resolveImages } from '../lib/storage';
-import { useCart } from '../context/CartContext';
+import useCart from '../context/useCart';
+import ArtworkInfoSection from '../components/ArtworkInfoSection';
 
 /**
  * Artwork detail page.
@@ -109,27 +110,29 @@ export default function ArtworkDetail({ artwork, collection }) {
 
             </div>
 
-            <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
+            <div className="flex flex-col gap-3">
+              <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
 
-            {isAvailable && (
-              <button
-                onClick={() => {
-                  if (inCart) {
-                    setIsOpen(true);
-                  } else {
-                    addItem({
-                      id:       artwork.id,
-                      title:    artwork.title,
-                      price:    artwork.price,
-                      imageUrl: artwork.images?.[0] ?? null,
-                    });
-                  }
-                }}
-                className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-main transition-colors cursor-pointer"
-              >
-                {inCart ? 'View Cart' : 'Add to Cart'}
-              </button>
-            )}
+              {isAvailable && (
+                <button
+                  onClick={() => {
+                    if (inCart) {
+                      setIsOpen(true);
+                    } else {
+                      addItem({
+                        id:       artwork.id,
+                        title:    artwork.title,
+                        price:    artwork.price,
+                        imageUrl: artwork.images?.[0] ?? null,
+                      });
+                    }
+                  }}
+                  className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-main transition-colors cursor-pointer"
+                >
+                  {inCart ? 'View Cart' : 'Add to Cart'}
+                </button>
+              )}
+            </div>
 
             <div className="w-full h-px bg-divider" />
           </div>
@@ -185,6 +188,10 @@ export default function ArtworkDetail({ artwork, collection }) {
 
           </div>
         </div>
+
+        {/* ── Info Section ───────────────────────────────────────────── */}
+        <div className="w-full h-px bg-divider" />
+        <ArtworkInfoSection />
 
         {/* ── Divider ────────────────────────────────────────────────── */}
         <div className="w-full h-px bg-divider" />
