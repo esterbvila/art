@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 /**
@@ -10,6 +10,15 @@ import Image from 'next/image';
  */
 export default function ImageSlider({ images, alt }) {
   const [current, setCurrent] = useState(0);
+  const stripRef = useRef(null);
+  const thumbRefs = useRef([]);
+
+  useEffect(() => {
+    const thumb = thumbRefs.current[current];
+    if (thumb && stripRef.current) {
+      thumb.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    }
+  }, [current]);
 
   if (!images || images.length === 0) return null;
 
@@ -78,23 +87,26 @@ export default function ImageSlider({ images, alt }) {
 
       {/* ── Thumbnail strip — only shown when multiple images ──────── */}
       {hasManyImages && (
-        <div className="flex gap-2 overflow-x-auto pb-1">
+        <div ref={stripRef} className="flex gap-2 overflow-x-auto py-1">
           {images.map((src, i) => (
             <button
               key={i}
+              ref={el => thumbRefs.current[i] = el}
               onClick={() => setCurrent(i)}
               aria-label={`View image ${i + 1}`}
-              className={`relative flex-shrink-0 w-[80px] h-[80px] md:w-[100px] md:h-[100px] overflow-hidden transition-opacity ${
-                i === current ? 'opacity-100 ring-1 ring-text-primary' : 'opacity-50 hover:opacity-75'
+              className={`relative flex-shrink-0 w-[80px] h-[80px] md:w-[100px] md:h-[100px] transition-opacity ${
+                i === current ? 'opacity-100 ring-2 ring-accent ring-offset-1 ring-offset-bg-main' : 'opacity-50 hover:opacity-75'
               }`}
             >
-              <Image
-                src={src}
-                alt={`${alt} — view ${i + 1}`}
-                fill
-                className="object-cover"
-                sizes="100px"
-              />
+              <div className="absolute inset-0 overflow-hidden">
+                <Image
+                  src={src}
+                  alt={`${alt} — view ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="100px"
+                />
+              </div>
             </button>
           ))}
         </div>

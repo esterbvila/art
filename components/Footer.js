@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import { Lock } from 'lucide-react';
+import { SiStripe, SiPaypal, SiKlarna } from 'react-icons/si';
+import { FaCcVisa, FaCcMastercard, FaCcAmex } from 'react-icons/fa';
 
 /**
  * Site footer — three-column layout on desktop, stacked on mobile.
@@ -13,7 +16,26 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="flex flex-col items-center md:flex-row md:items-start justify-between gap-5 md:gap-0 px-5 md:px-[48px] pt-8 pb-10 md:pt-[40px] md:pb-[48px]">
+    <footer className="flex flex-col">
+
+      {/* ── Payment & security badges ───────────────────────────────────── */}
+      <div className="flex flex-wrap items-center justify-center gap-4 px-5 py-4 border-b border-divider">
+        <div className="flex items-center gap-1.5 text-text-tertiary">
+          <Lock size={12} />
+          <span className="font-sans text-[11px] tracking-[0.5px]">Secure Checkout</span>
+        </div>
+        <div className="w-px h-4 bg-divider" />
+        <SiStripe size={20} className="text-text-tertiary" title="Stripe" />
+        <SiPaypal size={18} className="text-text-tertiary" title="PayPal" />
+        <SiKlarna size={20} className="text-text-tertiary" title="Klarna" />
+        <div className="w-px h-4 bg-divider" />
+        <FaCcVisa size={24} className="text-text-tertiary" title="Visa" />
+        <FaCcMastercard size={24} className="text-text-tertiary" title="Mastercard" />
+        <FaCcAmex size={24} className="text-text-tertiary" title="American Express" />
+      </div>
+
+      {/* ── Main footer row ─────────────────────────────────────────────── */}
+      <div className="flex flex-col items-center md:flex-row md:items-start justify-between gap-5 md:gap-0 px-5 md:px-[48px] pt-8 pb-10 md:pt-[40px] md:pb-[48px]">
       {/* ── Left: brand + tagline ──────────────────────────────────────── */}
       <div className="flex flex-col gap-1.5 text-center md:text-left">
         <Link
@@ -52,6 +74,7 @@ export default function Footer() {
         <p className="font-sans font-normal text-text-tertiary text-[11px] md:text-[12px]">
           © 2026
         </p>
+      </div>
       </div>
     </footer>
   );

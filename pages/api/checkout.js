@@ -1,5 +1,6 @@
 import { stripe } from '../../lib/stripe';
 import { supabase } from '../../lib/supabase';
+import { resolveFirstImage } from '../../lib/storage';
 
 /**
  * POST /api/checkout
@@ -45,21 +46,25 @@ export default async function handler(req, res) {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
-  // 3. Build line items
-  const line_items = artworks.map(artwork => ({
+  // 3. Resolve first image URL for each artwork
+  const resolvedImages = await Promise.all(
+    artworks.map(a => resolveFirstImage(a.image_url))
+  );
+
+  // 4. Build line items
+  const line_items = artworks.map((artwork, i) => ({
     price_data: {
       currency: 'eur',
       product_data: {
         name: artwork.title,
-        description: artwork.description?.slice(0, 500) ?? undefined,
-        images: artwork.image_url?.startsWith('http') ? [artwork.image_url] : [],
+        images: resolvedImages[i] ? [resolvedImages[i]] : [],
       },
       unit_amount: artwork.price,
     },
     quantity: 1,
   }));
 
-  // 4. Create a Stripe Checkout Session
+  // 5. Create a Stripe Checkout Session
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card', 'paypal', 'klarna'],
