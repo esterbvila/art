@@ -8,8 +8,8 @@ export default function Footer() {
   const navLinks = [
     { label: 'Works',     href: '/#works'   },
     { label: 'About',     href: '/#about'   },
-    { label: 'Contact',   href: '/#contact' },
-    { label: 'Instagram', href: '#'         },
+    { label: 'Inquire',   href: '/#contact' },
+    { label: '@esterii_creates', href: 'https://instagram.com/esterii_creates' },
   ];
 
   return (
@@ -34,6 +34,7 @@ export default function Footer() {
           <Link
             key={label}
             href={href}
+            {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="font-sans font-normal text-text-secondary text-[13px] hover:text-text-primary transition-colors"
           >
             {label}
