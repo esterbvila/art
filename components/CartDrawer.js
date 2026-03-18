@@ -65,7 +65,15 @@ export default function CartDrawer() {
         {/* Items */}
         <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-6">
           {items.length === 0 ? (
-            <p className="font-sans text-text-tertiary text-[14px]">Your cart is empty.</p>
+            <div className="flex flex-col gap-4">
+              <p className="font-sans text-text-tertiary text-[14px]">Your cart is empty.</p>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-full border border-divider font-sans text-text-secondary text-[13px] tracking-[0.5px] py-4 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+              >
+                Browse paintings
+              </button>
+            </div>
           ) : (
             items.map(item => (
               <div key={item.id} className="flex gap-4 items-start">
@@ -110,6 +118,12 @@ export default function CartDrawer() {
               className="w-full bg-accent text-white font-sans text-[14px] tracking-[0.5px] py-4 hover:opacity-90 transition-opacity disabled:opacity-60 cursor-pointer"
             >
               {loading ? 'Redirecting…' : 'Checkout'}
+            </button>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="w-full font-sans text-text-secondary text-[13px] tracking-[0.5px] py-2 hover:text-text-primary transition-colors cursor-pointer"
+            >
+              Continue shopping
             </button>
           </div>
         )}
