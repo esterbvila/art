@@ -9,7 +9,7 @@ export default function ArtworkInfoSection() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 px-5 md:px-[56px] py-8 md:py-[56px]">
 
       {/* ── Shipping ──────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         <p className="font-sans font-normal text-text-tertiary text-[11px] tracking-[2px] uppercase">
           Shipping
         </p>
@@ -21,7 +21,7 @@ export default function ArtworkInfoSection() {
       </div>
 
       {/* ── Packaging & Security ──────────────────────────────────────── */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         <p className="font-sans font-normal text-text-tertiary text-[11px] tracking-[2px] uppercase">
           Packaging &amp; Security
         </p>
@@ -32,7 +32,7 @@ export default function ArtworkInfoSection() {
       </div>
 
       {/* ── Authenticity ──────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         <p className="font-sans font-normal text-text-tertiary text-[11px] tracking-[2px] uppercase">
           Authenticity
         </p>
@@ -44,7 +44,7 @@ export default function ArtworkInfoSection() {
       </div>
 
       {/* ── Satisfaction Guarantee ────────────────────────────────────── */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         <p className="font-sans font-normal text-text-tertiary text-[11px] tracking-[2px] uppercase">
           Satisfaction Guarantee
         </p>

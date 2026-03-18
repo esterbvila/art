@@ -74,7 +74,6 @@ export default function CollectionPage({ collection, artworks }) {
               sizes="100vw"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/25" />
           </div>
         )}
 
