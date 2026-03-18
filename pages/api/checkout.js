@@ -44,7 +44,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: `"${outOfStock.title}" is no longer available` });
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const proto = req.headers['x-forwarded-proto'] || 'http';
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `${proto}://${host}`;
 
   // 3. Resolve first image URL for each artwork
   const resolvedImages = await Promise.all(
