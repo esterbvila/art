@@ -3,7 +3,6 @@ import { supabase } from '../lib/supabase';
 import { resolveFirstImage } from '../lib/storage';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
-import Gallery from '../components/Gallery';
 import AboutArtist from '../components/AboutArtist';
 import FeaturedPainting from '../components/FeaturedPainting';
 import ContactForm from '../components/ContactForm';
@@ -14,7 +13,7 @@ import UniquePieces from '../components/UniquePieces';
  * Landing page — fetches all artworks server-side so the gallery
  * is always up to date with Supabase on every request.
  */
-export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
+export default function Home({ uniqueArtworks, featuredArtwork }) {
   return (
     <>
       <Head>
@@ -43,14 +42,8 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
         <div className="w-full h-px bg-divider" />
 
         {/* ── Unique Pieces ─────────────────────────────────────────────── */}
-        <UniquePieces artworks={uniqueArtworks} />
-
-        {/* ── Divider ──────────────────────────────────────────────────── */}
-        <div className="w-full h-px bg-divider" />
-
-        {/* ── Gallery ──────────────────────────────────────────────────── */}
         <section id="works">
-          <Gallery collections={collections} />
+          <UniquePieces artworks={uniqueArtworks} />
         </section>
 
         {/* ── About the Artist ─────────────────────────────────────────── */}
