@@ -96,7 +96,7 @@ export default function ArtworkDetail({ artwork, collection }) {
           </div>
 
           {/* Price + purchase button */}
-          <div className="flex flex-col gap-6 w-full max-w-[320px] md:max-w-[360px]">
+          <div className="flex flex-col gap-6 w-full md:max-w-[360px]">
             <div className="flex flex-col gap-2">
               <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
                 Price
@@ -110,7 +110,7 @@ export default function ArtworkDetail({ artwork, collection }) {
 
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-full">
               <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
 
               {isAvailable && (
