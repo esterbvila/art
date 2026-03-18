@@ -53,7 +53,7 @@ export default function ArtworkDetail({ artwork, collection }) {
         {/* ── Back link ──────────────────────────────────────────────── */}
         <div className="px-5 md:px-[48px] py-5">
           <Link
-            href={collection ? `/collections/${collection.slug}` : '/'}
+            href={collection ? `/collections/${collection.slug}` : '/#works'}
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
             ← {collection ? 'Back to collection' : 'Back to home'}

@@ -53,7 +53,7 @@ export default function CollectionPage({ collection, artworks }) {
         {/* ── Back link ──────────────────────────────────────────────── */}
         <div className="px-5 md:px-[48px] py-5">
           <Link
-            href="/"
+            href="/#works"
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
             ← Back to home
