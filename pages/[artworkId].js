@@ -10,6 +10,9 @@ import { resolveImages } from '../lib/storage';
 import useCart from '../context/useCart';
 import ArtworkInfoSection from '../components/ArtworkInfoSection';
 
+// Set to true to re-enable purchasing
+const SHOP_ENABLED = false;
+
 /**
  * Artwork detail page.
  * Route: /[artworkId] where artworkId is the Supabase UUID.
@@ -110,29 +113,31 @@ export default function ArtworkDetail({ artwork, collection }) {
 
             </div>
 
-            <div className="flex flex-col gap-3 w-full">
-              <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
+            {SHOP_ENABLED && (
+              <div className="flex flex-col gap-3 w-full">
+                <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
 
-              {isAvailable && (
-                <button
-                  onClick={() => {
-                    if (inCart) {
-                      setIsOpen(true);
-                    } else {
-                      addItem({
-                        id:       artwork.id,
-                        title:    artwork.title,
-                        price:    artwork.price,
-                        imageUrl: artwork.images?.[0] ?? null,
-                      });
-                    }
-                  }}
-                  className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-main transition-colors cursor-pointer"
-                >
-                  {inCart ? 'View Cart' : 'Add to Cart'}
-                </button>
-              )}
-            </div>
+                {isAvailable && (
+                  <button
+                    onClick={() => {
+                      if (inCart) {
+                        setIsOpen(true);
+                      } else {
+                        addItem({
+                          id:       artwork.id,
+                          title:    artwork.title,
+                          price:    artwork.price,
+                          imageUrl: artwork.images?.[0] ?? null,
+                        });
+                      }
+                    }}
+                    className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-main transition-colors cursor-pointer"
+                  >
+                    {inCart ? 'View Cart' : 'Add to Cart'}
+                  </button>
+                )}
+              </div>
+            )}
 
             <div className="w-full h-px bg-divider" />
           </div>

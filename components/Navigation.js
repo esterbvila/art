@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import useCart from '../context/useCart';
 
+const SHOP_ENABLED = false;
+
 /**
  * Site-wide navigation.
  * Desktop: horizontal links right-aligned.
@@ -48,34 +50,38 @@ export default function Navigation() {
             Inquire
           </Link>
           {/* Cart icon */}
-          <button
-            onClick={() => setIsOpen(true)}
-            className="relative text-text-secondary hover:text-text-primary transition-colors"
-            aria-label="Open cart"
-          >
-            <ShoppingBag size={18} />
-            {items.length > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
-                {items.length}
-              </span>
-            )}
-          </button>
+          {SHOP_ENABLED && (
+            <button
+              onClick={() => setIsOpen(true)}
+              className="relative text-text-secondary hover:text-text-primary transition-colors"
+              aria-label="Open cart"
+            >
+              <ShoppingBag size={18} />
+              {items.length > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
+                  {items.length}
+                </span>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Mobile right side: cart + hamburger */}
         <div className="flex md:hidden items-center gap-4">
-          <button
-            onClick={() => setIsOpen(true)}
-            className="relative text-text-secondary hover:text-text-primary transition-colors"
-            aria-label="Open cart"
-          >
-            <ShoppingBag size={18} />
-            {items.length > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
-                {items.length}
-              </span>
-            )}
-          </button>
+          {SHOP_ENABLED && (
+            <button
+              onClick={() => setIsOpen(true)}
+              className="relative text-text-secondary hover:text-text-primary transition-colors"
+              aria-label="Open cart"
+            >
+              <ShoppingBag size={18} />
+              {items.length > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
+                  {items.length}
+                </span>
+              )}
+            </button>
+          )}
           <button
             className="text-text-primary"
             onClick={() => setMobileOpen((o) => !o)}
