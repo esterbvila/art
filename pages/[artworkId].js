@@ -71,7 +71,7 @@ export default function ArtworkDetail({ artwork, collection }) {
         <div className="flex flex-col md:flex-row flex-1">
 
           {/* Left — image */}
-          <div className="md:w-1/2 min-h-[300px] md:min-h-[620px]">
+          <div className="md:w-1/2 min-h-[300px] md:min-h-[620px] md:max-w-[563px]">
             <ImageSlider
               images={artwork.images ?? []}
               alt={artwork.title}

@@ -7,6 +7,8 @@ import ArtworkCard from './ArtworkCard';
 export default function UniquePieces({ artworks = [] }) {
   if (artworks.length === 0) return null;
 
+  const sorted = [...artworks].sort((a, b) => (a.stock > 0 ? 0 : 1) - (b.stock > 0 ? 0 : 1));
+
   return (
     <div className="flex flex-col gap-8 md:gap-[40px] px-5 md:px-[48px] py-[60px] pb-[80px]">
       {/* ── Header ─────────────────────────────────────────────────────── */}
@@ -25,8 +27,8 @@ export default function UniquePieces({ artworks = [] }) {
       </div>
 
       {/* ── Grid ───────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-[40px]">
-        {artworks.map((artwork) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 md:gap-[40px]">
+        {sorted.map((artwork) => (
           <ArtworkCard key={artwork.id} artwork={artwork} />
         ))}
       </div>
