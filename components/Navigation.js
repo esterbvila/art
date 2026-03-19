@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import useCart from '../context/useCart';
 
-const SHOP_ENABLED = false;
+const SHOP_ENABLED = true;
 
 /**
  * Site-wide navigation.

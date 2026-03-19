@@ -11,7 +11,7 @@ import useCart from '../context/useCart';
 import ArtworkInfoSection from '../components/ArtworkInfoSection';
 
 // Set to true to re-enable purchasing
-const SHOP_ENABLED = false;
+const SHOP_ENABLED = true;
 
 /**
  * Artwork detail page.
