@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section className="flex flex-col gap-8 md:gap-[56px] px-5 md:px-[48px] pt-10 md:pt-[60px] pb-0">
       {/* ── Text row ─────────────────────────────────────────────────── */}
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-0 w-full">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 w-full">
         {/* Main headline */}
         <h1
           className="font-sans font-normal text-text-primary leading-tight95 w-full md:max-w-[66%]"
@@ -21,15 +21,15 @@ export default function Hero() {
             lineHeight:    0.95,
           }}
         >
-          Where Chaos Becomes Form.
+          Painting the Language of the Subconscious.
         </h1>
 
         {/* Sub-headline — right-aligned on desktop */}
         <p
-          className="font-sans font-normal text-text-secondary leading-[1.7] md:text-right md:max-w-[296px]"
+          className="font-sans font-normal text-text-secondary leading-[1.6] md:text-right md:max-w-[260px] lg:max-w-[280px] 2xl:max-w-[370px]"
           style={{ fontSize: 'clamp(14px, 1.2vw, 15px)' }}
         >
-          I paint without intention — the canvas uncovers what lives beneath thought.
+          It flows naturally — like a code being painted. Shapes become symbols, meanings begin to surface, and hidden forms reveal fragments of an inner world.
         </p>
       </div>
 

@@ -37,18 +37,13 @@ export default function AboutArtist() {
 
         {/* Bio paragraphs */}
         <p className="font-sans font-normal text-text-secondary text-[15px] leading-[1.7]">
-          I paint intuitively, allowing color and movement to guide the process.
-          My work explores emotions, memories and inner landscapes that are
-          difficult to describe with words.
+          My path back to painting was not a straight one. I moved through communication, frontend development, and UX/UI design — years of building, adapting, and working in fields that taught me a great deal, but never felt entirely like home.
         </p>
         <p className="font-sans font-normal text-text-secondary text-[15px] leading-[1.7]">
-          Each painting develops without a fixed plan. Through layers of color
-          and spontaneous gestures, abstract forms emerge that reflect a
-          dialogue between intuition and composition.
+          Painting was always there beneath it all. When I returned to it, I recognized something essential: this was the language that came most naturally to me. My work emerges intuitively, through rhythm, repetition, and gesture. Shapes appear like symbols, as if carrying meanings that cannot be fully named. Within them, hidden forms surface — fragments of nature, animals, faces, traces of an inner world.
         </p>
         <p className="font-sans font-normal text-text-secondary text-[15px] leading-[1.7]">
-          Inspired by nature, everyday moments and subconscious imagery, I work
-          primarily with acrylics and mixed media on canvas.
+          What once felt like chaos has become a visual language drawn from the subconscious. Painting is now my way of giving form to that unseen world — with simplicity, freedom, and joy. For a long time, however, perfectionism, self-criticism, and expectation stood in the way, making the act of painting feel more like pressure than instinct. Letting go of that has allowed me to return to the work with greater openness, trust, and pleasure.
         </p>
       </div>
     </section>

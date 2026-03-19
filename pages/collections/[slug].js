@@ -56,7 +56,7 @@ export default function CollectionPage({ collection, artworks }) {
             href="/#works"
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
-            ← Back to home
+            ← Back to works
           </Link>
         </div>
 

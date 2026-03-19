@@ -59,7 +59,7 @@ export default function ArtworkDetail({ artwork, collection }) {
             href={collection ? `/collections/${collection.slug}` : '/#works'}
             className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
           >
-            ← {collection ? 'Back to collection' : 'Back to home'}
+            ← {collection ? 'Back to collection' : 'Back to works'}
           </Link>
         </div>
 
