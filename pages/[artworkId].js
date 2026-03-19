@@ -42,10 +42,36 @@ export default function ArtworkDetail({ artwork, collection }) {
     <>
       <Head>
         <title>{artwork.title} — Ester Batllori</title>
-        <meta name="description" content={artwork.description} />
+        <meta name="description" content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`} />
         <meta property="og:title" content={`${artwork.title} — Ester Batllori`} />
-        <meta property="og:description" content={artwork.description} />
+        <meta property="og:description" content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://esteriicreates.com/${artwork.id}`} />
         {artwork.image_url && <meta property="og:image" content={artwork.image_url} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${artwork.title} — Ester Batllori`} />
+        <meta name="twitter:description" content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`} />
+        {artwork.image_url && <meta name="twitter:image" content={artwork.image_url} />}
+        <link rel="canonical" href={`https://esteriicreates.com/${artwork.id}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: artwork.title,
+            description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
+            image: artwork.image_url,
+            url: `https://esteriicreates.com/${artwork.id}`,
+            brand: { '@type': 'Brand', name: 'esterii creates' },
+            offers: {
+              '@type': 'Offer',
+              price: (artwork.price / 100).toFixed(2),
+              priceCurrency: 'EUR',
+              availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
+              url: `https://esteriicreates.com/${artwork.id}`,
+            },
+          }) }}
+        />
       </Head>
 
       <div className="bg-bg-main min-h-screen flex flex-col">

@@ -23,12 +23,28 @@ export default function Home({ uniqueArtworks, featuredArtwork }) {
           content="Original abstract paintings exploring emotion, intuition and subconscious landscapes. Each piece is a one-of-a-kind original."
         />
         <meta property="og:title" content="Ester Batllori — Abstract Paintings" />
-        <meta
-          property="og:description"
-          content="Original abstract paintings exploring emotion, intuition and subconscious landscapes."
-        />
+        <meta property="og:description" content="Original abstract paintings exploring emotion, intuition and subconscious landscapes." />
         <meta property="og:type" content="website" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:url" content="https://esteriicreates.com" />
+        <meta property="og:image" content="https://esteriicreates.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ester Batllori — Abstract Paintings" />
+        <meta name="twitter:description" content="Original abstract paintings exploring emotion, intuition and subconscious landscapes." />
+        <meta name="twitter:image" content="https://esteriicreates.com/og-image.png" />
+        <link rel="canonical" href="https://esteriicreates.com" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Ester Batllori',
+            url: 'https://esteriicreates.com',
+            sameAs: ['https://instagram.com/esterii_creates'],
+            jobTitle: 'Abstract Painter',
+            description: 'Original abstract paintings exploring emotion, intuition and subconscious landscapes.',
+          }) }}
+        />
       </Head>
 
       <div className="bg-bg-main min-h-screen flex flex-col">

@@ -7,6 +7,7 @@ export default function Datenschutz() {
     <>
       <Head>
         <title>Datenschutzerklärung — esterii creates</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className="bg-bg-main min-h-screen flex flex-col">
         <Navigation />

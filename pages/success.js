@@ -10,6 +10,7 @@ export default function Success() {
     <>
       <Head>
         <title>Purchase Confirmed — Ester Batllori</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className="bg-bg-main min-h-screen flex flex-col items-center justify-center px-5 text-center gap-6">
         <p className="text-text-tertiary font-sans text-[13px] tracking-[3px] uppercase">

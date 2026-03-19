@@ -37,12 +37,17 @@ export default function CollectionPage({ collection, artworks }) {
     <>
       <Head>
         <title>{collection.name} — Ester Batllori</title>
-        <meta name="description" content={collection.description} />
-        {ogImage && <meta property="og:image" content={ogImage} />}
+        <meta name="description" content={collection.description || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
         <meta property="og:title" content={`${collection.name} — Ester Batllori`} />
-        {collection.description && (
-          <meta property="og:description" content={collection.description} />
-        )}
+        <meta property="og:description" content={collection.description || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://esteriicreates.com/collections/${collection.slug}`} />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${collection.name} — Ester Batllori`} />
+        <meta name="twitter:description" content={collection.description || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
+        <link rel="canonical" href={`https://esteriicreates.com/collections/${collection.slug}`} />
       </Head>
 
       <div className="bg-bg-main min-h-screen flex flex-col">
