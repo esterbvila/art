@@ -14,7 +14,7 @@ export default function UniquePieces({ artworks = [] }) {
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center justify-between w-full">
-          <span className="font-sans font-normal text-text-tertiary text-[15px] tracking-[3px] uppercase">
+          <span className="font-sans font-normal text-text-tertiary text-[16px] tracking-[3px] uppercase">
             Unique Pieces
           </span>
           <span className="font-sans font-normal text-text-tertiary text-[13px] tracking-[0.5px]">
@@ -27,7 +27,7 @@ export default function UniquePieces({ artworks = [] }) {
       </div>
 
       {/* ── Grid ───────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 md:gap-[40px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9 md:gap-[40px]">
         {sorted.map((artwork) => (
           <ArtworkCard key={artwork.id} artwork={artwork} />
         ))}

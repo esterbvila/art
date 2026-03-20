@@ -43,7 +43,7 @@ export default function ArtworkCard({ artwork }) {
       </div>
 
       {/* ── Card info ─────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-2 pt-4">
+      <div className="flex flex-col gap-1.5 pt-3">
         <div className="flex items-start justify-between gap-3">
           <span className="font-sans font-semibold text-text-primary text-[17px] leading-[1.3]">
             {title}
@@ -53,7 +53,7 @@ export default function ArtworkCard({ artwork }) {
           </span>
         </div>
         {medium && (
-          <span className="font-sans font-normal text-text-tertiary text-[13px] leading-[1.4]">
+          <span className="font-sans font-normal text-text-tertiary text-[12px] leading-[1.4]">
             {medium}
           </span>
         )}

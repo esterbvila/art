@@ -10,7 +10,7 @@ export default function Gallery({ collections = [] }) {
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center justify-between w-full">
-          <span className="font-sans font-normal text-text-tertiary text-[15px] tracking-[3px] uppercase">
+          <span className="font-sans font-normal text-text-tertiary text-[16px] tracking-[3px] uppercase">
             Collections
           </span>
           <span className="font-sans font-normal text-text-tertiary text-[13px] tracking-[0.5px]">

@@ -35,7 +35,7 @@ export default function CollectionCard({ collection }) {
       </div>
 
       {/* ── Info ─────────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-2 pt-4">
+      <div className="flex flex-col gap-1.5 pt-3">
         <h3
           className="font-sans font-semibold text-text-primary"
           style={{ fontSize: '22px', letterSpacing: '-0.5px' }}

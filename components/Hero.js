@@ -16,9 +16,9 @@ export default function Hero() {
         <h1
           className="font-sans font-normal text-text-primary leading-tight95 w-full md:max-w-[66%]"
           style={{
-            fontSize:      'clamp(34px, 5.5vw, 80px)',
-            letterSpacing: 'clamp(-1px, -0.15vw, -2px)',
-            lineHeight:    0.95,
+            fontSize:      'clamp(35px, 5.5vw, 80px)',
+            letterSpacing: 'clamp(-px, -0.15vw, -2px)',
+            lineHeight:    1,
           }}
         >
           Painting the Language of the Subconscious.
@@ -26,15 +26,15 @@ export default function Hero() {
 
         {/* Sub-headline — right-aligned on desktop */}
         <p
-          className="font-sans font-normal text-text-secondary leading-[1.6] md:text-right md:max-w-[260px] lg:max-w-[280px] 2xl:max-w-[370px]"
-          style={{ fontSize: 'clamp(14px, 1.2vw, 15px)' }}
+          className="font-sans font-normal text-text-secondary leading-[1.6] md:text-right md:max-w-[280px] lg:max-w-[300px] 2xl:max-w-[390px]"
+          style={{ fontSize: 'clamp(15px, 1.2vw, 16px)' }}
         >
           It flows naturally — like a code being painted. Shapes become symbols, meanings begin to surface, and hidden forms reveal fragments of an inner world.
         </p>
       </div>
 
       {/* ── Hero image ───────────────────────────────────────────────── */}
-      <div className="relative w-full h-[400px] md:h-[625px] overflow-hidden">
+      <div className="relative w-full h-[300px] md:h-[625px] overflow-hidden">
         <Image
           src="/hero-img.png"
           alt="Abstract painting by Ester Batllori"

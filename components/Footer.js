@@ -19,7 +19,7 @@ export default function Footer() {
     <footer className="flex flex-col">
 
       {/* ── Payment & security badges ───────────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-center gap-4 px-5 py-4 border-b border-divider">
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-5 py-4 border-b border-divider">
         <div className="flex items-center gap-1.5 text-text-tertiary">
           <Lock size={12} />
           <span className="font-sans text-[11px] tracking-[0.5px]">Secure Checkout</span>
