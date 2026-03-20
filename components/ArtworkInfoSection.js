@@ -15,7 +15,7 @@ export default function ArtworkInfoSection() {
         </p>
         <ul className="flex flex-col gap-1.5 font-sans font-normal text-text-secondary text-[13px] leading-[1.6]">
           <li>Free worldwide shipping on all originals</li>
-          <li>Ships within 2–5 business days</li>
+          <li>Ships from Berlin within 2–5 business days</li>
           <li>All shipments include tracking and insurance for complete peace of mind</li>
         </ul>
       </div>

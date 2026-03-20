@@ -8,9 +8,9 @@ import Image from 'next/image';
  */
 export default function AboutArtist() {
   return (
-    <section className="flex flex-col md:flex-row bg-bg-warm w-full md:h-[600px]">
+    <section className="flex flex-col md:flex-row bg-bg-warm w-full md:h-[670px] lg:h-[600px]">
       {/* ── Portrait image ────────────────────────────────────────────── */}
-      <div className="relative w-full md:w-[38%] lg:w-[560px] flex-shrink-0 h-[360px] md:h-full overflow-hidden">
+      <div className="relative w-full md:w-[30%] xl:w-[42%] flex-shrink-0 h-[360px] md:h-full overflow-hidden">
         <Image
           src="/artist-photo.png"
           alt="Portrait of Ester Batllori in her studio"
@@ -21,7 +21,7 @@ export default function AboutArtist() {
       </div>
 
       {/* ── About text ────────────────────────────────────────────────── */}
-      <div className="flex flex-col justify-center gap-6 px-5 pt-8 pb-10 md:p-10 lg:p-[72px]">
+      <div className="flex flex-col justify-center gap-6 px-5 pt-8 pb-10 lg:p-[72px] md:p-10">
         {/* Label */}
         <p className="font-sans font-normal text-text-tertiary text-[13px] tracking-[3px] uppercase">
           The Artist
@@ -34,6 +34,8 @@ export default function AboutArtist() {
         >
           Ester{'\n'}Batllori
         </h2>
+
+        <p className="font-sans italic text-text-tertiary text-[14px]">Based in Berlin</p>
 
         {/* Bio paragraphs */}
         <p className="font-sans font-normal text-text-secondary text-[15px] leading-[1.7]">
