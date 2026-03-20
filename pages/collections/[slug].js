@@ -163,6 +163,7 @@ export async function getServerSideProps({ params }) {
     .from('artworks')
     .select('id, title, medium, dimensions, price, image_url, stock')
     .eq('collection_id', collection.id)
+    .eq('visible', true)
     .order('created_at', { ascending: true });
 
   const artworks = await Promise.all(

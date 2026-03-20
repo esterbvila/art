@@ -115,6 +115,7 @@ export async function getServerSideProps() {
     .from('artworks')
     .select('id, title, medium, dimensions, price, image_url, stock, tagline')
     .is('collection_id', null)
+    .eq('visible', true)
     .order('created_at', { ascending: false });
 
   const uniqueArtworks = await Promise.all(

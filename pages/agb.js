@@ -59,6 +59,13 @@ export default function AGB() {
             </section>
 
             <section className="flex flex-col gap-2">
+              <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">§ 3a Produktbeschreibung – Rahmung</h2>
+              <p>
+                Sofern nicht ausdrücklich anders angegeben, werden alle Gemälde ohne Rahmen verkauft. Rahmen, die auf Produktfotos zu sehen sind, dienen ausschließlich der Darstellung und sind nicht im Lieferumfang enthalten.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-2">
               <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">§ 4 Lieferung und Versand</h2>
               <p>
                 Die Lieferung erfolgt weltweit. Die Versandkosten sind im Preis des Kunstwerks enthalten.

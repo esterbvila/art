@@ -29,6 +29,9 @@ export default function ArtworkInfoSection() {
           <li>Each painting is carefully packaged to ensure it arrives in perfect condition</li>
           <li>All payments are securely processed through trusted providers using encrypted connections</li>
         </ul>
+        <p className="font-sans font-normal text-text-tertiary text-[12px] leading-[1.6]">
+          *Unless otherwise stated, all paintings are sold without a frame. Frames shown in some photos are for display purposes only.
+        </p>
       </div>
 
       {/* ── Authenticity ──────────────────────────────────────────────── */}
@@ -37,7 +40,7 @@ export default function ArtworkInfoSection() {
           Authenticity
         </p>
         <ul className="flex flex-col gap-1.5 font-sans font-normal text-text-secondary text-[13px] leading-[1.6]">
-          <li>Original artwork — only 1 piece exists</li>
+          <li>Original artworks — only 1 piece exists</li>
           <li>Signed by the artist</li>
           <li>Certificate of authenticity included</li>
         </ul>
