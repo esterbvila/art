@@ -8,12 +8,13 @@ import FeaturedPainting from '../components/FeaturedPainting';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 import UniquePieces from '../components/UniquePieces';
+import Gallery from '../components/Gallery';
 
 /**
  * Landing page — fetches all artworks server-side so the gallery
  * is always up to date with Supabase on every request.
  */
-export default function Home({ uniqueArtworks, featuredArtwork }) {
+export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
   return (
     <>
       <Head>
@@ -62,6 +63,12 @@ export default function Home({ uniqueArtworks, featuredArtwork }) {
           <UniquePieces artworks={uniqueArtworks} />
         </section>
 
+        {/* ── Divider ──────────────────────────────────────────────────── */}
+        <div className="w-full h-px bg-divider" />
+
+        {/* ── Gallery ──────────────────────────────────────────────────── */}
+        <Gallery collections={collections} />
+
         {/* ── About the Artist ─────────────────────────────────────────── */}
         <section id="about">
           <AboutArtist />
@@ -97,6 +104,7 @@ export async function getServerSideProps() {
   const { data: collectionsRaw, error: colError } = await supabase
     .from('collections')
     .select('id, slug, name, tagline, cover_image_url, sort_order, artworks(id, price)')
+    .eq('visible', true)
     .order('sort_order', { ascending: true });
 
   if (colError) {

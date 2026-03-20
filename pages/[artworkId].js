@@ -31,10 +31,18 @@ export default function ArtworkDetail({ artwork, collection }) {
 
   const isAvailable = artwork.stock > 0;
   const inCart = isInCart(artwork.id);
+
+  // Fall back to collection-level values if artwork fields are empty
+  const description = artwork.description || collection?.description || null;
+  const process     = artwork.process     || collection?.process     || null;
+  const medium      = artwork.medium      || collection?.medium      || null;
+  const year        = artwork.year        || collection?.year        || null;
+  const price       = artwork.price       || collection?.price       || null;
+
   const details = [
-    { label: 'Medium',       value: artwork.medium },
+    { label: 'Medium',       value: medium },
     { label: 'Dimensions',   value: artwork.dimensions },
-    { label: 'Year',         value: artwork.year },
+    { label: 'Year',         value: year },
     { label: 'Availability', value: isAvailable ? 'Available' : 'Sold', accent: isAvailable },
   ].filter((d) => d.value);
 
@@ -134,7 +142,7 @@ export default function ArtworkDetail({ artwork, collection }) {
                 className="font-sans font-normal text-text-primary"
                 style={{ fontSize: '32px', letterSpacing: '-0.5px' }}
               >
-                {formatPrice(artwork.price)}
+                {formatPrice(price)}
               </p>
 
             </div>
@@ -174,8 +182,8 @@ export default function ArtworkDetail({ artwork, collection }) {
               <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
                 About
               </p>
-              <p className="text-text-secondary font-sans text-[15px] leading-[1.8]">
-                {artwork.description}
+              <p className="text-text-secondary font-sans text-[15px] leading-[1.8] whitespace-pre-line">
+                {description}
               </p>
             </div>
 
@@ -186,7 +194,7 @@ export default function ArtworkDetail({ artwork, collection }) {
                 Process
               </p>
               <p className="text-text-secondary font-sans text-[15px] leading-[1.8]">
-                {artwork.process}
+                {process}
               </p>
             </div>
           </div>
@@ -239,7 +247,7 @@ export async function getServerSideProps({ params }) {
 
   const { data: artwork, error } = await supabase
     .from('artworks')
-    .select('*, collections(id, slug, name)')
+    .select('*, collections(id, slug, name, description, process, medium, year, price)')
     .eq('id', artworkId)
     .single();
 

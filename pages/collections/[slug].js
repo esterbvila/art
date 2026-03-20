@@ -37,15 +37,15 @@ export default function CollectionPage({ collection, artworks }) {
     <>
       <Head>
         <title>{collection.name} — Ester Batllori</title>
-        <meta name="description" content={collection.description || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
+        <meta name="description" content={collection.description_collection || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
         <meta property="og:title" content={`${collection.name} — Ester Batllori`} />
-        <meta property="og:description" content={collection.description || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
+        <meta property="og:description" content={collection.description_collection || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://esteriicreates.com/collections/${collection.slug}`} />
         {ogImage && <meta property="og:image" content={ogImage} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${collection.name} — Ester Batllori`} />
-        <meta name="twitter:description" content={collection.description || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
+        <meta name="twitter:description" content={collection.description_collection || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
         {ogImage && <meta name="twitter:image" content={ogImage} />}
         <link rel="canonical" href={`https://esteriicreates.com/collections/${collection.slug}`} />
       </Head>
@@ -108,9 +108,9 @@ export default function CollectionPage({ collection, artworks }) {
           </div>
 
           {/* Right: description (desktop beside, mobile below) */}
-          {collection.description && (
+          {collection.description_collection && (
             <p className="font-sans font-normal text-text-secondary text-[14px] md:text-[15px] leading-[1.7] md:max-w-[420px] md:flex-shrink-0">
-              {collection.description}
+              {collection.description_collection}
             </p>
           )}
 
@@ -150,7 +150,7 @@ export async function getServerSideProps({ params }) {
   // Fetch the collection
   const { data: collection, error: colError } = await supabase
     .from('collections')
-    .select('id, slug, name, description, tagline, cover_image_url, hero_image')
+    .select('id, slug, name, description_collection, tagline, cover_image_url, hero_image, price')
     .eq('slug', slug)
     .single();
 
@@ -161,7 +161,7 @@ export async function getServerSideProps({ params }) {
   // Fetch artworks belonging to this collection
   const { data: artworksRaw } = await supabase
     .from('artworks')
-    .select('id, title, medium, dimensions, price, image_url, stock')
+    .select('id, title, medium, dimensions, price, image_url, stock, tagline')
     .eq('collection_id', collection.id)
     .eq('visible', true)
     .order('created_at', { ascending: true });
@@ -170,6 +170,7 @@ export async function getServerSideProps({ params }) {
     (artworksRaw ?? []).map(async (a) => ({
       ...a,
       image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
+      price: a.price || collection.price || null,
     }))
   );
 
