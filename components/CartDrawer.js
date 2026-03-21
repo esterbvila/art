@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { X, Trash2 } from 'lucide-react';
 import useCart from '../context/useCart';
@@ -44,7 +45,7 @@ export default function CartDrawer() {
       el.removeEventListener('touchstart', onTouchStart);
       el.removeEventListener('touchend', onTouchEnd);
     };
-  }, [setIsOpen]);
+  }, [isOpen, setIsOpen]);
 
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
@@ -72,20 +73,18 @@ export default function CartDrawer() {
     }
   }
 
-  if (!isOpen) return null;
-
   return (
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/30 z-40"
+        className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className="fixed top-0 right-0 h-full w-full max-w-[370px] bg-bg-main z-50 flex flex-col"
+        className={`fixed top-0 right-0 h-full w-full max-w-[370px] bg-bg-main z-50 flex flex-col transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
 
         {/* Header */}
@@ -107,12 +106,13 @@ export default function CartDrawer() {
           {items.length === 0 ? (
             <div className="flex flex-col gap-4">
               <p className="font-sans text-text-tertiary text-[14px]">Your cart is empty.</p>
-              <button
+              <Link
+                href="/#works"
                 onClick={() => setIsOpen(false)}
-                className="w-full border border-divider font-sans text-text-secondary text-[13px] tracking-[0.5px] py-4 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+                className="w-full border border-divider font-sans text-text-secondary text-[13px] tracking-[0.5px] py-4 hover:text-text-primary hover:border-text-secondary transition-colors text-center block"
               >
                 Browse paintings
-              </button>
+              </Link>
             </div>
           ) : (
             items.map(item => (
