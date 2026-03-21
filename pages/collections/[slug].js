@@ -112,7 +112,7 @@ export default function CollectionPage({ collection, artworks }) {
         {/* ── Artwork grid ───────────────────────────────────────────── */}
         <div className="px-5 md:px-[48px] py-10 md:py-[48px] md:pb-[80px]">
           {artworks.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-[38px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-x-[38px]">
               {artworks.map((artwork) => (
                 <ArtworkCard key={artwork.id} artwork={artwork} />
               ))}

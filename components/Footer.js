@@ -16,7 +16,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="flex flex-col">
+    <footer className="flex flex-col w-full">
 
       {/* ── Payment & security badges ───────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-5 py-4 border-b border-divider">

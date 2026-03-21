@@ -5,7 +5,7 @@
       "type": "frame",
       "id": "7xAmp",
       "x": 2734,
-      "y": 2508,
+      "y": 3076,
       "name": "Cart Overlay",
       "width": 1440,
       "height": 1665,
@@ -2667,9 +2667,17 @@
             {
               "type": "frame",
               "id": "Mcs33",
-              "name": "Hero Image",
-              "width": "fill_container",
-              "height": "fit_content(620)",
+              "name": "Image Gallery",
+              "clip": true,
+              "width": 780,
+              "fill": {
+                "type": "image",
+                "enabled": false,
+                "url": "egypt-hor-edited.png",
+                "mode": "fill"
+              },
+              "layout": "vertical",
+              "gap": 6,
               "children": [
                 {
                   "type": "frame",
@@ -2677,13 +2685,87 @@
                   "name": "Image Container",
                   "clip": true,
                   "width": "fill_container",
-                  "height": "fill_container",
+                  "height": 780,
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "egypt-hor-edited.png",
+                    "url": "./images/generated-1774129260709.png",
                     "mode": "fill"
                   }
+                },
+                {
+                  "type": "frame",
+                  "id": "ehOJK",
+                  "name": "Row 2",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eYS78",
+                      "name": "Image 2",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 500,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1774129093351.png",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "B2d7Y",
+                      "name": "Image 3",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 500,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1774129117373.png",
+                        "mode": "fill"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BntzS",
+                  "name": "Row 3",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "o8P2v",
+                      "name": "Image 4",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 500,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1774131237324.png",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YxkuS",
+                      "name": "Image 5",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 500,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1774131260821.png",
+                        "mode": "fill"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2691,42 +2773,45 @@
               "type": "frame",
               "id": "OXNIT",
               "name": "Artwork Info",
-              "width": "fill_container",
+              "width": 660,
               "layout": "vertical",
-              "gap": 32,
-              "padding": 56,
+              "gap": 36,
+              "padding": [
+                48,
+                56
+              ],
               "children": [
                 {
                   "type": "frame",
-                  "id": "YtViQ",
-                  "name": "Info Left",
+                  "id": "7vjYP",
+                  "name": "Title Block",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 20,
+                  "gap": 12,
                   "children": [
                     {
                       "type": "text",
-                      "id": "SliaZ",
+                      "id": "WRK70",
                       "name": "titleText",
                       "fill": "$text-primary",
                       "content": "Memories of Egypt",
                       "lineHeight": 1.05,
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 42,
+                      "fontSize": 36,
                       "fontWeight": "normal",
                       "letterSpacing": -1
                     },
                     {
                       "type": "text",
-                      "id": "h2rHA",
-                      "name": "headerTagline",
+                      "id": "3Drx7",
+                      "name": "tagline",
                       "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
                       "lineHeight": 1.7,
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 15,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "fontStyle": "italic"
                     }
@@ -2734,15 +2819,15 @@
                 },
                 {
                   "type": "frame",
-                  "id": "KHIoc",
-                  "name": "Info Right",
-                  "width": 360,
+                  "id": "UWhZD",
+                  "name": "Price Block",
+                  "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 24,
+                  "gap": 20,
                   "children": [
                     {
                       "type": "text",
-                      "id": "rZaG4",
+                      "id": "HlUeN",
                       "name": "priceLabel",
                       "fill": "$text-tertiary",
                       "content": "Price",
@@ -2753,18 +2838,18 @@
                     },
                     {
                       "type": "text",
-                      "id": "5Ov6R",
+                      "id": "EZqWq",
                       "name": "price",
                       "fill": "$text-primary",
                       "content": "360€",
                       "fontFamily": "Funnel Sans",
-                      "fontSize": 32,
+                      "fontSize": 28,
                       "fontWeight": "normal",
                       "letterSpacing": -0.5
                     },
                     {
                       "type": "frame",
-                      "id": "hRDn7",
+                      "id": "D2DB6",
                       "name": "Purchase Button",
                       "width": "fill_container",
                       "fill": "$accent",
@@ -2778,7 +2863,7 @@
                       "children": [
                         {
                           "type": "text",
-                          "id": "LUU8V",
+                          "id": "gQ4cp",
                           "name": "btnText",
                           "fill": "#FFFFFF",
                           "content": "Purchase this painting",
@@ -2790,48 +2875,36 @@
                       ]
                     },
                     {
-                      "type": "frame",
-                      "id": "EFKLv",
-                      "name": "View Cart Button",
-                      "width": "fill_container",
-                      "cornerRadius": 2,
-                      "stroke": {
-                        "thickness": 1,
-                        "fill": "$text-primary"
-                      },
-                      "padding": [
-                        14,
-                        40
-                      ],
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "ZJ6K7",
-                          "name": "viewCartText",
-                          "fill": "$text-primary",
-                          "content": "View Cart",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 13,
-                          "fontWeight": "normal",
-                          "letterSpacing": 1
-                        }
-                      ]
+                      "type": "text",
+                      "id": "Uxsv7",
+                      "name": "shippingNote",
+                      "fill": "$text-tertiary",
+                      "content": "Free worldwide shipping included",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "fly3m",
-                  "name": "Frame 3",
+                  "id": "P2H3P",
+                  "name": "Divider",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "$divider"
+                },
+                {
+                  "type": "frame",
+                  "id": "jQWtr",
+                  "name": "About Section",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 24,
+                  "gap": 28,
                   "children": [
                     {
                       "type": "text",
-                      "id": "OMuCT",
+                      "id": "URA2X",
                       "name": "descLabel",
                       "fill": "$text-tertiary",
                       "content": "About",
@@ -2842,7 +2915,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "rRflc",
+                      "id": "mQqEk",
                       "name": "desc",
                       "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
@@ -2855,15 +2928,15 @@
                     },
                     {
                       "type": "frame",
-                      "id": "PGKNR",
+                      "id": "FDblr",
                       "name": "Divider",
-                      "width": "fill_container",
+                      "width": 40,
                       "height": 1,
                       "fill": "$divider"
                     },
                     {
                       "type": "text",
-                      "id": "xYHRF",
+                      "id": "Stwig",
                       "name": "processLabel",
                       "fill": "$text-tertiary",
                       "content": "Process",
@@ -2874,7 +2947,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "7IJhX",
+                      "id": "XwBVZ",
                       "name": "processText",
                       "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
@@ -3034,7 +3107,8 @@
                   "id": "PWb3B",
                   "name": "Info Section",
                   "width": "fill_container",
-                  "gap": 48,
+                  "layout": "vertical",
+                  "gap": 32,
                   "children": [
                     {
                       "type": "frame",
@@ -3042,7 +3116,7 @@
                       "name": "Info Col 1",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 32,
+                      "gap": 40,
                       "children": [
                         {
                           "type": "frame",
@@ -3050,7 +3124,7 @@
                           "name": "Shipping Info",
                           "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 16,
+                          "gap": 12,
                           "children": [
                             {
                               "type": "text",
@@ -3106,7 +3180,7 @@
                           "name": "Authenticity Info",
                           "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 16,
+                          "gap": 12,
                           "children": [
                             {
                               "type": "text",
@@ -3162,7 +3236,7 @@
                       "name": "Info Col 2",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 32,
+                      "gap": 40,
                       "children": [
                         {
                           "type": "frame",
@@ -3170,7 +3244,7 @@
                           "name": "Packaging Info",
                           "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 16,
+                          "gap": 12,
                           "children": [
                             {
                               "type": "text",
@@ -3217,7 +3291,7 @@
                           "name": "Returns Info",
                           "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 16,
+                          "gap": 12,
                           "children": [
                             {
                               "type": "text",
@@ -3266,11 +3340,12 @@
           "id": "SFUIk",
           "name": "You Might Also Like",
           "width": "fill_container",
+          "fill": "$bg-warm",
           "layout": "vertical",
           "gap": 40,
           "padding": [
             64,
-            56
+            80
           ],
           "children": [
             {

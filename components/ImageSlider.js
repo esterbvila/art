@@ -35,7 +35,7 @@ export default function ImageSlider({ images, alt }) {
   return (
     <div className="flex flex-col gap-3">
       {/* ── Main image ─────────────────────────────────────────────── */}
-      <div className="relative w-full h-[370px] sm:h-[550px] md:h-[700px] lg:h-[750px] overflow-hidden group">
+      <div className="relative w-full h-[380px] sm:h-[550px] md:h-[700px] lg:h-[750px] overflow-hidden group">
         <Image
           key={images[current]}
           src={images[current]}

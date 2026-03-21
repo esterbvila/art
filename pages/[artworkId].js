@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import PurchaseButton from '../components/PurchaseButton';
 import ImageSlider from '../components/ImageSlider';
+import Image from 'next/image';
 import { formatPrice } from '../lib/utils';
 import { resolveImages, resolveFirstImage } from '../lib/storage';
 import useCart from '../context/useCart';
@@ -83,7 +84,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
         />
       </Head>
 
-      <div className="bg-bg-main min-h-screen flex flex-col">
+      <div className="bg-bg-main min-h-screen flex flex-col items-center">
 
         {/* ── Navigation ─────────────────────────────────────────────── */}
         <Navigation />
@@ -93,19 +94,51 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
 
         {/* ── Two-column content ─────────────────────────────────────── */}
         {/* Mobile: stacked | Desktop: image left · info right          */}
-        <div className="flex flex-col md:flex-row flex-1">
+        <div className="flex flex-col md:flex-row flex-1 w-full lg:max-w-[1200px]">
 
           {/* Left — image */}
-          <div className="md:w-1/2 min-h-[300px] md:min-h-[620px] md:max-w-[563px]">
-            <ImageSlider
-              images={artwork.images ?? []}
-              alt={artwork.title}
-              fullHeight
-            />
+          <div className="md:w-1/2 lg:w-[60%] md:max-w-[563px] lg:max-w-none">
+
+            {/* < md: slider */}
+            <div className="md:hidden min-h-[300px]">
+              <ImageSlider images={artwork.images ?? []} alt={artwork.title} fullHeight />
+            </div>
+
+            {/* md to lg: single column stack */}
+            <div className="hidden md:flex lg:hidden flex-col gap-[6px]">
+              {(artwork.images ?? []).map((src, i) => (
+                <div key={i} className="relative w-full aspect-square overflow-hidden">
+                  <Image src={src} alt={artwork.title} fill className="object-cover" sizes="50vw" priority={i === 0} />
+                </div>
+              ))}
+            </div>
+
+            {/* lg+: 1-over-N×2 image grid */}
+            <div className="hidden lg:flex flex-col gap-[6px]">
+              {artwork.images?.[0] && (
+                <div className="relative w-full max-w-[670px] mx-auto aspect-[2/3] overflow-hidden">
+                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="50vw" priority />
+                </div>
+              )}
+              {(artwork.images ?? []).slice(1).reduce((rows, src, i) => {
+                if (i % 2 === 0) rows.push([]);
+                rows[rows.length - 1].push(src);
+                return rows;
+              }, []).map((pair, rowIdx) => (
+                <div key={rowIdx} className="flex gap-[6px]">
+                  {pair.map((src, colIdx) => (
+                    <div key={colIdx} className={`relative aspect-[387/500] overflow-hidden ${pair.length === 1 ? 'w-1/2' : 'flex-1'}`}>
+                      <Image src={src} alt={artwork.title} fill className="object-cover" sizes="25vw" />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+
           </div>
 
           {/* Right — artwork info */}
-          <div className="md:w-1/2 flex flex-col gap-8 p-5 md:p-[56px]">
+          <div className="md:w-1/2 lg:w-[40%] flex flex-col gap-8 p-5 md:p-[56px] md:sticky md:top-0 md:self-start">
 
           {/* Title + meta */}
           <div className="flex flex-col gap-5">
@@ -219,22 +252,32 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             )}
           </div>
 
+          {/* Info Section */}
+          <ArtworkInfoSection />
+
           </div>
         </div>
-
-        {/* ── Info Section ───────────────────────────────────────────── */}
-        <div className="w-full h-px bg-divider" />
-        <ArtworkInfoSection />
 
         {/* ── You might also like ────────────────────────────────────── */}
         {related.length > 0 && (
           <>
             <div className="w-full h-px bg-divider" />
-            <div className="px-5 md:px-[56px] py-10 md:py-[56px]">
-              <p className="font-sans text-text-tertiary text-[11px] tracking-[3px] uppercase mb-8">
+            <div className="py-10 md:py-[56px] lg:px-[56px] w-full">
+              <p className="font-sans text-text-tertiary text-[11px] tracking-[3px] uppercase mb-8 px-5 md:px-[56px] lg:px-0">
                 You might also like
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-[40px]">
+
+              {/* Mobile/tablet: horizontal scroll slider */}
+              <div className="flex lg:hidden gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide scroll-pl-5 pl-5 pr-5">
+                {related.map((a) => (
+                  <div key={a.id} className="flex-shrink-0 w-[50vw] sm:w-[30vw] snap-start">
+                    <ArtworkCard artwork={a} imageHeight="h-[230px]" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop: grid */}
+              <div className="hidden lg:grid grid-cols-4 gap-[20px] ">
                 {related.map((a) => (
                   <ArtworkCard key={a.id} artwork={a} />
                 ))}

@@ -13,8 +13,8 @@ import { formatPrice } from '../lib/utils';
  *
  * Clicking the card navigates to the artwork detail page.
  */
-export default function ArtworkCard({ artwork }) {
-  const { id, title, medium, price, image_url, stock } = artwork;
+export default function ArtworkCard({ artwork, imageHeight }) {
+  const { id, title, price, image_url, stock } = artwork;
   const isAvailable = stock > 0;
 
   return (
@@ -24,7 +24,7 @@ export default function ArtworkCard({ artwork }) {
       aria-label={`View ${title}`}
     >
       {/* ── Artwork image ─────────────────────────────────────────────── */}
-      <div className="relative w-full h-[340px] lg:h-[360px] overflow-hidden">
+      <div className={`relative w-full overflow-hidden ${imageHeight ?? 'h-[340px] 2xl:h-[360px]'}`}>
         <Image
           src={image_url}
           alt={title}
@@ -43,20 +43,13 @@ export default function ArtworkCard({ artwork }) {
       </div>
 
       {/* ── Card info ─────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-1.5 pt-3">
-        <div className="flex items-start justify-between gap-3">
-          <span className="font-sans font-semibold text-text-primary text-[17px] leading-[1.3]">
-            {title}
-          </span>
-          <span className="font-sans font-normal text-text-primary text-[16px] leading-[1.3] whitespace-nowrap flex-shrink-0">
-            {formatPrice(price)}
-          </span>
-        </div>
-        {medium && (
-          <span className="font-sans font-normal text-text-tertiary text-[12px] leading-[1.4]">
-            {medium}
-          </span>
-        )}
+      <div className="flex flex-col gap-1 pt-3">
+        <span className="font-sans font-semibold text-text-primary text-[17px] leading-[1.3]">
+          {title}
+        </span>
+        <span className="font-sans font-normal text-text-secondary text-[15px] leading-[1.3]">
+          {formatPrice(price)}
+        </span>
       </div>
     </Link>
   );
