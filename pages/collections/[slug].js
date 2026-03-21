@@ -55,16 +55,6 @@ export default function CollectionPage({ collection, artworks }) {
         {/* ── Navigation ─────────────────────────────────────────────── */}
         <Navigation />
 
-        {/* ── Back link ──────────────────────────────────────────────── */}
-        <div className="px-5 md:px-[48px] py-5">
-          <Link
-            href="/#works"
-            className="text-text-tertiary font-sans text-[13px] tracking-[0.5px] hover:text-text-secondary transition-colors"
-          >
-            ← Back to works
-          </Link>
-        </div>
-
         {/* ── Top divider ────────────────────────────────────────────── */}
         <div className="w-full h-px bg-divider" />
 
