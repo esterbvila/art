@@ -14,7 +14,7 @@ module.exports = {
         'bg-warm':    '#F0ECE6',
         'bg-deep':    '#1A1917',
         'bg-stone':   '#E8E3DB',
-        accent:       '#C4724E',
+        accent:       '#260614',
         divider:      '#DDD8D0',
         'divider-dark': '#2A2926',
         'text-primary':    '#1A1917',

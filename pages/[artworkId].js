@@ -165,7 +165,7 @@ export default function ArtworkDetail({ artwork, collection }) {
                         });
                       }
                     }}
-                    className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-main transition-colors cursor-pointer"
+                    className="w-full font-sans font-normal text-[14px] tracking-[0.5px] px-12 py-4 border border-accent text-accent hover:bg-accent hover:text-bg-main transition-colors cursor-pointer"
                   >
                     {inCart ? 'View Cart' : 'Add to Cart'}
                   </button>

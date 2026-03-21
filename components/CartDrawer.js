@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import useCart from '../context/useCart';
@@ -9,17 +9,29 @@ export default function CartDrawer() {
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
   const touchStartX = useRef(null);
+  const drawerRef = useRef(null);
 
-  function handleTouchStart(e) {
-    touchStartX.current = e.touches[0].clientX;
-  }
+  useEffect(() => {
+    const el = drawerRef.current;
+    if (!el) return;
 
-  function handleTouchEnd(e) {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (diff > 60) setIsOpen(false);
-    touchStartX.current = null;
-  }
+    function onTouchStart(e) {
+      touchStartX.current = e.touches[0].clientX;
+    }
+    function onTouchEnd(e) {
+      if (touchStartX.current === null) return;
+      const diff = touchStartX.current - e.changedTouches[0].clientX;
+      if (diff > 50) setIsOpen(false);
+      touchStartX.current = null;
+    }
+
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchend', onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [setIsOpen]);
 
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
@@ -59,9 +71,8 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div
+        ref={drawerRef}
         className="fixed top-0 right-0 h-full w-full max-w-[350px] bg-bg-main z-50 flex flex-col"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
       >
 
         {/* Header */}
