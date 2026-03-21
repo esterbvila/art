@@ -6,9 +6,10 @@ import Footer from '../components/Footer';
 import PurchaseButton from '../components/PurchaseButton';
 import ImageSlider from '../components/ImageSlider';
 import { formatPrice } from '../lib/utils';
-import { resolveImages } from '../lib/storage';
+import { resolveImages, resolveFirstImage } from '../lib/storage';
 import useCart from '../context/useCart';
 import ArtworkInfoSection from '../components/ArtworkInfoSection';
+import ArtworkCard from '../components/ArtworkCard';
 
 // Set to true to re-enable purchasing
 const SHOP_ENABLED = true;
@@ -18,7 +19,7 @@ const SHOP_ENABLED = true;
  * Route: /[artworkId] where artworkId is the Supabase UUID.
  * Two-column desktop layout: image left, info right — matching the prototype.
  */
-export default function ArtworkDetail({ artwork, collection }) {
+export default function ArtworkDetail({ artwork, collection, related = [] }) {
   const { addItem, isInCart, setIsOpen } = useCart();
 
   if (!artwork) {
@@ -134,6 +135,9 @@ export default function ArtworkDetail({ artwork, collection }) {
               >
                 {formatPrice(price)}
               </p>
+              <p className="font-sans text-text-tertiary text-[12px] tracking-[0.3px]">
+                Shipping &amp; taxes included
+              </p>
 
             </div>
 
@@ -222,6 +226,23 @@ export default function ArtworkDetail({ artwork, collection }) {
         <div className="w-full h-px bg-divider" />
         <ArtworkInfoSection />
 
+        {/* ── You might also like ────────────────────────────────────── */}
+        {related.length > 0 && (
+          <>
+            <div className="w-full h-px bg-divider" />
+            <div className="px-5 md:px-[56px] py-10 md:py-[56px]">
+              <p className="font-sans text-text-tertiary text-[11px] tracking-[3px] uppercase mb-8">
+                You might also like
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-[40px]">
+                {related.map((a) => (
+                  <ArtworkCard key={a.id} artwork={a} />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
         {/* ── Divider ────────────────────────────────────────────────── */}
         <div className="w-full h-px bg-divider" />
 
@@ -250,5 +271,50 @@ export async function getServerSideProps({ params }) {
   // Resolve folder name to array of public URLs for the carousel
   artworkData.images = await resolveImages(artworkData.image_url);
 
-  return { props: { artwork: artworkData, collection: collection ?? null } };
+  // Fetch related artworks: same collection first, then random others — all available (stock > 0)
+  const RELATED_LIMIT = 4;
+  const excludeIds = [artworkId];
+
+  // 1. Same collection (if applicable)
+  let sameCollection = [];
+  if (collection?.id) {
+    const { data } = await supabase
+      .from('artworks')
+      .select('id, title, price, image_url, stock, tagline, collections(price)')
+      .eq('visible', true)
+      .eq('collection_id', collection.id)
+      .neq('id', artworkId)
+      .gt('stock', 0)
+      .limit(RELATED_LIMIT);
+    sameCollection = data ?? [];
+    excludeIds.push(...sameCollection.map(a => a.id));
+  }
+
+  // 2. Fill remaining slots with random other artworks
+  const remaining = RELATED_LIMIT - sameCollection.length;
+  let others = [];
+  if (remaining > 0) {
+    const { data } = await supabase
+      .from('artworks')
+      .select('id, title, price, image_url, stock, tagline, collections(price)')
+      .eq('visible', true)
+      .gt('stock', 0)
+      .not('id', 'in', `(${excludeIds.join(',')})`)
+      .limit(remaining * 3); // fetch more to shuffle
+    // Shuffle and take what we need
+    const shuffled = (data ?? []).sort(() => Math.random() - 0.5).slice(0, remaining);
+    others = shuffled;
+  }
+
+  const relatedRaw = [...sameCollection, ...others];
+
+  const related = await Promise.all(
+    relatedRaw.map(async (a) => ({
+      ...a,
+      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
+      price: a.price || a.collections?.price || null,
+    }))
+  );
+
+  return { props: { artwork: artworkData, collection: collection ?? null, related } };
 }
