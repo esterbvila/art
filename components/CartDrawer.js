@@ -59,7 +59,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div
-        className="fixed top-0 right-0 h-full w-full max-w-[400px] bg-bg-main z-50 flex flex-col"
+        className="fixed top-0 right-0 h-full w-full max-w-[350px] bg-bg-main z-50 flex flex-col"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
