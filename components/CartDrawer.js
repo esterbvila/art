@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, Trash2 } from 'lucide-react';
 import useCart from '../context/useCart';
 import { formatPrice } from '../lib/utils';
 
@@ -129,15 +129,15 @@ export default function CartDrawer() {
                   </div>
                 )}
                 <div className="flex-1 flex flex-col gap-1">
-                  <p className="font-sans text-text-primary text-[14px]">{item.title}</p>
-                  <p className="font-sans text-text-secondary text-[13px]">{formatPrice(item.price)}</p>
+                  <p className="font-sans text-text-primary text-[16px]">{item.title}</p>
+                  <p className="font-sans text-text-secondary text-[14px]">{formatPrice(item.price)}</p>
                 </div>
                 <button
                   onClick={() => removeItem(item.id)}
                   className="text-text-tertiary hover:text-text-primary transition-colors mt-0.5"
                   aria-label={`Remove ${item.title}`}
                 >
-                  <X size={14} />
+                  <Trash2 size={14} />
                 </button>
               </div>
             ))
@@ -149,7 +149,7 @@ export default function CartDrawer() {
           <div className="px-6 py-6 border-t border-divider flex flex-col gap-4">
             <div className="flex justify-between items-center">
               <span className="font-sans text-text-tertiary text-[13px]">Total</span>
-              <span className="font-sans text-text-primary text-[15px]">{formatPrice(total)}</span>
+              <span className="font-sans text-text-primary text-[16px]">{formatPrice(total)}</span>
             </div>
             {error && <p className="font-sans text-[13px] text-red-500">{error}</p>}
             <button
