@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import useCart from '../context/useCart';
@@ -8,6 +8,18 @@ export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
+  const touchStartX = useRef(null);
+
+  function handleTouchStart(e) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e) {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 60) setIsOpen(false);
+    touchStartX.current = null;
+  }
 
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
@@ -46,7 +58,11 @@ export default function CartDrawer() {
       />
 
       {/* Drawer */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-[400px] bg-bg-main z-50 flex flex-col">
+      <div
+        className="fixed top-0 right-0 h-full w-full max-w-[400px] bg-bg-main z-50 flex flex-col"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-divider">
