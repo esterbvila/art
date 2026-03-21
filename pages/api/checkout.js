@@ -73,6 +73,14 @@ export default async function handler(req, res) {
       line_items,
       mode: 'payment',
       customer_creation: 'always',
+      custom_fields: [
+        {
+          key: 'message',
+          label: { type: 'custom', custom: 'Message for the artist (optional)' },
+          type: 'text',
+          optional: true,
+        },
+      ],
       shipping_address_collection: {
         allowed_countries: [
           'AC','AD','AE','AF','AG','AI','AL','AM','AO','AQ','AR','AT','AU','AW','AX','AZ',

@@ -8,21 +8,34 @@ export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
-  const touchStartX = useRef(null);
   const drawerRef = useRef(null);
+  const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
 
   useEffect(() => {
     const el = drawerRef.current;
     if (!el) return;
 
+    // Only attach on mobile
+    const isMobile = () => window.innerWidth < 768;
+
     function onTouchStart(e) {
+      if (!isMobile()) return;
       touchStartX.current = e.touches[0].clientX;
+      touchStartY.current = e.touches[0].clientY;
     }
+
     function onTouchEnd(e) {
-      if (touchStartX.current === null) return;
-      const diff = touchStartX.current - e.changedTouches[0].clientX;
-      if (diff > 50) setIsOpen(false);
+      if (!isMobile() || touchStartX.current === null) return;
+
+      const dx = e.changedTouches[0].clientX - touchStartX.current;
+      const dy = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
+
+      // Only trigger if swipe is more horizontal than vertical and goes right (dx > 0)
+      if (dx > 50 && dy < 80) setIsOpen(false);
+
       touchStartX.current = null;
+      touchStartY.current = null;
     }
 
     el.addEventListener('touchstart', onTouchStart, { passive: true });
@@ -72,7 +85,7 @@ export default function CartDrawer() {
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className="fixed top-0 right-0 h-full w-full max-w-[350px] bg-bg-main z-50 flex flex-col"
+        className="fixed top-0 right-0 h-full w-full max-w-[370px] bg-bg-main z-50 flex flex-col"
       >
 
         {/* Header */}

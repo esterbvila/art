@@ -60,7 +60,10 @@ export default async function handler(req, res) {
       }
     }
 
-    // 2. Shared order fields
+    // 2. Extract custom message field
+    const customerMessage = session.custom_fields?.find(f => f.key === 'message')?.text?.value ?? null;
+
+    // 3. Shared order fields
     const shippingDetails = session.shipping_details ?? null;
     const addr            = shippingDetails?.address ?? session.customer_details?.address ?? null;
     const shippingName    = shippingDetails?.name ?? session.customer_details?.name ?? null;
@@ -80,6 +83,7 @@ export default async function handler(req, res) {
       shipping_country:     addr?.country ?? null,
       payment_method:       paymentMethod,
       status:               'completed',
+      message:              customerMessage,
     };
 
     // 3. Decrement stock and insert order for each artwork
@@ -132,6 +136,7 @@ export default async function handler(req, res) {
         amountCents:  session.amount_total,
         shipping:     { ...addr, name: shippingName },
         phone:        session.customer_details?.phone ?? null,
+        message:      customerMessage,
       });
 
       await notifySale({
@@ -142,6 +147,7 @@ export default async function handler(req, res) {
         phone:         session.customer_details?.phone ?? null,
         shipping:      { ...addr, name: shippingName },
         paymentMethod,
+        message:       customerMessage,
       });
     }
   }
