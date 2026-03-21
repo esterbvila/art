@@ -20,11 +20,10 @@ export default function Success() {
           className="font-sans font-normal text-text-primary leading-tight95"
           style={{ fontSize: 'clamp(32px, 5vw, 52px)', letterSpacing: '-1.5px' }}
         >
-          Your purchase is confirmed.
+          Your purchase has been confirmed.
         </h1>
         <p className="text-text-secondary font-sans text-[15px] leading-[1.7] max-w-md">
-          You will receive a confirmation email shortly. The artist will be in
-          touch to arrange shipping of your original painting.
+          You will receive a confirmation email shortly. I will be in touch soon to arrange shipping for your original painting.
         </p>
         <Link
           href="/"

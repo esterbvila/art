@@ -160,7 +160,7 @@ export default function ArtworkDetail({ artwork, collection }) {
                         addItem({
                           id:       artwork.id,
                           title:    artwork.title,
-                          price:    artwork.price,
+                          price:    price,
                           imageUrl: artwork.images?.[0] ?? null,
                         });
                       }

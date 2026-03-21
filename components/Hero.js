@@ -36,7 +36,7 @@ export default function Hero() {
       {/* ── Hero image ───────────────────────────────────────────────── */}
       <div className="relative w-full h-[300px] md:h-[625px] overflow-hidden">
         <Image
-          src="/hero-img.png"
+          src="/hero-img.webp"
           alt="Abstract painting by Ester Batllori"
           fill
           className="object-cover"

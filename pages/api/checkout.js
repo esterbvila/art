@@ -31,7 +31,7 @@ export default async function handler(req, res) {
   // 1. Fetch all artworks
   const { data: artworks, error } = await supabase
     .from('artworks')
-    .select('id, title, description, price, image_url, stock')
+    .select('id, title, description, price, image_url, stock, collections(price)')
     .in('id', ids);
 
   if (error || !artworks?.length) {
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
         name: artwork.title,
         images: resolvedImages[i] ? [resolvedImages[i]] : [],
       },
-      unit_amount: artwork.price,
+      unit_amount: artwork.price || artwork.collections?.price,
     },
     quantity: 1,
   }));
