@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import { ZoomIn } from 'lucide-react';
 
 /**
  * ImageSlider — main image + thumbnail strip.
@@ -8,7 +9,7 @@ import Image from 'next/image';
  * @param {string[]} images  - Array of image URLs/paths
  * @param {string}   alt     - Alt text for the main image
  */
-export default function ImageSlider({ images, alt }) {
+export default function ImageSlider({ images, alt, onImageClick }) {
   const [current, setCurrent] = useState(0);
   const stripRef = useRef(null);
   const thumbRefs = useRef([]);
@@ -41,10 +42,22 @@ export default function ImageSlider({ images, alt }) {
           src={images[current]}
           alt={alt}
           fill
-          className="object-cover transition-opacity duration-300"
+          className="object-cover transition-opacity duration-300 cursor-zoom-in"
           sizes="(max-width: 768px) 100vw, calc(100vw - 96px)"
           priority={current === 0}
+          onClick={() => onImageClick?.(images[current])}
         />
+
+        {/* Magnifier button — always visible on mobile, hover-only on lg+ */}
+        {onImageClick && (
+          <button
+            onClick={() => onImageClick(images[current])}
+            aria-label="View full screen"
+            className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center bg-bg-main/80 hover:bg-bg-main transition-colors opacity-100 z-10"
+          >
+            <ZoomIn size={15} className="text-text-primary" />
+          </button>
+        )}
 
         {/* Prev / Next arrows — only shown when multiple images */}
         {hasManyImages && (

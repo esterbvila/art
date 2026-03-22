@@ -2848,6 +2848,16 @@
                       "letterSpacing": -0.5
                     },
                     {
+                      "type": "text",
+                      "id": "Uxsv7",
+                      "name": "shippingNote",
+                      "fill": "$text-tertiary",
+                      "content": "Shipping & taxes included",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
                       "type": "frame",
                       "id": "D2DB6",
                       "name": "Purchase Button",
@@ -2873,16 +2883,6 @@
                           "letterSpacing": 1
                         }
                       ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "Uxsv7",
-                      "name": "shippingNote",
-                      "fill": "$text-tertiary",
-                      "content": "Free worldwide shipping included",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 12,
-                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2975,6 +2975,7 @@
                   "width": "fill_container",
                   "layout": "vertical",
                   "gap": 14,
+                  "alignItems": "end",
                   "children": [
                     {
                       "type": "frame",
@@ -3065,6 +3066,35 @@
                     },
                     {
                       "type": "frame",
+                      "id": "YaOPi",
+                      "name": "Detail Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uncz6",
+                          "name": "dr3l",
+                          "fill": "$text-tertiary",
+                          "content": "Framing",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ETdOD",
+                          "name": "dr3v",
+                          "fill": "$text-primary",
+                          "content": "Not included",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
                       "id": "akJKD",
                       "name": "Detail Row",
                       "width": "fill_container",
@@ -3104,126 +3134,59 @@
                 },
                 {
                   "type": "frame",
-                  "id": "PWb3B",
+                  "id": "lIyaE",
                   "name": "Info Section",
                   "width": "fill_container",
+                  "cornerRadius": 6,
                   "layout": "vertical",
-                  "gap": 32,
+                  "gap": 28,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "9NuQC",
-                      "name": "Info Col 1",
+                      "id": "XCL9W",
+                      "name": "Shipping",
                       "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 40,
+                      "gap": 12,
                       "children": [
                         {
-                          "type": "frame",
-                          "id": "7cJuF",
-                          "name": "Shipping Info",
-                          "width": "fill_container",
-                          "layout": "vertical",
-                          "gap": 12,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "PqhQt",
-                              "name": "shippingLabel",
-                              "fill": "$text-tertiary",
-                              "content": "Shipping",
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 11,
-                              "fontWeight": "normal",
-                              "letterSpacing": 2
-                            },
-                            {
-                              "type": "text",
-                              "id": "jvMJ3",
-                              "name": "ship1",
-                              "fill": "$text-secondary",
-                              "content": "Free worldwide shipping on all originals",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "kl2Ii",
-                              "name": "ship2",
-                              "fill": "$text-secondary",
-                              "content": "Ships within 2–5 business days",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "QC4nF",
-                              "name": "ship3",
-                              "fill": "$text-secondary",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "All shipments include tracking and insurance for complete peace of mind",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
+                          "type": "icon_font",
+                          "id": "V2W0v",
+                          "name": "c1icon",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "globe",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
                         },
                         {
                           "type": "frame",
-                          "id": "ihnat",
-                          "name": "Authenticity Info",
+                          "id": "DxhlM",
+                          "name": "Text",
                           "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 12,
+                          "gap": 3,
                           "children": [
                             {
                               "type": "text",
-                              "id": "ZLVy3",
-                              "name": "authLabel",
-                              "fill": "$text-tertiary",
-                              "content": "Authenticity",
+                              "id": "485Lb",
+                              "name": "c1label",
+                              "fill": "$text-primary",
+                              "content": "Free Worldwide Shipping",
                               "fontFamily": "Funnel Sans",
-                              "fontSize": 11,
-                              "fontWeight": "normal",
-                              "letterSpacing": 2
+                              "fontSize": 13,
+                              "fontWeight": "500"
                             },
                             {
                               "type": "text",
-                              "id": "Ni80p",
-                              "name": "auth1",
+                              "id": "hCeWU",
+                              "name": "c1desc",
                               "fill": "$text-secondary",
-                              "content": "Original artwork — only 1 piece exists",
-                              "lineHeight": 1.6,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Ships from Berlin within 2–5 business days.",
+                              "lineHeight": 1.5,
                               "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "7Cau0",
-                              "name": "auth2",
-                              "fill": "$text-secondary",
-                              "content": "Signed by the artist",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "WyCJX",
-                              "name": "auth3",
-                              "fill": "$text-secondary",
-                              "content": "Certificate of authenticity included",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
+                              "fontSize": 12,
                               "fontWeight": "normal"
                             }
                           ]
@@ -3232,89 +3195,152 @@
                     },
                     {
                       "type": "frame",
-                      "id": "6VN72",
-                      "name": "Info Col 2",
+                      "id": "IqqV0",
+                      "name": "Shipping",
                       "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 40,
+                      "gap": 12,
                       "children": [
                         {
-                          "type": "frame",
-                          "id": "gd9bC",
-                          "name": "Packaging Info",
-                          "width": "fill_container",
-                          "layout": "vertical",
-                          "gap": 12,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "7LCPk",
-                              "name": "packLabel",
-                              "fill": "$text-tertiary",
-                              "content": "Packaging & Security",
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 11,
-                              "fontWeight": "normal",
-                              "letterSpacing": 2
-                            },
-                            {
-                              "type": "text",
-                              "id": "jzIut",
-                              "name": "pack1",
-                              "fill": "$text-secondary",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "Each painting is carefully packaged to ensure it arrives in perfect condition",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "qPwvE",
-                              "name": "pack2",
-                              "fill": "$text-secondary",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "All payments are securely processed through trusted providers using encrypted connections",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Funnel Sans",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
+                          "type": "icon_font",
+                          "id": "RleTa",
+                          "name": "mr3icon",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "package-check",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
                         },
                         {
                           "type": "frame",
-                          "id": "V3Dv1",
-                          "name": "Returns Info",
+                          "id": "RrSxD",
+                          "name": "Text",
                           "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 12,
+                          "gap": 3,
                           "children": [
                             {
                               "type": "text",
-                              "id": "nl1eg",
-                              "name": "returnLabel",
-                              "fill": "$text-tertiary",
-                              "content": "Satisfaction Guarantee",
+                              "id": "DGcaO",
+                              "name": "c1label",
+                              "fill": "$text-primary",
+                              "content": "Secure Packaging",
                               "fontFamily": "Funnel Sans",
-                              "fontSize": 11,
-                              "fontWeight": "normal",
-                              "letterSpacing": 2
+                              "fontSize": 13,
+                              "fontWeight": "500"
                             },
                             {
                               "type": "text",
-                              "id": "apBmz",
-                              "name": "return1",
+                              "id": "hRLBm",
+                              "name": "c1desc",
                               "fill": "$text-secondary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "If you are not completely satisfied with your artwork, you may request a return within 14 days of delivery. The artwork must be returned in its original condition and packaging. Return shipping costs are the responsibility of the buyer.",
-                              "lineHeight": 1.6,
+                              "content": "Carefully packed with tracking and insurance included.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hKiIQ",
+                      "name": "Authenticity",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "qcRI8",
+                          "name": "c2icon",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "shield-check",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "h6pdy",
+                          "name": "Text",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "eeG2J",
+                              "name": "c2label",
+                              "fill": "$text-primary",
+                              "content": "1 of 1 Original",
                               "fontFamily": "Funnel Sans",
                               "fontSize": 13,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "MUPEg",
+                              "name": "c2desc",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Signed artwork with certificate of authenticity.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "9l8Fs",
+                      "name": "Returns",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "fCAv2",
+                          "name": "c5icon",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "refresh-ccw",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zbbpO",
+                          "name": "Text",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "1NoPS",
+                              "name": "c5label",
+                              "fill": "$text-primary",
+                              "content": "14-Day Returns",
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "64LTg",
+                              "name": "c5desc",
+                              "fill": "$text-secondary",
+                              "content": "Returns accepted within 14 days, excluding commissioned works.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
                               "fontWeight": "normal"
                             }
                           ]
@@ -3898,6 +3924,35 @@
             },
             {
               "type": "frame",
+              "id": "l8bqz",
+              "name": "Detail Row",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "euqBo",
+                  "name": "dr3l",
+                  "fill": "$text-tertiary",
+                  "content": "Framing",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "4HF9q",
+                  "name": "dr3v",
+                  "fill": "$text-primary",
+                  "content": "Not included",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
               "id": "YCI3I",
               "name": "Detail Row",
               "width": "fill_container",
@@ -3966,11 +4021,12 @@
         },
         {
           "type": "frame",
-          "id": "kkxBR",
+          "id": "uLtmZ",
           "name": "Info Section",
           "width": "fill_container",
+          "cornerRadius": 6,
           "layout": "vertical",
-          "gap": 32,
+          "gap": 28,
           "padding": [
             32,
             20
@@ -3978,192 +4034,209 @@
           "children": [
             {
               "type": "frame",
-              "id": "bbSaY",
-              "name": "Shipping Info",
+              "id": "gJHYe",
+              "name": "Shipping",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 14,
+              "gap": 12,
               "children": [
                 {
-                  "type": "text",
-                  "id": "l9JFB",
-                  "name": "mShipLabel",
-                  "fill": "$text-tertiary",
-                  "content": "Shipping",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 11,
-                  "fontWeight": "normal",
-                  "letterSpacing": 2
+                  "type": "icon_font",
+                  "id": "FmF1l",
+                  "name": "c1icon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "globe",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-tertiary"
                 },
                 {
-                  "type": "text",
-                  "id": "pCg1g",
-                  "name": "mShip1",
-                  "fill": "$text-secondary",
-                  "content": "Free worldwide shipping on all originals",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "HSC3W",
-                  "name": "mShip2",
-                  "fill": "$text-secondary",
-                  "content": "Ships within 2–5 business days",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "UtKe2",
-                  "name": "mShip3",
-                  "fill": "$text-secondary",
-                  "textGrowth": "fixed-width",
+                  "type": "frame",
+                  "id": "RLYg6",
+                  "name": "Text",
                   "width": "fill_container",
-                  "content": "All shipments include tracking and insurance for complete peace of mind",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
+                  "layout": "vertical",
+                  "gap": 3,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mpU5B",
+                      "name": "c1label",
+                      "fill": "$text-primary",
+                      "content": "Free Worldwide Shipping",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0uqe8",
+                      "name": "c1desc",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Ships from Berlin within 2–5 business days.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "M2DAy",
-              "name": "Authenticity Info",
+              "id": "esliV",
+              "name": "Shipping",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 14,
+              "gap": 12,
               "children": [
                 {
-                  "type": "text",
-                  "id": "5JMaO",
-                  "name": "mAuthLabel",
-                  "fill": "$text-tertiary",
-                  "content": "Authenticity",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 11,
-                  "fontWeight": "normal",
-                  "letterSpacing": 2
+                  "type": "icon_font",
+                  "id": "z3y9x",
+                  "name": "mr3icon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "package-check",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-tertiary"
                 },
                 {
-                  "type": "text",
-                  "id": "PuLMI",
-                  "name": "mAuth1",
-                  "fill": "$text-secondary",
-                  "content": "Original artwork — only 1 piece exists",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "WTCTn",
-                  "name": "mAuth2",
-                  "fill": "$text-secondary",
-                  "content": "Signed by the artist",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "TDMX8",
-                  "name": "mAuth3",
-                  "fill": "$text-secondary",
-                  "content": "Certificate of authenticity included",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
+                  "type": "frame",
+                  "id": "MpKU9",
+                  "name": "Text",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 3,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sIsei",
+                      "name": "c1label",
+                      "fill": "$text-primary",
+                      "content": "Secure Packaging",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "96e1u",
+                      "name": "c1desc",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Carefully packed with tracking and insurance included.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "ZKH4W",
-              "name": "Packaging Info",
+              "id": "5SamG",
+              "name": "Authenticity",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 14,
+              "gap": 12,
               "children": [
                 {
-                  "type": "text",
-                  "id": "tWdx5",
-                  "name": "mPackLabel",
-                  "fill": "$text-tertiary",
-                  "content": "Packaging & Security",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 11,
-                  "fontWeight": "normal",
-                  "letterSpacing": 2
+                  "type": "icon_font",
+                  "id": "ZNteH",
+                  "name": "c2icon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "shield-check",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-tertiary"
                 },
                 {
-                  "type": "text",
-                  "id": "ApAZx",
-                  "name": "mPack1",
-                  "fill": "$text-secondary",
-                  "textGrowth": "fixed-width",
+                  "type": "frame",
+                  "id": "MOgFc",
+                  "name": "Text",
                   "width": "fill_container",
-                  "content": "Each painting is carefully packaged to ensure it arrives in perfect condition",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "Tp6YG",
-                  "name": "mPack2",
-                  "fill": "$text-secondary",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "All payments are securely processed through trusted providers using encrypted connections",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
+                  "layout": "vertical",
+                  "gap": 3,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xL41P",
+                      "name": "c2label",
+                      "fill": "$text-primary",
+                      "content": "1 of 1 Original",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xY2uE",
+                      "name": "c2desc",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Signed artwork with certificate of authenticity.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "2Ugb5",
-              "name": "Returns Info",
+              "id": "oiNAK",
+              "name": "Returns",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 14,
+              "gap": 12,
               "children": [
                 {
-                  "type": "text",
-                  "id": "xFtXD",
-                  "name": "mReturnLabel",
-                  "fill": "$text-tertiary",
-                  "content": "Satisfaction Guarantee",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 11,
-                  "fontWeight": "normal",
-                  "letterSpacing": 2
+                  "type": "icon_font",
+                  "id": "Frt11",
+                  "name": "c5icon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "refresh-ccw",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-tertiary"
                 },
                 {
-                  "type": "text",
-                  "id": "ScKds",
-                  "name": "mReturn1",
-                  "fill": "$text-secondary",
-                  "textGrowth": "fixed-width",
+                  "type": "frame",
+                  "id": "EgC8x",
+                  "name": "Text",
                   "width": "fill_container",
-                  "content": "If you are not completely satisfied with your artwork, you may request a return within 14 days of delivery. The artwork must be returned in its original condition and packaging. Return shipping costs are the responsibility of the buyer.",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
+                  "layout": "vertical",
+                  "gap": 3,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oP1sl",
+                      "name": "c5label",
+                      "fill": "$text-primary",
+                      "content": "14-Day Returns",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XNLEq",
+                      "name": "c5desc",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Returns accepted within 14 days, excluding commissioned works.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             }
@@ -4171,8 +4244,8 @@
         },
         {
           "type": "frame",
-          "id": "Vq8K7",
-          "name": "Also Like Divider",
+          "id": "iq8os",
+          "name": "Info Divider",
           "width": "fill_container",
           "height": 1,
           "fill": "$divider"
@@ -5735,12 +5808,360 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "PWb3B",
+      "x": 5202,
+      "y": 2378,
+      "name": "Info Section",
+      "width": "fill_container(548)",
+      "fill": "$bg-warm",
+      "cornerRadius": 6,
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "WIaJi",
+          "name": "Shipping",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "DriLL",
+              "name": "c1icon",
+              "width": 16,
+              "height": 16,
+              "iconFontName": "globe",
+              "iconFontFamily": "lucide",
+              "fill": "$text-tertiary"
+            },
+            {
+              "type": "frame",
+              "id": "kJ8Jx",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "afXxR",
+                  "name": "c1label",
+                  "fill": "$text-primary",
+                  "content": "Free Worldwide Shipping",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "alNw1",
+                  "name": "c1desc",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Ships from Berlin within 2–5 business days.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "9j3pb",
+          "name": "Shipping",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "SvWLa",
+              "name": "c1icon",
+              "width": 16,
+              "height": 16,
+              "iconFontName": "globe",
+              "iconFontFamily": "lucide",
+              "fill": "$text-tertiary"
+            },
+            {
+              "type": "frame",
+              "id": "Pp0qm",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IPa5j",
+                  "name": "c1label",
+                  "fill": "$text-primary",
+                  "content": "Secure Packaging",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "tBe5y",
+                  "name": "c1desc",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Carefully packed with tracking and insurance included.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ysGCI",
+          "name": "Authenticity",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "0H0mA",
+              "name": "c2icon",
+              "width": 16,
+              "height": 16,
+              "iconFontName": "shield-check",
+              "iconFontFamily": "lucide",
+              "fill": "$text-tertiary"
+            },
+            {
+              "type": "frame",
+              "id": "oq4fT",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1BDKj",
+                  "name": "c2label",
+                  "fill": "$text-primary",
+                  "content": "1 of 1 Original",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "o276T",
+                  "name": "c2desc",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Signed artwork with certificate of authenticity.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eukJS",
+          "name": "Returns",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "vH9Al",
+              "name": "c5icon",
+              "width": 16,
+              "height": 16,
+              "iconFontName": "refresh-ccw",
+              "iconFontFamily": "lucide",
+              "fill": "$text-tertiary"
+            },
+            {
+              "type": "frame",
+              "id": "Z1dUq",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jTI8O",
+                  "name": "c5label",
+                  "fill": "$text-primary",
+                  "content": "14-Day Returns",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "2xlbx",
+                  "name": "c5desc",
+                  "fill": "$text-secondary",
+                  "content": "Returns accepted within 14 days, excluding commissioned works.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZV0a2",
+          "name": "Frame 3",
+          "width": "fill_container",
+          "children": [
+            {
+              "type": "frame",
+              "id": "264Rz",
+              "name": "Row 2",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "APsMt",
+                  "name": "Packaging",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ofCnc",
+                      "name": "packIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "box",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "9IRG0",
+                      "name": "Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Lgh0D",
+                          "name": "packLabel",
+                          "fill": "$text-primary",
+                          "content": "Safe Packaging",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "f9lxQ",
+                          "name": "packDesc",
+                          "fill": "$text-secondary",
+                          "content": "Insured delivery included",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "0l1Uz",
+                  "name": "Framing",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "xJ4cm",
+                      "name": "frameIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "frame",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kcZbc",
+                      "name": "Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "aLujg",
+                          "name": "framLabel",
+                          "fill": "$text-primary",
+                          "content": "Framing",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "he74I",
+                          "name": "c4desc",
+                          "fill": "$text-secondary",
+                          "content": "Not included unless stated",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "variables": {
     "accent": {
       "type": "color",
-      "value": "#C4724E"
+      "value": [
+        {
+          "value": "#C4724E"
+        },
+        {
+          "value": "#260614"
+        }
+      ]
     },
     "bg-deep": {
       "type": "color",

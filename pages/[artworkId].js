@@ -1,16 +1,19 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import PurchaseButton from '../components/PurchaseButton';
 import ImageSlider from '../components/ImageSlider';
 import Image from 'next/image';
+import { ZoomIn } from 'lucide-react';
 import { formatPrice } from '../lib/utils';
 import { resolveImages, resolveFirstImage } from '../lib/storage';
 import useCart from '../context/useCart';
 import ArtworkInfoSection from '../components/ArtworkInfoSection';
 import ArtworkCard from '../components/ArtworkCard';
+import ImageLightbox from '../components/ImageLightbox';
 
 // Set to true to re-enable purchasing
 const SHOP_ENABLED = true;
@@ -22,6 +25,7 @@ const SHOP_ENABLED = true;
  */
 export default function ArtworkDetail({ artwork, collection, related = [] }) {
   const { addItem, isInCart, setIsOpen } = useCart();
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
   if (!artwork) {
     return (
@@ -44,6 +48,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
   const details = [
     { label: 'Medium',       value: medium },
     { label: 'Dimensions',   value: artwork.dimensions },
+    { label: 'Framing',      value: 'Not included' },
     { label: 'Year',         value: year },
     { label: 'Availability', value: isAvailable ? 'Available' : 'Sold', accent: isAvailable },
   ].filter((d) => d.value);
@@ -94,21 +99,28 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
 
         {/* ── Two-column content ─────────────────────────────────────── */}
         {/* Mobile: stacked | Desktop: image left · info right          */}
-        <div className="flex flex-col md:flex-row flex-1 w-full lg:max-w-[1200px]">
+        <div className="flex flex-col md:flex-row flex-1 w-full lg:max-w-[1300px]">
 
           {/* Left — image */}
-          <div className="md:w-1/2 lg:w-[60%] md:max-w-[563px] lg:max-w-none">
+          <div className="md:w-1/2 lg:w-[55%] md:max-w-[563px] lg:max-w-none">
 
             {/* < md: slider */}
             <div className="md:hidden min-h-[300px]">
-              <ImageSlider images={artwork.images ?? []} alt={artwork.title} fullHeight />
+              <ImageSlider images={artwork.images ?? []} alt={artwork.title} onImageClick={setLightboxSrc} />
             </div>
 
             {/* md to lg: single column stack */}
             <div className="hidden md:flex lg:hidden flex-col gap-[6px]">
               {(artwork.images ?? []).map((src, i) => (
-                <div key={i} className="relative w-full aspect-square overflow-hidden">
+                <div key={i} className="relative w-full aspect-square overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(src)}>
                   <Image src={src} alt={artwork.title} fill className="object-cover" sizes="50vw" priority={i === 0} />
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setLightboxSrc(src); }}
+                    aria-label="View full screen"
+                    className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center bg-bg-main/80 hover:bg-bg-main transition-colors opacity-0 group-hover:opacity-100 z-10"
+                  >
+                    <ZoomIn size={15} className="text-text-primary" />
+                  </button>
                 </div>
               ))}
             </div>
@@ -116,8 +128,15 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             {/* lg+: 1-over-N×2 image grid */}
             <div className="hidden lg:flex flex-col gap-[6px]">
               {artwork.images?.[0] && (
-                <div className="relative w-full max-w-[670px] mx-auto aspect-[2/3] overflow-hidden">
+                <div className="relative w-full max-w-[670px] mx-auto aspect-[2/3] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
                   <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="50vw" priority />
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setLightboxSrc(artwork.images[0]); }}
+                    aria-label="View full screen"
+                    className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center bg-bg-main/80 hover:bg-bg-main transition-colors opacity-0 group-hover:opacity-100 z-10"
+                  >
+                    <ZoomIn size={15} className="text-text-primary" />
+                  </button>
                 </div>
               )}
               {(artwork.images ?? []).slice(1).reduce((rows, src, i) => {
@@ -127,8 +146,15 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
               }, []).map((pair, rowIdx) => (
                 <div key={rowIdx} className="flex gap-[6px]">
                   {pair.map((src, colIdx) => (
-                    <div key={colIdx} className={`relative aspect-[387/500] overflow-hidden ${pair.length === 1 ? 'w-1/2' : 'flex-1'}`}>
+                    <div key={colIdx} className={`relative aspect-[387/500] overflow-hidden group cursor-zoom-in ${pair.length === 1 ? 'w-1/2' : 'flex-1'}`} onClick={() => setLightboxSrc(src)}>
                       <Image src={src} alt={artwork.title} fill className="object-cover" sizes="25vw" />
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setLightboxSrc(src); }}
+                        aria-label="View full screen"
+                        className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center bg-bg-main/80 hover:bg-bg-main transition-colors opacity-0 group-hover:opacity-100 z-10"
+                      >
+                        <ZoomIn size={15} className="text-text-primary" />
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -138,7 +164,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
           </div>
 
           {/* Right — artwork info */}
-          <div className="md:w-1/2 lg:w-[40%] flex flex-col gap-8 p-5 md:p-[56px] md:sticky md:top-0 md:self-start">
+          <div className="md:w-1/2 lg:w-[45%] flex flex-col gap-8 p-5 md:p-[56px] md:sticky md:top-0 md:self-start">
 
           {/* Title + meta */}
           <div className="flex flex-col gap-5">
@@ -157,7 +183,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
           </div>
 
           {/* Price + purchase button */}
-          <div className="flex flex-col gap-6 w-full md:max-w-[360px]">
+          <div className="flex flex-col gap-6 w-full">
             <div className="flex flex-col gap-2">
               <p className="font-sans text-text-tertiary text-[11px] tracking-[2px] uppercase">
                 Price
@@ -252,6 +278,9 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             )}
           </div>
 
+          {/* Divider */}
+          <div className="w-full h-px bg-divider" />
+
           {/* Info Section */}
           <ArtworkInfoSection />
 
@@ -292,6 +321,11 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
         {/* ── Footer ─────────────────────────────────────────────────── */}
         <Footer />
       </div>
+
+      {/* ── Lightbox ─────────────────────────────────────────────────── */}
+      {lightboxSrc && (
+        <ImageLightbox src={lightboxSrc} images={artwork.images ?? []} alt={artwork.title} onClose={() => setLightboxSrc(null)} />
+      )}
     </>
   );
 }
