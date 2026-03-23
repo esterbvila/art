@@ -37,12 +37,12 @@ export default function CollectionCard({ collection }) {
 
       {/* ── Info ─────────────────────────────────────────────────────── */}
       <div className="flex flex-col gap-1.5 pt-3">
-        <h3
+        <p
           className="font-sans font-semibold text-text-primary"
           style={{ fontSize: '22px', letterSpacing: '-0.5px' }}
         >
           {name}
-        </h3>
+        </p>
 
         {tagline && (
           <p className="font-sans font-normal text-text-secondary text-[14px] leading-[1.6]">
