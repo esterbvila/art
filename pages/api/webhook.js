@@ -138,26 +138,34 @@ export default async function handler(req, res) {
     if (customerEmail) {
       const artworks = artworkIds.map((id) => artworkMap[id] ?? { title: 'your painting', price: 0 });
 
-      await sendOrderConfirmation({
-        to:           customerEmail,
-        customerName: session.customer_details?.name ?? 'there',
-        artworks,
-        amountCents:  session.amount_total,
-        shipping:     { ...addr, name: shippingName },
-        phone:        session.customer_details?.phone ?? null,
-        message:      customerMessage,
-      });
+      try {
+        await sendOrderConfirmation({
+          to:           customerEmail,
+          customerName: session.customer_details?.name ?? 'there',
+          artworks,
+          amountCents:  session.amount_total,
+          shipping:     { ...addr, name: shippingName },
+          phone:        session.customer_details?.phone ?? null,
+          message:      customerMessage,
+        });
+      } catch (emailErr) {
+        console.error('Failed to send order confirmation email:', emailErr.message);
+      }
 
-      await notifySale({
-        customerName:  session.customer_details?.name ?? 'Unknown',
-        customerEmail,
-        artworks,
-        amountCents:   session.amount_total,
-        phone:         session.customer_details?.phone ?? null,
-        shipping:      { ...addr, name: shippingName },
-        paymentMethod,
-        message:       customerMessage,
-      });
+      try {
+        await notifySale({
+          customerName:  session.customer_details?.name ?? 'Unknown',
+          customerEmail,
+          artworks,
+          amountCents:   session.amount_total,
+          phone:         session.customer_details?.phone ?? null,
+          shipping:      { ...addr, name: shippingName },
+          paymentMethod,
+          message:       customerMessage,
+        });
+      } catch (emailErr) {
+        console.error('Failed to send sale notification email:', emailErr.message);
+      }
     }
   }
 
