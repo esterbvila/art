@@ -67,7 +67,7 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
               sameAs: ['https://instagram.com/esterii_creates'],
               address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
             },
-          ]) }}
+          ]).replace(/</g, '\\u003c') }}
         />
       </Head>
 

@@ -98,7 +98,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
                 { '@type': 'ListItem', position: collection ? 3 : 2, name: artwork.title, item: `https://esteriicreates.com/${artwork.id}` },
               ],
             },
-          ]) }}
+          ]).replace(/</g, '\\u003c') }}
         />
       </Head>
 

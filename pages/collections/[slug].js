@@ -59,7 +59,7 @@ export default function CollectionPage({ collection, artworks }) {
               { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://esteriicreates.com' },
               { '@type': 'ListItem', position: 2, name: collection.name, item: `https://esteriicreates.com/collections/${collection.slug}` },
             ],
-          }) }}
+          }).replace(/</g, '\\u003c') }}
         />
       </Head>
 
