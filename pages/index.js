@@ -39,6 +39,7 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
           href="/_next/image?url=%2Fhero-img.webp&w=1080&q=50"
           imageSrcSet="/_next/image?url=%2Fhero-img.webp&w=640&q=50 640w, /_next/image?url=%2Fhero-img.webp&w=750&q=50 750w, /_next/image?url=%2Fhero-img.webp&w=828&q=50 828w, /_next/image?url=%2Fhero-img.webp&w=1080&q=50 1080w, /_next/image?url=%2Fhero-img.webp&w=1280&q=50 1280w, /_next/image?url=%2Fhero-img.webp&w=1440&q=50 1440w"
           imageSizes="100vw"
+          fetchPriority="high"
         />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <script
