@@ -19,7 +19,7 @@ module.exports = {
         'divider-dark': '#2A2926',
         'text-primary':    '#1A1917',
         'text-secondary':  '#6B6660',
-        'text-tertiary':   '#9C9690',
+        'text-tertiary':   '#726E6C',
         'text-light':      '#FAF8F5',
         'text-light-muted':'#A8A29C',
       },
