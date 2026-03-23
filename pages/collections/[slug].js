@@ -67,7 +67,7 @@ export default function CollectionPage({ collection, artworks }) {
               fill
               className="object-cover"
               sizes="100vw"
-              quality={65}
+              quality={60}
               priority
             />
           </div>
