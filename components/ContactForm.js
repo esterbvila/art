@@ -165,10 +165,11 @@ export default function ContactForm() {
 
             {/* Message */}
             <div className="flex flex-col gap-3 w-full">
-              <label className="font-sans font-normal text-text-tertiary text-[12px] tracking-[1px] uppercase">
+              <label htmlFor="message" className="font-sans font-normal text-text-tertiary text-[12px] tracking-[1px] uppercase">
                 Your Message
               </label>
               <textarea
+                id="message"
                 name="message"
                 rows={4}
                 value={form.message}
