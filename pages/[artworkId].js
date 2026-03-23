@@ -16,7 +16,7 @@ import ArtworkCard from '../components/ArtworkCard';
 import ImageLightbox from '../components/ImageLightbox';
 
 // Set to true to re-enable purchasing
-const SHOP_ENABLED = true;
+const SHOP_ENABLED = false;
 
 /**
  * Artwork detail page.
