@@ -31,6 +31,7 @@ export default function ArtworkCard({ artwork, imageHeight, sizes }) {
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           sizes={sizes ?? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+          quality={65}
         />
         {/* Sold overlay */}
         {!isAvailable && (

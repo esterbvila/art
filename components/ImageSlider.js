@@ -44,6 +44,7 @@ export default function ImageSlider({ images, alt, onImageClick }) {
           fill
           className="object-cover transition-opacity duration-300 cursor-zoom-in"
           sizes="(max-width: 768px) 100vw, calc(100vw - 96px)"
+          quality={65}
           priority={current === 0}
           onClick={() => onImageClick?.(images[current])}
         />

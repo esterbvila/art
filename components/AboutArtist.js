@@ -17,6 +17,7 @@ export default function AboutArtist() {
           fill
           className="object-cover object-center"
           sizes="(max-width: 768px) 100vw, 560px"
+          quality={65}
         />
       </div>
 

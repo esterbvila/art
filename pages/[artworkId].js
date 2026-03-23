@@ -113,7 +113,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             <div className="hidden md:flex lg:hidden flex-col gap-[6px]">
               {(artwork.images ?? []).map((src, i) => (
                 <div key={i} className="relative w-full aspect-square overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(src)}>
-                  <Image src={src} alt={artwork.title} fill className="object-cover" sizes="50vw" priority={i === 0} />
+                  <Image src={src} alt={artwork.title} fill className="object-cover" sizes="50vw" quality={65} priority={i === 0} />
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightboxSrc(src); }}
                     aria-label="View full screen"
@@ -129,7 +129,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             <div className="hidden lg:flex flex-col gap-[6px]">
               {artwork.images?.[0] && (
                 <div className="relative w-full max-w-[670px] mx-auto aspect-[2/3] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
-                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="50vw" priority />
+                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="50vw" quality={65} priority />
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightboxSrc(artwork.images[0]); }}
                     aria-label="View full screen"
@@ -147,7 +147,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
                 <div key={rowIdx} className="flex gap-[6px]">
                   {pair.map((src, colIdx) => (
                     <div key={colIdx} className={`relative aspect-[387/500] overflow-hidden group cursor-zoom-in ${pair.length === 1 ? 'w-1/2' : 'flex-1'}`} onClick={() => setLightboxSrc(src)}>
-                      <Image src={src} alt={artwork.title} fill className="object-cover" sizes="25vw" />
+                      <Image src={src} alt={artwork.title} fill className="object-cover" sizes="25vw" quality={65} />
                       <button
                         onClick={(e) => { e.stopPropagation(); setLightboxSrc(src); }}
                         aria-label="View full screen"
