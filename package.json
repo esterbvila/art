@@ -23,6 +23,20 @@
     "stripe": "^16.2.0",
     "tailwind-merge": "^2.5.2"
   },
+  "browserslist": {
+    "production": [
+      "chrome >= 90",
+      "edge >= 90",
+      "safari >= 15",
+      "firefox >= 88",
+      "not dead"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
