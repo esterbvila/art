@@ -28,7 +28,11 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://esteriicreates.com" />
         <meta property="og:image" content="https://esteriicreates.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@esterii_creates" />
+        <meta name="twitter:creator" content="@esterii_creates" />
         <meta name="twitter:title" content="Ester Batllori — Abstract Paintings" />
         <meta name="twitter:description" content="Original abstract paintings exploring emotion, intuition and subconscious landscapes." />
         <meta name="twitter:image" content="https://esteriicreates.com/og-image.png" />
@@ -44,15 +48,26 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
         <link rel="icon" href="/favicon.png" type="image/png" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Person',
-            name: 'Ester Batllori',
-            url: 'https://esteriicreates.com',
-            sameAs: ['https://instagram.com/esterii_creates'],
-            jobTitle: 'Abstract Painter',
-            description: 'Original abstract paintings exploring emotion, intuition and subconscious landscapes.',
-          }) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Ester Batllori',
+              url: 'https://esteriicreates.com',
+              sameAs: ['https://instagram.com/esterii_creates'],
+              jobTitle: 'Abstract Painter',
+              description: 'Original abstract paintings exploring emotion, intuition and subconscious landscapes.',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'esterii creates',
+              url: 'https://esteriicreates.com',
+              logo: 'https://esteriicreates.com/favicon.png',
+              sameAs: ['https://instagram.com/esterii_creates'],
+              address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
+            },
+          ]) }}
         />
       </Head>
 

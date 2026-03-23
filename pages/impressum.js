@@ -32,8 +32,7 @@ export default function Impressum() {
             <section className="flex flex-col gap-2">
               <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">Kontakt</h2>
               <p>
-                E-Mail: <a href="mailto:hello@esteriicreates.art" className="text-accent hover:opacity-80 transition-opacity">hello@esteriicreates.art</a><br />
-                Telefon: +49 176 22650968
+                E-Mail: <a href="mailto:ester.batllori@gmail.com" className="text-accent hover:opacity-80 transition-opacity">ester.batllori@gmail.com</a>
               </p>
             </section>
 
@@ -48,13 +47,12 @@ export default function Impressum() {
             <section className="flex flex-col gap-2">
               <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">Berufsbezeichnung</h2>
               <p>
-                Freischaffende Künstlerin<br />
-                Tätig als selbstständige bildende Künstlerin mit Sitz in Berlin, Deutschland.
+                Freischaffende bildende Künstlerin (Einzelunternehmerin) mit Sitz in Berlin, Deutschland.
               </p>
             </section>
 
             <section className="flex flex-col gap-2">
-              <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">Inhaltlich verantwortlich gemäß § 55 Abs. 2 RStV</h2>
+              <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">Inhaltlich verantwortlich gemäß § 18 Abs. 2 MStV</h2>
               <p>
                 Ester Batllori I Vila<br />
                 Riesestr. 11, 12347 Berlin
@@ -64,10 +62,17 @@ export default function Impressum() {
             <section className="flex flex-col gap-2">
               <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">Haftungsausschluss</h2>
               <p>
-                Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Als Dienstanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+                Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Als Diensteanbieter bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt (§§ 8–10 TMG).
               </p>
               <p>
                 Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-2">
+              <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">Verbraucherstreitbeilegung</h2>
+              <p>
+                Ich bin nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
               </p>
             </section>
 

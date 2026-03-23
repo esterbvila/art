@@ -5,11 +5,13 @@ const BASE_URL = 'https://esteriicreates.com';
 export default async function handler(req, res) {
   const { data: artworks } = await supabase
     .from('artworks')
-    .select('id, updated_at');
+    .select('id, updated_at')
+    .eq('visible', true);
 
   const { data: collections } = await supabase
     .from('collections')
-    .select('slug, updated_at');
+    .select('slug, updated_at')
+    .eq('visible', true);
 
   const staticPages = [
     { url: BASE_URL, priority: '1.0', changefreq: 'weekly' },

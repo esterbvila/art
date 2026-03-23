@@ -44,10 +44,23 @@ export default function CollectionPage({ collection, artworks }) {
         <meta property="og:url" content={`https://esteriicreates.com/collections/${collection.slug}`} />
         {ogImage && <meta property="og:image" content={ogImage} />}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@esterii_creates" />
+        <meta name="twitter:creator" content="@esterii_creates" />
         <meta name="twitter:title" content={`${collection.name} — Ester Batllori`} />
         <meta name="twitter:description" content={collection.description_collection || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
         {ogImage && <meta name="twitter:image" content={ogImage} />}
         <link rel="canonical" href={`https://esteriicreates.com/collections/${collection.slug}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://esteriicreates.com' },
+              { '@type': 'ListItem', position: 2, name: collection.name, item: `https://esteriicreates.com/collections/${collection.slug}` },
+            ],
+          }) }}
+        />
       </Head>
 
       <div className="bg-bg-main min-h-screen flex flex-col">

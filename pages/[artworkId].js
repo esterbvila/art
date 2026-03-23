@@ -64,28 +64,41 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
         <meta property="og:url" content={`https://esteriicreates.com/${artwork.id}`} />
         {artwork.image_url && <meta property="og:image" content={artwork.image_url} />}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@esterii_creates" />
+        <meta name="twitter:creator" content="@esterii_creates" />
         <meta name="twitter:title" content={`${artwork.title} — Ester Batllori`} />
         <meta name="twitter:description" content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`} />
         {artwork.image_url && <meta name="twitter:image" content={artwork.image_url} />}
         <link rel="canonical" href={`https://esteriicreates.com/${artwork.id}`} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: artwork.title,
-            description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
-            image: artwork.image_url,
-            url: `https://esteriicreates.com/${artwork.id}`,
-            brand: { '@type': 'Brand', name: 'esterii creates' },
-            offers: {
-              '@type': 'Offer',
-              price: (artwork.price / 100).toFixed(2),
-              priceCurrency: 'EUR',
-              availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Product',
+              name: artwork.title,
+              description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
+              image: artwork.image_url,
               url: `https://esteriicreates.com/${artwork.id}`,
+              brand: { '@type': 'Brand', name: 'esterii creates' },
+              offers: {
+                '@type': 'Offer',
+                price: (artwork.price / 100).toFixed(2),
+                priceCurrency: 'EUR',
+                availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
+                url: `https://esteriicreates.com/${artwork.id}`,
+              },
             },
-          }) }}
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://esteriicreates.com' },
+                ...(collection ? [{ '@type': 'ListItem', position: 2, name: collection.name, item: `https://esteriicreates.com/collections/${collection.slug}` }] : []),
+                { '@type': 'ListItem', position: collection ? 3 : 2, name: artwork.title, item: `https://esteriicreates.com/${artwork.id}` },
+              ],
+            },
+          ]) }}
         />
       </Head>
 
