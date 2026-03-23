@@ -300,7 +300,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
               <div className="flex lg:hidden gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide scroll-pl-5 pl-5 pr-5">
                 {related.map((a) => (
                   <div key={a.id} className="flex-shrink-0 w-[50vw] sm:w-[30vw] snap-start">
-                    <ArtworkCard artwork={a} imageHeight="h-[230px]" />
+                    <ArtworkCard artwork={a} imageHeight="h-[230px]" sizes="(max-width: 640px) 50vw, 30vw" />
                   </div>
                 ))}
               </div>
