@@ -24,7 +24,7 @@ module.exports = {
         'text-light-muted':'#A8A29C',
       },
       fontFamily: {
-        sans: ['"Funnel Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         wide3: '0.1875rem', // 3px
