@@ -16,7 +16,7 @@ export default function AboutArtist() {
           alt="Portrait of Ester Batllori in her studio"
           fill
           className="object-cover object-center"
-          sizes="(max-width: 768px) 100vw, 560px"
+          sizes="(max-width: 768px) 100vw, 512px"
           quality={60}
         />
       </div>
