@@ -1,10 +1,8 @@
 import { createAdminClient } from '../../lib/supabase';
 import { notifyContactSubmission } from '../../lib/email';
 
-// In-memory rate limit store: ip → { count, resetAt }
-const rateLimitMap = new Map();
-const LIMIT = 3;
-const WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const LIMIT      = 3;
+const WINDOW_MS  = 60 * 60 * 1000; // 1 hour
 
 /**
  * POST /api/contact
@@ -24,19 +22,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true }); // silent rejection
   }
 
-  // Rate limiting by IP — max 3 submissions per hour
-  const ip = req.headers['x-forwarded-for']?.split(',')[0] ?? req.socket.remoteAddress ?? 'unknown';
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (entry && now < entry.resetAt) {
-    if (entry.count >= LIMIT) {
-      return res.status(429).json({ error: 'Too many messages. Please try again later.' });
-    }
-    entry.count += 1;
-  } else {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + WINDOW_MS });
-  }
-
   const { firstName, lastName, email, message } = req.body;
 
   // Basic server-side validation
@@ -50,6 +35,19 @@ export default async function handler(req, res) {
   }
 
   const adminSupabase = createAdminClient();
+
+  // Rate limiting by email — check recent submissions in the database.
+  // Works across serverless instances and survives cold starts.
+  const windowStart = new Date(Date.now() - WINDOW_MS).toISOString();
+  const { count } = await adminSupabase
+    .from('contact_submissions')
+    .select('*', { count: 'exact', head: true })
+    .eq('email', email.trim().toLowerCase())
+    .gte('created_at', windowStart);
+
+  if (count >= LIMIT) {
+    return res.status(429).json({ error: 'Too many messages. Please try again later.' });
+  }
 
   const { error } = await adminSupabase.from('contact_submissions').insert({
     first_name: firstName.trim(),
