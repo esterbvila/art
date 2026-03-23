@@ -63,14 +63,26 @@ export default async function handler(req, res) {
     // 2. Extract custom message field
     const customerMessage = session.custom_fields?.find(f => f.key === 'message')?.text?.value ?? null;
 
-    // 3. Shared order fields
+    // 3. Fetch artwork details (needed for both order insertion and emails)
+    const { data: artworksData } = await adminSupabase
+      .from('artworks')
+      .select('id, title, price, collections(price)')
+      .in('id', artworkIds);
+
+    const artworkMap = Object.fromEntries(
+      (artworksData ?? []).map((a) => [
+        a.id,
+        { title: a.title, price: a.price || a.collections?.price || 0 },
+      ])
+    );
+
+    // 4. Shared order fields (without amount_cents — that's per-artwork)
     const shippingDetails = session.shipping_details ?? null;
     const addr            = shippingDetails?.address ?? session.customer_details?.address ?? null;
     const shippingName    = shippingDetails?.name ?? session.customer_details?.name ?? null;
 
     const sharedFields = {
       stripe_session_id:    session.id,
-      amount_cents:         session.amount_total,
       customer_email:       session.customer_details?.email ?? null,
       customer_name:        session.customer_details?.name ?? null,
       customer_phone:       session.customer_details?.phone ?? null,
@@ -86,14 +98,15 @@ export default async function handler(req, res) {
       message:              customerMessage,
     };
 
-    // 3. Decrement stock and insert order for each artwork
+    // 5. Decrement stock and insert order for each artwork with its individual price
     // Only the first artwork's insert failing with 23505 means the whole session
     // was already processed (duplicate webhook delivery). Later failures for other
     // artworks in the same session would be a constraint issue, not a duplicate.
     const firstId = artworkIds[0];
     const { error: firstOrderError } = await adminSupabase.from('orders').insert({
       ...sharedFields,
-      artwork_id: firstId,
+      artwork_id:   firstId,
+      amount_cents: artworkMap[firstId]?.price ?? 0,
     });
 
     if (firstOrderError) {
@@ -111,7 +124,8 @@ export default async function handler(req, res) {
 
       const { error: orderError } = await adminSupabase.from('orders').insert({
         ...sharedFields,
-        artwork_id: artworkId,
+        artwork_id:   artworkId,
+        amount_cents: artworkMap[artworkId]?.price ?? 0,
       });
 
       if (orderError) {
@@ -119,15 +133,10 @@ export default async function handler(req, res) {
       }
     }
 
-    // 4. Fetch all artwork details for the emails
+    // 6. Send emails
     const customerEmail = session.customer_details?.email;
     if (customerEmail) {
-      const { data: artworksData } = await adminSupabase
-        .from('artworks')
-        .select('title, price')
-        .in('id', artworkIds);
-
-      const artworks = artworksData ?? artworkIds.map(() => ({ title: 'your painting', price: 0 }));
+      const artworks = artworkIds.map((id) => artworkMap[id] ?? { title: 'your painting', price: 0 });
 
       await sendOrderConfirmation({
         to:           customerEmail,

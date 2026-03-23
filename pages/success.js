@@ -22,10 +22,9 @@ export default function Success() {
         >
           Your order has been received.
         </h1>
-        <div className="text-text-secondary font-sans text-[15px] leading-[1.7] flex flex-col gap-3">
-          <p>You will receive an email shortly confirming receipt of your order.</p>
-          <p>I will review your order and contact you soon to arrange shipping for your original painting.</p>
-        </div>
+        <p className="text-text-secondary font-sans text-[15px] leading-[1.7] max-w-2xl">
+          You will receive an email shortly confirming receipt of your order. I will review your order and contact you soon to arrange shipping for your original painting.
+        </p>
         <Link
           href="/"
           className="mt-4 inline-block bg-accent text-white font-sans text-sm px-10 py-4 hover:opacity-90 transition-opacity"
