@@ -43,6 +43,7 @@ export default function Hero() {
           sizes="100vw"
           quality={50}
           priority
+          fetchPriority="high"
         />
       </div>
     </section>
