@@ -141,7 +141,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             {/* lg+: 1-over-N×2 image grid */}
             <div className="hidden lg:flex flex-col gap-[6px]">
               {artwork.images?.[0] && (
-                <div className="relative w-full max-w-[670px] mx-auto aspect-[2/3] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
+                <div className="relative w-full max-w-[650px] 2xl:max-w-[670px] mx-auto aspect-[2/3] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
                   <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="50vw" quality={60} priority />
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightboxSrc(artwork.images[0]); }}
