@@ -4,7 +4,7 @@ const nextConfig = {
 
   images: {
     formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 2592000, // 30 days
+    minimumCacheTTL: 86400, // 1 day
     deviceSizes: [512, 640, 750, 828, 1080, 1280, 1440, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 320, 384, 512],
     remotePatterns: [
