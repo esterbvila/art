@@ -72,33 +72,34 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
         <link rel="canonical" href={`https://esteriicreates.com/${artwork.id}`} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify([
-            {
-              '@context': 'https://schema.org',
-              '@type': 'Product',
-              name: artwork.title,
-              description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
-              image: artwork.image_url,
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: artwork.title,
+            description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
+            image: artwork.image_url,
+            url: `https://esteriicreates.com/${artwork.id}`,
+            brand: { '@type': 'Brand', name: 'esterii creates' },
+            offers: {
+              '@type': 'Offer',
+              price: (artwork.price / 100).toFixed(2),
+              priceCurrency: 'EUR',
+              availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
               url: `https://esteriicreates.com/${artwork.id}`,
-              brand: { '@type': 'Brand', name: 'esterii creates' },
-              offers: {
-                '@type': 'Offer',
-                price: (artwork.price / 100).toFixed(2),
-                priceCurrency: 'EUR',
-                availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
-                url: `https://esteriicreates.com/${artwork.id}`,
-              },
             },
-            {
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://esteriicreates.com' },
-                ...(collection ? [{ '@type': 'ListItem', position: 2, name: collection.name, item: `https://esteriicreates.com/collections/${collection.slug}` }] : []),
-                { '@type': 'ListItem', position: collection ? 3 : 2, name: artwork.title, item: `https://esteriicreates.com/${artwork.id}` },
-              ],
-            },
-          ]).replace(/</g, '\\u003c') }}
+          }).replace(/</g, '\\u003c') }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://esteriicreates.com' },
+              ...(collection ? [{ '@type': 'ListItem', position: 2, name: collection.name, item: `https://esteriicreates.com/collections/${collection.slug}` }] : []),
+              { '@type': 'ListItem', position: collection ? 3 : 2, name: artwork.title, item: `https://esteriicreates.com/${artwork.id}` },
+            ],
+          }).replace(/</g, '\\u003c') }}
         />
       </Head>
 
@@ -142,7 +143,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             <div className="hidden lg:flex flex-col gap-[6px]">
               {artwork.images?.[0] && (
                 <div className="relative w-full max-w-[650px] 2xl:max-w-[670px] mx-auto aspect-[2/3] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
-                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="50vw" quality={60} priority />
+                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="650px" unoptimized priority />
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightboxSrc(artwork.images[0]); }}
                     aria-label="View full screen"

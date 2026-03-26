@@ -48,26 +48,27 @@ export default function Home({ collections, uniqueArtworks, featuredArtwork }) {
         <link rel="icon" href="/favicon.png" type="image/png" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify([
-            {
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Ester Batllori',
-              url: 'https://esteriicreates.com',
-              sameAs: ['https://instagram.com/esterii_creates'],
-              jobTitle: 'Abstract Painter',
-              description: 'Original abstract paintings exploring emotion, intuition and subconscious landscapes.',
-            },
-            {
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'esterii creates',
-              url: 'https://esteriicreates.com',
-              logo: 'https://esteriicreates.com/favicon.png',
-              sameAs: ['https://instagram.com/esterii_creates'],
-              address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
-            },
-          ]).replace(/</g, '\\u003c') }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Ester Batllori',
+            url: 'https://esteriicreates.com',
+            sameAs: ['https://instagram.com/esterii_creates'],
+            jobTitle: 'Abstract Painter',
+            description: 'Original abstract paintings exploring emotion, intuition and subconscious landscapes.',
+          }).replace(/</g, '\\u003c') }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'esterii creates',
+            url: 'https://esteriicreates.com',
+            logo: 'https://esteriicreates.com/favicon.png',
+            sameAs: ['https://instagram.com/esterii_creates'],
+            address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
+          }).replace(/</g, '\\u003c') }}
         />
       </Head>
 

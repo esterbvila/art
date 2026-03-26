@@ -11,8 +11,17 @@ import { ZoomIn } from 'lucide-react';
  */
 export default function ImageSlider({ images, alt, onImageClick }) {
   const [current, setCurrent] = useState(0);
+  const [isLg, setIsLg] = useState(false);
   const stripRef = useRef(null);
   const thumbRefs = useRef([]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    setIsLg(mq.matches);
+    const handler = (e) => setIsLg(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   useEffect(() => {
     const thumb = thumbRefs.current[current];
@@ -44,7 +53,7 @@ export default function ImageSlider({ images, alt, onImageClick }) {
           fill
           className="object-cover transition-opacity duration-300 cursor-zoom-in"
           sizes="(max-width: 768px) 100vw, calc(100vw - 96px)"
-          quality={60}
+          quality={current === 0 && isLg ? 85 : 60}
           priority={current === 0}
           onClick={() => onImageClick?.(images[current])}
         />
