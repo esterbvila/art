@@ -56,7 +56,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
   return (
     <>
       <Head>
-        <title>{artwork.title} — Ester Batllori</title>
+        <title>{`${artwork.title} — Ester Batllori`}</title>
         <meta name="description" content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`} />
         <meta property="og:title" content={`${artwork.title} — Ester Batllori`} />
         <meta property="og:description" content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`} />

@@ -9,11 +9,16 @@ import { ZoomIn } from 'lucide-react';
  * @param {string[]} images  - Array of image URLs/paths
  * @param {string}   alt     - Alt text for the main image
  */
+const SWIPE_THRESHOLD = 50; // px needed to count as a swipe
+
 export default function ImageSlider({ images, alt, onImageClick }) {
   const [current, setCurrent] = useState(0);
   const [isLg, setIsLg] = useState(false);
   const stripRef = useRef(null);
   const thumbRefs = useRef([]);
+  const imageContainerRef = useRef(null);
+  const swipeStart = useRef(null); // { x, y }
+  const swipeDir  = useRef(null);  // null | 'h' | 'v'
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 1024px)');
@@ -30,6 +35,26 @@ export default function ImageSlider({ images, alt, onImageClick }) {
     }
   }, [current]);
 
+  // Non-passive touchmove listener so we can preventDefault on horizontal swipes
+  // without blocking vertical page scroll when the user is scrolling up/down.
+  useEffect(() => {
+    const el = imageContainerRef.current;
+    if (!el || !images || images.length <= 1) return;
+
+    function onTouchMove(e) {
+      if (!swipeStart.current) return;
+      const dx = e.touches[0].clientX - swipeStart.current.x;
+      const dy = e.touches[0].clientY - swipeStart.current.y;
+      if (swipeDir.current === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+        swipeDir.current = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+      }
+      if (swipeDir.current === 'h') e.preventDefault();
+    }
+
+    el.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => el.removeEventListener('touchmove', onTouchMove);
+  }, [images]);
+
   if (!images || images.length === 0) return null;
 
   const hasManyImages = images.length > 1;
@@ -42,10 +67,33 @@ export default function ImageSlider({ images, alt, onImageClick }) {
     setCurrent((i) => (i + 1) % images.length);
   }
 
+  function handleTouchStart(e) {
+    swipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    swipeDir.current = null;
+  }
+
+  function handleTouchEnd(e) {
+    if (!swipeStart.current || swipeDir.current !== 'h') {
+      swipeStart.current = null;
+      swipeDir.current = null;
+      return;
+    }
+    const dx = e.changedTouches[0].clientX - swipeStart.current.x;
+    if (dx < -SWIPE_THRESHOLD) next();
+    else if (dx > SWIPE_THRESHOLD) prev();
+    swipeStart.current = null;
+    swipeDir.current = null;
+  }
+
   return (
     <div className="flex flex-col gap-3">
       {/* ── Main image ─────────────────────────────────────────────── */}
-      <div className="relative w-full h-[380px] sm:h-[550px] md:h-[700px] lg:h-[750px] overflow-hidden group">
+      <div
+        ref={imageContainerRef}
+        className="relative w-full aspect-[3/4] overflow-hidden group"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <Image
           key={images[current]}
           src={images[current]}

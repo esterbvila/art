@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import { supabase } from '../../lib/supabase';
 import { resolveFirstImage } from '../../lib/storage';
 import Navigation from '../../components/Navigation';
@@ -36,7 +35,7 @@ export default function CollectionPage({ collection, artworks }) {
   return (
     <>
       <Head>
-        <title>{collection.name} — Ester Batllori</title>
+        <title>{`${collection.name} — Ester Batllori`}</title>
         <meta name="description" content={collection.description_collection || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />
         <meta property="og:title" content={`${collection.name} — Ester Batllori`} />
         <meta property="og:description" content={collection.description_collection || `${collection.name} — A collection of original abstract paintings by Ester Batllori.`} />

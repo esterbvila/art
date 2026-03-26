@@ -24,7 +24,7 @@ export default function ArtworkCard({ artwork, imageHeight, sizes }) {
       aria-label={`View ${title}`}
     >
       {/* ── Artwork image ─────────────────────────────────────────────── */}
-      <div className={`relative w-full overflow-hidden ${imageHeight ?? 'h-[340px] 2xl:h-[380px]'}`}>
+      <div className={`relative w-full overflow-hidden ${imageHeight ?? 'h-[340px] 2xl:h-[400px]'}`}>
         <Image
           src={image_url}
           alt={title}

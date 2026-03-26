@@ -22,7 +22,7 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
   return (
     <>
       <Head>
-        <title>{lang === 'de' ? metaTitleDe : metaTitleEn} — esterii creates</title>
+        <title>{`${lang === 'de' ? metaTitleDe : metaTitleEn} — esterii creates`}</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
