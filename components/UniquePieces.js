@@ -27,7 +27,7 @@ export default function UniquePieces({ artworks = [] }) {
       </div>
 
       {/* ── Grid ───────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-9 md:gap-[40px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-9">
         {sorted.map((artwork) => (
           <ArtworkCard key={artwork.id} artwork={artwork} />
         ))}

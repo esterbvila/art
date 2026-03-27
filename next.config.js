@@ -6,7 +6,7 @@ const nextConfig = {
     formats: ['image/webp'],
     minimumCacheTTL: 86400, // 1 day
     qualities: [50, 60, 85, 100],
-    deviceSizes: [640, 1080, 1920],
+    deviceSizes: [640, 1080, 1920, 2235],
     imageSizes: [128, 384],
     remotePatterns: [
       {

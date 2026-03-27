@@ -20,7 +20,7 @@ export default function CollectionCard({ collection }) {
       aria-label={`View ${name} collection`}
     >
       {/* ── Cover image ──────────────────────────────────────────────── */}
-      <div className="relative w-full h-[340px] lg:h-[360px] overflow-hidden">
+      <div className="relative w-full aspect-[3/4] overflow-hidden">
         {cover_image_url ? (
           <Image
             src={cover_image_url}

@@ -2,23 +2,20 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ZoomIn } from 'lucide-react';
 
-/**
- * ImageSlider — main image + thumbnail strip.
- * If only one image is provided, renders it without any controls.
- *
- * @param {string[]} images  - Array of image URLs/paths
- * @param {string}   alt     - Alt text for the main image
- */
-const SWIPE_THRESHOLD = 50; // px needed to count as a swipe
+const SWIPE_THRESHOLD = 50; // px needed to commit to a slide change
 
 export default function ImageSlider({ images, alt, onImageClick }) {
-  const [current, setCurrent] = useState(0);
-  const [isLg, setIsLg] = useState(false);
-  const stripRef = useRef(null);
-  const thumbRefs = useRef([]);
-  const imageContainerRef = useRef(null);
-  const swipeStart = useRef(null); // { x, y }
-  const swipeDir  = useRef(null);  // null | 'h' | 'v'
+  const [current, setCurrent]   = useState(0);
+  const [isLg, setIsLg]         = useState(false);
+  const [dragX, setDragX]       = useState(0);
+  const [dragging, setDragging] = useState(false);
+
+  const stripRef    = useRef(null);
+  const thumbRefs   = useRef([]);
+  const trackRef    = useRef(null);
+  const swipeStart  = useRef(null); // { x, y }
+  const swipeDir    = useRef(null); // null | 'h' | 'v'
+  const didDrag     = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 1024px)');
@@ -35,20 +32,26 @@ export default function ImageSlider({ images, alt, onImageClick }) {
     }
   }, [current]);
 
-  // Non-passive touchmove listener so we can preventDefault on horizontal swipes
-  // without blocking vertical page scroll when the user is scrolling up/down.
+  // Non-passive listener so we can preventDefault on horizontal swipes
+  // without blocking vertical page scrolling.
   useEffect(() => {
-    const el = imageContainerRef.current;
+    const el = trackRef.current;
     if (!el || !images || images.length <= 1) return;
 
     function onTouchMove(e) {
       if (!swipeStart.current) return;
       const dx = e.touches[0].clientX - swipeStart.current.x;
       const dy = e.touches[0].clientY - swipeStart.current.y;
+
       if (swipeDir.current === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
         swipeDir.current = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
       }
-      if (swipeDir.current === 'h') e.preventDefault();
+
+      if (swipeDir.current === 'h') {
+        e.preventDefault();
+        didDrag.current = true;
+        setDragX(dx);
+      }
     }
 
     el.addEventListener('touchmove', onTouchMove, { passive: false });
@@ -59,54 +62,76 @@ export default function ImageSlider({ images, alt, onImageClick }) {
 
   const hasManyImages = images.length > 1;
 
-  function prev() {
-    setCurrent((i) => (i - 1 + images.length) % images.length);
-  }
-
-  function next() {
-    setCurrent((i) => (i + 1) % images.length);
+  function goTo(i) {
+    setCurrent(Math.max(0, Math.min(images.length - 1, i)));
+    setDragX(0);
+    setDragging(false);
   }
 
   function handleTouchStart(e) {
+    if (!hasManyImages) return;
     swipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    swipeDir.current = null;
+    swipeDir.current   = null;
+    didDrag.current    = false;
+    setDragging(true);
   }
 
   function handleTouchEnd(e) {
-    if (!swipeStart.current || swipeDir.current !== 'h') {
-      swipeStart.current = null;
-      swipeDir.current = null;
-      return;
-    }
+    if (!swipeStart.current) { setDragging(false); return; }
     const dx = e.changedTouches[0].clientX - swipeStart.current.x;
-    if (dx < -SWIPE_THRESHOLD) next();
-    else if (dx > SWIPE_THRESHOLD) prev();
+
+    if (swipeDir.current === 'h') {
+      if      (dx < -SWIPE_THRESHOLD && current < images.length - 1) goTo(current + 1);
+      else if (dx >  SWIPE_THRESHOLD && current > 0)                  goTo(current - 1);
+      else { setDragX(0); setDragging(false); }
+    } else {
+      setDragX(0);
+      setDragging(false);
+    }
+
     swipeStart.current = null;
-    swipeDir.current = null;
+    swipeDir.current   = null;
   }
 
   return (
     <div className="flex flex-col gap-3">
       {/* ── Main image ─────────────────────────────────────────────── */}
       <div
-        ref={imageContainerRef}
-        className="relative w-full aspect-[3/4] overflow-hidden group"
+        ref={trackRef}
+        className="relative w-full aspect-[3/4] max-h-[600px] overflow-hidden group"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <Image
-          key={images[current]}
-          src={images[current]}
-          alt={alt}
-          fill
-          className="object-cover transition-opacity duration-300 cursor-zoom-in"
-          sizes="(max-width: 768px) 100vw, calc(100vw - 96px)"
-          quality={current === 0 && isLg ? 85 : 60}
-          priority={current === 0}
-          onClick={() => onImageClick?.(images[current])}
-        />
+        {/* Sliding track — all slides sit side-by-side and translate together */}
+        <div
+          className="absolute inset-0 flex"
+          style={{
+            transform:  `translateX(calc(${-current * 100}% + ${dragX}px))`,
+            transition: dragging ? 'none' : 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            willChange: 'transform',
+          }}
+        >
+          {images.map((src, i) => (
+            <div
+              key={src}
+              className="relative min-w-full h-full"
+              onClick={() => { if (!didDrag.current) onImageClick?.(src); }}
+            >
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover cursor-zoom-in"
+                sizes="(max-width: 768px) 100vw, calc(100vw - 96px)"
+                quality={i === 0 && isLg ? 85 : 60}
+                priority={i === 0}
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
+            </div>
+          ))}
+        </div>
 
-        {/* Magnifier button — always visible on mobile, hover-only on lg+ */}
+        {/* Magnifier button */}
         {onImageClick && (
           <button
             onClick={() => onImageClick(images[current])}
@@ -117,34 +142,14 @@ export default function ImageSlider({ images, alt, onImageClick }) {
           </button>
         )}
 
-        {/* Prev / Next arrows — only shown when multiple images */}
         {hasManyImages && (
           <>
-            <button
-              onClick={prev}
-              aria-label="Previous image"
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-bg-main/80 hover:bg-bg-main transition-colors opacity-0 group-hover:opacity-100"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M10 3L5 8L10 13" stroke="#1A1917" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next image"
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-bg-main/80 hover:bg-bg-main transition-colors opacity-0 group-hover:opacity-100"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 3L11 8L6 13" stroke="#1A1917" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-
-            {/* Dot counter */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {/* Dot indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
               {images.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setCurrent(i)}
+                  onClick={() => goTo(i)}
                   aria-label={`Go to image ${i + 1}`}
                   className={`w-1.5 h-1.5 rounded-full transition-colors ${
                     i === current ? 'bg-text-primary' : 'bg-text-primary/30'
@@ -156,14 +161,14 @@ export default function ImageSlider({ images, alt, onImageClick }) {
         )}
       </div>
 
-      {/* ── Thumbnail strip — only shown when multiple images ──────── */}
+      {/* ── Thumbnail strip ─────────────────────────────────────────── */}
       {hasManyImages && (
         <div ref={stripRef} className="flex gap-2 overflow-x-auto py-1">
           {images.map((src, i) => (
             <button
               key={i}
               ref={el => thumbRefs.current[i] = el}
-              onClick={() => setCurrent(i)}
+              onClick={() => goTo(i)}
               aria-label={`View image ${i + 1}`}
               className={`relative flex-shrink-0 w-[80px] h-[80px] md:w-[100px] md:h-[100px] transition-opacity ${
                 i === current ? 'opacity-100 ring-2 ring-accent ring-offset-1 ring-offset-bg-main' : 'opacity-50 hover:opacity-75'

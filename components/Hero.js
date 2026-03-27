@@ -16,7 +16,7 @@ export default function Hero() {
         <h1
           className="font-sans font-normal text-text-primary leading-tight95 w-full md:max-w-[66%]"
           style={{
-            fontSize:      'clamp(35px, 5.5vw, 80px)',
+            fontSize:      'clamp(37px, 5.5vw, 80px)',
             letterSpacing: 'clamp(-px, -0.15vw, -2px)',
             lineHeight:    1,
           }}
@@ -34,14 +34,14 @@ export default function Hero() {
       </div>
 
       {/* ── Hero image ───────────────────────────────────────────────── */}
-      <div className="relative w-full h-[250px] md:h-[610px] overflow-hidden">
+      <div className="relative w-full h-[250px] md:h-[350px] lg:h-[500px] xl:h-[550px] 2xl:h-[700px] overflow-hidden">
         <Image
           src="/hero-img.webp"
           alt="Abstract painting by Ester Batllori"
           fill
           className="object-cover"
-          sizes="100vw"
-          quality={50}
+          sizes="(min-width: 1536px) 2235px, (min-width: 1024px) 1920px, 100vw"
+          quality={100}
           priority
           fetchPriority="high"
         />

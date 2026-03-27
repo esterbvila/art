@@ -126,7 +126,7 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             {/* md to lg: single column stack */}
             <div className="hidden md:flex lg:hidden flex-col gap-[6px]">
               {(artwork.images ?? []).map((src, i) => (
-                <div key={i} className="relative w-full aspect-square overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(src)}>
+                <div key={i} className="relative w-full aspect-[3/4] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(src)}>
                   <Image src={src} alt={artwork.title} fill className="object-cover" sizes="50vw" quality={60} priority={i === 0} />
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightboxSrc(src); }}
@@ -142,8 +142,8 @@ export default function ArtworkDetail({ artwork, collection, related = [] }) {
             {/* lg+: 1-over-N×2 image grid */}
             <div className="hidden lg:flex flex-col gap-[6px]">
               {artwork.images?.[0] && (
-                <div className="relative w-full max-w-[650px] 2xl:max-w-[670px] mx-auto aspect-[2/3] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
-                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="650px" quality={100} priority />
+                <div className="relative w-full max-w-[640px] 2xl:max-w-[670px] mx-auto aspect-[3/4] overflow-hidden group cursor-zoom-in" onClick={() => setLightboxSrc(artwork.images[0])}>
+                  <Image src={artwork.images[0]} alt={artwork.title} fill className="object-cover" sizes="(min-width: 1024px) 1920px, 100vw" quality={100} priority />
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightboxSrc(artwork.images[0]); }}
                     aria-label="View full screen"

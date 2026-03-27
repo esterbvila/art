@@ -40,31 +40,16 @@ export default function ImageLightbox({ src, images = [], alt, onClose }) {
         <X size={24} />
       </button>
 
-      {/* Mobile (< md): single image */}
-      <div
-        className="md:hidden h-full flex items-center justify-center px-4 cursor-zoom-out"
-        onClick={onClose}
-      >
-        <div
-          className="relative w-full max-h-[90vh]"
-          style={{ height: '90vh' }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Image src={src} alt={alt} fill className="object-contain" sizes="100vw" />
-        </div>
-      </div>
-
-      {/* md+: all images stacked, scrollable */}
+      {/* All sizes: all images stacked, scrollable, jumps to selected */}
       <div
         ref={containerRef}
-        className="hidden md:flex md:flex-col h-full overflow-y-auto items-center py-12 gap-3 px-6"
+        className="flex flex-col h-full overflow-y-auto items-center py-12 gap-3 px-6"
       >
         {allImages.map((imgSrc, i) => (
           <div
             key={i}
             ref={imgSrc === src ? selectedRef : null}
-            className="relative w-full max-w-4xl flex-shrink-0 cursor-zoom-out"
-            style={{ height: '100vh' }}
+            className="relative w-full max-w-4xl flex-shrink-0 cursor-zoom-out aspect-[3/4] md:h-[90vh]"
             onClick={onClose}
           >
             <Image
@@ -72,7 +57,7 @@ export default function ImageLightbox({ src, images = [], alt, onClose }) {
               alt={`${alt} — ${i + 1}`}
               fill
               className="object-contain"
-              sizes="(max-width: 1024px) 100vw, 896px"
+              sizes="100vw"
               onClick={(e) => e.stopPropagation()}
             />
           </div>
