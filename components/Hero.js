@@ -41,7 +41,7 @@ export default function Hero() {
           fill
           className="object-cover"
           sizes="(min-width: 1536px) 2235px, (min-width: 1024px) 1920px, (min-width: 641px) 100vw, 640px"
-          quality={80}
+          quality={85}
           priority
           fetchPriority="high"
         />
