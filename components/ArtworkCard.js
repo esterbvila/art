@@ -13,7 +13,7 @@ import { formatPrice } from '../lib/utils';
  *
  * Clicking the card navigates to the artwork detail page.
  */
-export default function ArtworkCard({ artwork, imageHeight, sizes }) {
+export default function ArtworkCard({ artwork, imageHeight }) {
   const { id, title, price, image_url, stock } = artwork;
   const isAvailable = stock > 0;
 
@@ -30,7 +30,7 @@ export default function ArtworkCard({ artwork, imageHeight, sizes }) {
           alt={title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          sizes={sizes ?? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"}
+          sizes="640px"
           quality={60}
         />
         {/* Sold overlay */}
