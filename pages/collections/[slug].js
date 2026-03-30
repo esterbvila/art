@@ -160,7 +160,7 @@ export default function CollectionPage({ collection, artworks }) {
 
 					{/* Right: description (desktop beside, mobile below) */}
 					{collection.description_collection && (
-						<p className="font-sans font-normal text-text-secondary text-[14px] md:text-[15px] leading-[1.7] md:max-w-[420px] md:flex-shrink-0">
+						<p className="font-sans font-normal text-text-secondary text-[14px] md:text-[15px] leading-[1.7] md:max-w-[420px] md:shrink-0">
 							{collection.description_collection}
 						</p>
 					)}

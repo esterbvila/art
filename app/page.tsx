@@ -2,14 +2,13 @@ import AboutArtist from "../components/AboutArtist";
 import ContactForm from "../components/ContactForm";
 import FeaturedPainting from "../components/FeaturedPainting";
 import Footer from "../components/Footer";
-import Gallery from "../components/Gallery";
+import Gallery from "../components/gallery";
 import Hero from "../components/Hero";
 import Navigation from "../components/Navigation";
 import UniquePieces from "../components/UniquePieces";
 import { resolveFirstImage } from "../lib/storage";
-import { supabase } from "../lib/supabase";
+import { getSupabase } from "../lib/supabase";
 
-// ── Metadata (replaces <Head>) ────────────────────────────────────────────────
 export const metadata = {
   title: "Ester Batllori — Abstract Paintings",
   description:
@@ -88,8 +87,8 @@ function OrganizationJsonLd() {
   );
 }
 
-// ── Data fetching (replaces getServerSideProps) ───────────────────────────────
 async function getCollections() {
+  const supabase = await getSupabase();
   const { data: collectionsRaw, error } = await supabase
     .from("collections")
     .select("id, slug, name, tagline, cover_image_url, sort_order, artworks(id, price)")
@@ -108,6 +107,7 @@ async function getCollections() {
 }
 
 async function getUniqueArtworks() {
+  const supabase = await getSupabase();
   const { data: uniqueArtworksRaw } = await supabase
     .from("artworks")
     .select("id, title, medium, dimensions, price, image_url, stock, tagline")
@@ -124,6 +124,7 @@ async function getUniqueArtworks() {
 }
 
 async function getFeaturedArtwork() {
+  const supabase = await getSupabase();
   const { data: featuredRaw } = await supabase
     .from("artworks")
     .select("id, title, description, price, image_url, stock")
@@ -140,11 +141,6 @@ async function getFeaturedArtwork() {
   };
 }
 
-// ── Page component ────────────────────────────────────────────────────────────
-// Runs on the server on every request — equivalent to SSR via getServerSideProps.
-// To opt into ISR instead, export: export const revalidate = 60;
-export const dynamic = "force-dynamic";
-
 export default async function Home() {
   const [collections, uniqueArtworks, featuredArtwork] = await Promise.all([
     getCollections(),
@@ -158,46 +154,34 @@ export default async function Home() {
       <OrganizationJsonLd />
 
       <div className="flex min-h-screen flex-col bg-bg-main">
-        {/* ── Navigation ───────────────────────────────────────────────── */}
         <Navigation />
 
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
         <Hero />
 
-        {/* ── Divider ──────────────────────────────────────────────────── */}
         <div className="h-px w-full bg-divider" />
 
-        {/* ── Unique Pieces ─────────────────────────────────────────────── */}
         <section id="works">
           <UniquePieces artworks={uniqueArtworks} />
         </section>
 
-        {/* ── Divider ──────────────────────────────────────────────────── */}
         <div className="h-px w-full bg-divider" />
 
-        {/* ── Gallery ──────────────────────────────────────────────────── */}
         <Gallery collections={collections} />
 
-        {/* ── About the Artist ─────────────────────────────────────────── */}
         <section id="about">
           <AboutArtist />
         </section>
 
-        {/* ── Featured Painting ────────────────────────────────────────── */}
         {featuredArtwork && <FeaturedPainting artwork={featuredArtwork} />}
 
-        {/* ── Divider ──────────────────────────────────────────────────── */}
         <div className="h-px w-full bg-divider" />
 
-        {/* ── Contact ──────────────────────────────────────────────────── */}
         <section id="contact">
           <ContactForm />
         </section>
 
-        {/* ── Divider ──────────────────────────────────────────────────── */}
         <div className="h-px w-full bg-divider" />
 
-        {/* ── Footer ───────────────────────────────────────────────────── */}
         <Footer />
       </div>
     </>

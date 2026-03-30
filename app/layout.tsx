@@ -2,6 +2,7 @@ import { Funnel_Sans } from "next/font/google";
 import React from "react";
 import CartDrawer from "../components/CartDrawer";
 import CartProvider from "../context/CartContext";
+import "./globals.css";
 
 const funnelSans = Funnel_Sans({
   subsets: ["latin"],

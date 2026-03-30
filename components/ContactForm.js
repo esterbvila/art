@@ -115,7 +115,7 @@ export default function ContactForm() {
           rel="noopener noreferrer"
           className="flex items-center gap-2.5 transition-opacity hover:opacity-70"
         >
-          <Instagram size={16} className="flex-shrink-0 text-text-tertiary" />
+          <Instagram size={16} className="shrink-0 text-text-tertiary" />
           <span className="font-normal font-sans text-[14px] text-text-secondary">@esterii_creates</span>
         </a>
       </div>

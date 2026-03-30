@@ -31,7 +31,7 @@ export default function ArtworkInfoSection() {
 				<div key={label} className="flex flex-row gap-3">
 					<Icon
 						size={16}
-						className="flex-shrink-0 mt-0.5"
+						className="shrink-0 mt-0.5"
 						style={{ color: "#9C9690" }}
 					/>
 					<div className="flex flex-col gap-[3px]">
@@ -42,7 +42,7 @@ export default function ArtworkInfoSection() {
 							{label}
 						</span>
 						<span
-							className="font-sans text-[12px] font-normal leading-[1.5]"
+							className="font-sans text-[12px] font-normal leading-normal"
 							style={{ color: "#6B6660" }}
 						>
 							{description}

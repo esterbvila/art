@@ -24,19 +24,25 @@ export default function CartDrawer() {
     const isMobile = () => window.innerWidth < 768;
 
     function onTouchStart(e) {
-      if (!isMobile()) return;
+      if (!isMobile()) {
+        return;
+      }
       touchStartX.current = e.touches[0].clientX;
       touchStartY.current = e.touches[0].clientY;
     }
 
     function onTouchEnd(e) {
-      if (!isMobile() || touchStartX.current === null) return;
+      if (!isMobile() || touchStartX.current === null) {
+        return;
+      }
 
       const dx = e.changedTouches[0].clientX - touchStartX.current;
       const dy = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
 
       // Only trigger if swipe is more horizontal than vertical and goes right (dx > 0)
-      if (dx > 50 && dy < 80) setIsOpen(false);
+      if (dx > 50 && dy < 80) {
+        setIsOpen(false);
+      }
 
       touchStartX.current = null;
       touchStartY.current = null;
@@ -53,7 +59,9 @@ export default function CartDrawer() {
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
   async function handleCheckout() {
-    if (!items.length || loading) return;
+    if (!items.length || loading) {
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
@@ -120,7 +128,7 @@ export default function CartDrawer() {
             items.map(item => (
               <div key={item.id} className="flex items-start gap-4">
                 {item.imageUrl && (
-                  <div className="relative h-16 w-16 flex-shrink-0 bg-divider">
+                  <div className="relative h-16 w-16 shrink-0 bg-divider">
                     <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="64px" />
                   </div>
                 )}

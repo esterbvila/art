@@ -10,7 +10,7 @@ export default function AboutArtist() {
   return (
     <section className="flex w-full flex-col bg-bg-warm md:h-[670px] md:flex-row lg:h-[600px]">
       {/* ── Portrait image ────────────────────────────────────────────── */}
-      <div className="relative h-[360px] w-full flex-shrink-0 overflow-hidden md:h-full md:w-[30%] xl:w-[38%] 2xl:w-[50%]">
+      <div className="relative h-[360px] w-full shrink-0 overflow-hidden md:h-full md:w-[30%] xl:w-[38%] 2xl:w-[50%]">
         <Image
           src="/artist-photo.webp"
           alt="Portrait of Ester Batllori in her studio"
@@ -34,7 +34,7 @@ export default function AboutArtist() {
             letterSpacing: "-1.5px",
           }}
         >
-          Ester\nBatllori
+          Ester Batllori
         </h2>
 
         <p className="font-sans text-[14px] text-text-tertiary italic">Based in Berlin</p>

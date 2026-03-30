@@ -25,7 +25,7 @@ A Next.js e-commerce site for selling original abstract paintings, backed by Sup
 │   ├── _app.js              # Global app wrapper
 │   ├── _document.js         # HTML document + Google Fonts
 │   ├── page.tsx             # Landing page
-│   ├── [artworkId].js       # Artwork detail page
+│   ├── page.tsx       # Artwork detail page
 │   ├── success.js           # Post-purchase confirmation
 │   └── api/
 │       ├── checkout.js      # Creates Stripe Checkout Session
@@ -34,7 +34,7 @@ A Next.js e-commerce site for selling original abstract paintings, backed by Sup
 ├── components/
 │   ├── Navigation.js
 │   ├── Hero.js
-│   ├── Gallery.js
+│   ├── gallery.tsx
 │   ├── ArtworkCard.js
 │   ├── PurchaseButton.js
 │   ├── AboutArtist.js
@@ -42,7 +42,7 @@ A Next.js e-commerce site for selling original abstract paintings, backed by Sup
 │   ├── ContactForm.js
 │   └── Footer.js
 ├── lib/
-│   ├── supabase.js          # Supabase client + admin client
+│   ├── supabase.ts          # Supabase client + admin client
 │   ├── stripe.js            # Stripe server-side client
 │   └── utils.js             # cn(), formatPrice(), slugify()
 ├── styles/

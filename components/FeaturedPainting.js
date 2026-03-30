@@ -16,7 +16,7 @@ export default function FeaturedPainting({ artwork }) {
 	return (
 		<section className="flex flex-col md:flex-row bg-bg-deep w-full md:h-[560px]">
 			{/* ── Featured image ────────────────────────────────────────────── */}
-			<div className="relative w-full md:flex-1 h-[340px] md:h-full overflow-hidden flex-shrink-0">
+			<div className="relative w-full md:flex-1 h-[340px] md:h-full overflow-hidden shrink-0">
 				<Image
 					src={artwork.image_url}
 					alt={artwork.title}
@@ -27,7 +27,7 @@ export default function FeaturedPainting({ artwork }) {
 			</div>
 
 			{/* ── Content panel ─────────────────────────────────────────────── */}
-			<div className="flex flex-col justify-center gap-5 px-5 py-8 md:px-[56px] md:py-[64px] md:w-[500px] md:flex-shrink-0">
+			<div className="flex flex-col justify-center gap-5 px-5 py-8 md:px-[56px] md:py-[64px] md:w-[500px] md:shrink-0">
 				{/* Label */}
 				<p className="font-sans font-normal text-text-light-muted text-[13px] tracking-[3px] uppercase">
 					Featured Work

@@ -109,7 +109,7 @@ export default function ImageSlider({ images, alt, onImageClick }) {
 			{/* ── Main image ─────────────────────────────────────────────── */}
 			<div
 				ref={trackRef}
-				className="relative w-full aspect-[3/4] max-h-[600px] overflow-hidden group"
+				className="relative w-full aspect-3/4 max-h-[600px] overflow-hidden group"
 				onTouchStart={handleTouchStart}
 				onTouchEnd={handleTouchEnd}
 			>
@@ -185,7 +185,7 @@ export default function ImageSlider({ images, alt, onImageClick }) {
 							ref={(el) => (thumbRefs.current[i] = el)}
 							onClick={() => goTo(i)}
 							aria-label={`View image ${i + 1}`}
-							className={`relative flex-shrink-0 w-[80px] h-[80px] md:w-[100px] md:h-[100px] transition-opacity ${
+							className={`relative shrink-0 w-[80px] h-[80px] md:w-[100px] md:h-[100px] transition-opacity ${
 								i === current
 									? "opacity-100 ring-2 ring-accent ring-offset-1 ring-offset-bg-main"
 									: "opacity-50 hover:opacity-75"

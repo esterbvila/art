@@ -32,7 +32,7 @@ export default function ImageLightbox({ src, images = [], alt, onClose }) {
 	const allImages = images.length > 0 ? images : [src];
 
 	return (
-		<div className="fixed inset-0 z-[100] bg-black/90">
+		<div className="fixed inset-0 z-100 bg-black/90">
 			{/* Close button */}
 			<button
 				onClick={onClose}
@@ -51,7 +51,7 @@ export default function ImageLightbox({ src, images = [], alt, onClose }) {
 					<div
 						key={i}
 						ref={imgSrc === src ? selectedRef : null}
-						className="relative w-full max-w-4xl flex-shrink-0 cursor-zoom-out aspect-[3/4] md:h-[90vh]"
+						className="relative w-full max-w-4xl shrink-0 cursor-zoom-out aspect-3/4 md:h-[90vh]"
 						onClick={onClose}
 					>
 						<Image

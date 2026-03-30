@@ -31,7 +31,6 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
         <Navigation />
 
         <main className="max-w-[720px] flex-1 px-5 py-[56px] md:px-[48px]">
-          {/* ── Header row: label + language toggle ───────────────────── */}
           <div className="mb-5 flex items-center justify-between">
             <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">Legal</p>
             <div className="flex font-sans text-[12px] tracking-[1px]">
