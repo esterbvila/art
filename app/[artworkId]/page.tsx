@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArtworkCard from "../../components/ArtworkCard";
 import ArtworkInfoSection from "../../components/ArtworkInfoSection";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer";
 import Navigation from "../../components/Navigation";
 import PurchaseButton from "../../components/PurchaseButton";
 import { resolveFirstImage, resolveImages } from "../../lib/storage";

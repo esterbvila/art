@@ -88,7 +88,9 @@ export default function Footer() {
               AGB
             </Link>
           </div>
-          <p className="font-normal font-sans text-[11px] text-text-tertiary md:text-[12px]">© 2026</p>
+          <p className="font-normal font-sans text-[11px] text-text-tertiary md:text-[12px]">
+            © {new Date().getFullYear()}
+          </p>
         </div>
       </div>
     </footer>

@@ -40,7 +40,7 @@ A Next.js e-commerce site for selling original abstract paintings, backed by Sup
 │   ├── AboutArtist.js
 │   ├── FeaturedPainting.js
 │   ├── ContactForm.js
-│   └── Footer.js
+│   └── footer.tsx
 ├── lib/
 │   ├── supabase.ts          # Supabase client + admin client
 │   ├── stripe.js            # Stripe server-side client
