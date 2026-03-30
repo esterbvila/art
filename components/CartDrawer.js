@@ -1,21 +1,24 @@
-import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { X, Trash2 } from 'lucide-react';
-import useCart from '../context/useCart';
-import { formatPrice } from '../lib/utils';
+"use client";
+import { Trash2, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import useCart from "../context/useCart";
+import { formatPrice } from "../lib/utils";
 
 export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState(null);
+  const [error, setError] = useState(null);
   const drawerRef = useRef(null);
   const touchStartX = useRef(null);
   const touchStartY = useRef(null);
 
   useEffect(() => {
     const el = drawerRef.current;
-    if (!el) return;
+    if (!el) {
+      return;
+    }
 
     // Only attach on mobile
     const isMobile = () => window.innerWidth < 768;
@@ -39,11 +42,11 @@ export default function CartDrawer() {
       touchStartY.current = null;
     }
 
-    el.addEventListener('touchstart', onTouchStart, { passive: true });
-    el.addEventListener('touchend', onTouchEnd, { passive: true });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
     return () => {
-      el.removeEventListener('touchstart', onTouchStart);
-      el.removeEventListener('touchend', onTouchEnd);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
     };
   }, [isOpen, setIsOpen]);
 
@@ -54,20 +57,20 @@ export default function CartDrawer() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/checkout', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ artworkIds: items.map(i => i.id) }),
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ artworkIds: items.map(i => i.id) }),
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? 'Something went wrong.');
+        setError(data.error ?? "Something went wrong.");
         return;
       }
       clearCart();
       window.location.href = data.url;
     } catch {
-      setError('Could not connect. Please try again.');
+      setError("Could not connect. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -77,24 +80,23 @@ export default function CartDrawer() {
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-40 bg-black/30 transition-opacity duration-300 ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className={`fixed top-0 right-0 h-full w-full max-w-[370px] bg-bg-main z-50 flex flex-col transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 z-50 flex h-full w-full max-w-[370px] flex-col bg-bg-main transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-divider">
-          <p className="font-sans text-[13px] tracking-[3px] uppercase text-text-tertiary">
+        <div className="flex items-center justify-between border-divider border-b px-6 py-5">
+          <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">
             Cart {items.length > 0 && `(${items.length})`}
           </p>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-text-tertiary hover:text-text-primary transition-colors"
+            className="text-text-tertiary transition-colors hover:text-text-primary"
             aria-label="Close cart"
           >
             <X size={18} />
@@ -102,39 +104,33 @@ export default function CartDrawer() {
         </div>
 
         {/* Items */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-6">
+        <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-6 py-6">
           {items.length === 0 ? (
             <div className="flex flex-col gap-4">
-              <p className="font-sans text-text-tertiary text-[14px]">Your cart is empty.</p>
+              <p className="font-sans text-[14px] text-text-tertiary">Your cart is empty.</p>
               <Link
                 href="/#works"
                 onClick={() => setIsOpen(false)}
-                className="w-full border border-divider font-sans text-text-secondary text-[13px] tracking-[0.5px] py-4 hover:text-text-primary hover:border-text-secondary transition-colors text-center block"
+                className="block w-full border border-divider py-4 text-center font-sans text-[13px] text-text-secondary tracking-[0.5px] transition-colors hover:border-text-secondary hover:text-text-primary"
               >
                 Browse paintings
               </Link>
             </div>
           ) : (
             items.map(item => (
-              <div key={item.id} className="flex gap-4 items-start">
+              <div key={item.id} className="flex items-start gap-4">
                 {item.imageUrl && (
-                  <div className="relative w-16 h-16 flex-shrink-0 bg-divider">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      sizes="64px"
-                    />
+                  <div className="relative h-16 w-16 flex-shrink-0 bg-divider">
+                    <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="64px" />
                   </div>
                 )}
-                <div className="flex-1 flex flex-col gap-1">
-                  <p className="font-sans text-text-primary text-[16px]">{item.title}</p>
-                  <p className="font-sans text-text-secondary text-[14px]">{formatPrice(item.price)}</p>
+                <div className="flex flex-1 flex-col gap-1">
+                  <p className="font-sans text-[16px] text-text-primary">{item.title}</p>
+                  <p className="font-sans text-[14px] text-text-secondary">{formatPrice(item.price)}</p>
                 </div>
                 <button
                   onClick={() => removeItem(item.id)}
-                  className="text-text-tertiary hover:text-text-primary transition-colors mt-0.5"
+                  className="mt-0.5 text-text-tertiary transition-colors hover:text-text-primary"
                   aria-label={`Remove ${item.title}`}
                 >
                   <Trash2 size={14} />
@@ -146,28 +142,27 @@ export default function CartDrawer() {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="px-6 py-6 border-t border-divider flex flex-col gap-4">
-            <div className="flex justify-between items-center">
-              <span className="font-sans text-text-tertiary text-[13px]">Total</span>
-              <span className="font-sans text-text-primary text-[16px]">{formatPrice(total)}</span>
+          <div className="flex flex-col gap-4 border-divider border-t px-6 py-6">
+            <div className="flex items-center justify-between">
+              <span className="font-sans text-[13px] text-text-tertiary">Total</span>
+              <span className="font-sans text-[16px] text-text-primary">{formatPrice(total)}</span>
             </div>
             {error && <p className="font-sans text-[13px] text-red-500">{error}</p>}
             <button
               onClick={handleCheckout}
               disabled={loading}
-              className="w-full bg-accent text-white font-sans text-[14px] tracking-[0.5px] py-4 hover:opacity-90 transition-opacity disabled:opacity-60 cursor-pointer"
+              className="w-full cursor-pointer bg-accent py-4 font-sans text-[14px] text-white tracking-[0.5px] transition-opacity hover:opacity-90 disabled:opacity-60"
             >
-              {loading ? 'Redirecting…' : 'Checkout'}
+              {loading ? "Redirecting…" : "Checkout"}
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-full font-sans text-text-secondary text-[13px] tracking-[0.5px] py-2 hover:text-text-primary transition-colors cursor-pointer"
+              className="w-full cursor-pointer py-2 font-sans text-[13px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
             >
               Continue shopping
             </button>
           </div>
         )}
-
       </div>
     </>
   );

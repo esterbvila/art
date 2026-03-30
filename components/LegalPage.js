@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import Head from 'next/head';
-import Navigation from './Navigation';
-import Footer from './Footer';
+"use client";
+import Head from "next/head";
+import { useState } from "react";
+import Footer from "./Footer";
+import Navigation from "./Navigation";
 
 /**
  * Shared wrapper for all legal pages.
@@ -16,37 +17,36 @@ import Footer from './Footer';
  * - body                  → any JSX
  */
 export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState("en");
   const { title, sections } = content[lang];
 
   return (
     <>
       <Head>
-        <title>{`${lang === 'de' ? metaTitleDe : metaTitleEn} — esterii creates`}</title>
+        <title>{`${lang === "de" ? metaTitleDe : metaTitleEn} — esterii creates`}</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
-      <div className="bg-bg-main min-h-screen flex flex-col">
+      <div className="flex min-h-screen flex-col bg-bg-main">
         <Navigation />
 
-        <main className="flex-1 px-5 md:px-[48px] py-[56px] max-w-[720px]">
-
+        <main className="max-w-[720px] flex-1 px-5 py-[56px] md:px-[48px]">
           {/* ── Header row: label + language toggle ───────────────────── */}
-          <div className="flex items-center justify-between mb-5">
-            <p className="font-sans text-text-tertiary text-[13px] tracking-[3px] uppercase">Legal</p>
+          <div className="mb-5 flex items-center justify-between">
+            <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">Legal</p>
             <div className="flex font-sans text-[12px] tracking-[1px]">
               <button
-                onClick={() => setLang('en')}
-                className={`px-3 py-1 border border-divider transition-colors ${
-                  lang === 'en' ? 'bg-accent text-text-light' : 'text-text-tertiary hover:text-text-primary'
+                onClick={() => setLang("en")}
+                className={`border border-divider px-3 py-1 transition-colors ${
+                  lang === "en" ? "bg-accent text-text-light" : "text-text-tertiary hover:text-text-primary"
                 }`}
               >
                 EN
               </button>
               <button
-                onClick={() => setLang('de')}
-                className={`px-3 py-1 border border-divider border-l-0 transition-colors ${
-                  lang === 'de' ? 'bg-accent text-text-light' : 'text-text-tertiary hover:text-text-primary'
+                onClick={() => setLang("de")}
+                className={`border border-divider border-l-0 px-3 py-1 transition-colors ${
+                  lang === "de" ? "bg-accent text-text-light" : "text-text-tertiary hover:text-text-primary"
                 }`}
               >
                 DE
@@ -56,41 +56,40 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
 
           {/* ── Page title ────────────────────────────────────────────── */}
           <h1
-            className="font-sans font-normal text-text-primary mb-[48px]"
-            style={{ fontSize: 'clamp(32px, 4vw, 48px)', letterSpacing: '-1.5px', lineHeight: 0.95 }}
+            className="mb-[48px] font-normal font-sans text-text-primary"
+            style={{
+              fontSize: "clamp(32px, 4vw, 48px)",
+              letterSpacing: "-1.5px",
+              lineHeight: 0.95,
+            }}
           >
             {title}
           </h1>
 
           {/* ── Sections ──────────────────────────────────────────────── */}
-          <div className="flex flex-col gap-10 font-sans text-[15px] leading-[1.8] text-text-secondary">
+          <div className="flex flex-col gap-10 font-sans text-[15px] text-text-secondary leading-[1.8]">
             {sections.map((section, i) => {
               if (section.divider) {
-                return <div key={i} className="w-full h-px bg-divider" />;
+                return <div key={i} className="h-px w-full bg-divider" />;
               }
               return (
                 <section key={i} className="flex flex-col gap-2">
-                  {section.heading && (
-                    section.headingLarge
-                      ? (
-                        <h2 className="text-text-primary text-[18px] font-normal mb-2">
-                          {section.heading}
-                        </h2>
-                      ) : (
-                        <h2 className="text-text-primary text-[13px] tracking-[2px] uppercase font-normal">
-                          {section.heading}
-                        </h2>
-                      )
-                  )}
+                  {section.heading &&
+                    (section.headingLarge ? (
+                      <h2 className="mb-2 font-normal text-[18px] text-text-primary">{section.heading}</h2>
+                    ) : (
+                      <h2 className="font-normal text-[13px] text-text-primary uppercase tracking-[2px]">
+                        {section.heading}
+                      </h2>
+                    ))}
                   {section.body}
                 </section>
               );
             })}
           </div>
-
         </main>
 
-        <div className="w-full h-px bg-divider" />
+        <div className="h-px w-full bg-divider" />
         <Footer />
       </div>
     </>

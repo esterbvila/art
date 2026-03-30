@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { Menu, X, ShoppingBag } from 'lucide-react';
-import useCart from '../context/useCart';
+"use client";
+import { Menu, ShoppingBag, X } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import useCart from "../context/useCart";
 
 const SHOP_ENABLED = true;
 
@@ -16,28 +17,28 @@ export default function Navigation() {
   const { items, setIsOpen } = useCart();
 
   const links = [
-    { label: 'Works',   href: '/#works'   },
-    { label: 'About',   href: '/#about'   },
+    { label: "Works", href: "/#works" },
+    { label: "About", href: "/#about" },
   ];
 
   return (
-    <header className="w-full relative">
+    <header className="relative w-full">
       <nav className="flex items-center justify-between px-5 py-5 md:px-[48px] md:py-[28px]">
         {/* Brand */}
         <Link
           href="/"
-          className="font-sans font-normal text-text-primary tracking-[2px] text-[15px] md:text-[16px] hover:opacity-80 transition-opacity"
+          className="font-normal font-sans text-[15px] text-text-primary tracking-[2px] transition-opacity hover:opacity-80 md:text-[16px]"
         >
           esterii creates
         </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden items-center gap-10 md:flex">
           {links.map(({ label, href }) => (
             <Link
               key={label}
               href={href}
-              className="font-sans font-normal text-text-secondary text-[13px] tracking-[0.5px] hover:text-text-primary transition-colors"
+              className="font-normal font-sans text-[13px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
             >
               {label}
             </Link>
@@ -45,7 +46,7 @@ export default function Navigation() {
           {/* Inquire — accent colour */}
           <Link
             href="/#contact"
-            className="font-sans font-normal text-accent text-[13px] tracking-[0.5px] hover:opacity-80 transition-opacity"
+            className="font-normal font-sans text-[13px] text-accent tracking-[0.5px] transition-opacity hover:opacity-80"
           >
             Inquire
           </Link>
@@ -53,12 +54,12 @@ export default function Navigation() {
           {SHOP_ENABLED && (
             <button
               onClick={() => setIsOpen(true)}
-              className="relative text-text-secondary hover:text-text-primary transition-colors"
+              className="relative text-text-secondary transition-colors hover:text-text-primary"
               aria-label="Open cart"
             >
               <ShoppingBag size={18} />
               {items.length > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
+                <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent font-sans text-[9px] text-white">
                   {items.length}
                 </span>
               )}
@@ -67,26 +68,22 @@ export default function Navigation() {
         </div>
 
         {/* Mobile right side: cart + hamburger */}
-        <div className="flex md:hidden items-center gap-4">
+        <div className="flex items-center gap-4 md:hidden">
           {SHOP_ENABLED && (
             <button
               onClick={() => setIsOpen(true)}
-              className="relative text-text-secondary hover:text-text-primary transition-colors"
+              className="relative text-text-secondary transition-colors hover:text-text-primary"
               aria-label="Open cart"
             >
               <ShoppingBag size={18} />
               {items.length > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-accent text-white rounded-full text-[9px] flex items-center justify-center font-sans">
+                <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent font-sans text-[9px] text-white">
                   {items.length}
                 </span>
               )}
             </button>
           )}
-          <button
-            className="text-text-primary"
-            onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Toggle menu"
-          >
+          <button className="text-text-primary" onClick={() => setMobileOpen(o => !o)} aria-label="Toggle menu">
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -94,13 +91,13 @@ export default function Navigation() {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-bg-main border-t border-divider z-50 px-5 py-6 flex flex-col gap-5">
+        <div className="absolute top-full right-0 left-0 z-50 flex flex-col gap-5 border-divider border-t bg-bg-main px-5 py-6 md:hidden">
           {links.map(({ label, href }) => (
             <Link
               key={label}
               href={href}
               onClick={() => setMobileOpen(false)}
-              className="font-sans font-normal text-text-secondary text-[15px] tracking-[0.5px] hover:text-text-primary transition-colors"
+              className="font-normal font-sans text-[15px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
             >
               {label}
             </Link>
@@ -108,7 +105,7 @@ export default function Navigation() {
           <Link
             href="/#contact"
             onClick={() => setMobileOpen(false)}
-            className="font-sans font-normal text-accent text-[15px] tracking-[0.5px] hover:opacity-80 transition-opacity"
+            className="font-normal font-sans text-[15px] text-accent tracking-[0.5px] transition-opacity hover:opacity-80"
           >
             Inquire
           </Link>

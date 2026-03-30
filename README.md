@@ -24,7 +24,7 @@ A Next.js e-commerce site for selling original abstract paintings, backed by Sup
 ├── pages/
 │   ├── _app.js              # Global app wrapper
 │   ├── _document.js         # HTML document + Google Fonts
-│   ├── index.js             # Landing page
+│   ├── page.tsx             # Landing page
 │   ├── [artworkId].js       # Artwork detail page
 │   ├── success.js           # Post-purchase confirmation
 │   └── api/
