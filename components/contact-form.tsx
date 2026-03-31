@@ -100,7 +100,7 @@ export default function ContactForm() {
             letterSpacing: "-1.5px",
           }}
         >
-          Commission{"\n"}a Painting
+          Commission a Painting
         </h2>
 
         <p className="font-normal font-sans text-[15px] text-text-secondary leading-[1.7]">

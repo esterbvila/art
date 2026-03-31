@@ -3,10 +3,6 @@ import Link from "next/link";
 import { FaCcAmex, FaCcMastercard, FaCcVisa } from "react-icons/fa";
 import { SiKlarna, SiPaypal, SiStripe } from "react-icons/si";
 
-/**
- * Site footer — three-column layout on desktop, stacked on mobile.
- * Matches the "Footer" frame from both the desktop and mobile prototypes.
- */
 export default function Footer() {
   const navLinks = [
     { label: "Works", href: "/#works" },
@@ -20,7 +16,6 @@ export default function Footer() {
 
   return (
     <footer className="flex w-full flex-col">
-      {/* ── Payment & security badges ───────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-3 border-divider border-b px-5 py-4 sm:gap-4">
         <div className="flex items-center gap-1.5 text-text-tertiary">
           <Lock size={12} />
@@ -36,9 +31,7 @@ export default function Footer() {
         <FaCcAmex size={24} className="text-text-tertiary" title="American Express" />
       </div>
 
-      {/* ── Main footer row ─────────────────────────────────────────────── */}
       <div className="flex flex-col items-center justify-between gap-5 px-5 pt-8 pb-10 md:flex-row md:items-start md:gap-0 md:px-[48px] md:pt-[40px] md:pb-[48px]">
-        {/* ── Left: brand + tagline ──────────────────────────────────────── */}
         <div className="flex flex-col gap-1.5 text-center md:text-left">
           <Link
             href="/"
@@ -66,23 +59,22 @@ export default function Footer() {
           ))}
         </nav>
 
-        {/* ── Right: legal links + copyright ─────────────────────────────── */}
         <div className="flex flex-col items-center gap-2 md:items-end">
           <div className="flex items-center gap-4">
             <Link
-              href="/app/impressum"
+              href="/impressum"
               className="font-normal font-sans text-[11px] text-text-tertiary transition-colors hover:text-text-secondary md:text-[12px]"
             >
               Impressum
             </Link>
             <Link
-              href="/app/datenschutz/datenschutz"
+              href="/datenschutz"
               className="font-normal font-sans text-[11px] text-text-tertiary transition-colors hover:text-text-secondary md:text-[12px]"
             >
               Datenschutz
             </Link>
             <Link
-              href="/app/agb/agb"
+              href="/agb"
               className="font-normal font-sans text-[11px] text-text-tertiary transition-colors hover:text-text-secondary md:text-[12px]"
             >
               AGB
