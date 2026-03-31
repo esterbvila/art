@@ -76,13 +76,13 @@ export default function Footer() {
               Impressum
             </Link>
             <Link
-              href="/datenschutz"
+              href="/app/datenschutz/datenschutz"
               className="font-normal font-sans text-[11px] text-text-tertiary transition-colors hover:text-text-secondary md:text-[12px]"
             >
               Datenschutz
             </Link>
             <Link
-              href="/agb"
+              href="/app/agb/agb"
               className="font-normal font-sans text-[11px] text-text-tertiary transition-colors hover:text-text-secondary md:text-[12px]"
             >
               AGB

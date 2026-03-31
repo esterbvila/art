@@ -17,45 +17,6 @@ A Next.js e-commerce site for selling original abstract paintings, backed by Sup
 
 ---
 
-## Project Structure
-
-```
-/
-├── pages/
-│   ├── _app.js              # Global app wrapper
-│   ├── _document.js         # HTML document + Google Fonts
-│   ├── page.tsx             # Landing page
-│   ├── page.tsx       # Artwork detail page
-│   ├── success.js           # Post-purchase confirmation
-│   └── api/
-│       ├── checkout.js      # Creates Stripe Checkout Session
-│       ├── webhook.js       # Stripe webhook → updates Supabase
-│       └── contact.js       # Saves contact form submissions
-├── components/
-│   ├── Navigation.js
-│   ├── Hero.js
-│   ├── gallery.tsx
-│   ├── ArtworkCard.js
-│   ├── PurchaseButton.js
-│   ├── AboutArtist.js
-│   ├── FeaturedPainting.js
-│   ├── ContactForm.js
-│   └── footer.tsx
-├── lib/
-│   ├── supabase.ts          # Supabase client + admin client
-│   ├── stripe.js            # Stripe server-side client
-│   └── utils.js             # cn(), formatPrice(), slugify()
-├── styles/
-│   └── globals.css          # Tailwind base + CSS utilities
-├── public/
-│   └── artworks/            # Painting images (copy from root)
-└── supabase/
-    ├── schema.sql           # Database schema + RPC functions
-    └── seed.sql             # 16 artworks seed data
-```
-
----
-
 ## Local Development
 
 ### 1. Clone & install
@@ -84,15 +45,15 @@ cp .env.local.example .env.local
 
 Edit `.env.local` and fill in:
 
-| Variable                         | Where to find it                                              |
-|----------------------------------|---------------------------------------------------------------|
-| `NEXT_PUBLIC_SUPABASE_URL`       | Supabase Dashboard → Project Settings → API → Project URL    |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY`  | Supabase Dashboard → Project Settings → API → anon key       |
-| `SUPABASE_SERVICE_ROLE_KEY`      | Supabase Dashboard → Project Settings → API → service_role   |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe Dashboard → Developers → API keys → Publishable |
-| `STRIPE_SECRET_KEY`              | Stripe Dashboard → Developers → API keys → Secret key        |
-| `STRIPE_WEBHOOK_SECRET`          | See "Stripe Webhook" section below                           |
-| `NEXT_PUBLIC_BASE_URL`           | `http://localhost:3000` for local dev                        |
+| Variable                             | Where to find it                                           |
+|--------------------------------------|------------------------------------------------------------|
+| `NEXT_PUBLIC_SUPABASE_URL`           | Supabase Dashboard → Project Settings → API → Project URL  |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`      | Supabase Dashboard → Project Settings → API → anon key     |
+| `SUPABASE_SERVICE_ROLE_KEY`          | Supabase Dashboard → Project Settings → API → service_role |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe Dashboard → Developers → API keys → Publishable     |
+| `STRIPE_SECRET_KEY`                  | Stripe Dashboard → Developers → API keys → Secret key      |
+| `STRIPE_WEBHOOK_SECRET`              | See "Stripe Webhook" section below                         |
+| `NEXT_PUBLIC_BASE_URL`               | `http://localhost:3000` for local dev                      |
 
 ### 4. Set up Supabase
 

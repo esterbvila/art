@@ -1,4 +1,4 @@
-import CollectionCard from "./CollectionCard";
+import CollectionCard from "./collection/collection-card";
 
 interface Collection {
   id: string;

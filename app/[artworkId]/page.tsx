@@ -1,19 +1,63 @@
 import { ZoomIn } from "lucide-react";
-import Head from "next/head";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ArtworkCard from "../../components/ArtworkCard";
-import ArtworkInfoSection from "../../components/ArtworkInfoSection";
+import ArtworkCard from "../../components/artwork/artwork-card";
+import ArtworkInfoSection from "../../components/artwork/artwork-info-section";
 import Footer from "../../components/footer";
-import Navigation from "../../components/Navigation";
-import PurchaseButton from "../../components/PurchaseButton";
+import Navigation from "../../components/navigation";
+import PurchaseButton from "../../components/purchase-button";
 import { resolveFirstImage, resolveImages } from "../../lib/storage";
 import { getSupabase } from "../../lib/supabase";
 import { formatPrice } from "../../lib/utils";
 
 const SHOP_ENABLED = true;
 
+export async function generateMetadata(props: { params: Promise<{ artworkId: string }> }): Promise<Metadata> {
+  const { artworkId } = await props.params;
+  const supabase = await getSupabase();
+
+  const { data: artwork } = await supabase
+    .from("artworks")
+    .select("id, title, description, image_url, price, stock, collections(price)")
+    .eq("id", artworkId)
+    .single();
+
+  if (!artwork) {
+    return {};
+  }
+
+  const isAvailable = artwork.stock > 0;
+  const price = artwork.price || artwork.collections?.price || null;
+  const description = artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`;
+  const imageUrl = artwork.image_url ?? null;
+
+  return {
+    title: `${artwork.title} — Ester Batllori`,
+    description,
+    alternates: {
+      canonical: `https://esteriicreates.com/${artwork.id}`,
+    },
+    openGraph: {
+      title: `${artwork.title} — Ester Batllori`,
+      description,
+      type: "website",
+      url: `https://esteriicreates.com/${artwork.id}`,
+      images: imageUrl ? [{ url: imageUrl }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@esterii_creates",
+      creator: "@esterii_creates",
+      title: `${artwork.title} — Ester Batllori`,
+      description,
+      images: imageUrl ? [imageUrl] : [],
+    },
+  };
+}
+
+// TODO use card here.
 export default async function ArtworkDetailPage(props: { params: Promise<{ artworkId: string }> }) {
   // const { addItem, isInCart, setIsOpen } = useCart();
   // const [lightboxSrc, setLightboxSrc] = useState(null);t
@@ -27,8 +71,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ artwo
     .select("*, collections(id, slug, name, description, process, medium, year, price)")
     .eq("id", artworkId)
     .single();
-
-  console.error(error);
 
   if (error || !artwork) {
     notFound();
@@ -112,87 +154,62 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ artwo
     },
   ].filter(d => d.value);
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: artwork.title,
+    description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
+    image: artwork.image_url,
+    url: `https://esteriicreates.com/${artwork.id}`,
+    brand: { "@type": "Brand", name: "esterii creates" },
+    offers: {
+      "@type": "Offer",
+      price: (artwork.price / 100).toFixed(2),
+      priceCurrency: "EUR",
+      availability: isAvailable ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+      url: `https://esteriicreates.com/${artwork.id}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://esteriicreates.com",
+      },
+      ...(collection
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: collection.name,
+              item: `https://esteriicreates.com/collections/${collection.slug}`,
+            },
+          ]
+        : []),
+      {
+        "@type": "ListItem",
+        position: collection ? 3 : 2,
+        name: artwork.title,
+        item: `https://esteriicreates.com/${artwork.id}`,
+      },
+    ],
+  };
+
   return (
     <>
-      <Head>
-        <title>{`${artwork.title} — Ester Batllori`}</title>
-        <meta
-          name="description"
-          content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`}
-        />
-        <meta property="og:title" content={`${artwork.title} — Ester Batllori`} />
-        <meta
-          property="og:description"
-          content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`}
-        />
-        <meta property="og:type" content="product" />
-        <meta property="og:url" content={`https://esteriicreates.com/${artwork.id}`} />
-        {artwork.image_url && <meta property="og:image" content={artwork.image_url} />}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@esterii_creates" />
-        <meta name="twitter:creator" content="@esterii_creates" />
-        <meta name="twitter:title" content={`${artwork.title} — Ester Batllori`} />
-        <meta
-          name="twitter:description"
-          content={artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`}
-        />
-        {artwork.image_url && <meta name="twitter:image" content={artwork.image_url} />}
-        <link rel="canonical" href={`https://esteriicreates.com/${artwork.id}`} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Product",
-              name: artwork.title,
-              description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
-              image: artwork.image_url,
-              url: `https://esteriicreates.com/${artwork.id}`,
-              brand: { "@type": "Brand", name: "esterii creates" },
-              offers: {
-                "@type": "Offer",
-                price: (artwork.price / 100).toFixed(2),
-                priceCurrency: "EUR",
-                availability: isAvailable ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
-                url: `https://esteriicreates.com/${artwork.id}`,
-              },
-            }).replace(/</g, "\\u003c"),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Home",
-                  item: "https://esteriicreates.com",
-                },
-                ...(collection
-                  ? [
-                      {
-                        "@type": "ListItem",
-                        position: 2,
-                        name: collection.name,
-                        item: `https://esteriicreates.com/collections/${collection.slug}`,
-                      },
-                    ]
-                  : []),
-                {
-                  "@type": "ListItem",
-                  position: collection ? 3 : 2,
-                  name: artwork.title,
-                  item: `https://esteriicreates.com/${artwork.id}`,
-                },
-              ],
-            }).replace(/</g, "\\u003c"),
-          }}
-        />
-      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+      />
 
       <div className="flex min-h-screen flex-col items-center bg-bg-main">
         {/* ── Navigation ─────────────────────────────────────────────── */}
@@ -438,7 +455,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ artwo
                 ))}
               </div>
 
-              {/* Desktop: grid */}
               <div className="hidden grid-cols-4 gap-[20px] lg:grid">
                 {related.map(a => (
                   <ArtworkCard key={a.id} artwork={a} />
@@ -448,10 +464,8 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ artwo
           </>
         )}
 
-        {/* ── Divider ────────────────────────────────────────────────── */}
         <div className="h-px w-full bg-divider" />
 
-        {/* ── Footer ─────────────────────────────────────────────────── */}
         <Footer />
       </div>
 

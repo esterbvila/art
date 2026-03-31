@@ -1,11 +1,11 @@
-import AboutArtist from "../components/AboutArtist";
-import ContactForm from "../components/ContactForm";
-import FeaturedPainting from "../components/FeaturedPainting";
+import AboutArtist from "../components/about-artist";
+import FeaturedArtwork from "../components/artwork/featured-artwork";
+import ContactForm from "../components/contact-form";
 import Footer from "../components/footer";
 import Gallery from "../components/gallery";
-import Hero from "../components/Hero";
-import Navigation from "../components/Navigation";
-import UniquePieces from "../components/UniquePieces";
+import Hero from "../components/hero";
+import Navigation from "../components/navigation";
+import UniquePieces from "../components/unique-pieces";
 import { resolveFirstImage } from "../lib/storage";
 import { getSupabase } from "../lib/supabase";
 
@@ -172,7 +172,7 @@ export default async function Home() {
           <AboutArtist />
         </section>
 
-        {featuredArtwork && <FeaturedPainting artwork={featuredArtwork} />}
+        {featuredArtwork && <FeaturedArtwork artwork={featuredArtwork} />}
 
         <div className="h-px w-full bg-divider" />
 

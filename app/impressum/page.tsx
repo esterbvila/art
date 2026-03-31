@@ -1,4 +1,4 @@
-import LegalPage from "../../components/LegalPage";
+import LegalPage from "../../components/legal-page";
 import { impressumContent } from "../../lib/legal/impressum";
 
 export default function ImpressumPage() {
