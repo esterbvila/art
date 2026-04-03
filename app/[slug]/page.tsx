@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ArtworkCard from "@/features/artwork/artwork-card";
+import { siteConfig } from "@/app/site-config";
+import { getArtworkBySlug } from "@/features/artwork/artwork-actions";
 import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
+import RelatedArtworks from "@/features/artwork/related-artworks";
 import Footer from "@/features/footer";
 import PurchaseButton from "@/features/purchase-button";
-import { resolveFirstImage, resolveImages } from "@/lib/storage";
+import { resolveImages } from "@/lib/storage";
 import { getSupabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
-
-const SHOP_ENABLED = true;
 
 export async function generateStaticParams() {
   const supabase = await getSupabase();
@@ -66,68 +66,16 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
   // const { addItem, isInCart, setIsOpen } = useCart();
   // const [lightboxSrc, setLightboxSrc] = useState(null);
 
-  const supabase = await getSupabase();
   const { slug } = await props.params;
 
-  const { data: artwork, error } = await supabase
-    .from("artworks")
-    .select("*, collections(id, slug, name, description, process, medium, year, price)")
-    .eq("slug", slug)
-    .single();
-
-  if (error || !artwork) {
+  const artworkWithCollection = await getArtworkBySlug(slug);
+  if (!artworkWithCollection) {
     notFound();
   }
 
-  const { collections: collection, ...artworkData } = artwork;
+  const { collection, ...artwork } = artworkWithCollection;
 
-  artworkData.images = await resolveImages(artworkData.image_url);
-
-  const RELATED_LIMIT = 4;
-  const excludeSlugs = [slug];
-  let excludeIds: string[] = [];
-
-  let sameCollection = [];
-
-  if (collection?.id) {
-    const { data } = await supabase
-      .from("artworks")
-      .select("id, title, price, image_url, stock, tagline, collections(price)")
-      .eq("visible", true)
-      .eq("collection_id", collection.id)
-      .neq("slug", slug)
-      .gt("stock", 0)
-      .limit(RELATED_LIMIT);
-
-    sameCollection = data ?? [];
-    excludeIds = sameCollection.map(a => a.id);
-  }
-
-  const remaining = RELATED_LIMIT - sameCollection.length;
-  let others = [];
-
-  if (remaining > 0) {
-    const { data } = await supabase
-      .from("artworks")
-      .select("id, title, price, image_url, stock, tagline, collections(price)")
-      .eq("visible", true)
-      .gt("stock", 0)
-      .not("slug", "in", `(${excludeSlugs.join(",")})`)
-      .not("id", "in", `(${excludeIds.join(",")})`)
-      .limit(remaining * 3);
-
-    others = (data ?? []).sort(() => Math.random() - 0.5).slice(0, remaining);
-  }
-
-  const relatedRaw = [...sameCollection, ...others];
-
-  const related = await Promise.all(
-    relatedRaw.map(async a => ({
-      ...a,
-      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
-      price: a.price || a.collections?.price || null,
-    })),
-  );
+  const artworkImages = await resolveImages(artwork.imageUrl);
 
   const isAvailable = artwork.stock > 0;
   // const inCart = isInCart(artwork.id);
@@ -155,7 +103,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
     "@type": "Product",
     name: artwork.title,
     description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
-    image: artwork.image_url,
+    image: artwork.imageUrl,
     url: `https://esteriicreates.com/${slug}`,
     brand: { "@type": "Brand", name: "esterii creates" },
     offers: {
@@ -208,15 +156,13 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
       />
       <div className="flex min-h-screen flex-col items-center bg-bg-main">
         <Navigation />
-
         <div className="h-px w-full bg-divider" />
-
         <div className="flex w-full flex-1 flex-col md:flex-row lg:max-w-325">
           <div className="md:w-1/2 md:max-w-140.75 lg:w-[55%] lg:max-w-none">
             <div className="min-h-75 md:hidden"></div>
 
             <div className="hidden flex-col gap-1.5 md:flex lg:hidden">
-              {(artworkData.images ?? []).map((src, i) => (
+              {(artworkImages ?? []).map((src, i) => (
                 <div
                   key={i}
                   className="group relative aspect-3/4 w-full cursor-zoom-in overflow-hidden"
@@ -245,15 +191,14 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
               ))}
             </div>
 
-            {/* lg+: 1-over-N×2 image grid */}
-            <div className="hidden flex-col gap-[6px] lg:flex">
-              {artworkData.images?.[0] && (
+            <div className="hidden flex-col gap-1.5 lg:flex">
+              {artworkImages?.[0] && (
                 <div
-                  className="group relative mx-auto aspect-3/4 w-full max-w-[640px] cursor-zoom-in overflow-hidden 2xl:max-w-[670px]"
-                  // onClick={() => setLightboxSrc(artworkData.images[0])}
+                  className="group relative mx-auto aspect-3/4 w-full max-w-160 cursor-zoom-in overflow-hidden 2xl:max-w-167.5"
+                  // onClick={() => setLightboxSrc(artworkData.artworkImages[0])}
                 >
                   <Image
-                    src={artworkData.images[0]}
+                    src={artworkImages[0]}
                     alt={artwork.title}
                     fill
                     className="object-cover"
@@ -264,7 +209,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                   <button
                     // onClick={e => {
                     //   e.stopPropagation();
-                    //   // setLightboxSrc(artworkData.images[0]);
+                    //   // setLightboxSrc(artworkData.artworkImages[0]);
                     // }}
                     aria-label="View full screen"
                     className="absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center bg-bg-main/80 opacity-0 transition-colors hover:bg-bg-main group-hover:opacity-100"
@@ -273,7 +218,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                   </button>
                 </div>
               )}
-              {(artworkData.images ?? [])
+              {(artworkImages ?? [])
                 .slice(1)
                 .reduce((rows, src, i) => {
                   if (i % 2 === 0) {
@@ -308,9 +253,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
             </div>
           </div>
 
-          {/* Right — artwork info */}
-          <div className="flex flex-col gap-8 p-5 md:sticky md:top-0 md:w-1/2 md:self-start md:p-[56px] lg:w-[45%]">
-            {/* Title + meta */}
+          <div className="flex flex-col gap-8 p-5 md:sticky md:top-0 md:w-1/2 md:self-start md:p-14 lg:w-[45%]">
             <div className="flex flex-col gap-5">
               <h1
                 className="font-normal font-sans text-text-primary"
@@ -330,7 +273,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
               )}
             </div>
 
-            {/* Price + purchase button */}
             <div className="flex w-full flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <p className="font-sans text-[11px] text-text-tertiary uppercase tracking-[2px]">Price</p>
@@ -345,9 +287,9 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                 </p>
               </div>
 
-              {SHOP_ENABLED && (
+              {siteConfig.shopEnabled && (
                 <div className="flex w-full flex-col gap-3">
-                  <PurchaseButton artworkId={artwork.id} isAvailable={isAvailable} />
+                  <PurchaseButton artworkId={artworkWithCollection.id} isAvailable={isAvailable} />
 
                   {/*{isAvailable && (*/}
                   {/*  <button*/}
@@ -359,7 +301,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                   {/*          id: artwork.id,*/}
                   {/*          title: artwork.title,*/}
                   {/*          price: price,*/}
-                  {/*          imageUrl: artworkData.images?.[0] ?? null,*/}
+                  {/*          imageUrl: artworkData.artworkImages?.[0] ?? null,*/}
                   {/*        });*/}
                   {/*      }*/}
                   {/*    }}*/}
@@ -374,7 +316,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
               <div className="h-px w-full bg-divider" />
             </div>
 
-            {/* About + Process */}
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
                 <p className="font-sans text-[11px] text-text-tertiary uppercase tracking-[2px]">About</p>
@@ -420,40 +361,14 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
             <ArtworkInfoSection />
           </div>
         </div>
-
-        {related.length > 0 && (
-          <>
-            <div className="h-px w-full bg-divider" />
-            <div className="w-full py-10 md:py-14 lg:px-14">
-              <p className="mb-8 px-5 font-sans text-[11px] text-text-tertiary uppercase tracking-wide3 md:px-[56px] lg:px-0">
-                You might also like
-              </p>
-
-              <div className="scrollbar-hide flex snap-x snap-mandatory scroll-pl-5 gap-3 overflow-x-auto pr-5 pb-2 pl-5 lg:hidden">
-                {related.map(a => (
-                  <div key={a.id} className="w-[50vw] shrink-0 snap-start sm:w-[30vw]">
-                    <ArtworkCard artwork={a} imageHeight="h-[230px]" sizes="(max-width: 640px) 50vw, 30vw" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="hidden grid-cols-4 gap-[20px] lg:grid">
-                {related.map(a => (
-                  <ArtworkCard key={a.id} artwork={a} />
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-
+        <RelatedArtworks artwork={artwork} />
         <div className="h-px w-full bg-divider" />
-
         <Footer />
       </div>
       {/*{lightboxSrc && (*/}
       {/*  <ImageLightbox*/}
       {/*    src={lightboxSrc}*/}
-      {/*    images={artworkData.images ?? []}*/}
+      {/*    artworkImages={artworkData.artworkImages ?? []}*/}
       {/*    alt={artwork.title}*/}
       {/*    onClose={() => setLightboxSrc(null)}*/}
       {/*  />*/}

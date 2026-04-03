@@ -27,9 +27,6 @@ export async function resolveImages(imageUrl: string) {
   return resources.sort((a, b) => a.public_id.localeCompare(b.public_id)).map(r => r.secure_url);
 }
 
-/**
- * Returns only the first resolved image URL (for cards, featured sections, etc.)
- */
 export async function resolveFirstImage(imageUrl: string) {
   const images = await resolveImages(imageUrl);
   return images[0] ?? null;

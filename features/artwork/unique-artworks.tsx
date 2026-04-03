@@ -1,8 +1,8 @@
-import { getUniqueArtworks } from "@/features/artwork/artwork-actions";
+import { getArtworksWithoutCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
 
 export default async function UniqueArtworks() {
-  const artworks = await getUniqueArtworks();
+  const artworks = await getArtworksWithoutCollection();
 
   if (artworks.length === 0) {
     return null;

@@ -1,5 +1,5 @@
-import { resolveFirstImage } from "../../lib/storage";
-import { getSupabase } from "../../lib/supabase";
+import { resolveFirstImage } from "../../../lib/storage";
+import { getSupabase } from "../../../lib/supabase";
 
 /**
  * POST /api/checkout

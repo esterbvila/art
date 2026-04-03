@@ -1,56 +1,43 @@
 import "server-only";
 
-import { DrizzleConfig, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import postgres from "postgres";
-import { createClient } from "../supabase/server";
-
-const config = {
-  casing: "snake_case",
-  schema,
-} satisfies DrizzleConfig<typeof schema>;
+import * as relations from "@/drizzle/relations";
+import * as schema from "@/drizzle/schema";
+import { createClient } from "@/supabase/server";
 
 declare namespace global {
   let postgresSqlClient: ReturnType<typeof postgres> | undefined;
-  let adminPostgresSqlClient: ReturnType<typeof postgres> | undefined;
 }
 
 let postgresSqlClient;
-let adminPostgresSqlClient;
 
 const databaseUrl = process.env.DATABASE_URL;
-const directDatabaseUrl = process.env.DIRECT_DATABASE_URL;
 
 if (!databaseUrl) {
   throw new Error("Environment variable DATABASE_URL is not set.");
-}
-if (!directDatabaseUrl) {
-  throw new Error("Environment variable DIRECT_DATABASE_URL is not set.");
 }
 
 if (process.env.NODE_ENV !== "production") {
   if (!global.postgresSqlClient) {
     global.postgresSqlClient = postgres(databaseUrl, { prepare: false });
   }
-  if (!global.adminPostgresSqlClient) {
-    global.adminPostgresSqlClient = postgres(directDatabaseUrl, { prepare: false });
-  }
   postgresSqlClient = global.postgresSqlClient;
-  adminPostgresSqlClient = global.adminPostgresSqlClient;
 } else {
   postgresSqlClient = postgres(databaseUrl, { prepare: false });
-  adminPostgresSqlClient = postgres(directDatabaseUrl, { prepare: false });
 }
+
+const combined = { ...schema, ...relations };
+
+const config = {
+  casing: "snake_case",
+  schema: combined,
+};
 
 export const db = drizzle({
   client: postgresSqlClient,
-  ...config,
-  logger: false,
-});
-
-export const adminDb = drizzle({
-  client: adminPostgresSqlClient,
   ...config,
   logger: false,
 });
@@ -103,4 +90,9 @@ function decode(accessToken: string) {
   } catch {
     return { role: "anon" } as JwtPayload & { role: string };
   }
+}
+
+export async function getRLSDb() {
+  const { runTransaction } = await getDrizzleSupabaseClient();
+  return runTransaction;
 }
