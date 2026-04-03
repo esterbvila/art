@@ -179,9 +179,6 @@ export async function sendOrderConfirmation({ to, customerName, artworks, amount
   }
 }
 
-/**
- * Sends a notification to Ester when someone submits the contact form.
- */
 export async function notifyContactSubmission({ firstName, lastName, email, message }) {
   const from = process.env.RESEND_FROM_EMAIL ?? "esterii creates <orders@yourdomain.com>";
   const to = process.env.NOTIFY_EMAIL ?? "ester.batllori@gmail.com";
@@ -203,9 +200,6 @@ export async function notifyContactSubmission({ firstName, lastName, email, mess
   }
 }
 
-/**
- * Sends a notification to Ester when a purchase is completed.
- */
 export async function notifySale({
   customerName,
   customerEmail,

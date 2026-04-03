@@ -1,4 +1,4 @@
-import LegalPage from "../../components/legal-page";
+import LegalPage from "../../features/legal-page";
 import { agbContent } from "../../lib/legal/agb";
 
 export default function AGBPage() {

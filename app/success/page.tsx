@@ -9,7 +9,7 @@ export default function Success() {
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-bg-main px-5 text-center">
-        <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">Thank you for your order</p>
+        <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">Thank you for your order</p>
         <h1
           className="font-normal font-sans text-text-primary leading-tight95"
           style={{

@@ -23,7 +23,7 @@ export default function NotFound() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <Link
-          href="/public"
+          href="/"
           className="mt-4 inline-block bg-accent px-10 py-4 font-sans text-sm text-white transition-opacity hover:opacity-90"
         >
           Back to Gallery

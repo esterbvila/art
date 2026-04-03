@@ -1,13 +1,12 @@
-import AboutArtist from "../components/about-artist";
-import FeaturedArtwork from "../components/artwork/featured-artwork";
-import ContactForm from "../components/contact-form";
-import Footer from "../components/footer";
-import Gallery from "../components/gallery";
-import Hero from "../components/hero";
-import Navigation from "../components/navigation";
-import UniquePieces from "../components/unique-pieces";
-import { resolveFirstImage } from "../lib/storage";
-import { getSupabase } from "../lib/supabase";
+import { Suspense } from "react";
+import AboutArtist from "../features/about-artist";
+import FeaturedArtwork from "../features/artwork/featured-artwork";
+import UniqueArtworks from "../features/artwork/unique-artworks";
+import ContactForm from "../features/contact/contact-form";
+import Footer from "../features/footer";
+import Gallery from "../features/gallery";
+import Hero from "../features/hero";
+import Navigation from "../features/navigation";
 
 export const metadata = {
   title: "Ester Batllori — Abstract Paintings",
@@ -42,7 +41,6 @@ export const metadata = {
   },
 };
 
-// ── Structured data helpers ───────────────────────────────────────────────────
 function PersonJsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -87,67 +85,7 @@ function OrganizationJsonLd() {
   );
 }
 
-async function getCollections() {
-  const supabase = await getSupabase();
-  const { data: collectionsRaw, error } = await supabase
-    .from("collections")
-    .select("id, slug, name, tagline, cover_image_url, sort_order, artworks(id, price)")
-    .eq("visible", true)
-    .order("sort_order", { ascending: true });
-
-  if (error) {
-    console.error("Error fetching collections:", error.message);
-  }
-
-  return (collectionsRaw ?? []).map(({ artworks, ...col }) => ({
-    ...col,
-    artwork_count: artworks?.length ?? 0,
-    min_price: artworks?.length > 0 ? Math.min(...artworks.map(a => a.price)) : null,
-  }));
-}
-
-async function getUniqueArtworks() {
-  const supabase = await getSupabase();
-  const { data: uniqueArtworksRaw } = await supabase
-    .from("artworks")
-    .select("id, title, medium, dimensions, price, image_url, stock, tagline")
-    .is("collection_id", null)
-    .eq("visible", true)
-    .order("created_at", { ascending: false });
-
-  return Promise.all(
-    (uniqueArtworksRaw ?? []).map(async a => ({
-      ...a,
-      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
-    })),
-  );
-}
-
-async function getFeaturedArtwork() {
-  const supabase = await getSupabase();
-  const { data: featuredRaw } = await supabase
-    .from("artworks")
-    .select("id, title, description, price, image_url, stock")
-    .eq("featured", true)
-    .single();
-
-  if (!featuredRaw) {
-    return null;
-  }
-
-  return {
-    ...featuredRaw,
-    image_url: (await resolveFirstImage(featuredRaw.image_url)) ?? featuredRaw.image_url,
-  };
-}
-
 export default async function Home() {
-  const [collections, uniqueArtworks, featuredArtwork] = await Promise.all([
-    getCollections(),
-    getUniqueArtworks(),
-    getFeaturedArtwork(),
-  ]);
-
   return (
     <>
       <PersonJsonLd />
@@ -161,18 +99,22 @@ export default async function Home() {
         <div className="h-px w-full bg-divider" />
 
         <section id="works">
-          <UniquePieces artworks={uniqueArtworks} />
+          <Suspense>
+            <UniqueArtworks />
+          </Suspense>
         </section>
 
         <div className="h-px w-full bg-divider" />
 
-        <Gallery collections={collections} />
+        <Gallery />
 
         <section id="about">
           <AboutArtist />
         </section>
 
-        {featuredArtwork && <FeaturedArtwork artwork={featuredArtwork} />}
+        <Suspense>
+          <FeaturedArtwork />
+        </Suspense>
 
         <div className="h-px w-full bg-divider" />
 

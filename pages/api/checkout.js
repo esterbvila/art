@@ -1,6 +1,5 @@
 import { resolveFirstImage } from "../../lib/storage";
-import { stripe } from "../../lib/stripe";
-import { supabase } from "../../lib/supabase";
+import { getSupabase } from "../../lib/supabase";
 
 /**
  * POST /api/checkout
@@ -25,6 +24,7 @@ export default async function handler(req, res) {
   }
 
   // 1. Fetch all artworks
+  const supabase = await getSupabase();
   const { data: artworks, error } = await supabase
     .from("artworks")
     .select("id, title, description, price, image_url, stock, collections(price)")
@@ -34,7 +34,6 @@ export default async function handler(req, res) {
     return res.status(404).json({ error: "Artwork not found" });
   }
 
-  // 2. Validate all are in stock
   const outOfStock = artworks.find(a => a.stock <= 0);
   if (outOfStock) {
     return res.status(400).json({ error: `"${outOfStock.title}" is no longer available` });
@@ -44,10 +43,8 @@ export default async function handler(req, res) {
   const host = req.headers["x-forwarded-host"] || req.headers.host;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `${proto}://${host}`;
 
-  // 3. Resolve first image URL for each artwork
   const resolvedImages = await Promise.all(artworks.map(a => resolveFirstImage(a.image_url)));
 
-  // 4. Build line items
   const line_items = artworks.map((artwork, i) => ({
     price_data: {
       currency: "eur",
@@ -60,7 +57,6 @@ export default async function handler(req, res) {
     quantity: 1,
   }));
 
-  // 5. Create a Stripe Checkout Session
   try {
     const session = await stripe.checkout.sessions.create({
       line_items,
