@@ -1,13 +1,16 @@
-import { Navigation, ZoomIn } from "lucide-react";
+import { ZoomIn } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AddArtworkToCart } from "@/app/[slug]/add-artwork-to-cart";
 import { siteConfig } from "@/app/site-config";
 import { getArtworkBySlug } from "@/features/artwork/artwork-actions";
+import ArtworkImage from "@/features/artwork/artwork-image";
 import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
 import RelatedArtworks from "@/features/artwork/related-artworks";
 import Footer from "@/features/footer";
+import Navigation from "@/features/navigation";
 import PurchaseButton from "@/features/purchase-button";
 import { resolveImages } from "@/lib/storage";
 import { getSupabase } from "@/lib/supabase";
@@ -64,7 +67,6 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 // TODO use card here.
 export default async function ArtworkDetailPage(props: { params: Promise<{ slug: string }> }) {
   // const { addItem, isInCart, setIsOpen } = useCart();
-  // const [lightboxSrc, setLightboxSrc] = useState(null);
 
   const { slug } = await props.params;
 
@@ -84,8 +86,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
   const process = artwork.process || collection?.process || null;
   const medium = artwork.medium || collection?.medium || null;
   const year = artwork.year || collection?.year || null;
-  const price = artwork.price || collection?.price || null;
-
   const details = [
     { label: "Medium", value: medium },
     { label: "Dimensions", value: artwork.dimensions },
@@ -108,7 +108,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
     brand: { "@type": "Brand", name: "esterii creates" },
     offers: {
       "@type": "Offer",
-      price: (price / 100).toFixed(2),
+      price: (artwork.price / 100).toFixed(2),
       priceCurrency: "EUR",
       availability: isAvailable ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
       url: `https://esteriicreates.com/${slug}`,
@@ -163,31 +163,15 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
 
             <div className="hidden flex-col gap-1.5 md:flex lg:hidden">
               {(artworkImages ?? []).map((src, i) => (
-                <div
+                <ArtworkImage
+                  artworkImages={artworkImages}
                   key={i}
-                  className="group relative aspect-3/4 w-full cursor-zoom-in overflow-hidden"
-                  // onClick={() => setLightboxSrc(src)}
-                >
-                  <Image
-                    src={src}
-                    alt={artwork.title}
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
-                    quality={60}
-                    priority={i === 0}
-                  />
-                  <button
-                    // onClick={e => {
-                    //   e.stopPropagation();
-                    //   // setLightboxSrc(src);
-                    // }}
-                    aria-label="View full screen"
-                    className="absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center bg-bg-main/80 opacity-0 transition-colors hover:bg-bg-main group-hover:opacity-100"
-                  >
-                    <ZoomIn size={15} className="text-text-primary" />
-                  </button>
-                </div>
+                  src={src}
+                  alt={artwork.title}
+                  sizes="50vw"
+                  quality={60}
+                  priority={i === 0}
+                />
               ))}
             </div>
 
@@ -197,12 +181,12 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                   className="group relative mx-auto aspect-3/4 w-full max-w-160 cursor-zoom-in overflow-hidden 2xl:max-w-167.5"
                   // onClick={() => setLightboxSrc(artworkData.artworkImages[0])}
                 >
+                  <ArtworkImage src={artworkImages[0]} alt={artwork.title} sizes="(min-width: 1024px) 1920px, 100vw" />
                   <Image
                     src={artworkImages[0]}
                     alt={artwork.title}
                     fill
                     className="object-cover"
-                    sizes="(min-width: 1024px) 1920px, 100vw"
                     quality={100}
                     priority
                   />
@@ -280,7 +264,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                   className="font-normal font-sans text-text-primary"
                   style={{ fontSize: "32px", letterSpacing: "-0.5px" }}
                 >
-                  {formatPrice(price)}
+                  {formatPrice(artwork.price)}
                 </p>
                 <p className="font-sans text-[12px] text-text-tertiary tracking-[0.3px]">
                   Shipping &amp; taxes included
@@ -290,26 +274,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
               {siteConfig.shopEnabled && (
                 <div className="flex w-full flex-col gap-3">
                   <PurchaseButton artworkId={artworkWithCollection.id} isAvailable={isAvailable} />
-
-                  {/*{isAvailable && (*/}
-                  {/*  <button*/}
-                  {/*    onClick={() => {*/}
-                  {/*      if (inCart) {*/}
-                  {/*        setIsOpen(true);*/}
-                  {/*      } else {*/}
-                  {/*        addItem({*/}
-                  {/*          id: artwork.id,*/}
-                  {/*          title: artwork.title,*/}
-                  {/*          price: price,*/}
-                  {/*          imageUrl: artworkData.artworkImages?.[0] ?? null,*/}
-                  {/*        });*/}
-                  {/*      }*/}
-                  {/*    }}*/}
-                  {/*    className="w-full cursor-pointer border border-accent px-12 py-4 font-normal font-sans text-[14px] text-accent tracking-[0.5px] transition-colors hover:bg-accent hover:text-bg-main"*/}
-                  {/*  >*/}
-                  {/*    {inCart ? "View Cart" : "Add to Cart"}*/}
-                  {/*  </button>*/}
-                  {/*)}*/}
+                  <AddArtworkToCart artwork={{ ...artwork, imageUrl: artworkImages[0] }} />
                 </div>
               )}
 
@@ -365,14 +330,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
         <div className="h-px w-full bg-divider" />
         <Footer />
       </div>
-      {/*{lightboxSrc && (*/}
-      {/*  <ImageLightbox*/}
-      {/*    src={lightboxSrc}*/}
-      {/*    artworkImages={artworkData.artworkImages ?? []}*/}
-      {/*    alt={artwork.title}*/}
-      {/*    onClose={() => setLightboxSrc(null)}*/}
-      {/*  />*/}
-      {/*)}*/}
     </>
   );
 }

@@ -1,23 +1,22 @@
-import { and, eq, gt, ne, notInArray } from "drizzle-orm";
+import { and, desc, eq, gt, isNull, ne, notInArray } from "drizzle-orm";
 import { getRLSDb } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { resolveFirstImage } from "@/lib/storage";
-import { getSupabase } from "@/lib/supabase";
 
 export async function getArtworksWithoutCollection() {
-  const supabase = await getSupabase();
-  const { data: uniqueArtwork } = await supabase
-    .from("artworks")
-    .select("id, title, medium, dimensions, price, image_url, stock, tagline, slug")
-    .is("collection_id", null)
-    .eq("visible", true)
-    .order("stock", { ascending: false })
-    .order("created_at", { ascending: false });
+  const db = await getRLSDb();
+  const result = await db(tx =>
+    tx
+      .select()
+      .from(artworkSchema)
+      .where(and(isNull(artworkSchema.collectionId), eq(artworkSchema.visible, true)))
+      .orderBy(desc(artworkSchema.stock), desc(artworkSchema.createdAt)),
+  );
 
   return Promise.all(
-    (uniqueArtwork ?? []).map(async a => ({
-      ...a,
-      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
+    result.map(async artwork => ({
+      ...artwork,
+      imageUrl: (await resolveFirstImage(artwork.imageUrl)) ?? artwork.imageUrl,
     })),
   );
 }

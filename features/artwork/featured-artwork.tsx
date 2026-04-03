@@ -14,7 +14,7 @@ export default async function FeaturedArtwork() {
     <section className="flex w-full flex-col bg-bg-deep md:h-140 md:flex-row">
       <div className="relative h-85 w-full shrink-0 overflow-hidden md:h-full md:flex-1">
         <Image
-          src={artwork.image_url}
+          src={artwork.imageUrl}
           alt={artwork.title}
           fill
           className="object-cover"

@@ -38,7 +38,6 @@ export default function CartDrawer() {
       const dx = e.changedTouches[0].clientX - touchStartX.current;
       const dy = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
 
-      // Only trigger if swipe is more horizontal than vertical and goes right (dx > 0)
       if (dx > 50 && dy < 80) {
         setIsOpen(false);
       }
@@ -85,18 +84,15 @@ export default function CartDrawer() {
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 z-40 bg-black/30 transition-opacity duration-300 ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Drawer */}
       <div
         ref={drawerRef}
-        className={`fixed top-0 right-0 z-50 flex h-full w-full max-w-[370px] flex-col bg-bg-main transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 z-50 flex h-full w-full max-w-92.5 flex-col bg-bg-main transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        {/* Header */}
         <div className="flex items-center justify-between border-divider border-b px-6 py-5">
           <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">
             Cart {items.length > 0 && `(${items.length})`}
@@ -110,7 +106,6 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        {/* Items */}
         <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-6 py-6">
           {items.length === 0 ? (
             <div className="flex flex-col gap-4">
@@ -147,7 +142,6 @@ export default function CartDrawer() {
           )}
         </div>
 
-        {/* Footer */}
         {items.length > 0 && (
           <div className="flex flex-col gap-4 border-divider border-t px-6 py-6">
             <div className="flex items-center justify-between">

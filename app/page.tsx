@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import AboutArtist from "../features/about-artist";
-import FeaturedArtwork from "../features/artwork/featured-artwork";
-import UniqueArtworks from "../features/artwork/unique-artworks";
-import ContactForm from "../features/contact/contact-form";
-import Footer from "../features/footer";
-import Gallery from "../features/gallery";
-import Hero from "../features/hero";
-import Navigation from "../features/navigation";
+import AboutArtist from "@/features/about-artist";
+import FeaturedArtwork from "@/features/artwork/featured-artwork";
+import UniqueArtworks from "@/features/artwork/unique-artworks";
+import ContactForm from "@/features/contact/contact-form";
+import Footer from "@/features/footer";
+import Gallery from "@/features/gallery";
+import Hero from "@/features/hero";
+import Navigation from "@/features/navigation";
 
 export const metadata = {
   title: "Ester Batllori — Abstract Paintings",

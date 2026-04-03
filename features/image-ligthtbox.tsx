@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function ImageLightbox({ src, images = [], alt, onClose }) {
-  const containerRef = useRef(null);
-  const selectedRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const selectedRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const onKey = e => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
       }

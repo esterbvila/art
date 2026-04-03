@@ -1,17 +1,17 @@
+import { sql } from "drizzle-orm";
 import {
+  boolean,
+  foreignKey,
+  index,
+  integer,
+  numeric,
+  pgPolicy,
   pgTable,
-  uuid,
   text,
   timestamp,
-  index,
-  foreignKey,
-  pgPolicy,
-  integer,
-  boolean,
   unique,
-  numeric,
+  uuid,
 } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
 
 export const contactSubmissionSchema = pgTable("contact_submissions", {
   id: uuid().defaultRandom().primaryKey().notNull(),
@@ -32,7 +32,7 @@ export const artworkSchema = pgTable(
     medium: text(),
     dimensions: text(),
     year: text(),
-    price: integer(),
+    price: integer().notNull(),
     imageUrl: text("image_url").notNull(),
     stock: integer().default(1).notNull(),
     featured: boolean().default(false).notNull(),
