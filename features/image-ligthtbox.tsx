@@ -1,9 +1,18 @@
-"use client";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-export default function ImageLightbox({ src, images = [], alt, onClose }) {
+export default function ImageLightbox({
+  src,
+  images = [],
+  alt,
+  onClose,
+}: {
+  src: string;
+  images: string[];
+  alt: string;
+  onClose: () => void;
+}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const selectedRef = useRef<HTMLDivElement | null>(null);
 

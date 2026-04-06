@@ -3,7 +3,7 @@ import { Menu, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/app/site-config";
-import { useCart } from "@/features/cart/card-provider";
+import { useCart } from "@/features/cart/cart-provider";
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);

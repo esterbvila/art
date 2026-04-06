@@ -1,6 +1,6 @@
 "use client";
 import { artworkSchema } from "@/drizzle/schema";
-import { useCart } from "@/features/cart/card-provider";
+import { useCart } from "@/features/cart/cart-provider";
 
 export function AddArtworkToCart({ artwork }: { artwork: typeof artworkSchema.$inferSelect }) {
   const isAvailable = artwork.stock > 0;

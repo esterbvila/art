@@ -25,6 +25,7 @@ export default function ArtworkImage({
     <div
       className="group relative aspect-3/4 w-full cursor-zoom-in overflow-hidden"
       onClick={e => {
+        console.log("JHit");
         e.stopPropagation();
         setLightboxSrc(src);
       }}

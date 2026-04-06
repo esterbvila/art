@@ -1,7 +1,7 @@
 import { Funnel_Sans } from "next/font/google";
 import React from "react";
-import CartDrawer from "../features/cart/card-drawer";
-import CartProvider from "../features/cart/card-provider";
+import CartDrawer from "../features/cart/cart-drawer";
+import CartProvider from "../features/cart/cart-provider";
 import "./globals.css";
 
 const funnelSans = Funnel_Sans({

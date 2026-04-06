@@ -2,17 +2,18 @@
 import { Trash2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { useCart } from "@/features/cart/card-provider";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { useCart } from "@/features/cart/cart-provider";
+import { createCheckoutSession } from "@/features/payment/checkout";
 import { formatPrice } from "@/lib/utils";
 
 export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, clearCart } = useCart();
-  const [loading, setLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const drawerRef = useRef(null);
-  const touchStartX = useRef(null);
-  const touchStartY = useRef(null);
 
   useEffect(() => {
     const el = drawerRef.current;
@@ -22,7 +23,7 @@ export default function CartDrawer() {
 
     const isMobile = () => window.innerWidth < 768;
 
-    function onTouchStart(e) {
+    function onTouchStart(e: TouchEvent) {
       if (!isMobile()) {
         return;
       }
@@ -30,13 +31,13 @@ export default function CartDrawer() {
       touchStartY.current = e.touches[0].clientY;
     }
 
-    function onTouchEnd(e) {
+    function onTouchEnd(e: TouchEvent) {
       if (!isMobile() || touchStartX.current === null) {
         return;
       }
 
       const dx = e.changedTouches[0].clientX - touchStartX.current;
-      const dy = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
+      const dy = Math.abs(e.changedTouches[0].clientY - (touchStartY.current ?? 0));
 
       if (dx > 50 && dy < 80) {
         setIsOpen(false);
@@ -56,30 +57,20 @@ export default function CartDrawer() {
 
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
-  async function handleCheckout() {
-    if (!items.length || loading) {
+  function handleCheckout() {
+    if (!items.length || isPending) {
       return;
     }
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ artworkIds: items.map(i => i.id) }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Something went wrong.");
-        return;
+
+    startTransition(async () => {
+      try {
+        const { url } = await createCheckoutSession(items.map(i => i.id));
+        clearCart();
+        window.location.href = url;
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Something went wrong.");
       }
-      clearCart();
-      window.location.href = data.url;
-    } catch {
-      setError("Could not connect. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    });
   }
 
   return (
@@ -94,7 +85,7 @@ export default function CartDrawer() {
         className={`fixed top-0 right-0 z-50 flex h-full w-full max-w-92.5 flex-col bg-bg-main transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex items-center justify-between border-divider border-b px-6 py-5">
-          <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">
+          <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">
             Cart {items.length > 0 && `(${items.length})`}
           </p>
           <button
@@ -151,10 +142,10 @@ export default function CartDrawer() {
             {error && <p className="font-sans text-[13px] text-red-500">{error}</p>}
             <button
               onClick={handleCheckout}
-              disabled={loading}
+              disabled={isPending}
               className="w-full cursor-pointer bg-accent py-4 font-sans text-[14px] text-white tracking-[0.5px] transition-opacity hover:opacity-90 disabled:opacity-60"
             >
-              {loading ? "Redirecting…" : "Checkout"}
+              {isPending ? "Redirecting…" : "Checkout"}
             </button>
             <button
               onClick={() => setIsOpen(false)}
