@@ -1,5 +1,5 @@
 "use server";
-import { notifyContactSubmission } from "@/lib/email";
+import { notifyContactSubmission } from "@/features/email/email";
 import { createAdminClient } from "@/lib/supabase";
 
 const LIMIT = 3;

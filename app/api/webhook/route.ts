@@ -1,15 +1,9 @@
 import { and, eq, inArray, sql } from "drizzle-orm";
-import { buffer } from "micro";
-import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 import { db } from "@/drizzle/client";
 import { artworkSchema, orderSchema } from "@/drizzle/schema";
-import { notifySale, sendOrderConfirmation } from "@/lib/email";
-import { stripe } from "@/lib/stripe";
-
-export const config = {
-  api: { bodyParser: false },
-};
+import { notifySale, sendOrderConfirmation } from "@/features/email/email";
+import { stripe } from "@/features/payment/stripe";
 
 type ArtworkMap = Record<string, { title: string; price: number }>;
 
@@ -93,30 +87,32 @@ async function insertOrderAndDecrementStock(orderRow: NewOrder): Promise<boolean
   return true;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).end("Method not allowed");
-  }
-
-  const rawBody = await buffer(req);
-  const sig = req.headers["stripe-signature"] as string;
+export async function POST(request: Request) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
 
   if (!secret) {
     console.error("Missing STRIPE_WEBHOOK_SECRET");
-    return res.status(500).send("Server misconfiguration");
+    return new Response("Server misconfiguration", { status: 500 });
+  }
+
+  const rawBody = await request.text();
+  const sig = request.headers.get("stripe-signature");
+
+  if (!sig) {
+    return new Response("Missing stripe-signature header", { status: 400 });
   }
 
   let event: ReturnType<typeof stripe.webhooks.constructEvent>;
+
   try {
     event = stripe.webhooks.constructEvent(rawBody, sig, secret);
   } catch (err) {
     console.error("Webhook signature verification failed:", (err as Error).message);
-    return res.status(400).send(`Webhook Error: ${(err as Error).message}`);
+    return new Response(`Webhook Error: ${(err as Error).message}`, { status: 400 });
   }
 
   if (event.type !== "checkout.session.completed") {
-    return res.status(200).json({ received: true });
+    return Response.json({ received: true }, { status: 200 });
   }
 
   const session = await stripe.checkout.sessions.retrieve(event.data.object.id);
@@ -126,7 +122,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!artworkIds.length) {
     console.error("Webhook: no artworkIds in session metadata", { sessionId: session.id });
-    return res.status(400).json({ error: "Missing artworkIds in metadata" });
+    return Response.json({ error: "Missing artworkIds in metadata" }, { status: 400 });
   }
 
   const alreadyProcessed = await fetchAlreadyProcessedIds(session.id, artworkIds);
@@ -134,7 +130,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!pendingIds.length) {
     console.info("Webhook: all artworks already processed for session", session.id);
-    return res.status(200).json({ received: true });
+    return Response.json({ received: true }, { status: 200 });
   }
 
   const [paymentMethod, artworkMap] = await Promise.all([
@@ -199,5 +195,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     ]);
   }
 
-  return res.status(200).json({ received: true });
+  return Response.json({ received: true }, { status: 200 });
 }

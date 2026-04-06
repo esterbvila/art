@@ -4,8 +4,8 @@ import { eq, inArray } from "drizzle-orm";
 import { headers } from "next/headers";
 import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
+import { stripe } from "@/features/payment/stripe";
 import { resolveFirstImage } from "@/lib/storage";
-import { stripe } from "@/lib/stripe";
 
 export async function createCheckoutSession(artworkIds: string[]): Promise<{ url: string }> {
   if (!artworkIds.length) {
