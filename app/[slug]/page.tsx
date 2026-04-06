@@ -1,14 +1,12 @@
-import { ZoomIn } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AddArtworkToCart } from "@/app/[slug]/add-artwork-to-cart";
 import { siteConfig } from "@/app/site-config";
 import { getArtworkBySlug } from "@/features/artwork/artwork-actions";
 import ArtworkImage from "@/features/artwork/artwork-image";
 import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
 import RelatedArtworks from "@/features/artwork/related-artworks";
+import { AddArtworkToCart } from "@/features/cart/add-artwork-to-cart";
 import Footer from "@/features/footer";
 import Navigation from "@/features/navigation";
 import PurchaseButton from "@/features/purchase-button";
@@ -25,20 +23,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await props.params;
-  const supabase = await getSupabase();
 
-  const { data: artwork } = await supabase
-    .from("artworks")
-    .select("id, title, description, image_url, price, stock, collections(price)")
-    .eq("slug", slug)
-    .single();
+  const artwork = await getArtworkBySlug(slug);
 
   if (!artwork) {
     return {};
   }
 
   const description = artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`;
-  const imageUrl = artwork.image_url ?? null;
+  const imageUrl = artwork.imageUrl ?? null;
 
   return {
     title: `${artwork.title} — Ester Batllori`,
@@ -64,10 +57,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   };
 }
 
-// TODO use card here.
 export default async function ArtworkDetailPage(props: { params: Promise<{ slug: string }> }) {
-  // const { addItem, isInCart, setIsOpen } = useCart();
-
   const { slug } = await props.params;
 
   const artworkWithCollection = await getArtworkBySlug(slug);
@@ -77,10 +67,9 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
 
   const { collection, ...artwork } = artworkWithCollection;
 
-  const artworkImages = await resolveImages(artwork.imageUrl);
+  const artworkImages = (await resolveImages(artwork.imageUrl)) ?? [];
 
   const isAvailable = artwork.stock > 0;
-  // const inCart = isInCart(artwork.id);
 
   const description = artwork.description || collection?.description || null;
   const process = artwork.process || collection?.process || null;
@@ -156,13 +145,14 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
       />
       <div className="flex min-h-screen flex-col items-center bg-bg-main">
         <Navigation />
+
         <div className="h-px w-full bg-divider" />
+
         <div className="flex w-full flex-1 flex-col md:flex-row lg:max-w-325">
           <div className="md:w-1/2 md:max-w-140.75 lg:w-[55%] lg:max-w-none">
             <div className="min-h-75 md:hidden"></div>
-
             <div className="hidden flex-col gap-1.5 md:flex lg:hidden">
-              {(artworkImages ?? []).map((src, i) => (
+              {artworkImages.map((src, i) => (
                 <ArtworkImage
                   artworkImages={artworkImages}
                   key={i}
@@ -177,34 +167,14 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
 
             <div className="hidden flex-col gap-1.5 lg:flex">
               {artworkImages?.[0] && (
-                <div
-                  className="group relative mx-auto aspect-3/4 w-full max-w-160 cursor-zoom-in overflow-hidden 2xl:max-w-167.5"
-                  // onClick={() => setLightboxSrc(artworkData.artworkImages[0])}
-                >
+                <div className="group relative mx-auto aspect-3/4 w-full max-w-160 cursor-zoom-in overflow-hidden 2xl:max-w-167.5">
                   <ArtworkImage src={artworkImages[0]} alt={artwork.title} sizes="(min-width: 1024px) 1920px, 100vw" />
-                  <Image
-                    src={artworkImages[0]}
-                    alt={artwork.title}
-                    fill
-                    className="object-cover"
-                    quality={100}
-                    priority
-                  />
-                  <button
-                    // onClick={e => {
-                    //   e.stopPropagation();
-                    //   // setLightboxSrc(artworkData.artworkImages[0]);
-                    // }}
-                    aria-label="View full screen"
-                    className="absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center bg-bg-main/80 opacity-0 transition-colors hover:bg-bg-main group-hover:opacity-100"
-                  >
-                    <ZoomIn size={15} className="text-text-primary" />
-                  </button>
                 </div>
               )}
-              {(artworkImages ?? [])
+
+              {artworkImages
                 .slice(1)
-                .reduce((rows, src, i) => {
+                .reduce<string[][]>((rows, src, i) => {
                   if (i % 2 === 0) {
                     rows.push([]);
                   }
@@ -216,20 +186,15 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                     {pair.map((src, colIdx) => (
                       <div
                         key={colIdx}
-                        className={`group relative aspect-387/500 cursor-zoom-in overflow-hidden ${pair.length === 1 ? "w-1/2" : "flex-1"}`}
-                        // onClick={() => setLightboxSrc(src)}
+                        className={`relative aspect-387/500 overflow-hidden ${pair.length === 1 ? "w-1/2" : "flex-1"}`}
                       >
-                        <Image src={src} alt={artwork.title} fill className="object-cover" sizes="25vw" quality={60} />
-                        <button
-                          // onClick={e => {
-                          //   e.stopPropagation();
-                          //   // setLightboxSrc(src);
-                          // }}
-                          aria-label="View full screen"
-                          className="absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center bg-bg-main/80 opacity-0 transition-colors hover:bg-bg-main group-hover:opacity-100"
-                        >
-                          <ZoomIn size={15} className="text-text-primary" />
-                        </button>
+                        <ArtworkImage
+                          src={src}
+                          alt={artwork.title}
+                          sizes="25vw"
+                          quality={60}
+                          artworkImages={artworkImages}
+                        />
                       </div>
                     ))}
                   </div>
