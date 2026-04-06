@@ -1,21 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice } from "../../lib/utils";
+import { formatPrice } from "@/lib/utils";
 
 export default function CollectionCard({ collection }) {
-  const { slug, name, tagline, cover_image_url, artwork_count, min_price } = collection;
-
   return (
     <Link
-      href={`/collections/${slug}`}
+      href={`/collections/${collection.slug}`}
       className="group flex w-full cursor-pointer flex-col"
-      aria-label={`View ${name} collection`}
+      aria-label={`View ${collection.name} collection`}
     >
-      <div className="relative aspect-3/4 max-h-[410px] w-full overflow-hidden">
-        {cover_image_url ? (
+      <div className="relative aspect-3/4 max-h-102.5 w-full overflow-hidden">
+        {collection.cover_image_url ? (
           <Image
-            src={cover_image_url}
-            alt={name}
+            src={collection.cover_image_url}
+            alt={collection.name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             sizes="640px"
@@ -28,14 +26,16 @@ export default function CollectionCard({ collection }) {
 
       <div className="flex flex-col gap-1.5 pt-3">
         <p className="font-sans font-semibold text-text-primary" style={{ fontSize: "22px", letterSpacing: "-0.5px" }}>
-          {name}
+          {collection.name}
         </p>
 
-        {tagline && <p className="font-normal font-sans text-[14px] text-text-secondary leading-[1.6]">{tagline}</p>}
+        {collection.tagline && (
+          <p className="font-normal font-sans text-[14px] text-text-secondary leading-[1.6]">{collection.tagline}</p>
+        )}
 
         <p className="font-normal font-sans text-[12px] text-text-tertiary tracking-[0.5px]">
-          {artwork_count ?? 0} work{artwork_count !== 1 ? "s" : ""}
-          {min_price ? ` · From ${formatPrice(min_price)}` : ""}
+          {collection.artwork_count ?? 0} work{collection.artwork_count !== 1 ? "s" : ""}
+          {collection.min_price ? ` · From ${formatPrice(collection.min_price)}` : ""}
         </p>
       </div>
     </Link>
