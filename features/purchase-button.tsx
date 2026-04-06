@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { createCheckoutSession } from "@/features/payment/checkout";
 
 export default function PurchaseButton({ artworkId, isAvailable }) {
   const [loading, setLoading] = useState(false);
@@ -14,20 +15,8 @@ export default function PurchaseButton({ artworkId, isAvailable }) {
     setError(null);
 
     try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ artworkId }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
-        return;
-      }
-
-      window.location.href = data.url;
+      const { url } = await createCheckoutSession([artworkId]);
+      window.location.href = url;
     } catch {
       setError("Could not connect. Please check your internet and try again.");
     } finally {

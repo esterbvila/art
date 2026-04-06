@@ -11,8 +11,6 @@ type State =
   | { status: "error"; error: string }
   | null;
 
-const INITIAL_STATE: State = null;
-
 function validate(data: FormData): FormErrors {
   const e: FormErrors = {};
   const email = String(data.get("email") ?? "").trim();
@@ -67,12 +65,12 @@ async function submitContact(_prev: State, data: FormData): Promise<State> {
 }
 
 export default function ContactForm() {
-  const [state, dispatch, isPending] = useActionState(submitContact, INITIAL_STATE);
+  const [state, dispatch, isPending] = useActionState(submitContact, null);
 
   return (
-    <div className="flex flex-col gap-10 px-5 py-12 md:flex-row md:gap-[120px] md:px-[48px] md:py-[80px]">
-      <div className="flex w-full flex-col gap-7 md:flex-1 md:gap-[28px]">
-        <p className="font-normal font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">Get in Touch</p>
+    <div className="flex flex-col gap-10 px-5 py-12 md:flex-row md:gap-30 md:px-12 md:py-20">
+      <div className="flex w-full flex-col gap-7 md:flex-1 md:gap-7">
+        <p className="font-normal font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">Get in Touch</p>
 
         <h2
           className="font-normal font-sans text-text-primary leading-tight95"
@@ -102,7 +100,7 @@ export default function ContactForm() {
       <div className="w-full md:flex-1">
         {state?.status === "success" ? (
           <div className="flex flex-col gap-4 py-8">
-            <p className="font-normal font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">
+            <p className="font-normal font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">
               Message sent
             </p>
             <p className="font-normal font-sans text-[15px] text-text-primary leading-[1.7]">
@@ -110,7 +108,7 @@ export default function ContactForm() {
             </p>
           </div>
         ) : (
-          <form action={dispatch} noValidate className="flex flex-col gap-7 md:gap-[28px]">
+          <form action={dispatch} noValidate className="flex flex-col gap-7 md:gap-7">
             {/* Honeypot */}
             <div style={{ position: "absolute", left: "-9999px", opacity: 0 }} aria-hidden="true">
               <input type="text" name="website" tabIndex={-1} autoComplete="off" />
