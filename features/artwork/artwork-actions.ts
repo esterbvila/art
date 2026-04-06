@@ -1,4 +1,4 @@
-import { and, desc, eq, gt, isNull, ne, notInArray } from "drizzle-orm";
+import { and, asc, desc, eq, gt, isNull, ne, notInArray } from "drizzle-orm";
 import { getRLSDb } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { resolveFirstImage } from "@/lib/storage";
@@ -18,6 +18,17 @@ export async function getArtworksWithoutCollection() {
       ...artwork,
       imageUrl: (await resolveFirstImage(artwork.imageUrl)) ?? artwork.imageUrl,
     })),
+  );
+}
+
+export async function getArtworksByCollection(collectionId: string) {
+  const db = await getRLSDb();
+  return db(tx =>
+    tx
+      .select()
+      .from(artworkSchema)
+      .where(and(eq(artworkSchema.collectionId, collectionId), eq(artworkSchema.visible, true)))
+      .orderBy(asc(artworkSchema.createdAt)),
   );
 }
 

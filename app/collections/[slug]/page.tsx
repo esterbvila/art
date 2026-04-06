@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
+import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
 import Footer from "@/features/footer";
 import { resolveFirstImage } from "@/lib/storage";
@@ -88,24 +89,17 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
     notFound();
   }
 
-  const supabase = await getSupabase();
-  const { data: artworksRaw } = await supabase
-    .from("artworks")
-    .select("id, title, medium, dimensions, price, image_url, stock, tagline")
-    .eq("collection_id", collection.id)
-    .eq("visible", true)
-    .order("created_at", { ascending: true });
+  const artworksRaw = await getArtworksByCollection(collection.id);
 
   const artworks = await Promise.all(
     (artworksRaw ?? []).map(async a => ({
       ...a,
-      image_url: (await resolveFirstImage(a.image_url)) ?? a.image_url,
-      price: a.price || collection.price || null,
+      imageUrl: (await resolveFirstImage(a.imageUrl)) ?? a.imageUrl,
     })),
   );
 
   const minPrice = artworks.length > 0 ? Math.min(...artworks.map(a => a.price)) : null;
-  const heroImage = collection.hero_image || collection.cover_image_url || (artworks[0]?.image_url ?? null);
+  const heroImage = collection.hero_image || collection.cover_image_url || (artworks[0]?.imageUrl ?? null);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
