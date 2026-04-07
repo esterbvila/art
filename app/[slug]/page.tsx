@@ -1,7 +1,10 @@
+import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
+import { getRLSDb } from "@/drizzle/client";
+import { artworkSchema } from "@/drizzle/schema";
 import { getArtworkBySlug } from "@/features/artwork/artwork-actions";
 import ArtworkImage from "@/features/artwork/artwork-image";
 import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
@@ -11,14 +14,16 @@ import Footer from "@/features/footer";
 import Navigation from "@/features/navigation";
 import PurchaseButton from "@/features/purchase-button";
 import { resolveImages } from "@/lib/storage";
-import { getSupabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  const supabase = await getSupabase();
-  const { data } = await supabase.from("artworks").select("slug").eq("visible", true);
+  const db = await getRLSDb();
 
-  return (data ?? []).map(({ slug }) => ({ slug }));
+  const rows = await db(tx =>
+    tx.select({ slug: artworkSchema.slug }).from(artworkSchema).where(eq(artworkSchema.visible, true)),
+  );
+
+  return rows.filter((row): row is { slug: string } => Boolean(row.slug)).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -182,7 +187,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
                   return rows;
                 }, [])
                 .map((pair, rowIdx) => (
-                  <div key={rowIdx} className="flex gap-[6px]">
+                  <div key={rowIdx} className="flex gap-1.5">
                     {pair.map((src, colIdx) => (
                       <div
                         key={colIdx}

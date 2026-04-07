@@ -1,20 +1,23 @@
-import { getSupabase } from "@/lib/supabase";
+import { and, asc, eq, getTableColumns, sql } from "drizzle-orm";
+import { getRLSDb } from "@/drizzle/client";
+import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 
 export async function getCollections() {
-  const supabase = await getSupabase();
-  const { data: collectionsRaw, error } = await supabase
-    .from("collections")
-    .select("id, slug, name, tagline, cover_image_url, sort_order, artworks(id, price)")
-    .eq("visible", true)
-    .order("sort_order", { ascending: true });
+  const db = await getRLSDb();
 
-  if (error) {
-    console.error("Error fetching collections:", error.message);
-  }
-
-  return (collectionsRaw ?? []).map(({ artworks, ...col }) => ({
-    ...col,
-    artwork_count: artworks?.length ?? 0,
-    min_price: artworks?.length > 0 ? Math.min(...artworks.map(a => a.price)) : null,
-  }));
+  return db(tx =>
+    tx
+      .select({
+        ...getTableColumns(collectionSchema),
+        artworkCount: sql<number>`count(${artworkSchema.id})`,
+      })
+      .from(collectionSchema)
+      .leftJoin(
+        artworkSchema,
+        and(eq(artworkSchema.collectionId, collectionSchema.id), eq(artworkSchema.visible, true)),
+      )
+      .where(eq(collectionSchema.visible, true))
+      .groupBy(collectionSchema.id)
+      .orderBy(asc(collectionSchema.sortOrder)),
+  );
 }

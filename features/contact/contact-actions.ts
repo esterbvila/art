@@ -1,6 +1,9 @@
 "use server";
+
+import { and, count, eq, gte } from "drizzle-orm";
+import { db } from "@/drizzle/client";
+import { contactSubmissionSchema } from "@/drizzle/schema";
 import { notifyContactSubmission } from "@/features/email/email";
-import { createAdminClient } from "@/lib/supabase";
 
 const LIMIT = 3;
 const WINDOW_MS = 60 * 60 * 1000;
@@ -15,28 +18,34 @@ type ContactPayload = {
 export async function submitContactAction(payload: ContactPayload): Promise<{ error?: string }> {
   const { firstName, lastName, email, message } = payload;
 
-  const adminSupabase = createAdminClient();
-
+  const normalizedEmail = email.trim().toLowerCase();
   const windowStart = new Date(Date.now() - WINDOW_MS).toISOString();
-  const { count } = await adminSupabase
-    .from("contact_submissions")
-    .select("*", { count: "exact", head: true })
-    .eq("email", email.trim().toLowerCase())
-    .gte("created_at", windowStart);
 
-  if (count !== null && count >= LIMIT) {
-    return { error: "Too many messages. Please try again later." };
+  try {
+    const [{ count: recentSubmissionCount }] = await db
+      .select({ count: count() })
+      .from(contactSubmissionSchema)
+      .where(
+        and(eq(contactSubmissionSchema.email, normalizedEmail), gte(contactSubmissionSchema.createdAt, windowStart)),
+      );
+
+    if (recentSubmissionCount >= LIMIT) {
+      return { error: "Too many messages. Please try again later." };
+    }
+  } catch (error) {
+    console.error("Failed to check contact submission rate limit:", error);
+    return { error: "Failed to send message. Please try again." };
   }
 
-  const { error } = await adminSupabase.from("contact_submissions").insert({
-    first_name: firstName.trim(),
-    last_name: lastName.trim(),
-    email: email.trim().toLowerCase(),
-    message: message.trim(),
-  });
-
-  if (error) {
-    console.error("Failed to save contact submission:", error.message);
+  try {
+    await db.insert(contactSubmissionSchema).values({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: normalizedEmail,
+      message: message.trim(),
+    });
+  } catch (error) {
+    console.error("Failed to save contact submission:", error);
     return { error: "Failed to send message. Please try again." };
   }
 

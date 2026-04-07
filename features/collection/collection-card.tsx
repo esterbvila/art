@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { collectionSchema } from "@/drizzle/schema";
 import { formatPrice } from "@/lib/utils";
 
-export default function CollectionCard({ collection }) {
+export default function CollectionCard({
+  collection,
+}: {
+  collection: typeof collectionSchema.$inferSelect & { artworkCount?: number; minPrice?: number };
+}) {
   return (
     <Link
       href={`/collections/${collection.slug}`}
@@ -10,9 +15,9 @@ export default function CollectionCard({ collection }) {
       aria-label={`View ${collection.name} collection`}
     >
       <div className="relative aspect-3/4 max-h-102.5 w-full overflow-hidden">
-        {collection.cover_image_url ? (
+        {collection.coverImageUrl ? (
           <Image
-            src={collection.cover_image_url}
+            src={collection.coverImageUrl}
             alt={collection.name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
@@ -34,8 +39,8 @@ export default function CollectionCard({ collection }) {
         )}
 
         <p className="font-normal font-sans text-[12px] text-text-tertiary tracking-[0.5px]">
-          {collection.artwork_count ?? 0} work{collection.artwork_count !== 1 ? "s" : ""}
-          {collection.min_price ? ` · From ${formatPrice(collection.min_price)}` : ""}
+          {collection.artworkCount ?? 0} work{collection.artworkCount !== 1 ? "s" : ""}
+          {collection.minPrice ? ` · From ${formatPrice(collection.minPrice)}` : ""}
         </p>
       </div>
     </Link>

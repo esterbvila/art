@@ -1,36 +1,36 @@
-import { Navigation } from "lucide-react";
+import { and, asc, eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
+import { getRLSDb } from "@/drizzle/client";
+import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
 import Footer from "@/features/footer";
+import Navigation from "@/features/navigation";
 import { resolveFirstImage } from "@/lib/storage";
-import { getSupabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  const supabase = await getSupabase();
-  const { data } = await supabase.from("collections").select("slug").eq("visible", true);
+  const db = await getRLSDb();
 
-  return (data ?? []).map(({ slug }) => ({ slug }));
+  const rows = await db(tx =>
+    tx.select({ slug: collectionSchema.slug }).from(collectionSchema).where(eq(collectionSchema.visible, true)),
+  );
+
+  return rows.map(({ slug }) => ({ slug }));
 }
 
 async function getCollection(slug: string) {
-  const supabase = await getSupabase();
-  const { data, error } = await supabase
-    .from("collections")
-    .select("id, slug, name, description_collection, tagline, cover_image_url, hero_image, price")
-    .eq("slug", slug)
-    .single();
+  const db = await getRLSDb();
 
-  if (error || !data) {
-    return null;
-  }
-  return data;
+  const [collection] = await db(tx =>
+    tx.select().from(collectionSchema).where(eq(collectionSchema.slug, slug)).limit(1),
+  );
+
+  return collection ?? null;
 }
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const collection = await getCollection(slug);
@@ -38,23 +38,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {};
   }
 
-  const supabase = await getSupabase();
-  const { data: firstArtwork } = await supabase
-    .from("artworks")
-    .select("image_url")
-    .eq("collection_id", collection.id)
-    .eq("visible", true)
-    .order("created_at", { ascending: true })
-    .limit(1)
-    .single();
+  const db = await getRLSDb();
+
+  const [firstArtwork] = await db(tx =>
+    tx
+      .select({ imageUrl: artworkSchema.imageUrl })
+      .from(artworkSchema)
+      .where(and(eq(artworkSchema.collectionId, collection.id), eq(artworkSchema.visible, true)))
+      .orderBy(asc(artworkSchema.createdAt))
+      .limit(1),
+  );
 
   const ogImage =
-    collection.hero_image ||
-    collection.cover_image_url ||
-    (firstArtwork ? ((await resolveFirstImage(firstArtwork.image_url)) ?? null) : null);
+    collection.coverImageUrl || (firstArtwork ? ((await resolveFirstImage(firstArtwork.imageUrl)) ?? null) : null);
 
   const description =
-    collection.description_collection ||
+    collection.descriptionCollection ||
     `${collection.name} — A collection of original abstract paintings by ${siteConfig.name}.`;
 
   return {
@@ -99,7 +98,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
   );
 
   const minPrice = artworks.length > 0 ? Math.min(...artworks.map(a => a.price)) : null;
-  const heroImage = collection.hero_image || collection.cover_image_url || (artworks[0]?.imageUrl ?? null);
+  const heroImage = collection.heroImage || collection.coverImageUrl || (artworks[0]?.imageUrl ?? null);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -163,9 +162,9 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
             </p>
           </div>
 
-          {collection.description_collection && (
+          {collection.descriptionCollection && (
             <p className="font-normal font-sans text-[14px] text-text-secondary leading-[1.7] md:max-w-105 md:shrink-0 md:text-[15px]">
-              {collection.description_collection}
+              {collection.descriptionCollection}
             </p>
           )}
         </div>
