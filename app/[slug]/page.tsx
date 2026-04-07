@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
-import { getRLSDb } from "@/drizzle/client";
+import { db } from "@/drizzle/client";
 import { artworkSchema } from "@/drizzle/schema";
 import { getArtworkBySlug } from "@/features/artwork/artwork-actions";
 import ArtworkImage from "@/features/artwork/artwork-image";
@@ -17,11 +17,7 @@ import { resolveImages } from "@/lib/storage";
 import { formatPrice } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  const db = await getRLSDb();
-
-  const rows = await db(tx =>
-    tx.select({ slug: artworkSchema.slug }).from(artworkSchema).where(eq(artworkSchema.visible, true)),
-  );
+  const rows = await db.select({ slug: artworkSchema.slug }).from(artworkSchema).where(eq(artworkSchema.visible, true));
 
   return rows.filter((row): row is { slug: string } => Boolean(row.slug)).map(({ slug }) => ({ slug }));
 }
