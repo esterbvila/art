@@ -96,16 +96,16 @@ export async function POST(request: Request) {
   }
 
   const rawBody = await request.text();
-  const sig = request.headers.get("stripe-signature");
+  const stripeSignature = request.headers.get("stripe-signature");
 
-  if (!sig) {
+  if (!stripeSignature) {
     return new Response("Missing stripe-signature header", { status: 400 });
   }
 
   let event: ReturnType<typeof stripe.webhooks.constructEvent>;
 
   try {
-    event = stripe.webhooks.constructEvent(rawBody, sig, secret);
+    event = stripe.webhooks.constructEvent(rawBody, stripeSignature, secret);
   } catch (err) {
     console.error("Webhook signature verification failed:", (err as Error).message);
     return new Response(`Webhook Error: ${(err as Error).message}`, { status: 400 });
@@ -141,23 +141,23 @@ export async function POST(request: Request) {
     }),
   ]);
 
-  const shippingDetails = session.shipping_details ?? null;
-  const addr = shippingDetails?.address ?? session.customer_details?.address ?? null;
-  const shippingName = shippingDetails?.name ?? session.customer_details?.name ?? null;
+  const customerDetails = session.customer_details ?? null;
+  const address = customerDetails?.address ?? session.customer_details?.address ?? null;
+  const shippingName = customerDetails?.name ?? session.customer_details?.name ?? null;
   const customerMessage = session.custom_fields?.find(f => f.key === "message")?.text?.value ?? null;
 
-  const sharedFields: NewOrder = {
+  const newOrder: NewOrder = {
     stripeSessionId: session.id,
     customerEmail: session.customer_details?.email ?? null,
     customerName: session.customer_details?.name ?? null,
     customerPhone: session.customer_details?.phone ?? null,
     shippingName,
-    shippingLine1: addr?.line1 ?? null,
-    shippingLine2: addr?.line2 ?? null,
-    shippingCity: addr?.city ?? null,
-    shippingState: addr?.state ?? null,
-    shippingPostalCode: addr?.postal_code ?? null,
-    shippingCountry: addr?.country ?? null,
+    shippingLine1: address?.line1 ?? null,
+    shippingLine2: address?.line2 ?? null,
+    shippingCity: address?.city ?? null,
+    shippingState: address?.state ?? null,
+    shippingPostalCode: address?.postal_code ?? null,
+    shippingCountry: address?.country ?? null,
     paymentMethod,
     status: "completed",
     message: customerMessage,
@@ -166,7 +166,7 @@ export async function POST(request: Request) {
   await Promise.all(
     pendingIds.map(artworkId =>
       insertOrderAndDecrementStock({
-        ...sharedFields,
+        ...newOrder,
         artworkId,
         amountCents: artworkMap[artworkId]?.price,
       }),
@@ -180,7 +180,7 @@ export async function POST(request: Request) {
       customerName: session.customer_details?.name ?? "there",
       artworks: allArtworks,
       amountCents: session.amount_total,
-      shipping: { ...addr, name: shippingName },
+      shipping: { ...address, name: shippingName },
       phone: session.customer_details?.phone ?? null,
       message: customerMessage,
     };
