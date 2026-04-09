@@ -22,7 +22,7 @@ if (!databaseUrl) {
 
 if (process.env.NODE_ENV !== "production") {
   if (!global.postgresSqlClient) {
-    global.postgresSqlClient = postgres(databaseUrl, { prepare: false });
+    global.postgresSqlClient = postgres(databaseUrl, { prepare: false, max: 2 });
   }
   postgresSqlClient = global.postgresSqlClient;
 } else {

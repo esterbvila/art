@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
-import { db, getRLSDb } from "@/drizzle/client";
+import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
@@ -22,14 +22,11 @@ export async function generateStaticParams() {
 }
 
 async function getCollection(slug: string) {
-  const db = await getRLSDb();
-
-  const [collection] = await db(tx =>
-    tx.select().from(collectionSchema).where(eq(collectionSchema.slug, slug)).limit(1),
-  );
+  const [collection] = await db.select().from(collectionSchema).where(eq(collectionSchema.slug, slug)).limit(1);
 
   return collection ?? null;
 }
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const collection = await getCollection(slug);
@@ -37,16 +34,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {};
   }
 
-  const db = await getRLSDb();
-
-  const [firstArtwork] = await db(tx =>
-    tx
-      .select({ imageUrl: artworkSchema.imageUrl })
-      .from(artworkSchema)
-      .where(and(eq(artworkSchema.collectionId, collection.id), eq(artworkSchema.visible, true)))
-      .orderBy(asc(artworkSchema.createdAt))
-      .limit(1),
-  );
+  const [firstArtwork] = await db
+    .select({ imageUrl: artworkSchema.imageUrl })
+    .from(artworkSchema)
+    .where(and(eq(artworkSchema.collectionId, collection.id), eq(artworkSchema.visible, true)))
+    .orderBy(asc(artworkSchema.createdAt))
+    .limit(1);
 
   const ogImage =
     collection.coverImageUrl || (firstArtwork ? ((await resolveFirstImage(firstArtwork.imageUrl)) ?? null) : null);
