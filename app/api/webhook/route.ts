@@ -1,4 +1,5 @@
 import { and, eq, inArray, sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import Stripe from "stripe";
 import { db } from "@/drizzle/client";
 import { artworkSchema, orderSchema } from "@/drizzle/schema";
@@ -172,6 +173,8 @@ export async function POST(request: Request) {
       }),
     ),
   );
+
+  revalidatePath("/", "layout");
 
   const customerEmail = session.customer_details?.email;
   if (customerEmail) {
