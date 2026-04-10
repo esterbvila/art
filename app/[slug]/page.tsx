@@ -11,6 +11,7 @@ import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
 import RelatedArtworks from "@/features/artwork/related-artworks";
 import { AddArtworkToCart } from "@/features/cart/add-artwork-to-cart";
 import Footer from "@/features/footer";
+import ImageSlider from "@/features/image-slider";
 import Navigation from "@/features/navigation";
 import PurchaseButton from "@/features/purchase-button";
 import { resolveImages } from "@/lib/storage";
@@ -151,7 +152,9 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
 
         <div className="flex w-full flex-1 flex-col md:flex-row lg:max-w-325">
           <div className="md:w-1/2 md:max-w-140.75 lg:w-[55%] lg:max-w-none">
-            <div className="min-h-75 md:hidden"></div>
+            <div className="min-h-75 md:hidden">
+              <ImageSlider images={artworkImages} alt={artwork.title} />
+            </div>
             <div className="hidden flex-col gap-1.5 md:flex lg:hidden">
               {artworkImages.map((src, i) => (
                 <ArtworkImage
