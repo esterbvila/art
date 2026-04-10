@@ -1,7 +1,6 @@
 "use client";
 import Head from "next/head";
 import { useState } from "react";
-import Footer from "@/features/footer";
 
 export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
   const [lang, setLang] = useState("en");
@@ -70,9 +69,6 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
             })}
           </div>
         </main>
-
-        <div className="h-px w-full bg-divider" />
-        <Footer />
       </div>
     </>
   );

@@ -10,7 +10,6 @@ import ArtworkImage from "@/features/artwork/artwork-image";
 import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
 import RelatedArtworks from "@/features/artwork/related-artworks";
 import { AddArtworkToCart } from "@/features/cart/add-artwork-to-cart";
-import Footer from "@/features/footer";
 import ImageSlider from "@/features/image-slider";
 import PurchaseButton from "@/features/purchase-button";
 import { resolveImages } from "@/lib/storage";
@@ -289,8 +288,6 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
         </div>
       </div>
       <RelatedArtworks artwork={artwork} />
-      <div className="h-px w-full bg-divider" />
-      <Footer />
     </div>
   );
 }

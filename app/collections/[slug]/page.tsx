@@ -7,7 +7,6 @@ import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
-import Footer from "@/features/footer";
 import { resolveFirstImage } from "@/lib/storage";
 import { formatPrice } from "@/lib/utils";
 
@@ -170,10 +169,6 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
           <p className="font-sans text-sm text-text-tertiary">No artworks in this collection yet.</p>
         )}
       </div>
-
-      <div className="h-px w-full bg-divider" />
-
-      <Footer />
     </>
   );
 }
