@@ -6,7 +6,7 @@ import Stripe from "stripe";
 import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { stripe } from "@/features/payment/stripe";
-import { resolveFirstImage } from "@/lib/storage";
+import { resolveImages } from "@/lib/storage";
 
 const ALLOWED_COUNTRIES: Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[] = [
   "AC",
@@ -284,7 +284,7 @@ export async function createCheckoutSession(artworkIds: string[]): Promise<{ url
       return `${proto}://${host}`;
     })();
 
-  const resolvedImages = await Promise.all(artworks.map(a => resolveFirstImage(a.imageUrl)));
+  const resolvedImages = await Promise.all(artworks.map(async a => (await resolveImages(a.imageUrl))[0] ?? null));
 
   const line_items = artworks.map((artwork, i) => ({
     price_data: {

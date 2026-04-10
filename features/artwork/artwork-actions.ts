@@ -2,7 +2,7 @@ import { and, asc, desc, eq, gt, isNull, ne, notInArray } from "drizzle-orm";
 import { cache } from "react";
 import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
-import { resolveFirstImage } from "@/lib/storage";
+import { resolveDisplayImage } from "@/lib/storage";
 
 export async function getArtworksWithoutCollection() {
   const result = await db
@@ -14,7 +14,7 @@ export async function getArtworksWithoutCollection() {
   return Promise.all(
     result.map(async artwork => ({
       ...artwork,
-      imageUrl: (await resolveFirstImage(artwork.imageUrl)) ?? artwork.imageUrl,
+      imageUrl: await resolveDisplayImage(artwork.imageUrl),
     })),
   );
 }
@@ -38,7 +38,7 @@ export async function getFeaturedArtwork() {
 
   return {
     ...featuredRaw,
-    imageUrl: (await resolveFirstImage(featuredRaw.imageUrl)) ?? featuredRaw.imageUrl,
+    imageUrl: await resolveDisplayImage(featuredRaw.imageUrl),
   };
 }
 
@@ -97,7 +97,7 @@ export async function getRelatedArtworks(artwork: typeof artworkSchema.$inferSel
   return Promise.all(
     [...sameCollection, ...others].map(async a => ({
       ...a.artworks,
-      imageUrl: (await resolveFirstImage(a.artworks.imageUrl)) ?? a.artworks.imageUrl,
+      imageUrl: await resolveDisplayImage(a.artworks.imageUrl),
     })),
   );
 }

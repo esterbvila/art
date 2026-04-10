@@ -7,7 +7,7 @@ import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
-import { resolveFirstImage } from "@/lib/storage";
+import { resolveDisplayImage, resolveImages } from "@/lib/storage";
 import { formatPrice } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -22,7 +22,24 @@ export async function generateStaticParams() {
 async function getCollection(slug: string) {
   const [collection] = await db.select().from(collectionSchema).where(eq(collectionSchema.slug, slug)).limit(1);
 
-  return collection ?? null;
+  if (!collection) {
+    return null;
+  }
+
+  const [coverImageUrl, heroImage] = await Promise.all([
+    collection.coverImageUrl
+      ? resolveImages(collection.coverImageUrl).then(images => images[0] ?? null)
+      : Promise.resolve(null),
+    collection.heroImage
+      ? resolveImages(collection.heroImage).then(images => images[0] ?? null)
+      : Promise.resolve(null),
+  ]);
+
+  return {
+    ...collection,
+    coverImageUrl,
+    heroImage,
+  };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -40,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .limit(1);
 
   const ogImage =
-    collection.coverImageUrl || (firstArtwork ? ((await resolveFirstImage(firstArtwork.imageUrl)) ?? null) : null);
+    collection.coverImageUrl || (firstArtwork ? ((await resolveImages(firstArtwork.imageUrl))[0] ?? null) : null);
 
   const description =
     collection.descriptionCollection ||
@@ -83,7 +100,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
   const artworks = await Promise.all(
     (artworksRaw ?? []).map(async a => ({
       ...a,
-      imageUrl: (await resolveFirstImage(a.imageUrl)) ?? a.imageUrl,
+      imageUrl: await resolveDisplayImage(a.imageUrl),
     })),
   );
 

@@ -1,3 +1,14 @@
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseRemotePattern = supabaseUrl
+  ? [
+      {
+        protocol: new URL(supabaseUrl).protocol.replace(":", ""),
+        hostname: new URL(supabaseUrl).hostname,
+        pathname: "/storage/v1/object/public/artworks/**",
+      },
+    ]
+  : [];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -9,6 +20,7 @@ const nextConfig = {
     deviceSizes: [640, 1080, 1920, 2235],
     imageSizes: [128, 384],
     remotePatterns: [
+      ...supabaseRemotePattern,
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
