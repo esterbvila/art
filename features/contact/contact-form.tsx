@@ -1,5 +1,4 @@
 "use client";
-import { Instagram } from "lucide-react";
 import { useActionState } from "react";
 import { submitContactAction } from "./contact-actions";
 
@@ -90,9 +89,8 @@ export default function ContactForm() {
           href="https://instagram.com/esterii_creates"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 transition-opacity hover:opacity-70"
+          className="flex w-fit items-center gap-2.5 transition-opacity hover:opacity-70"
         >
-          <Instagram size={16} className="shrink-0 text-text-tertiary" />
           <span className="font-normal font-sans text-[14px] text-text-secondary">@esterii_creates</span>
         </a>
       </div>
