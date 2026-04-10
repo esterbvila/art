@@ -3,6 +3,7 @@
 import { ZoomIn } from "lucide-react";
 import Image from "next/image";
 import { type TouchEvent as ReactTouchEvent, useEffect, useRef, useState } from "react";
+import ImageLightbox from "@/features/image-ligthtbox";
 
 const SWIPE_THRESHOLD = 50;
 
@@ -16,14 +17,14 @@ type SwipeStartPoint = {
 type ImageSliderProps = {
   images: string[];
   alt: string;
-  onImageClickAction?: (src: string) => void;
 };
 
-export default function ImageSlider({ images, alt, onImageClickAction }: ImageSliderProps) {
+export default function ImageSlider({ images, alt }: ImageSliderProps) {
   const [current, setCurrent] = useState(0);
   const [isLg, setIsLg] = useState(false);
   const [dragX, setDragX] = useState(0);
   const [dragging, setDragging] = useState(false);
+  const [lightboxSource, setLightboxSource] = useState<string | null>(null);
 
   const stripRef = useRef<HTMLDivElement | null>(null);
   const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -47,8 +48,6 @@ export default function ImageSlider({ images, alt, onImageClickAction }: ImageSl
     }
   }, [current]);
 
-  // Non-passive listener so we can preventDefault on horizontal swipes
-  // without blocking vertical page scrolling.
   useEffect(() => {
     const el = trackRef.current;
     if (!el || images.length <= 1) {
@@ -126,14 +125,12 @@ export default function ImageSlider({ images, alt, onImageClickAction }: ImageSl
 
   return (
     <div className="flex flex-col gap-3">
-      {/* ── Main image ─────────────────────────────────────────────── */}
       <div
         ref={trackRef}
         className="group relative aspect-3/4 max-h-150 w-full overflow-hidden"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Sliding track — all slides sit side-by-side and translate together */}
         <div
           className="absolute inset-0 flex"
           style={{
@@ -148,7 +145,7 @@ export default function ImageSlider({ images, alt, onImageClickAction }: ImageSl
               className="relative h-full min-w-full"
               onClick={() => {
                 if (!didDrag.current) {
-                  onImageClickAction?.(src);
+                  setLightboxSource(src);
                 }
               }}
             >
@@ -166,20 +163,16 @@ export default function ImageSlider({ images, alt, onImageClickAction }: ImageSl
           ))}
         </div>
 
-        {/* Magnifier button */}
-        {onImageClickAction && (
-          <button
-            onClick={() => onImageClickAction(images[current])}
-            aria-label="View full screen"
-            className="absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center bg-bg-main/80 opacity-100 transition-colors hover:bg-bg-main"
-          >
-            <ZoomIn size={15} className="text-text-primary" />
-          </button>
-        )}
+        <button
+          onClick={() => setLightboxSource(images[current])}
+          aria-label="View full screen"
+          className="absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center bg-bg-main/80 opacity-100 transition-colors hover:bg-bg-main"
+        >
+          <ZoomIn size={15} className="text-text-primary" />
+        </button>
 
         {hasManyImages && (
           <>
-            {/* Dot indicators */}
             <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
               {images.map((_, i) => (
                 <button
@@ -196,7 +189,6 @@ export default function ImageSlider({ images, alt, onImageClickAction }: ImageSl
         )}
       </div>
 
-      {/* ── Thumbnail strip ─────────────────────────────────────────── */}
       {hasManyImages && (
         <div ref={stripRef} className="flex gap-2 overflow-x-auto py-1">
           {images.map((src, i) => (
@@ -219,6 +211,10 @@ export default function ImageSlider({ images, alt, onImageClickAction }: ImageSl
             </button>
           ))}
         </div>
+      )}
+
+      {lightboxSource && (
+        <ImageLightbox src={lightboxSource} images={images} alt={alt} onClose={() => setLightboxSource(null)} />
       )}
     </div>
   );
