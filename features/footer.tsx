@@ -32,7 +32,7 @@ export default function Footer() {
         <FaCcAmex size={24} className="text-text-tertiary" title="American Express" />
       </div>
 
-      <div className="flex flex-col items-center justify-between gap-5 px-5 pt-8 pb-10 md:flex-row md:items-start md:gap-0 md:px-12 md:pt-10 md:pb-12">
+      <div className="flex flex-col items-center justify-between gap-5 px-5 pt-8 pb-9 md:flex-row md:items-start md:gap-0 md:px-12 md:pt-10 md:pb-12">
         <div className="flex flex-col gap-1.5 text-center md:text-left">
           <Link
             href="/"
