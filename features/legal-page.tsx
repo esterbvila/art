@@ -2,7 +2,6 @@
 import Head from "next/head";
 import { useState } from "react";
 import Footer from "@/features/footer";
-import Navigation from "@/features/navigation";
 
 export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
   const [lang, setLang] = useState("en");
@@ -16,11 +15,9 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
       </Head>
 
       <div className="flex min-h-screen flex-col bg-bg-main">
-        <Navigation />
-
-        <main className="max-w-[720px] flex-1 px-5 py-[56px] md:px-[48px]">
+        <main className="max-w-180 flex-1 px-5 py-14 md:px-12">
           <div className="mb-5 flex items-center justify-between">
-            <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">Legal</p>
+            <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">Legal</p>
             <div className="flex font-sans text-[12px] tracking-[1px]">
               <button
                 onClick={() => setLang("en")}
@@ -41,9 +38,8 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
             </div>
           </div>
 
-          {/* ── Page title ────────────────────────────────────────────── */}
           <h1
-            className="mb-[48px] font-normal font-sans text-text-primary"
+            className="mb-12 font-normal font-sans text-text-primary"
             style={{
               fontSize: "clamp(32px, 4vw, 48px)",
               letterSpacing: "-1.5px",

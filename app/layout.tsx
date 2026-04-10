@@ -3,6 +3,7 @@ import React from "react";
 import CartDrawer from "../features/cart/cart-drawer";
 import CartProvider from "../features/cart/cart-provider";
 import "./globals.css";
+import Navigation from "@/features/navigation";
 
 const funnelSans = Funnel_Sans({
   subsets: ["latin"],
@@ -17,7 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <main className={`${funnelSans.variable}`}>
           <CartProvider>
-            {children}
+            <Navigation />
+            <div className="flex min-h-screen flex-col bg-bg-main">{children}</div>
             <CartDrawer />
           </CartProvider>
         </main>

@@ -6,7 +6,6 @@ import ContactForm from "@/features/contact/contact-form";
 import Footer from "@/features/footer";
 import Gallery from "@/features/gallery";
 import Hero from "@/features/hero";
-import Navigation from "@/features/navigation";
 
 export const metadata = {
   title: "Ester Batllori — Abstract Paintings",
@@ -91,41 +90,37 @@ export default async function Home() {
       <PersonJsonLd />
       <OrganizationJsonLd />
 
-      <div className="flex min-h-screen flex-col bg-bg-main">
-        <Navigation />
+      <Hero />
 
-        <Hero />
+      <div className="h-px w-full bg-divider" />
 
-        <div className="h-px w-full bg-divider" />
-
-        <section id="works">
-          <Suspense>
-            <UniqueArtworks />
-          </Suspense>
-        </section>
-
-        <div className="h-px w-full bg-divider" />
-
-        <Gallery />
-
-        <section id="about">
-          <AboutArtist />
-        </section>
-
+      <section id="works">
         <Suspense>
-          <FeaturedArtwork />
+          <UniqueArtworks />
         </Suspense>
+      </section>
 
-        <div className="h-px w-full bg-divider" />
+      <div className="h-px w-full bg-divider" />
 
-        <section id="contact">
-          <ContactForm />
-        </section>
+      <Gallery />
 
-        <div className="h-px w-full bg-divider" />
+      <section id="about">
+        <AboutArtist />
+      </section>
 
-        <Footer />
-      </div>
+      <Suspense>
+        <FeaturedArtwork />
+      </Suspense>
+
+      <div className="h-px w-full bg-divider" />
+
+      <section id="contact">
+        <ContactForm />
+      </section>
+
+      <div className="h-px w-full bg-divider" />
+
+      <Footer />
     </>
   );
 }
