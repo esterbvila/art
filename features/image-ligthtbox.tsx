@@ -40,7 +40,10 @@ export default function ImageLightbox({
   return (
     <div className="fixed inset-0 z-100 bg-black/90">
       <button
-        onClick={onClose}
+        onClick={event => {
+          event.stopPropagation();
+          onClose();
+        }}
         aria-label="Close"
         className="fixed top-4 right-4 z-10 flex h-10 w-10 items-center justify-center text-white/70 transition-colors hover:text-white"
       >
