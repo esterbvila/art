@@ -29,8 +29,18 @@
     "tailwind-merge": "^2.5.2"
   },
   "browserslist": {
-    "production": ["chrome >= 93", "edge >= 93", "safari >= 16", "firefox >= 92", "not dead"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      "chrome >= 93",
+      "edge >= 93",
+      "safari >= 16",
+      "firefox >= 92",
+      "not dead"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.10",
@@ -38,6 +48,7 @@
     "@types/react": "19.2.14",
     "drizzle-kit": "^0.31.10",
     "postcss": "^8.4.47",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2"
   }
 }
