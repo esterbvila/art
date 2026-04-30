@@ -63,7 +63,7 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
                         {section.heading}
                       </h2>
                     ))}
-                  {section.body && <div className="flex flex-col gap-2">{section.body}</div>}
+                  {section.body}
                 </section>
               );
             })}

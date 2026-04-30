@@ -89,28 +89,6 @@ export const orderSchema = pgTable(
   ],
 );
 
-export const printSchema = pgTable(
-  "prints",
-  {
-    id: uuid().defaultRandom().primaryKey().notNull(),
-    artworkId: uuid("artwork_id").notNull(),
-    size: text().notNull(),
-    material: text().notNull(),
-    price: integer().notNull(),
-    stock: integer().default(1).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }).defaultNow().notNull(),
-  },
-  table => [
-    index("prints_artwork_id_idx").using("btree", table.artworkId.asc().nullsLast().op("uuid_ops")),
-    foreignKey({
-      columns: [table.artworkId],
-      foreignColumns: [artworkSchema.id],
-      name: "prints_artwork_id_fkey",
-    }).onDelete("cascade"),
-    pgPolicy("prints: public read", { as: "permissive", for: "select", to: ["public"], using: sql`true` }),
-  ],
-);
-
 export const collectionSchema = pgTable(
   "collections",
   {

@@ -32,7 +32,7 @@ export async function sendOrderConfirmation({ to, customerName, artworks, amount
   const isSingle = artworks.length === 1;
   const subjectLine = isSingle
     ? `Order received — ${artworks[0].title}`
-    : `Order received — ${artworks.length} paintings`;
+    : `Order received — ${artworks.length} original paintings`;
 
   const introLine = isSingle
     ? `I have received your order of <strong style="color:#1A1917;">${escapeHtml(artworks[0].title)}</strong> and your payment details successfully.`
@@ -153,7 +153,7 @@ export async function sendOrderConfirmation({ to, customerName, artworks, amount
                 This email is a confirmation of receipt only and does not yet constitute acceptance of your order.
               </p>
               <p style="margin:0;font-size:12px;color:#9C9690;">
-                © 2026 esterii creates — Original abstract paintings & Prints
+                © 2026 esterii creates — Original abstract paintings
               </p>
             </td>
           </tr>

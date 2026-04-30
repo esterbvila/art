@@ -22,7 +22,7 @@ export default function Success() {
         </h1>
         <p className="max-w-2xl font-sans text-[15px] text-text-secondary leading-[1.7]">
           You will receive an email shortly confirming receipt of your order. I will review your order and contact you
-          soon to arrange shipping for your painting.
+          soon to arrange shipping for your original painting.
         </p>
         <Link
           href="/"

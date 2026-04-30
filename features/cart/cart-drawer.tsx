@@ -55,7 +55,7 @@ export default function CartDrawer() {
     };
   }, [isOpen, setIsOpen]);
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce((sum, item) => sum + item.price, 0);
 
   function handleCheckout() {
     if (!items.length || isPending) {
@@ -64,12 +64,7 @@ export default function CartDrawer() {
 
     startTransition(async () => {
       try {
-        const artworkIds = items.filter(i => i.type === "artwork").map(i => i.id);
-        const printItems = items
-          .filter(i => i.type === "print")
-          .map(i => ({ id: i.id, qty: i.quantity }));
-
-        const { url } = await createCheckoutSession(artworkIds, printItems);
+        const { url } = await createCheckoutSession(items.map(i => i.id));
         clearCart();
         window.location.href = url;
       } catch (err) {
@@ -124,13 +119,7 @@ export default function CartDrawer() {
                 )}
                 <div className="flex flex-1 flex-col gap-1">
                   <p className="font-sans text-[16px] text-text-primary">{item.title}</p>
-                  {item.type === "print" && (
-                    <p className="font-sans text-[12px] text-text-tertiary">
-                      {item.size} · {item.material}
-                      {item.quantity > 1 && ` · ×${item.quantity}`}
-                    </p>
-                  )}
-                  <p className="font-sans text-[14px] text-text-secondary">{formatPrice(item.price * item.quantity)}</p>
+                  <p className="font-sans text-[14px] text-text-secondary">{formatPrice(item.price)}</p>
                 </div>
                 <button
                   onClick={() => removeItem(item.id)}

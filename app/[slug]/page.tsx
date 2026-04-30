@@ -30,7 +30,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     return {};
   }
 
-  const description = artwork.description || `${artwork.title} — Abstract painting by Ester Batllori.`;
+  const description = artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`;
   const imageUrl = artwork.imageUrl ?? null;
 
   return {
@@ -91,7 +91,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "Product",
     name: artwork.title,
-    description: artwork.description || `${artwork.title} — Abstract painting by Ester Batllori.`,
+    description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
     image: artwork.imageUrl,
     url: `https://esteriicreates.com/${slug}`,
     brand: { "@type": "Brand", name: "esterii creates" },
