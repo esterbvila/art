@@ -13,7 +13,7 @@ const items = [
   },
   {
     icon: ShieldCheck,
-    label: "1 of 1 Original",
+    label: "Original",
     description: "Signed artwork with certificate of authenticity.",
   },
   {
