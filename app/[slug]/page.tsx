@@ -11,6 +11,7 @@ import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
 import RelatedArtworks from "@/features/artwork/related-artworks";
 import { AddArtworkToCart } from "@/features/cart/add-artwork-to-cart";
 import ImageSlider from "@/features/image-slider";
+import PrintControls from "@/features/prints/print-controls";
 import PurchaseButton from "@/features/purchase-button";
 import { resolveImages } from "@/lib/storage";
 import { formatPrice } from "@/lib/utils";
@@ -236,8 +237,29 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
 
             {siteConfig.shopEnabled && (
               <div className="flex w-full flex-col gap-3">
-                <PurchaseButton artworkId={artworkWithCollection.id} isAvailable={isAvailable} />
-                <AddArtworkToCart artwork={{ ...artwork, imageUrl: artworkImages[0] }} />
+                {artwork.type === "print" ? (
+                  isAvailable ? (
+                    <PrintControls
+                      artworkId={artwork.id}
+                      title={artwork.title}
+                      price={artwork.price}
+                      imageUrl={artworkImages[0] ?? ""}
+                      stock={artwork.stock}
+                    />
+                  ) : (
+                    <button
+                      disabled
+                      className="flex w-full cursor-not-allowed items-center justify-center bg-divider px-12 py-4 font-normal font-sans text-[14px] text-text-tertiary tracking-[0.5px]"
+                    >
+                      Sold out
+                    </button>
+                  )
+                ) : (
+                  <>
+                    <PurchaseButton artworkId={artworkWithCollection.id} isAvailable={isAvailable} />
+                    <AddArtworkToCart artwork={{ ...artwork, imageUrl: artworkImages[0] }} />
+                  </>
+                )}
               </div>
             )}
 
@@ -284,7 +306,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
 
           <div className="h-px w-full bg-divider" />
 
-          <ArtworkInfoSection />
+          <ArtworkInfoSection type={artwork.type} />
         </div>
       </div>
       <RelatedArtworks artwork={artwork} />

@@ -23,6 +23,8 @@ export function AddArtworkToCart({ artwork }: { artwork: typeof artworkSchema.$i
             title: artwork.title,
             price: artwork.price,
             imageUrl: artwork.imageUrl ?? "",
+            type: "original",
+            quantity: 1,
           });
         }
       }}

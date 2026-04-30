@@ -42,6 +42,7 @@ export const artworkSchema = pgTable(
     tagline: text(),
     visible: boolean().default(true),
     slug: text(),
+    type: text(),
   },
   table => [
     index("artworks_collection_id_idx").using("btree", table.collectionId.asc().nullsLast().op("uuid_ops")),
@@ -76,6 +77,7 @@ export const orderSchema = pgTable(
     shippingCountry: text("shipping_country"),
     paymentMethod: text("payment_method"),
     message: text(),
+    quantity: integer().default(1).notNull(),
   },
   table => [
     index("orders_artwork_id_idx").using("btree", table.artworkId.asc().nullsLast().op("uuid_ops")),

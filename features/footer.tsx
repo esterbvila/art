@@ -1,18 +1,35 @@
+"use client";
 import { Lock } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FaCcAmex, FaCcMastercard, FaCcVisa } from "react-icons/fa";
 import { SiKlarna, SiPaypal, SiStripe } from "react-icons/si";
 import { siteConfig } from "@/app/site-config";
 
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
 export default function Footer() {
+  const router = useRouter();
+
+  function handleNavClick(sectionId: string) {
+    if (window.location.pathname === "/") {
+      scrollToSection(sectionId);
+    } else {
+      router.push(`/#${sectionId}`);
+    }
+  }
+
   const navLinks = [
-    { label: "Works", href: "/#works" },
-    { label: "About", href: "/#about" },
-    { label: "Inquire", href: "/#contact" },
-    {
-      label: "@esterii_creates",
-      href: "https://instagram.com/esterii_creates",
-    },
+    { label: "Prints", sectionId: "prints" },
+    { label: "Originals", sectionId: "works" },
+    { label: "Collections", sectionId: "collections" },
+    { label: "About", sectionId: "about" },
+    { label: "Inquire", sectionId: "contact" },
   ];
 
   return (
@@ -47,16 +64,23 @@ export default function Footer() {
         </div>
 
         <nav className="flex items-center gap-6 md:gap-8">
-          {navLinks.map(({ label, href }) => (
-            <Link
+          {navLinks.map(({ label, sectionId }) => (
+            <button
               key={label}
-              href={href}
-              {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              onClick={() => handleNavClick(sectionId)}
               className="font-normal font-sans text-[13px] text-text-secondary transition-colors hover:text-text-primary"
             >
               {label}
-            </Link>
+            </button>
           ))}
+          <a
+            href="https://instagram.com/esterii_creates"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-normal font-sans text-[13px] text-text-secondary transition-colors hover:text-text-primary"
+          >
+            @esterii_creates
+          </a>
         </nav>
 
         <div className="flex flex-col items-center gap-2 md:items-end">

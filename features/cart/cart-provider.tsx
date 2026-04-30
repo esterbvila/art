@@ -6,13 +6,15 @@ export interface CartItem {
   title: string;
   price: number;
   imageUrl: string | null;
+  type: "original" | "print";
+  quantity: number;
 }
 
 interface CartContextValue {
   items: CartItem[];
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
-  addItem: (artwork: CartItem) => void;
+  addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
   isInCart: (id: string) => boolean;
@@ -37,8 +39,19 @@ export default function CartProvider({ children }: { children: React.ReactNode }
     localStorage.setItem("cart", JSON.stringify(items));
   }, [items]);
 
-  function addItem(artwork: CartItem) {
-    setItems(prev => (prev.some(i => i.id === artwork.id) ? prev : [...prev, artwork]));
+  function addItem(item: CartItem) {
+    setItems(prev => {
+      if (item.type === "print") {
+        const existing = prev.find(i => i.id === item.id);
+        if (existing) {
+          return prev.map(i =>
+            i.id === item.id ? { ...i, quantity: Math.min(10, i.quantity + item.quantity) } : i,
+          );
+        }
+        return [...prev, item];
+      }
+      return prev.some(i => i.id === item.id) ? prev : [...prev, item];
+    });
     setIsOpen(true);
   }
 

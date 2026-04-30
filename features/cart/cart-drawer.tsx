@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useCart } from "@/features/cart/cart-provider";
-import { createCheckoutSession } from "@/features/payment/checkout";
+import { createCartCheckoutSession } from "@/features/payment/checkout";
 import { formatPrice } from "@/lib/utils";
 
 export default function CartDrawer() {
@@ -55,7 +55,7 @@ export default function CartDrawer() {
     };
   }, [isOpen, setIsOpen]);
 
-  const total = items.reduce((sum, item) => sum + item.price, 0);
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   function handleCheckout() {
     if (!items.length || isPending) {
@@ -64,7 +64,9 @@ export default function CartDrawer() {
 
     startTransition(async () => {
       try {
-        const { url } = await createCheckoutSession(items.map(i => i.id));
+        const { url } = await createCartCheckoutSession(
+          items.map(i => ({ id: i.id, type: i.type, quantity: i.quantity })),
+        );
         clearCart();
         window.location.href = url;
       } catch (err) {
@@ -117,9 +119,15 @@ export default function CartDrawer() {
                     <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="64px" />
                   </div>
                 )}
-                <div className="flex flex-1 flex-col gap-1">
+                <div className="flex flex-1 flex-col gap-0.5">
                   <p className="font-sans text-[16px] text-text-primary">{item.title}</p>
-                  <p className="font-sans text-[14px] text-text-secondary">{formatPrice(item.price)}</p>
+                  <p className="font-sans text-[11px] text-text-tertiary uppercase tracking-[1px]">
+                    {item.type === "print" ? "Print" : "Original"}
+                  </p>
+                  {item.type === "print" && item.quantity > 1 && (
+                    <p className="font-sans text-[12px] text-text-tertiary">Qty: {item.quantity}</p>
+                  )}
+                  <p className="font-sans text-[14px] text-text-secondary">{formatPrice(item.price * item.quantity)}</p>
                 </div>
                 <button
                   onClick={() => removeItem(item.id)}

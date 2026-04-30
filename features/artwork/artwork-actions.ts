@@ -1,4 +1,4 @@
-import { and, asc, desc, eq, gt, isNull, ne, notInArray } from "drizzle-orm";
+import { and, asc, desc, eq, gt, isNull, ne, notInArray, or } from "drizzle-orm";
 import { cache } from "react";
 import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
@@ -8,13 +8,34 @@ export async function getArtworksWithoutCollection() {
   const result = await db
     .select()
     .from(artworkSchema)
-    .where(and(isNull(artworkSchema.collectionId), eq(artworkSchema.visible, true)))
+    .where(
+      and(
+        isNull(artworkSchema.collectionId),
+        eq(artworkSchema.visible, true),
+        or(eq(artworkSchema.type, "original"), isNull(artworkSchema.type)),
+      ),
+    )
     .orderBy(desc(artworkSchema.stock), desc(artworkSchema.createdAt));
 
   return Promise.all(
     result.map(async artwork => ({
       ...artwork,
       imageUrl: await resolveDisplayImage(artwork.imageUrl),
+    })),
+  );
+}
+
+export async function getPrints() {
+  const result = await db
+    .select()
+    .from(artworkSchema)
+    .where(and(eq(artworkSchema.visible, true), eq(artworkSchema.type, "print")))
+    .orderBy(desc(artworkSchema.stock), desc(artworkSchema.createdAt));
+
+  return Promise.all(
+    result.map(async artwork => ({
+      ...artwork,
+      imageUrl: await resolveDisplayImage(artwork.imageUrl).catch(() => artwork.imageUrl),
     })),
   );
 }
@@ -52,7 +73,32 @@ export const getArtworkBySlug = cache(async (slug: string) => {
 });
 
 export async function getRelatedArtworks(artwork: typeof artworkSchema.$inferSelect, limit = 4) {
+  const isPrint = artwork.type === "print";
+
+  if (isPrint) {
+    const candidates = await db
+      .select()
+      .from(artworkSchema)
+      .where(
+        and(
+          eq(artworkSchema.visible, true),
+          eq(artworkSchema.type, "print"),
+          gt(artworkSchema.stock, 0),
+          ne(artworkSchema.id, artwork.id),
+        ),
+      )
+      .limit(limit * 3);
+
+    return Promise.all(
+      candidates
+        .sort(() => Math.random() - 0.5)
+        .slice(0, limit)
+        .map(async a => ({ ...a, imageUrl: await resolveDisplayImage(a.imageUrl) })),
+    );
+  }
+
   const collectionId = artwork.collectionId;
+  const originalFilter = or(eq(artworkSchema.type, "original"), isNull(artworkSchema.type));
 
   const sameCollection = collectionId
     ? await db
@@ -65,6 +111,7 @@ export async function getRelatedArtworks(artwork: typeof artworkSchema.$inferSel
             eq(artworkSchema.collectionId, collectionId),
             ne(artworkSchema.id, artwork.id),
             gt(artworkSchema.stock, 0),
+            originalFilter,
           ),
         )
         .limit(limit)
@@ -86,6 +133,7 @@ export async function getRelatedArtworks(artwork: typeof artworkSchema.$inferSel
                 gt(artworkSchema.stock, 0),
                 excludeIds.length > 0 ? notInArray(artworkSchema.id, excludeIds) : undefined,
                 ne(artworkSchema.id, artwork.id),
+                originalFilter,
               ),
             )
             .limit(remaining * 3)

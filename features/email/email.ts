@@ -1,8 +1,15 @@
 import { Resend } from "resend";
 
+export interface EmailItem {
+  title: string;
+  price: number;
+  type: "original" | "print";
+  quantity: number;
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-function escapeHtml(str) {
+function escapeHtml(str: unknown): string {
   if (!str) {
     return "";
   }
@@ -14,41 +21,71 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-function formatPrice(cents) {
+function formatPrice(cents: number): string {
   return `${(cents / 100).toFixed(0)} €`;
 }
 
-export async function sendOrderConfirmation({ to, customerName, artworks, amountCents, shipping, phone, message }) {
+function itemLabel(item: EmailItem): string {
+  return item.type === "print" ? "Print" : "Original";
+}
+
+export async function sendOrderConfirmation({
+  to,
+  customerName,
+  items,
+  amountCents,
+  shipping,
+  phone,
+  message,
+}: {
+  to: string;
+  customerName: string;
+  items: EmailItem[];
+  amountCents: number | null;
+  shipping: Record<string, string | null | undefined> | null;
+  phone: string | null;
+  message: string | null;
+}) {
   const shippingLines = [
     shipping?.name,
     shipping?.line1,
     shipping?.line2,
     [shipping?.city, shipping?.state, shipping?.postal_code].filter(Boolean).join(", "),
     shipping?.country,
-  ].filter(Boolean);
+  ].filter(Boolean) as string[];
 
   const shippingHtml = shippingLines.map(l => `<div>${escapeHtml(l)}</div>`).join("");
 
-  const isSingle = artworks.length === 1;
+  const isSingle = items.length === 1;
+  const firstItem = items[0]!;
+
   const subjectLine = isSingle
-    ? `Order received — ${artworks[0].title}`
-    : `Order received — ${artworks.length} original paintings`;
+    ? `Order received — ${firstItem.title}`
+    : `Order received — ${items.length} items`;
 
   const introLine = isSingle
-    ? `I have received your order of <strong style="color:#1A1917;">${escapeHtml(artworks[0].title)}</strong> and your payment details successfully.`
-    : `I have received your order of <strong style="color:#1A1917;">${artworks.length} original paintings</strong> and your payment details successfully.`;
+    ? `I have received your order of <strong style="color:#1A1917;">${escapeHtml(firstItem.title)}</strong> and your payment details successfully.`
+    : `I have received your order of <strong style="color:#1A1917;">${items.length} items</strong> and your payment details successfully.`;
 
-  const artworkRows = isSingle
+  const hasOriginals = items.some(i => i.type === "original");
+  const hasPrints = items.some(i => i.type === "print");
+  const followUpCopy = hasOriginals && !hasPrints
+    ? "I will be in touch shortly to arrange packaging and shipping for your original painting."
+    : hasPrints && !hasOriginals
+      ? "Your print will be carefully packed and shipped within 2–5 business days."
+      : "I will be in touch shortly to arrange packaging and shipping.";
+
+  const itemRows = isSingle
     ? `<tr>
-        <td style="padding:20px 0;font-size:13px;color:#9C9690;">Artwork</td>
-        <td style="padding:20px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(artworks[0].title)}</td>
+        <td style="padding:20px 0;font-size:13px;color:#9C9690;">${escapeHtml(itemLabel(firstItem))}</td>
+        <td style="padding:20px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(firstItem.title)}${firstItem.quantity > 1 ? ` × ${firstItem.quantity}` : ""}</td>
        </tr>`
-    : artworks
+    : items
         .map(
-          (a, i) => `
+          (item, i) => `
         <tr>
-          <td style="padding:${i === 0 ? "20px" : "0"} 0 12px 0;font-size:13px;color:#9C9690;">${escapeHtml(a.title)}</td>
-          <td style="padding:${i === 0 ? "20px" : "0"} 0 12px 0;font-size:13px;color:#1A1917;text-align:right;">${formatPrice(a.price)}</td>
+          <td style="padding:${i === 0 ? "20px" : "0"} 0 12px 0;font-size:13px;color:#9C9690;">${escapeHtml(itemLabel(item))}</td>
+          <td style="padding:${i === 0 ? "20px" : "0"} 0 12px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(item.title)}${item.quantity > 1 ? ` × ${item.quantity}` : ""} — ${formatPrice(item.price * item.quantity)}</td>
         </tr>`,
         )
         .join("");
@@ -67,94 +104,59 @@ export async function sendOrderConfirmation({ to, customerName, artworks, amount
       <td align="center">
         <table width="560" cellpadding="0" cellspacing="0" style="background:#FAF8F5;max-width:560px;width:100%;">
 
-          <!-- Header -->
           <tr>
             <td style="padding:0 0 40px 0;border-bottom:1px solid #DDD8D0;">
-              <p style="margin:0;font-size:15px;letter-spacing:2px;color:#1A1917;">
-                esterii creates
-              </p>
+              <p style="margin:0;font-size:15px;letter-spacing:2px;color:#1A1917;">esterii creates</p>
             </td>
           </tr>
 
-          <!-- Body -->
           <tr>
             <td style="padding:40px 0;">
-              <p style="margin:0 0 8px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">
-                Order received
-              </p>
+              <p style="margin:0 0 8px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">Order received</p>
               <h1 style="margin:0 0 24px 0;font-size:36px;font-weight:400;color:#1A1917;line-height:1;letter-spacing:-1px;">
                 Thank you for your order, ${escapeHtml(customerName.split(" ")[0])}.
               </h1>
 
-              <p style="margin:0 0 16px 0;font-size:15px;color:#6B6660;line-height:1.7;">
-                ${introLine}
-              </p>
+              <p style="margin:0 0 16px 0;font-size:15px;color:#6B6660;line-height:1.7;">${introLine}</p>
+              <p style="margin:0 0 32px 0;font-size:15px;color:#6B6660;line-height:1.7;">${followUpCopy}</p>
 
-              <p style="margin:0 0 32px 0;font-size:15px;color:#6B6660;line-height:1.7;">
-                I will be in touch shortly to arrange packaging and shipping for your original ${isSingle ? "painting" : "paintings"}.
-              </p>
-
-              <!-- Order summary -->
               <table width="100%" cellpadding="0" cellspacing="0"
                      style="border-top:1px solid #DDD8D0;border-bottom:1px solid #DDD8D0;margin:0 0 32px 0;">
-                ${artworkRows}
+                ${itemRows}
                 <tr>
                   <td style="padding:12px 0 20px 0;font-size:13px;color:#9C9690;">Total paid</td>
-                  <td style="padding:12px 0 20px 0;font-size:13px;color:#1A1917;text-align:right;">${formatPrice(amountCents)}</td>
+                  <td style="padding:12px 0 20px 0;font-size:13px;color:#1A1917;text-align:right;">${formatPrice(amountCents ?? 0)}</td>
                 </tr>
-                ${
-                  phone
-                    ? `<tr>
-                  <td style="padding:0 0 20px 0;font-size:13px;color:#9C9690;">Phone</td>
-                  <td style="padding:0 0 20px 0;font-size:13px;color:#1A1917;text-align:right;">${phone}</td>
-                </tr>`
-                    : ""
-                }
+                ${phone ? `<tr><td style="padding:0 0 20px 0;font-size:13px;color:#9C9690;">Phone</td><td style="padding:0 0 20px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(phone)}</td></tr>` : ""}
               </table>
 
-              <!-- Shipping address -->
               ${
                 shippingLines.length > 0
-                  ? `
-              <p style="margin:0 0 12px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">
-                Shipping to
-              </p>
-              <div style="font-size:14px;color:#6B6660;line-height:1.8;margin:0 0 32px 0;">
-                ${shippingHtml}
-              </div>`
+                  ? `<p style="margin:0 0 12px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">Shipping to</p>
+              <div style="font-size:14px;color:#6B6660;line-height:1.8;margin:0 0 32px 0;">${shippingHtml}</div>`
                   : ""
               }
 
-              <!-- Customer message -->
               ${
                 message
-                  ? `
-              <p style="margin:0 0 12px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">
-                Your message
-              </p>
-              <p style="margin:0 0 32px 0;font-size:14px;color:#6B6660;line-height:1.7;">
-                ${escapeHtml(message)}
-              </p>`
+                  ? `<p style="margin:0 0 12px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">Your message</p>
+              <p style="margin:0 0 32px 0;font-size:14px;color:#6B6660;line-height:1.7;">${escapeHtml(message)}</p>`
                   : ""
               }
 
               <p style="margin:0 0 8px 0;font-size:15px;color:#6B6660;line-height:1.7;">
                 If you have any questions, you can reach me at
-                <a href="mailto:ester.batllori@gmail.com"
-                   style="color:#C4724E;text-decoration:none;">ester.batllori@gmail.com</a>.
+                <a href="mailto:ester.batllori@gmail.com" style="color:#C4724E;text-decoration:none;">ester.batllori@gmail.com</a>.
               </p>
             </td>
           </tr>
 
-          <!-- Footer -->
           <tr>
             <td style="padding:32px 0 0 0;border-top:1px solid #DDD8D0;">
               <p style="margin:0 0 8px 0;font-size:12px;color:#9C9690;line-height:1.6;">
                 This email is a confirmation of receipt only and does not yet constitute acceptance of your order.
               </p>
-              <p style="margin:0;font-size:12px;color:#9C9690;">
-                © 2026 esterii creates — Original abstract paintings
-              </p>
+              <p style="margin:0;font-size:12px;color:#9C9690;">© 2026 esterii creates — Original abstract paintings</p>
             </td>
           </tr>
 
@@ -179,7 +181,17 @@ export async function sendOrderConfirmation({ to, customerName, artworks, amount
   }
 }
 
-export async function notifyContactSubmission({ firstName, lastName, email, message }) {
+export async function notifyContactSubmission({
+  firstName,
+  lastName,
+  email,
+  message,
+}: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+}) {
   const from = process.env.RESEND_FROM_EMAIL ?? "esterii creates <orders@yourdomain.com>";
   const to = process.env.NOTIFY_EMAIL ?? "ester.batllori@gmail.com";
 
@@ -203,12 +215,21 @@ export async function notifyContactSubmission({ firstName, lastName, email, mess
 export async function notifySale({
   customerName,
   customerEmail,
-  artworks,
+  items,
   amountCents,
   phone,
   shipping,
   paymentMethod,
   message,
+}: {
+  customerName: string;
+  customerEmail: string;
+  items: EmailItem[];
+  amountCents: number | null;
+  phone: string | null;
+  shipping: Record<string, string | null | undefined> | null;
+  paymentMethod: string | null;
+  message: string | null;
 }) {
   const from = process.env.RESEND_FROM_EMAIL ?? "esterii creates <orders@yourdomain.com>";
   const to = process.env.NOTIFY_EMAIL ?? "ester.batllori@gmail.com";
@@ -219,12 +240,19 @@ export async function notifySale({
     shipping?.line2,
     [shipping?.city, shipping?.state, shipping?.postal_code].filter(Boolean).join(", "),
     shipping?.country,
-  ].filter(Boolean);
+  ].filter(Boolean) as string[];
 
-  const subjectLine = artworks.length === 1 ? `Sold: ${artworks[0].title}` : `Sold: ${artworks.length} paintings`;
+  const isSingle = items.length === 1;
+  const firstItem = items[0]!;
+  const subjectLine = isSingle
+    ? `Sold: ${firstItem.title}${firstItem.type === "print" ? " (Print)" : ""}`
+    : `Sold: ${items.length} items`;
 
-  const artworksList = artworks
-    .map(a => `<p style="margin:4px 0"><strong>${escapeHtml(a.title)}</strong> — ${formatPrice(a.price)}</p>`)
+  const itemsList = items
+    .map(item => {
+      const qty = item.quantity > 1 ? ` × ${item.quantity}` : "";
+      return `<p style="margin:4px 0"><strong>${escapeHtml(item.title)}${qty}</strong> [${escapeHtml(itemLabel(item))}] — ${formatPrice(item.price * item.quantity)}</p>`;
+    })
     .join("");
 
   const { error } = await resend.emails.send({
@@ -234,20 +262,14 @@ export async function notifySale({
     subject: subjectLine,
     html: `
       <h2 style="margin:0 0 16px 0">${escapeHtml(subjectLine)}</h2>
-      ${artworksList}
-      <p><strong>Total:</strong> ${formatPrice(amountCents)}</p>
+      ${itemsList}
+      <p><strong>Total:</strong> ${formatPrice(amountCents ?? 0)}</p>
       ${paymentMethod ? `<p><strong>Payment method:</strong> ${escapeHtml(paymentMethod)}</p>` : ""}
       <hr/>
       <p><strong>Buyer:</strong> ${escapeHtml(customerName)}</p>
       <p><strong>Email:</strong> ${escapeHtml(customerEmail)}</p>
       ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ""}
-      ${
-        shippingLines.length > 0
-          ? `
-      <p><strong>Ship to:</strong><br/>${shippingLines.map(escapeHtml).join("<br/>")}</p>
-      `
-          : ""
-      }
+      ${shippingLines.length > 0 ? `<p><strong>Ship to:</strong><br/>${shippingLines.map(escapeHtml).join("<br/>")}</p>` : ""}
       ${message ? `<hr/><p><strong>Message from buyer:</strong><br/>${escapeHtml(message)}</p>` : ""}
     `.trim(),
   });

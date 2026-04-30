@@ -1,6 +1,6 @@
-import { Globe, PackageCheck, RefreshCcw, ShieldCheck } from "lucide-react";
+import { Globe, Layers, PackageCheck, RefreshCcw, ShieldCheck } from "lucide-react";
 
-const items = [
+const sharedItems = [
   {
     icon: Globe,
     label: "Free Worldwide Shipping",
@@ -11,19 +11,30 @@ const items = [
     label: "Secure Packaging",
     description: "Carefully packed with tracking and insurance included.",
   },
-  {
-    icon: ShieldCheck,
-    label: "Original",
-    description: "Signed artwork with certificate of authenticity.",
-  },
-  {
-    icon: RefreshCcw,
-    label: "14-Day Returns",
-    description: "Returns accepted within 14 days, excluding commissioned works.",
-  },
 ];
 
-export default function ArtworkInfoSection() {
+const originalItem = {
+  icon: ShieldCheck,
+  label: "Original",
+  description: "Signed artwork with certificate of authenticity.",
+};
+
+const printItem = {
+  icon: Layers,
+  label: "High-quality Print",
+  description: "Fine art giclée print on premium paper.",
+};
+
+const returnsItem = {
+  icon: RefreshCcw,
+  label: "14-Day Returns",
+  description: "Returns accepted within 14 days, excluding commissioned works.",
+};
+
+export default function ArtworkInfoSection({ type }: { type?: string | null }) {
+  const typeItem = type === "print" ? printItem : originalItem;
+  const items = [...sharedItems, typeItem, returnsItem];
+
   return (
     <div className="flex flex-col gap-7">
       {items.map(({ icon: Icon, label, description }) => (

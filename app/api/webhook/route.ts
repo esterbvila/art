@@ -3,22 +3,19 @@ import { revalidatePath } from "next/cache";
 import Stripe from "stripe";
 import { db } from "@/drizzle/client";
 import { artworkSchema, orderSchema } from "@/drizzle/schema";
+import type { EmailItem } from "@/features/email/email";
 import { notifySale, sendOrderConfirmation } from "@/features/email/email";
 import { stripe } from "@/features/payment/stripe";
 
-type ArtworkMap = Record<string, { title: string; price: number }>;
-
+type ArtworkRow = { id: string; title: string; price: number; type: string | null };
 type NewOrder = typeof orderSchema.$inferInsert;
 
 async function resolvePaymentMethod(paymentIntentId: string | Stripe.PaymentIntent | null): Promise<string | null> {
   if (!paymentIntentId) {
     return null;
   }
-
   try {
-    const pi = await stripe.paymentIntents.retrieve(paymentIntentId as string, {
-      expand: ["payment_method"],
-    });
+    const pi = await stripe.paymentIntents.retrieve(paymentIntentId as string, { expand: ["payment_method"] });
     return (pi.payment_method as { type?: string } | null)?.type ?? null;
   } catch (e) {
     console.error("Failed to retrieve payment intent:", (e as Error).message);
@@ -26,41 +23,15 @@ async function resolvePaymentMethod(paymentIntentId: string | Stripe.PaymentInte
   }
 }
 
-async function fetchArtworks(artworkIds: string[]): Promise<ArtworkMap> {
-  const rows = await db
-    .select({
-      id: artworkSchema.id,
-      title: artworkSchema.title,
-      price: artworkSchema.price,
-    })
+async function fetchArtworksByIds(ids: string[]): Promise<ArtworkRow[]> {
+  return db
+    .select({ id: artworkSchema.id, title: artworkSchema.title, price: artworkSchema.price, type: artworkSchema.type })
     .from(artworkSchema)
-    .where(inArray(artworkSchema.id, artworkIds));
-
-  const map: ArtworkMap = Object.fromEntries(rows.map(a => [a.id, { title: a.title, price: a.price }]));
-
-  const missing = artworkIds.filter(id => !map[id]);
-  if (missing.length) {
-    console.warn("Artwork IDs not found in DB:", missing);
-  }
-
-  return map;
-}
-
-async function fetchAlreadyProcessedIds(sessionId: string, artworkIds: string[]): Promise<Set<string>> {
-  try {
-    const rows = await db
-      .select({ artworkId: orderSchema.artworkId })
-      .from(orderSchema)
-      .where(and(eq(orderSchema.stripeSessionId, sessionId), inArray(orderSchema.artworkId, artworkIds)));
-
-    return new Set(rows.map(r => r.artworkId).filter((id): id is string => id !== null));
-  } catch (e) {
-    console.error("Failed to check existing orders:", (e as Error).message);
-    return new Set();
-  }
+    .where(inArray(artworkSchema.id, ids));
 }
 
 async function insertOrderAndDecrementStock(orderRow: NewOrder): Promise<boolean> {
+  const quantity = orderRow.quantity ?? 1;
   try {
     await db.insert(orderSchema).values(orderRow);
   } catch (e) {
@@ -72,6 +43,7 @@ async function insertOrderAndDecrementStock(orderRow: NewOrder): Promise<boolean
     }
     return false;
   }
+
   if (!orderRow.artworkId) {
     return false;
   }
@@ -79,7 +51,7 @@ async function insertOrderAndDecrementStock(orderRow: NewOrder): Promise<boolean
   try {
     await db
       .update(artworkSchema)
-      .set({ stock: sql`${artworkSchema.stock} - 1` })
+      .set({ stock: sql`${artworkSchema.stock} - ${quantity}` })
       .where(eq(artworkSchema.id, orderRow.artworkId));
   } catch (e) {
     console.error(`Failed to decrement stock for artwork ${orderRow.artworkId}:`, (e as Error).message);
@@ -90,7 +62,6 @@ async function insertOrderAndDecrementStock(orderRow: NewOrder): Promise<boolean
 
 export async function POST(request: Request) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
-
   if (!secret) {
     console.error("Missing STRIPE_WEBHOOK_SECRET");
     return new Response("Server misconfiguration", { status: 500 });
@@ -98,13 +69,11 @@ export async function POST(request: Request) {
 
   const rawBody = await request.text();
   const stripeSignature = request.headers.get("stripe-signature");
-
   if (!stripeSignature) {
     return new Response("Missing stripe-signature header", { status: 400 });
   }
 
   let event: ReturnType<typeof stripe.webhooks.constructEvent>;
-
   try {
     event = stripe.webhooks.constructEvent(rawBody, stripeSignature, secret);
   } catch (err) {
@@ -117,41 +86,18 @@ export async function POST(request: Request) {
   }
 
   const session = await stripe.checkout.sessions.retrieve(event.data.object.id);
-
-  const rawIds = session.metadata?.artworkIds ?? "";
-  const artworkIds = rawIds.split(",").filter(Boolean);
-
-  if (!artworkIds.length) {
-    console.error("Webhook: no artworkIds in session metadata", { sessionId: session.id });
-    return Response.json({ error: "Missing artworkIds in metadata" }, { status: 400 });
-  }
-
-  const alreadyProcessed = await fetchAlreadyProcessedIds(session.id, artworkIds);
-  const pendingIds = artworkIds.filter(id => !alreadyProcessed.has(id));
-
-  if (!pendingIds.length) {
-    console.info("Webhook: all artworks already processed for session", session.id);
-    return Response.json({ received: true }, { status: 200 });
-  }
-
-  const [paymentMethod, artworkMap] = await Promise.all([
-    resolvePaymentMethod(session.payment_intent),
-    fetchArtworks(pendingIds).catch((err: Error) => {
-      console.error(err.message);
-      return {} as ArtworkMap;
-    }),
-  ]);
+  const meta = session.metadata ?? {};
 
   const customerDetails = session.customer_details ?? null;
-  const address = customerDetails?.address ?? session.customer_details?.address ?? null;
-  const shippingName = customerDetails?.name ?? session.customer_details?.name ?? null;
+  const address = customerDetails?.address ?? null;
+  const shippingName = customerDetails?.name ?? null;
   const customerMessage = session.custom_fields?.find(f => f.key === "message")?.text?.value ?? null;
 
-  const newOrder: NewOrder = {
+  const baseOrder: Omit<NewOrder, "artworkId" | "amountCents" | "quantity"> = {
     stripeSessionId: session.id,
-    customerEmail: session.customer_details?.email ?? null,
-    customerName: session.customer_details?.name ?? null,
-    customerPhone: session.customer_details?.phone ?? null,
+    customerEmail: customerDetails?.email ?? null,
+    customerName: customerDetails?.name ?? null,
+    customerPhone: customerDetails?.phone ?? null,
     shippingName,
     shippingLine1: address?.line1 ?? null,
     shippingLine2: address?.line2 ?? null,
@@ -159,29 +105,111 @@ export async function POST(request: Request) {
     shippingState: address?.state ?? null,
     shippingPostalCode: address?.postal_code ?? null,
     shippingCountry: address?.country ?? null,
-    paymentMethod,
+    paymentMethod: null,
     status: "completed",
     message: customerMessage,
   };
 
-  await Promise.all(
-    pendingIds.map(artworkId =>
-      insertOrderAndDecrementStock({
-        ...newOrder,
-        artworkId,
-        amountCents: artworkMap[artworkId]?.price,
-      }),
-    ),
-  );
+  const paymentMethod = await resolvePaymentMethod(session.payment_intent);
+  const orderBase: NewOrder = { ...baseOrder, paymentMethod };
+
+  let emailItems: EmailItem[] = [];
+
+  // Case 1: single print direct purchase (metadata.artworkId + quantity)
+  if (meta.artworkId) {
+    const quantity = parseInt(meta.quantity ?? "1", 10);
+    const rows = await fetchArtworksByIds([meta.artworkId]);
+    const artwork = rows[0];
+
+    if (artwork) {
+      await insertOrderAndDecrementStock({
+        ...orderBase,
+        artworkId: meta.artworkId,
+        amountCents: session.amount_total,
+        quantity,
+      });
+      emailItems = [{ title: artwork.title, price: artwork.price, type: "print", quantity }];
+    }
+
+  // Case 2: cart checkout (metadata.items JSON)
+  } else if (meta.items) {
+    const cartItems: { id: string; qty: number; type: "original" | "print" }[] = JSON.parse(meta.items);
+    const ids = cartItems.map(i => i.id);
+    const rows = await fetchArtworksByIds(ids);
+    const artworkMap = Object.fromEntries(rows.map(a => [a.id, a]));
+
+    await Promise.all(
+      cartItems.map(item =>
+        insertOrderAndDecrementStock({
+          ...orderBase,
+          artworkId: item.id,
+          amountCents: artworkMap[item.id]?.price ?? null,
+          quantity: item.qty,
+        }),
+      ),
+    );
+
+    emailItems = cartItems.map(item => ({
+      title: artworkMap[item.id]?.title ?? "your item",
+      price: artworkMap[item.id]?.price ?? 0,
+      type: item.type,
+      quantity: item.qty,
+    }));
+
+  // Case 3: original artwork direct purchase (existing metadata.artworkIds)
+  } else if (meta.artworkIds) {
+    const artworkIds = meta.artworkIds.split(",").filter(Boolean);
+
+    const alreadyProcessed = await (async () => {
+      try {
+        const rows = await db
+          .select({ artworkId: orderSchema.artworkId })
+          .from(orderSchema)
+          .where(and(eq(orderSchema.stripeSessionId, session.id), inArray(orderSchema.artworkId, artworkIds)));
+        return new Set(rows.map(r => r.artworkId).filter((id): id is string => id !== null));
+      } catch {
+        return new Set<string>();
+      }
+    })();
+
+    const pendingIds = artworkIds.filter(id => !alreadyProcessed.has(id));
+    if (!pendingIds.length) {
+      return Response.json({ received: true }, { status: 200 });
+    }
+
+    const rows = await fetchArtworksByIds(pendingIds);
+    const artworkMap = Object.fromEntries(rows.map(a => [a.id, a]));
+
+    await Promise.all(
+      pendingIds.map(artworkId =>
+        insertOrderAndDecrementStock({
+          ...orderBase,
+          artworkId,
+          amountCents: artworkMap[artworkId]?.price ?? null,
+          quantity: 1,
+        }),
+      ),
+    );
+
+    emailItems = artworkIds.map(id => ({
+      title: artworkMap[id]?.title ?? "your painting",
+      price: artworkMap[id]?.price ?? 0,
+      type: "original" as const,
+      quantity: 1,
+    }));
+
+  } else {
+    console.error("Webhook: unrecognised metadata", { sessionId: session.id, meta });
+    return Response.json({ error: "Missing metadata" }, { status: 400 });
+  }
 
   revalidatePath("/", "layout");
 
   const customerEmail = session.customer_details?.email;
-  if (customerEmail) {
-    const allArtworks = artworkIds.map(id => artworkMap[id] ?? { title: "your painting", price: 0 });
+  if (customerEmail && emailItems.length) {
     const emailPayload = {
       customerName: session.customer_details?.name ?? "there",
-      artworks: allArtworks,
+      items: emailItems,
       amountCents: session.amount_total,
       shipping: { ...address, name: shippingName },
       phone: session.customer_details?.phone ?? null,
@@ -190,10 +218,10 @@ export async function POST(request: Request) {
 
     await Promise.allSettled([
       sendOrderConfirmation({ to: customerEmail, ...emailPayload }).catch((err: Error) =>
-        console.error("Failed to send order confirmation email:", err.message),
+        console.error("Failed to send order confirmation:", err.message),
       ),
       notifySale({ customerEmail, paymentMethod, ...emailPayload }).catch((err: Error) =>
-        console.error("Failed to send sale notification email:", err.message),
+        console.error("Failed to send sale notification:", err.message),
       ),
     ]);
   }

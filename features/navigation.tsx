@@ -1,18 +1,37 @@
 "use client";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { siteConfig } from "@/app/site-config";
 import { useCart } from "@/features/cart/cart-provider";
 
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { items, setIsOpen } = useCart();
+  const router = useRouter();
 
   const links = [
-    { label: "Works", href: "/#works" },
-    { label: "About", href: "/#about" },
+    { label: "Prints", sectionId: "prints" },
+    { label: "Originals", sectionId: "works" },
+    { label: "Collections", sectionId: "collections" },
+    { label: "About", sectionId: "about" },
   ];
+
+  function handleNavClick(sectionId: string) {
+    if (window.location.pathname === "/") {
+      scrollToSection(sectionId);
+    } else {
+      router.push(`/#${sectionId}`);
+    }
+  }
 
   return (
     <header className="relative w-full">
@@ -25,21 +44,21 @@ export default function Navigation() {
         </Link>
 
         <div className="hidden items-center gap-10 md:flex">
-          {links.map(({ label, href }) => (
-            <Link
+          {links.map(({ label, sectionId }) => (
+            <button
               key={label}
-              href={href}
+              onClick={() => handleNavClick(sectionId)}
               className="font-normal font-sans text-[13px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
             >
               {label}
-            </Link>
+            </button>
           ))}
-          <Link
-            href="/#contact"
+          <button
+            onClick={() => handleNavClick("contact")}
             className="font-normal font-sans text-[13px] text-accent tracking-[0.5px] transition-opacity hover:opacity-80"
           >
             Inquire
-          </Link>
+          </button>
           {siteConfig.shopEnabled && (
             <button
               onClick={() => setIsOpen(true)}
@@ -79,23 +98,21 @@ export default function Navigation() {
 
       {mobileOpen && (
         <div className="absolute top-full right-0 left-0 z-50 flex flex-col gap-5 border-divider border-t bg-bg-main px-5 py-6 md:hidden">
-          {links.map(({ label, href }) => (
-            <Link
+          {links.map(({ label, sectionId }) => (
+            <button
               key={label}
-              href={href}
-              onClick={() => setMobileOpen(false)}
-              className="font-normal font-sans text-[15px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
+              onClick={() => { handleNavClick(sectionId); setMobileOpen(false); }}
+              className="text-left font-normal font-sans text-[15px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
             >
               {label}
-            </Link>
+            </button>
           ))}
-          <Link
-            href="/#contact"
-            onClick={() => setMobileOpen(false)}
-            className="font-normal font-sans text-[15px] text-accent tracking-[0.5px] transition-opacity hover:opacity-80"
+          <button
+            onClick={() => { handleNavClick("contact"); setMobileOpen(false); }}
+            className="text-left font-normal font-sans text-[15px] text-accent tracking-[0.5px] transition-opacity hover:opacity-80"
           >
             Inquire
-          </Link>
+          </button>
         </div>
       )}
     </header>

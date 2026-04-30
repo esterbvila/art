@@ -5,6 +5,7 @@ import UniqueArtworks from "@/features/artwork/unique-artworks";
 import ContactForm from "@/features/contact/contact-form";
 import Gallery from "@/features/gallery";
 import Hero from "@/features/hero";
+import PrintsSection from "@/features/prints/prints-section";
 
 export const metadata = {
   title: "Ester Batllori — Abstract Paintings",
@@ -93,6 +94,14 @@ export default async function Home() {
 
       <div className="h-px w-full bg-divider" />
 
+      <section id="prints">
+        <Suspense>
+          <PrintsSection />
+        </Suspense>
+      </section>
+
+      <div className="h-px w-full bg-divider" />
+
       <section id="works">
         <Suspense>
           <UniqueArtworks />
@@ -101,7 +110,9 @@ export default async function Home() {
 
       <div className="h-px w-full bg-divider" />
 
-      <Gallery />
+      <section id="collections">
+        <Gallery />
+      </section>
 
       <section id="about">
         <AboutArtist />
