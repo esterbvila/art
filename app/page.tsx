@@ -5,17 +5,18 @@ import UniqueArtworks from "@/features/artwork/unique-artworks";
 import ContactForm from "@/features/contact/contact-form";
 import Gallery from "@/features/gallery";
 import Hero from "@/features/hero";
+import PrintsSection from "@/features/prints/prints-section";
 
 export const metadata = {
   title: "Ester Batllori — Abstract Paintings",
   description:
-    "Original abstract paintings exploring emotion, intuition and subconscious landscapes. Each piece is a one-of-a-kind original.",
+    "Abstract paintings exploring emotion, intuition and subconscious landscapes.",
   alternates: {
     canonical: "https://esteriicreates.com",
   },
   openGraph: {
     title: "Ester Batllori — Abstract Paintings",
-    description: "Original abstract paintings exploring emotion, intuition and subconscious landscapes.",
+    description: "Abstract paintings exploring emotion, intuition and subconscious landscapes.",
     type: "website",
     url: "https://esteriicreates.com",
     images: [
@@ -47,7 +48,7 @@ function PersonJsonLd() {
     url: "https://esteriicreates.com",
     sameAs: ["https://instagram.com/esterii_creates"],
     jobTitle: "Abstract Painter",
-    description: "Original abstract paintings exploring emotion, intuition and subconscious landscapes.",
+    description: "Abstract paintings exploring emotion, intuition and subconscious landscapes.",
   };
   return (
     <script
@@ -90,6 +91,14 @@ export default async function Home() {
       <OrganizationJsonLd />
 
       <Hero />
+
+      <div className="h-px w-full bg-divider" />
+
+      <section>
+        <Suspense>
+          <PrintsSection />
+        </Suspense>
+      </section>
 
       <div className="h-px w-full bg-divider" />
 

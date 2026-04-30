@@ -2,7 +2,7 @@ import { and, eq, inArray, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import Stripe from "stripe";
 import { db } from "@/drizzle/client";
-import { artworkSchema, orderSchema } from "@/drizzle/schema";
+import { artworkSchema, orderSchema, printSchema } from "@/drizzle/schema";
 import { notifySale, sendOrderConfirmation } from "@/features/email/email";
 import { stripe } from "@/features/payment/stripe";
 
@@ -88,6 +88,88 @@ async function insertOrderAndDecrementStock(orderRow: NewOrder): Promise<boolean
   return true;
 }
 
+async function handlePrintCheckout(session: Stripe.Checkout.Session, printId: string): Promise<Response> {
+  const quantity = parseInt(session.metadata?.quantity ?? "1", 10);
+
+  const result = await db
+    .select({ id: printSchema.id, title: artworkSchema.title, price: printSchema.price, stock: printSchema.stock })
+    .from(printSchema)
+    .innerJoin(artworkSchema, eq(printSchema.artworkId, artworkSchema.id))
+    .where(eq(printSchema.id, printId))
+    .limit(1);
+
+  const print = result[0];
+  if (!print) {
+    console.error("Webhook: print not found", { printId });
+    return Response.json({ error: "Print not found" }, { status: 400 });
+  }
+
+  const customerDetails = session.customer_details ?? null;
+  const address = customerDetails?.address ?? null;
+  const customerMessage = session.custom_fields?.find(f => f.key === "message")?.text?.value ?? null;
+  const paymentMethod = await resolvePaymentMethod(session.payment_intent);
+
+  try {
+    await db.insert(orderSchema).values({
+      stripeSessionId: session.id,
+      amountCents: session.amount_total,
+      customerEmail: customerDetails?.email ?? null,
+      customerName: customerDetails?.name ?? null,
+      customerPhone: customerDetails?.phone ?? null,
+      shippingName: customerDetails?.name ?? null,
+      shippingLine1: address?.line1 ?? null,
+      shippingLine2: address?.line2 ?? null,
+      shippingCity: address?.city ?? null,
+      shippingState: address?.state ?? null,
+      shippingPostalCode: address?.postal_code ?? null,
+      shippingCountry: address?.country ?? null,
+      paymentMethod,
+      status: "completed",
+      message: customerMessage,
+      artworkId: null,
+    });
+  } catch (e) {
+    const err = e as { code?: string; message: string };
+    if (err.code !== "23505") {
+      console.error("Failed to insert print order:", err.message);
+    }
+  }
+
+  try {
+    await db
+      .update(printSchema)
+      .set({ stock: sql`${printSchema.stock} - ${quantity}` })
+      .where(eq(printSchema.id, printId));
+  } catch (e) {
+    console.error("Failed to decrement print stock:", (e as Error).message);
+  }
+
+  revalidatePath("/", "layout");
+
+  const customerEmail = customerDetails?.email;
+  if (customerEmail) {
+    const emailPayload = {
+      customerName: customerDetails?.name ?? "there",
+      artworks: [{ title: `${print.title} (Print × ${quantity})`, price: print.price * quantity }],
+      amountCents: session.amount_total,
+      shipping: { ...address, name: customerDetails?.name ?? null },
+      phone: customerDetails?.phone ?? null,
+      message: customerMessage,
+    };
+
+    await Promise.allSettled([
+      sendOrderConfirmation({ to: customerEmail, ...emailPayload }).catch((err: Error) =>
+        console.error("Failed to send print order confirmation:", err.message),
+      ),
+      notifySale({ customerEmail, paymentMethod, ...emailPayload }).catch((err: Error) =>
+        console.error("Failed to send print sale notification:", err.message),
+      ),
+    ]);
+  }
+
+  return Response.json({ received: true }, { status: 200 });
+}
+
 export async function POST(request: Request) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -118,12 +200,18 @@ export async function POST(request: Request) {
 
   const session = await stripe.checkout.sessions.retrieve(event.data.object.id);
 
+  const printId = session.metadata?.printId ?? null;
+  if (printId) {
+    return handlePrintCheckout(session, printId);
+  }
+
+  const rawPrintItems = session.metadata?.printItems ?? null;
   const rawIds = session.metadata?.artworkIds ?? "";
   const artworkIds = rawIds.split(",").filter(Boolean);
 
-  if (!artworkIds.length) {
-    console.error("Webhook: no artworkIds in session metadata", { sessionId: session.id });
-    return Response.json({ error: "Missing artworkIds in metadata" }, { status: 400 });
+  if (!artworkIds.length && !rawPrintItems) {
+    console.error("Webhook: no artworkIds or printItems in session metadata", { sessionId: session.id });
+    return Response.json({ error: "Missing metadata" }, { status: 400 });
   }
 
   const alreadyProcessed = await fetchAlreadyProcessedIds(session.id, artworkIds);
@@ -164,21 +252,56 @@ export async function POST(request: Request) {
     message: customerMessage,
   };
 
-  await Promise.all(
-    pendingIds.map(artworkId =>
-      insertOrderAndDecrementStock({
-        ...newOrder,
-        artworkId,
-        amountCents: artworkMap[artworkId]?.price,
+  if (pendingIds.length) {
+    await Promise.all(
+      pendingIds.map(artworkId =>
+        insertOrderAndDecrementStock({
+          ...newOrder,
+          artworkId,
+          amountCents: artworkMap[artworkId]?.price,
+        }),
+      ),
+    );
+  }
+
+  type PrintItem = { id: string; qty: number };
+  const printCartItems: PrintItem[] = rawPrintItems ? (JSON.parse(rawPrintItems) as PrintItem[]) : [];
+  const printEmailLines: { title: string; price: number }[] = [];
+
+  if (printCartItems.length) {
+    const printIds = printCartItems.map(p => p.id);
+    const prints = await db
+      .select({ id: printSchema.id, title: artworkSchema.title, price: printSchema.price, stock: printSchema.stock })
+      .from(printSchema)
+      .innerJoin(artworkSchema, eq(printSchema.artworkId, artworkSchema.id))
+      .where(inArray(printSchema.id, printIds));
+
+    await Promise.all(
+      printCartItems.map(async ({ id, qty }) => {
+        const print = prints.find(p => p.id === id);
+        if (!print) { return; }
+        try {
+          await db.insert(orderSchema).values({ ...newOrder, artworkId: null, amountCents: print.price * qty });
+        } catch (e) {
+          const err = e as { code?: string; message: string };
+          if (err.code !== "23505") { console.error("Failed to insert print cart order:", err.message); }
+        }
+        try {
+          await db.update(printSchema).set({ stock: sql`${printSchema.stock} - ${qty}` }).where(eq(printSchema.id, id));
+        } catch (e) {
+          console.error("Failed to decrement print stock:", (e as Error).message);
+        }
+        printEmailLines.push({ title: `${print.title} (Print × ${qty})`, price: print.price * qty });
       }),
-    ),
-  );
+    );
+  }
 
   revalidatePath("/", "layout");
 
   const customerEmail = session.customer_details?.email;
   if (customerEmail) {
-    const allArtworks = artworkIds.map(id => artworkMap[id] ?? { title: "your painting", price: 0 });
+    const artworkLines = artworkIds.map(id => artworkMap[id] ?? { title: "your painting", price: 0 });
+    const allArtworks = [...artworkLines, ...printEmailLines];
     const emailPayload = {
       customerName: session.customer_details?.name ?? "there",
       artworks: allArtworks,
