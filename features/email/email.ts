@@ -56,16 +56,17 @@ export async function sendOrderConfirmation({
 
   const shippingHtml = shippingLines.map(l => `<div>${escapeHtml(l)}</div>`).join("");
 
+  const totalQuantity = items.reduce((sum, i) => sum + i.quantity, 0);
   const isSingle = items.length === 1;
   const firstItem = items[0]!;
 
   const subjectLine = isSingle
     ? `Order received — ${firstItem.title}`
-    : `Order received — ${items.length} items`;
+    : `Order received — ${totalQuantity} items`;
 
   const introLine = isSingle
     ? `I have received your order of <strong style="color:#1A1917;">${escapeHtml(firstItem.title)}</strong> and your payment details successfully.`
-    : `I have received your order of <strong style="color:#1A1917;">${items.length} items</strong> and your payment details successfully.`;
+    : `I have received your order of <strong style="color:#1A1917;">${totalQuantity} items</strong> and your payment details successfully.`;
 
   const hasOriginals = items.some(i => i.type === "original");
   const hasPrints = items.some(i => i.type === "print");
@@ -242,11 +243,12 @@ export async function notifySale({
     shipping?.country,
   ].filter(Boolean) as string[];
 
+  const totalQuantity = items.reduce((sum, i) => sum + i.quantity, 0);
   const isSingle = items.length === 1;
   const firstItem = items[0]!;
   const subjectLine = isSingle
     ? `Sold: ${firstItem.title}${firstItem.type === "print" ? " (Print)" : ""}`
-    : `Sold: ${items.length} items`;
+    : `Sold: ${totalQuantity} items`;
 
   const itemsList = items
     .map(item => {

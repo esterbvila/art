@@ -81,6 +81,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
     { label: "Dimensions", value: artwork.dimensions },
     { label: "Framing", value: "Not included" },
     { label: "Year", value: year },
+    { label: "Type", value: artwork.type === "print" ? "Print" : "Original" },
     {
       label: "Availability",
       value: isAvailable ? "Available" : "Sold",
@@ -274,12 +275,16 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
               </p>
             </div>
 
-            <div className="h-px w-full bg-divider" />
+            {artwork.type !== "print" && (
+              <>
+                <div className="h-px w-full bg-divider" />
 
-            <div className="flex flex-col gap-4">
-              <p className="font-sans text-[11px] text-text-tertiary uppercase tracking-[2px]">Process</p>
-              <p className="font-sans text-[15px] text-text-secondary leading-[1.8]">{process}</p>
-            </div>
+                <div className="flex flex-col gap-4">
+                  <p className="font-sans text-[11px] text-text-tertiary uppercase tracking-[2px]">Process</p>
+                  <p className="font-sans text-[15px] text-text-secondary leading-[1.8]">{process}</p>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="h-px w-full bg-divider" />
