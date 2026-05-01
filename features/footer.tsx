@@ -63,16 +63,18 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav className="flex items-center gap-6 md:gap-8">
-          {navLinks.map(({ label, sectionId }) => (
-            <button
-              key={label}
-              onClick={() => handleNavClick(sectionId)}
-              className="font-normal font-sans text-[13px] text-text-secondary transition-colors hover:text-text-primary"
-            >
-              {label}
-            </button>
-          ))}
+        <nav className="flex flex-col items-center gap-3 md:items-end">
+          <div className="flex items-center gap-6 md:gap-8">
+            {navLinks.map(({ label, sectionId }) => (
+              <button
+                key={label}
+                onClick={() => handleNavClick(sectionId)}
+                className="font-normal font-sans text-[13px] text-text-secondary transition-colors hover:text-text-primary"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
           <a
             href="https://instagram.com/esterii_creates"
             target="_blank"
