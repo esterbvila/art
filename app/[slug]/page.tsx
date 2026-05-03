@@ -78,7 +78,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
   const year = artwork.year || collection?.year || null;
   const details = [
     { label: "Medium", value: medium },
-    { label: "Dimensions", value: artwork.dimensions },
+    { label: "Dimensions (W x H)", value: artwork.dimensions },
     { label: "Framing", value: "Not included" },
     { label: "Year", value: year },
     { label: "Type", value: artwork.type === "print" ? "Print" : "Original" },

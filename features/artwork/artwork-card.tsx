@@ -36,8 +36,13 @@ export default function ArtworkCard({
       </div>
 
       <div className="flex flex-col gap-1 pt-3">
-        <span className="font-sans font-semibold text-[17px] text-text-primary leading-[1.3]">{artwork.title}</span>
-        <span className="font-normal font-sans text-[15px] text-text-secondary leading-[1.3]">
+        <span className="font-sans font-semibold text-[18px] text-text-primary leading-[1.3]">{artwork.title}</span>
+        {artwork.dimensions && (
+          <span className="font-normal font-sans text-[13px] text-text-tertiary leading-[1.3]">
+            {artwork.dimensions}
+          </span>
+        )}
+        <span className="font-medium font-sans text-[16px] text-text-primary leading-[1.3]">
           {formatPrice(artwork.price)}
         </span>
       </div>
