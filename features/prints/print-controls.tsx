@@ -2,6 +2,7 @@
 import { useState, useTransition } from "react";
 import { useCart } from "@/features/cart/cart-provider";
 import { createPrintCheckoutSession } from "@/features/payment/checkout";
+import { formatPrice } from "@/lib/utils";
 
 interface PrintControlsProps {
   artworkId: string;
@@ -79,14 +80,14 @@ export default function PrintControls({ artworkId, title, price, imageUrl, stock
       <button
         onClick={handlePurchase}
         disabled={isPending}
-        className="flex w-full cursor-pointer items-center justify-center bg-accent px-12 py-4 font-normal font-sans text-[14px] text-white tracking-[0.5px] transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="flex w-full cursor-pointer items-center justify-center bg-accent px-12 py-4 font-normal font-sans text-[16px] text-white tracking-[0.5px] transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {isPending ? "Redirecting…" : quantity === 1 ? "Purchase this print" : "Purchase these prints"}
+        {isPending ? "Redirecting…" : `Buy now — ${formatPrice(price * quantity)}`}
       </button>
 
       <button
         onClick={handleCart}
-        className="w-full cursor-pointer border border-accent px-12 py-4 font-normal font-sans text-[14px] text-accent tracking-[0.5px] transition-colors hover:bg-accent hover:text-bg-main"
+        className="w-full cursor-pointer border border-accent px-12 py-4 font-normal font-sans text-[16px] text-accent tracking-[0.5px] transition-colors hover:bg-accent hover:text-bg-main"
       >
         {inCart ? "View Cart" : "Add to Cart"}
       </button>

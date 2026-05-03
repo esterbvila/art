@@ -78,15 +78,15 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
   const medium = artwork.medium || collection?.medium || null;
   const year = artwork.year || collection?.year || null;
   const details = [
-    { label: "Medium", value: medium },
+    { label: artwork.type === "print" ? "Paper" : "Medium", value: medium },
     { label: "Dimensions (W x H)", value: artwork.dimensions },
     { label: "Framing", value: "Not included" },
     { label: "Year", value: year },
-    { label: "Type", value: artwork.type === "print" ? "Print" : "Original" },
     {
       label: "Availability",
       value: isAvailable ? "Available" : "Sold",
       accent: isAvailable,
+      bold: artwork.type === "print" && isAvailable,
     },
   ].filter(d => d.value);
 
@@ -224,6 +224,9 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
             >
               {artwork.title}
             </h1>
+            <p className="font-sans text-[17px] text-text-tertiary uppercase tracking-[2px]">
+              {artwork.type === "print" ? "Print" : "Original"}
+            </p>
 
             {artwork.tagline && (
               <p className="font-normal font-sans text-[15px] text-text-secondary italic leading-[1.6]">
@@ -237,7 +240,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
               <p className="font-sans text-[11px] text-text-tertiary uppercase tracking-[2px]">Price</p>
               <p
                 className="font-normal font-sans text-text-primary"
-                style={{ fontSize: "32px", letterSpacing: "-0.5px" }}
+                style={{ fontSize: "40px", letterSpacing: "-0.5px" }}
               >
                 {formatPrice(artwork.price)}
               </p>
@@ -298,10 +301,10 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
           <div className="h-px w-full bg-divider" />
 
           <div className="flex flex-col gap-3.5">
-            {details.map(({ label, value, accent }) => (
-              <div key={label} className="flex items-center justify-between">
+            {details.map(({ label, value, accent, bold }) => (
+              <div key={label} className="flex items-center justify-between gap-4">
                 <span className="font-sans text-[13px] text-text-tertiary">{label}</span>
-                <span className={`font-sans text-[13px] ${accent ? "text-accent" : "text-text-primary"}`}>{value}</span>
+                <span className={`text-right font-sans text-[13px] ${bold ? "font-semibold" : ""} ${accent ? "text-accent" : "text-text-primary"}`}>{value}</span>
               </div>
             ))}
             {collection && (

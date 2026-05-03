@@ -15,7 +15,7 @@ const funnelSans = Funnel_Sans({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
         <main className={`${funnelSans.variable}`}>
           <CartProvider>
