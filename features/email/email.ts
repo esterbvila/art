@@ -60,36 +60,33 @@ export async function sendOrderConfirmation({
   const isSingle = items.length === 1;
   const firstItem = items[0]!;
 
-  const subjectLine = isSingle
-    ? `Order received — ${firstItem.title}`
-    : `Order received — ${totalQuantity} items`;
+  const subjectLine = "Your esterii creates order has been received";
 
   const introLine = isSingle
-    ? `I have received your order of <strong style="color:#1A1917;">${escapeHtml(firstItem.title)}</strong> and your payment details successfully.`
-    : `I have received your order of <strong style="color:#1A1917;">${totalQuantity} items</strong> and your payment details successfully.`;
+    ? `I have received your order of <strong style="color:#1A1917;">${escapeHtml(firstItem.title)}</strong> successfully.`
+    : `I have received your order of <strong style="color:#1A1917;">${totalQuantity} items</strong> successfully.`;
 
   const hasOriginals = items.some(i => i.type === "original");
   const hasPrints = items.some(i => i.type === "print");
   const followUpCopy = hasOriginals && !hasPrints
     ? "I will be in touch shortly to arrange packaging and shipping for your original painting."
     : hasPrints && !hasOriginals
-      ? "Your print will be carefully packed and shipped within 2–5 business days."
-      : "I will be in touch shortly to arrange packaging and shipping.";
+      ? "Your print will be carefully packed and shipped within 2–5 business days. I'll be in touch within 48 hours with your shipping confirmation."
+      : "I'll now prepare your pieces with care and will be in touch shortly to confirm the shipping details.";
 
-  const itemRows = isSingle
-    ? `<tr>
-        <td style="padding:20px 0;font-size:13px;color:#9C9690;">${escapeHtml(itemLabel(firstItem))}</td>
-        <td style="padding:20px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(firstItem.title)}${firstItem.quantity > 1 ? ` × ${firstItem.quantity}` : ""}</td>
-       </tr>`
-    : items
-        .map(
-          (item, i) => `
-        <tr>
-          <td style="padding:${i === 0 ? "20px" : "0"} 0 12px 0;font-size:13px;color:#9C9690;">${escapeHtml(itemLabel(item))}</td>
-          <td style="padding:${i === 0 ? "20px" : "0"} 0 12px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(item.title)}${item.quantity > 1 ? ` × ${item.quantity}` : ""} — ${formatPrice(item.price * item.quantity)}</td>
-        </tr>`,
-        )
-        .join("");
+  const itemRows = items
+    .map(
+      (item, i) => `
+      <tr>
+        <td style="padding:${i === 0 ? "20px" : "8px"} 0 0 0;font-size:14px;color:#1A1917;">
+          ${escapeHtml(item.title)} <span style="color:#9C9690;">(${escapeHtml(itemLabel(item))})</span>${item.quantity > 1 ? ` <span style="color:#9C9690;">×${item.quantity}</span>` : ""}
+        </td>
+        <td style="padding:${i === 0 ? "20px" : "8px"} 0 0 0;font-size:14px;color:#1A1917;text-align:right;white-space:nowrap;">
+          ${formatPrice(item.price * item.quantity)}
+        </td>
+      </tr>`,
+    )
+    .join("");
 
   const html = `
 <!DOCTYPE html>
@@ -115,7 +112,7 @@ export async function sendOrderConfirmation({
             <td style="padding:40px 0;">
               <p style="margin:0 0 8px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">Order received</p>
               <h1 style="margin:0 0 24px 0;font-size:36px;font-weight:400;color:#1A1917;line-height:1;letter-spacing:-1px;">
-                Thank you for your order, ${escapeHtml(customerName.split(" ")[0])}.
+                I’m so excited to prepare your pieces, ${escapeHtml(customerName.split(" ")[0])}.
               </h1>
 
               <p style="margin:0 0 16px 0;font-size:15px;color:#6B6660;line-height:1.7;">${introLine}</p>
@@ -125,16 +122,15 @@ export async function sendOrderConfirmation({
                      style="border-top:1px solid #DDD8D0;border-bottom:1px solid #DDD8D0;margin:0 0 32px 0;">
                 ${itemRows}
                 <tr>
-                  <td style="padding:12px 0 20px 0;font-size:13px;color:#9C9690;">Total paid</td>
-                  <td style="padding:12px 0 20px 0;font-size:13px;color:#1A1917;text-align:right;">${formatPrice(amountCents ?? 0)}</td>
+                  <td style="padding:16px 0 20px 0;font-size:15px;font-weight:bold;color:#1A1917;">Total paid</td>
+                  <td style="padding:16px 0 20px 0;font-size:15px;font-weight:bold;color:#1A1917;text-align:right;">${formatPrice(amountCents ?? 0)}</td>
                 </tr>
-                ${phone ? `<tr><td style="padding:0 0 20px 0;font-size:13px;color:#9C9690;">Phone</td><td style="padding:0 0 20px 0;font-size:13px;color:#1A1917;text-align:right;">${escapeHtml(phone)}</td></tr>` : ""}
               </table>
 
               ${
                 shippingLines.length > 0
                   ? `<p style="margin:0 0 12px 0;font-size:12px;letter-spacing:3px;color:#9C9690;text-transform:uppercase;">Shipping to</p>
-              <div style="font-size:14px;color:#6B6660;line-height:1.8;margin:0 0 32px 0;">${shippingHtml}</div>`
+              <div style="font-size:14px;color:#6B6660;line-height:1.8;margin:0 0 32px 0;">${shippingHtml}${phone ? `<div>${escapeHtml(phone)}</div>` : ""}</div>`
                   : ""
               }
 
@@ -148,6 +144,12 @@ export async function sendOrderConfirmation({
               <p style="margin:0 0 8px 0;font-size:15px;color:#6B6660;line-height:1.7;">
                 If you have any questions, you can reach me at
                 <a href="mailto:ester.batllori@gmail.com" style="color:#C4724E;text-decoration:none;">ester.batllori@gmail.com</a>.
+              </p>
+
+              <p style="margin:24px 0 0 0;font-size:15px;color:#6B6660;line-height:1.7;">
+                Thank you again,<br/>
+                Ester<br/>
+                <span style="letter-spacing:1px;">esterii creates</span>
               </p>
             </td>
           </tr>
