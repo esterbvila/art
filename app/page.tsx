@@ -2,8 +2,9 @@ import { Suspense } from "react";
 import AboutArtist from "@/features/about-artist";
 import FeaturedArtwork from "@/features/artwork/featured-artwork";
 import UniqueArtworks from "@/features/artwork/unique-artworks";
+import FeaturedCollection from "@/features/collection/featured-collection";
 import ContactForm from "@/features/contact/contact-form";
-import Gallery from "@/features/gallery";
+
 import Hero from "@/features/hero";
 import PrintsSection from "@/features/prints/prints-section";
 
@@ -102,16 +103,16 @@ export default async function Home() {
 
       <div className="h-px w-full bg-divider" />
 
+      <Suspense>
+        <FeaturedCollection />
+      </Suspense>
+
+      <div className="h-px w-full bg-divider" />
+
       <section id="works">
         <Suspense>
           <UniqueArtworks />
         </Suspense>
-      </section>
-
-      <div className="h-px w-full bg-divider" />
-
-      <section id="collections">
-        <Gallery />
       </section>
 
       <section id="about">

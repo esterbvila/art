@@ -13,14 +13,14 @@ export default async function UniqueArtworks() {
       <div className="flex flex-col gap-1.5">
         <div className="flex w-full items-center justify-between">
           <span className="font-normal font-sans text-[16px] text-text-tertiary uppercase tracking-wide3">
-            Unique Pieces
+            Original Paintings
           </span>
           <span className="font-normal font-sans text-[13px] text-text-tertiary tracking-[0.5px]">
             {artworks.length} work{artworks.length !== 1 ? "s" : ""}
           </span>
         </div>
         <p className="font-normal font-sans text-[12px] text-text-tertiary">
-          Original works that stand on their own — not part of any collection.
+          One-of-a-kind artworks — only one exists.
         </p>
       </div>
 

@@ -27,7 +27,6 @@ export default function Footer() {
   const navLinks = [
     { label: "Prints", sectionId: "prints" },
     { label: "Originals", sectionId: "works" },
-    { label: "Collections", sectionId: "collections" },
     { label: "About", sectionId: "about" },
     { label: "Inquire", sectionId: "contact" },
   ];

@@ -28,6 +28,12 @@ export default function ArtworkCard({
           quality={60}
         />
 
+        <div className="absolute top-2.5 left-2.5">
+          <span className="bg-bg-main/90 px-2 py-1 font-sans text-[10px] text-text-secondary uppercase tracking-[1.5px]">
+            {artwork.type === "print" ? "Print" : "Original"}
+          </span>
+        </div>
+
         {!isAvailable && (
           <div className="absolute inset-0 flex items-center justify-center bg-bg-deep/50">
             <span className="font-sans text-text-light text-xs uppercase tracking-[2px]">Sold</span>
@@ -37,11 +43,7 @@ export default function ArtworkCard({
 
       <div className="flex flex-col gap-1 pt-3">
         <span className="font-sans font-semibold text-[18px] text-text-primary leading-[1.3]">{artwork.title}</span>
-        {artwork.dimensions && (
-          <span className="font-normal font-sans text-[13px] text-text-tertiary leading-[1.3]">
-            {artwork.dimensions}
-          </span>
-        )}
+
         <span className="font-medium font-sans text-[16px] text-text-primary leading-[1.3]">
           {formatPrice(artwork.price)}
         </span>
