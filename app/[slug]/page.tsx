@@ -9,6 +9,7 @@ import { getArtworkBySlug } from "@/features/artwork/artwork-actions";
 import ArtworkImage from "@/features/artwork/artwork-image";
 import ArtworkInfoSection from "@/features/artwork/artwork-info-section";
 import RelatedArtworks from "@/features/artwork/related-artworks";
+import Breadcrumb from "@/features/breadcrumb";
 import { AddArtworkToCart } from "@/features/cart/add-artwork-to-cart";
 import ImageSlider from "@/features/image-slider";
 import PrintControls from "@/features/prints/print-controls";
@@ -144,6 +145,13 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+      />
+
+      <Breadcrumb
+        items={[
+          ...(collection ? [{ label: collection.name, href: `/collections/${collection.slug}` }] : []),
+          { label: artwork.title },
+        ]}
       />
 
       <div className="h-px w-full bg-divider" />

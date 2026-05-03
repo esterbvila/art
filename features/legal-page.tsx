@@ -1,5 +1,6 @@
 "use client";
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
@@ -14,6 +15,11 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
       </Head>
 
       <div className="flex min-h-screen flex-col bg-bg-main">
+        <nav className="flex items-center gap-2 px-5 py-4 md:px-12">
+          <Link href="/" className="font-sans text-[12px] text-text-tertiary transition-colors hover:text-text-secondary">Home</Link>
+          <span className="font-sans text-[12px] text-text-tertiary">/</span>
+          <span className="font-sans text-[12px] text-text-secondary">{lang === "de" ? metaTitleDe : metaTitleEn}</span>
+        </nav>
         <main className="max-w-180 flex-1 px-5 py-14 md:px-12">
           <div className="mb-5 flex items-center justify-between">
             <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">Legal</p>

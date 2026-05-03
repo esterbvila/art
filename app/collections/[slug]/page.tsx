@@ -7,6 +7,7 @@ import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
 import ArtworkCard from "@/features/artwork/artwork-card";
+import Breadcrumb from "@/features/breadcrumb";
 import { resolveDisplayImage, resolveImages } from "@/lib/storage";
 import { formatPrice } from "@/lib/utils";
 
@@ -129,6 +130,8 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
           __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
         }}
       />
+
+      <Breadcrumb items={[{ label: collection.name }]} />
 
       <div className="h-px w-full bg-divider" />
 
