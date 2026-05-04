@@ -127,7 +127,9 @@ export default function CartDrawer() {
                   {item.type === "print" && item.quantity > 1 && (
                     <p className="font-sans text-[12px] text-text-tertiary">Qty: {item.quantity}</p>
                   )}
-                  <p className="font-medium font-sans text-[15px] text-text-primary">{formatPrice(item.price * item.quantity)}</p>
+                  <p className="font-medium font-sans text-[15px] text-text-primary">
+                    {formatPrice(item.price * item.quantity)}
+                  </p>
                 </div>
                 <button
                   onClick={() => removeItem(item.id)}

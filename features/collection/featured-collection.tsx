@@ -6,28 +6,25 @@ export default async function FeaturedCollection() {
   const collections = await getCollections();
   const collection = collections[0];
 
-  if (!collection) return null;
+  if (!collection) {
+    return null;
+  }
 
   const image = collection.heroImage || collection.coverImageUrl;
 
   return (
-    <section id="collections" className="relative w-full overflow-hidden" style={{ height: "clamp(480px, 75vh, 800px)" }}>
-      {image && (
-        <Image
-          src={image}
-          alt={collection.name}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          quality={75}
-        />
-      )}
+    <section
+      id="collections"
+      className="relative w-full overflow-hidden"
+      style={{ height: "clamp(480px, 75vh, 800px)" }}
+    >
+      {image && <Image src={image} alt={collection.name} fill className="object-cover" sizes="100vw" quality={75} />}
 
       <div className="absolute inset-0 bg-gradient-to-r from-bg-deep/85 via-bg-deep/50 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/40 via-transparent to-transparent" />
 
-      <div className="absolute inset-0 flex items-end pb-12 px-5 md:items-center md:pb-0 md:px-12">
-        <div className="flex flex-col gap-5 max-w-xl">
+      <div className="absolute inset-0 flex items-end px-5 pb-12 md:items-center md:px-12 md:pb-0">
+        <div className="flex max-w-xl flex-col gap-5">
           <span className="font-sans text-[11px] uppercase tracking-[2.5px]" style={{ color: "rgba(255,255,255,0.5)" }}>
             Collection
           </span>
@@ -59,7 +56,7 @@ export default async function FeaturedCollection() {
 
           <Link
             href={`/collections/${collection.slug}`}
-            className="mt-1 w-fit font-normal font-sans text-[13px] tracking-[0.5px] border px-5 py-2.5 transition-all hover:bg-white/10"
+            className="mt-1 w-fit border px-5 py-2.5 font-normal font-sans text-[13px] tracking-[0.5px] transition-all hover:bg-white/10"
             style={{ color: "rgba(255,255,255,0.85)", borderColor: "rgba(255,255,255,0.25)" }}
           >
             Explore collection →
