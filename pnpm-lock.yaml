@@ -1036,7 +1036,6 @@ packages:
     resolution: {integrity: sha512-kY0BSaTNYWnoDMVoyY8uxmyHjpJW1geOmBMdSSicKo9CIIWkSxMIj2rkeSR51b8KAPB7m+qysjuHme5nKP+E5Q==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
-      '@cloudflare/workers-types': '>=4'
       '@electric-sql/pglite': '>=0.2.0'
       '@libsql/client': '>=0.10.0'
       '@libsql/client-wasm': '>=0.10.0'
@@ -1066,8 +1065,6 @@ packages:
       sqlite3: '>=5'
     peerDependenciesMeta:
       '@aws-sdk/client-rds-data':
-        optional: true
-      '@cloudflare/workers-types':
         optional: true
       '@electric-sql/pglite':
         optional: true
