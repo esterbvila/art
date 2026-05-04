@@ -6,7 +6,9 @@ export default async function FeaturedCollection() {
   const collections = await getCollections();
   const collection = collections[0];
 
-  if (!collection) return null;
+  if (!collection) {
+    return null;
+  }
 
   const image = collection.heroImage || collection.coverImageUrl;
 
