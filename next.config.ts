@@ -16,16 +16,10 @@ const nextConfig = {
   images: {
     formats: ["image/webp"],
     minimumCacheTTL: 86400, // 1 day
-    qualities: [50, 60, 85, 100],
+    qualities: [50, 60, 75, 85, 100],
     deviceSizes: [640, 1080, 1920, 2235],
     imageSizes: [128, 384],
-    remotePatterns: [
-      ...supabaseRemotePattern,
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-      },
-    ],
+    remotePatterns: [...supabaseRemotePattern],
   },
 
   async headers() {

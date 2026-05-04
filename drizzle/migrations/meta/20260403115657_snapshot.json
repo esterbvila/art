@@ -207,12 +207,8 @@
           "tableFrom": "artworks",
           "tableTo": "collections",
           "schemaTo": "public",
-          "columnsFrom": [
-            "collection_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["collection_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -225,9 +221,7 @@
           "name": "artworks: public read",
           "as": "PERMISSIVE",
           "for": "SELECT",
-          "to": [
-            "public"
-          ],
+          "to": ["public"],
           "using": "true"
         }
       },
@@ -391,12 +385,8 @@
           "tableFrom": "orders",
           "tableTo": "artworks",
           "schemaTo": "public",
-          "columnsFrom": [
-            "artwork_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["artwork_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -404,10 +394,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "orders_session_artwork_unique": {
-          "columns": [
-            "artwork_id",
-            "stripe_session_id"
-          ],
+          "columns": ["artwork_id", "stripe_session_id"],
           "nullsNotDistinct": false,
           "name": "orders_session_artwork_unique"
         }
@@ -520,9 +507,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "collections_slug_key": {
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "nullsNotDistinct": false,
           "name": "collections_slug_key"
         }
@@ -533,9 +518,7 @@
           "name": "Public read",
           "as": "PERMISSIVE",
           "for": "SELECT",
-          "to": [
-            "public"
-          ],
+          "to": ["public"],
           "using": "true"
         }
       },

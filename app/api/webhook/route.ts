@@ -131,7 +131,7 @@ export async function POST(request: Request) {
       emailItems = [{ title: artwork.title, price: artwork.price, type: "print", quantity }];
     }
 
-  // Case 2: cart checkout (metadata.items JSON)
+    // Case 2: cart checkout (metadata.items JSON)
   } else if (meta.items) {
     const cartItems: { id: string; qty: number; type: "original" | "print" }[] = JSON.parse(meta.items);
     const ids = cartItems.map(i => i.id);
@@ -156,7 +156,7 @@ export async function POST(request: Request) {
       quantity: item.qty,
     }));
 
-  // Case 3: original artwork direct purchase (existing metadata.artworkIds)
+    // Case 3: original artwork direct purchase (existing metadata.artworkIds)
   } else if (meta.artworkIds) {
     const artworkIds = meta.artworkIds.split(",").filter(Boolean);
 
@@ -197,7 +197,6 @@ export async function POST(request: Request) {
       type: "original" as const,
       quantity: 1,
     }));
-
   } else {
     console.error("Webhook: unrecognised metadata", { sessionId: session.id, meta });
     return Response.json({ error: "Missing metadata" }, { status: 400 });

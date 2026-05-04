@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
+
 interface BreadcrumbItem {
   label: string;
   href?: string;
 }
 
 export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
-
   function handleClick(href: string) {
     const hashMatch = href.match(/^\/#(.+)$/);
     if (hashMatch) {
