@@ -12,7 +12,9 @@ export default async function PrintsSection() {
     <div className="flex flex-col gap-8 px-5 py-15 pb-20 md:gap-10 md:px-12">
       <div className="flex flex-col gap-1.5">
         <div className="flex w-full items-center justify-between">
-          <span className="font-normal font-sans text-[16px] text-text-tertiary uppercase tracking-wide3">Limited Prints</span>
+          <span className="font-normal font-sans text-[16px] text-text-tertiary uppercase tracking-wide3">
+            Limited Prints
+          </span>
           <span className="font-normal font-sans text-[13px] text-text-tertiary tracking-[0.5px]">
             {prints.length} print{prints.length !== 1 ? "s" : ""}
           </span>

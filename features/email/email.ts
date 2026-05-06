@@ -68,11 +68,12 @@ export async function sendOrderConfirmation({
 
   const hasOriginals = items.some(i => i.type === "original");
   const hasPrints = items.some(i => i.type === "print");
-  const followUpCopy = hasOriginals && !hasPrints
-    ? "I will be in touch shortly to arrange packaging and shipping for your original painting."
-    : hasPrints && !hasOriginals
-      ? "Your print will be carefully packed and shipped within 2–5 business days. I'll be in touch within 48 hours with your shipping confirmation."
-      : "I'll now prepare your pieces with care and will be in touch shortly to confirm the shipping details.";
+  const followUpCopy =
+    hasOriginals && !hasPrints
+      ? "I will be in touch shortly to arrange packaging and shipping for your original painting."
+      : hasPrints && !hasOriginals
+        ? "Your print will be carefully packed and shipped within 2–5 business days. I'll be in touch within 48 hours with your shipping confirmation."
+        : "I'll now prepare your pieces with care and will be in touch shortly to confirm the shipping details.";
 
   const itemRows = items
     .map(

@@ -13,17 +13,12 @@ export default async function FeaturedCollection() {
   const image = collection.heroImage || collection.coverImageUrl;
 
   return (
-    <section id="collections" className="relative w-full overflow-hidden" style={{ height: "clamp(480px, 75vh, 800px)" }}>
-      {image && (
-        <Image
-          src={image}
-          alt={collection.name}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          quality={75}
-        />
-      )}
+    <section
+      id="collections"
+      className="relative w-full overflow-hidden"
+      style={{ height: "clamp(480px, 75vh, 800px)" }}
+    >
+      {image && <Image src={image} alt={collection.name} fill className="object-cover" sizes="100vw" quality={75} />}
 
       <div className="absolute inset-0 bg-gradient-to-r from-bg-deep/85 via-bg-deep/50 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/40 via-transparent to-transparent" />

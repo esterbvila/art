@@ -44,9 +44,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
       if (item.type === "print") {
         const existing = prev.find(i => i.id === item.id);
         if (existing) {
-          return prev.map(i =>
-            i.id === item.id ? { ...i, quantity: Math.min(10, i.quantity + item.quantity) } : i,
-          );
+          return prev.map(i => (i.id === item.id ? { ...i, quantity: Math.min(10, i.quantity + item.quantity) } : i));
         }
         return [...prev, item];
       }

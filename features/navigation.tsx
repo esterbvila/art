@@ -100,14 +100,20 @@ export default function Navigation() {
           {links.map(({ label, sectionId }) => (
             <button
               key={label}
-              onClick={() => { handleNavClick(sectionId); setMobileOpen(false); }}
+              onClick={() => {
+                handleNavClick(sectionId);
+                setMobileOpen(false);
+              }}
               className="text-left font-normal font-sans text-[15px] text-text-secondary tracking-[0.5px] transition-colors hover:text-text-primary"
             >
               {label}
             </button>
           ))}
           <button
-            onClick={() => { handleNavClick("contact"); setMobileOpen(false); }}
+            onClick={() => {
+              handleNavClick("contact");
+              setMobileOpen(false);
+            }}
             className="text-left font-normal font-sans text-[15px] text-accent tracking-[0.5px] transition-opacity hover:opacity-80"
           >
             Inquire

@@ -304,7 +304,11 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
             {details.map(({ label, value, accent, bold }) => (
               <div key={label} className="flex items-center justify-between gap-4">
                 <span className="font-sans text-[13px] text-text-tertiary">{label}</span>
-                <span className={`text-right font-sans text-[13px] ${bold ? "font-semibold" : ""} ${accent ? "text-accent" : "text-text-primary"}`}>{value}</span>
+                <span
+                  className={`text-right font-sans text-[13px] ${bold ? "font-semibold" : ""} ${accent ? "text-accent" : "text-text-primary"}`}
+                >
+                  {value}
+                </span>
               </div>
             ))}
             {collection && (

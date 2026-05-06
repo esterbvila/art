@@ -1,22 +1,18 @@
 @import "tailwindcss";
 
-@variant dark 
-(
-&:where(.dark, .dark *));
-
 @theme {
-  --color-bg-main:          #FAF8F5;
-  --color-bg-warm:          #F0ECE6;
-  --color-bg-deep:          #1A1917;
-  --color-bg-stone:         #E8E3DB;
-  --color-accent:           #260614;
-  --color-divider:          #DDD8D0;
-  --color-divider-dark:     #2A2926;
-  --color-text-primary:     #1A1917;
-  --color-text-secondary:   #6B6660;
-  --color-text-tertiary:    #6E6A68;
-  --color-text-light:       #FAF8F5;
-  --color-text-light-muted: #A8A29C;
+  --color-bg-main: #faf8f5;
+  --color-bg-warm: #f0ece6;
+  --color-bg-deep: #1a1917;
+  --color-bg-stone: #e8e3db;
+  --color-accent: #260614;
+  --color-divider: #ddd8d0;
+  --color-divider-dark: #2a2926;
+  --color-text-primary: #1a1917;
+  --color-text-secondary: #6b6660;
+  --color-text-tertiary: #6e6a68;
+  --color-text-light: #faf8f5;
+  --color-text-light-muted: #a8a29c;
 
   --font-sans: "Funnel Sans", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Sora", ui-sans-serif, system-ui, sans-serif;
@@ -34,7 +30,6 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 body {
@@ -63,8 +58,5 @@ button {
 }
 
 @utility input-line {
-  @apply w-full border-0 border-b border-divider bg-transparent
-  pb-3 pt-1 text-text-primary placeholder-text-tertiary
-  text-sm font-sans outline-hidden transition-colors
-  focus:border-text-secondary resize-none;
+  @apply w-full border-0 border-b border-divider bg-transparent pb-3 pt-1 text-text-primary placeholder-text-tertiary text-sm font-sans outline-hidden transition-colors focus:border-text-secondary resize-none;
 }

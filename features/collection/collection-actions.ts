@@ -18,8 +18,8 @@ export async function getCollections() {
   return Promise.all(
     collections.map(async collection => ({
       ...collection,
-      coverImageUrl: collection.coverImageUrl ? (await resolveImages(collection.coverImageUrl))[0] ?? null : null,
-      heroImage: collection.heroImage ? (await resolveImages(collection.heroImage))[0] ?? null : null,
+      coverImageUrl: collection.coverImageUrl ? ((await resolveImages(collection.coverImageUrl))[0] ?? null) : null,
+      heroImage: collection.heroImage ? ((await resolveImages(collection.heroImage))[0] ?? null) : null,
     })),
   );
 }

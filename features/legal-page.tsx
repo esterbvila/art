@@ -16,7 +16,12 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
 
       <div className="flex min-h-screen flex-col bg-bg-main">
         <nav className="flex items-center gap-2 px-5 py-4 md:px-12">
-          <Link href="/" className="font-sans text-[12px] text-text-tertiary transition-colors hover:text-text-secondary">Home</Link>
+          <Link
+            href="/"
+            className="font-sans text-[12px] text-text-tertiary transition-colors hover:text-text-secondary"
+          >
+            Home
+          </Link>
           <span className="font-sans text-[12px] text-text-tertiary">/</span>
           <span className="font-sans text-[12px] text-text-secondary">{lang === "de" ? metaTitleDe : metaTitleEn}</span>
         </nav>
