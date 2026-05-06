@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-bg-main px-5 text-center">
         <p className="font-sans text-[13px] text-text-tertiary uppercase tracking-[3px]">404</p>
         <h1
-          className="font-normal font-sans text-text-primary leading-tight95"
+          className="font-normal font-heading text-text-primary leading-tight95"
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
             letterSpacing: "-1.5px",

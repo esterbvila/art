@@ -28,7 +28,7 @@ export default async function FeaturedArtwork() {
         </p>
 
         <h2
-          className="font-normal font-sans text-text-light leading-tight95"
+          className="font-normal font-heading text-text-light leading-tight95"
           style={{
             fontSize: "clamp(36px, 3.3vw, 48px)",
             letterSpacing: "-1.5px",

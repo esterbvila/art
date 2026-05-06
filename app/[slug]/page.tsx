@@ -215,7 +215,7 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
         <div className="flex flex-col gap-8 p-5 md:sticky md:top-0 md:w-1/2 md:self-start md:p-14 lg:w-[45%]">
           <div className="flex flex-col gap-5">
             <h1
-              className="font-normal font-sans text-text-primary"
+              className="font-heading font-normal text-text-primary"
               style={{
                 fontSize: "clamp(26px, 3vw, 42px)",
                 letterSpacing: "-1px",

@@ -1,4 +1,4 @@
-import { Funnel_Sans } from "next/font/google";
+import { Funnel_Sans, Sora } from "next/font/google";
 import React from "react";
 import CartDrawer from "../features/cart/cart-drawer";
 import CartProvider from "../features/cart/cart-provider";
@@ -13,11 +13,18 @@ const funnelSans = Funnel_Sans({
   display: "swap",
 });
 
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body>
-        <main className={`${funnelSans.variable}`}>
+        <main className={`${funnelSans.variable} ${sora.variable}`}>
           <CartProvider>
             <Navigation />
             <div className="flex min-h-screen flex-col bg-bg-main">{children}</div>

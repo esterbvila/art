@@ -52,7 +52,7 @@ export default function Footer() {
         <div className="flex flex-col gap-1.5 text-center md:text-left">
           <Link
             href="/"
-            className="font-normal font-sans text-[15px] text-text-primary tracking-[2px] transition-opacity hover:opacity-80 md:text-[16px]"
+            className="font-heading font-normal text-[15px] text-text-primary tracking-[2px] transition-opacity hover:opacity-80 md:text-[16px]"
           >
             {siteConfig.name}
           </Link>

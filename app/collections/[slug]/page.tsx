@@ -153,7 +153,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
         <div className="flex flex-col gap-4 md:gap-5">
           <p className="font-normal font-sans text-[12px] text-text-tertiary uppercase tracking-wide3">Collection</p>
           <h1
-            className="font-normal font-sans text-text-primary"
+            className="font-heading font-normal text-text-primary"
             style={{ fontSize: "clamp(36px, 4vw, 52px)", letterSpacing: "-1.5px", lineHeight: 0.95 }}
           >
             {collection.name}

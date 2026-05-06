@@ -44,7 +44,7 @@ export default function LegalPage({ content, metaTitleDe, metaTitleEn }) {
           </div>
 
           <h1
-            className="mb-12 font-normal font-sans text-text-primary"
+            className="mb-12 font-heading font-normal text-text-primary"
             style={{
               fontSize: "clamp(32px, 4vw, 48px)",
               letterSpacing: "-1.5px",

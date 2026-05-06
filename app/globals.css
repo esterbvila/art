@@ -19,6 +19,7 @@
   --color-text-light-muted: #A8A29C;
 
   --font-sans: "Funnel Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Sora", ui-sans-serif, system-ui, sans-serif;
 
   --tracking-wide3: 0.1875rem;
 }
@@ -39,6 +40,10 @@ html {
 body {
   @apply bg-bg-main text-text-primary font-sans;
   margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 button {

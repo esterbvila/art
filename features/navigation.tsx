@@ -37,7 +37,7 @@ export default function Navigation() {
       <nav className="flex items-center justify-between px-5 py-5 md:px-12 md:py-7">
         <Link
           href="/"
-          className="font-normal font-sans text-[15px] text-text-primary tracking-[2px] transition-opacity hover:opacity-80 md:text-[16px]"
+          className="font-heading font-normal text-[15px] text-text-primary tracking-[2px] transition-opacity hover:opacity-80 md:text-[16px]"
         >
           esterii creates
         </Link>
