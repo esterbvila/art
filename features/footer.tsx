@@ -62,7 +62,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-col items-center gap-3 md:items-end">
+        <nav className="flex flex-col items-center gap-3">
           <div className="flex items-center gap-6 md:gap-8">
             {navLinks.map(({ label, sectionId }) => (
               <button

@@ -1,4 +1,4 @@
-import { Globe, Layers, PackageCheck, PenLine, RefreshCcw, ShieldCheck } from "lucide-react";
+import { Globe, Layers, PackageCheck, RefreshCcw, ShieldCheck } from "lucide-react";
 
 const sharedItems = [
   {
@@ -21,14 +21,8 @@ const originalItem = {
 
 const printItem = {
   icon: Layers,
-  label: "Archival-quality print",
+  label: "Archival-quality print, signed by the artist",
   description: "Printed on radiant white watercolor paper.",
-};
-
-const signedEditionItem = {
-  icon: PenLine,
-  label: "Hand-signed edition",
-  description: "Signed by the artist and part of a limited edition of 50.",
 };
 
 const returnsItem = {
@@ -41,7 +35,7 @@ export default function ArtworkInfoSection({ type }: { type?: string | null }) {
   const typeItem = type === "print" ? printItem : originalItem;
   const items =
     type === "print"
-      ? [...sharedItems, typeItem, signedEditionItem, returnsItem]
+      ? [...sharedItems, typeItem, returnsItem]
       : [...sharedItems, typeItem, returnsItem];
 
   return (
