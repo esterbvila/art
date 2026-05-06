@@ -57,7 +57,7 @@ export default function Footer() {
             {siteConfig.name}
           </Link>
           <p className="font-normal font-sans text-[13px] text-text-tertiary">
-            Original abstract paintings exploring emotion, intuition
+            Abstract paintings & fine art prints exploring emotion, intuition
             <br className="hidden md:block" /> and subconscious landscapes.
           </p>
         </div>
