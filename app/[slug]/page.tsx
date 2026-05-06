@@ -102,9 +102,11 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "Product",
     name: artwork.title,
-    description: artwork.description || (artwork.type === "print"
-      ? `${artwork.title} is an abstract painting by Ester Batllori. Available as a fine art print.`
-      : `${artwork.title} is an abstract painting by Ester Batllori. Available as an original artwork.`),
+    description:
+      artwork.description ||
+      (artwork.type === "print"
+        ? `${artwork.title} is an abstract painting by Ester Batllori. Available as a fine art print.`
+        : `${artwork.title} is an abstract painting by Ester Batllori. Available as an original artwork.`),
     image: artwork.imageUrl,
     url: `https://esteriicreates.com/${slug}`,
     brand: { "@type": "Brand", name: "Ester Batllori" },

@@ -27,10 +27,21 @@ export default async function FeaturedCollection() {
   const minPrice = previewArtworks.length > 0 ? Math.min(...previewArtworks.map(a => a.price)) : null;
 
   return (
-    <section id="collections" className="flex w-full flex-col md:flex-row" style={{ minHeight: "clamp(480px, 65vh, 680px)" }}>
+    <section
+      id="collections"
+      className="flex w-full flex-col md:flex-row"
+      style={{ minHeight: "clamp(480px, 65vh, 680px)" }}
+    >
       {image && (
         <div className="relative h-64 w-full overflow-hidden md:h-auto md:flex-1">
-          <Image src={image} alt={collection.name} fill className="object-cover" sizes="(min-width: 768px) 60vw, 100vw" quality={75} />
+          <Image
+            src={image}
+            alt={collection.name}
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 60vw, 100vw"
+            quality={75}
+          />
         </div>
       )}
 
@@ -68,7 +79,14 @@ export default async function FeaturedCollection() {
               <div className="flex gap-3">
                 {previewArtworks.map(artwork => (
                   <div key={artwork.id} className="relative h-24 w-24 overflow-hidden">
-                    <Image src={artwork.imageUrl} alt={artwork.title} fill className="object-cover" sizes="96px" quality={60} />
+                    <Image
+                      src={artwork.imageUrl}
+                      alt={artwork.title}
+                      fill
+                      className="object-cover"
+                      sizes="96px"
+                      quality={60}
+                    />
                   </div>
                 ))}
               </div>

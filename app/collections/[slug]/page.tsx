@@ -60,8 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     collection.coverImageUrl || (firstArtwork ? ((await resolveImages(firstArtwork.imageUrl))[0] ?? null) : null);
 
   const description =
-    collection.descriptionCollection ||
-    `A curated collection of abstract paintings by Ester Batllori.`;
+    collection.descriptionCollection || `A curated collection of abstract paintings by Ester Batllori.`;
 
   return {
     title: `${collection.name} — Abstract Paintings`,
