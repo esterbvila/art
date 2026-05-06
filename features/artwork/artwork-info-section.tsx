@@ -33,10 +33,7 @@ const returnsItem = {
 
 export default function ArtworkInfoSection({ type }: { type?: string | null }) {
   const typeItem = type === "print" ? printItem : originalItem;
-  const items =
-    type === "print"
-      ? [...sharedItems, typeItem, returnsItem]
-      : [...sharedItems, typeItem, returnsItem];
+  const items = type === "print" ? [...sharedItems, typeItem, returnsItem] : [...sharedItems, typeItem, returnsItem];
 
   return (
     <div className="flex flex-col gap-7">

@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="flex flex-col gap-8 px-5 pt-10 pb-0 md:gap-14 md:px-12 md:pt-15">
       <div className="flex w-full flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <h1
-          className="w-full font-normal font-heading text-text-primary leading-tight95 md:max-w-[66%]"
+          className="w-full font-heading font-normal text-text-primary leading-tight95 md:max-w-[66%]"
           style={{
             fontSize: "clamp(37px, 5.5vw, 80px)",
             letterSpacing: "clamp(-px, -0.15vw, -2px)",

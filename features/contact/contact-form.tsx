@@ -72,7 +72,7 @@ export default function ContactForm() {
         <p className="font-normal font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">Get in Touch</p>
 
         <h2
-          className="font-normal font-heading text-text-primary leading-tight95"
+          className="font-heading font-normal text-text-primary leading-tight95"
           style={{ fontSize: "clamp(36px, 3.6vw, 52px)", letterSpacing: "-1.5px" }}
         >
           Commission a Painting

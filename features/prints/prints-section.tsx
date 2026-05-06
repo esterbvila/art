@@ -19,9 +19,7 @@ export default async function PrintsSection() {
             {prints.length} print{prints.length !== 1 ? "s" : ""}
           </span>
         </div>
-        <p className="font-normal font-sans text-[12px] text-text-tertiary">
-          Reproductions of original works.
-        </p>
+        <p className="font-normal font-sans text-[12px] text-text-tertiary">Reproductions of original works.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
