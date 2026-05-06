@@ -236,9 +236,16 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
             >
               {artwork.title}
             </h1>
-            <p className="font-sans text-[17px] text-text-tertiary uppercase tracking-[2px]">
-              {artwork.type === "print" ? "Print" : "Original"}
-            </p>
+            <div className="flex items-center gap-3">
+              <p className="font-sans text-[17px] text-text-tertiary uppercase tracking-[2px]">
+                {artwork.type === "print" ? "Print" : "Original"}
+              </p>
+              {artwork.type === "print" && (
+                <span className="bg-accent px-2 py-0.5 font-medium font-sans text-[10px] text-text-light uppercase tracking-[1.5px]">
+                  New
+                </span>
+              )}
+            </div>
 
             {artwork.tagline && (
               <p className="font-normal font-sans text-[15px] text-text-secondary italic leading-[1.6]">
