@@ -32,29 +32,37 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     return {};
   }
 
-  const description = artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`;
-  const imageUrl = artwork.imageUrl ?? null;
+  const isPrint = artwork.type === "print";
+  const fallbackDescription = isPrint
+    ? `${artwork.title} is an abstract painting by Ester Batllori, exploring emotion and subconscious landscapes. Available as a fine art print.`
+    : `${artwork.title} is an abstract painting by Ester Batllori, exploring emotion and subconscious landscapes. Available as an original artwork.`;
+  const description = artwork.description || fallbackDescription;
+  const resolvedImages = artwork.imageUrl ? await resolveImages(artwork.imageUrl) : [];
+  const ogImageUrl = resolvedImages[0] ?? null;
+  const title = isPrint
+    ? `${artwork.title} — Abstract Art Print by Ester Batllori`
+    : `${artwork.title} — Abstract Painting by Ester Batllori`;
 
   return {
-    title: `${artwork.title} — Ester Batllori`,
+    title,
     description,
     alternates: {
       canonical: `https://esteriicreates.com/${slug}`,
     },
     openGraph: {
-      title: `${artwork.title} — Ester Batllori`,
+      title,
       description,
       type: "website",
       url: `https://esteriicreates.com/${slug}`,
-      images: imageUrl ? [{ url: imageUrl }] : [],
+      images: ogImageUrl ? [{ url: ogImageUrl }] : [],
     },
     twitter: {
       card: "summary_large_image",
       site: "@esterii_creates",
       creator: "@esterii_creates",
-      title: `${artwork.title} — Ester Batllori`,
+      title,
       description,
-      images: imageUrl ? [imageUrl] : [],
+      images: ogImageUrl ? [ogImageUrl] : [],
     },
   };
 }
@@ -94,10 +102,12 @@ export default async function ArtworkDetailPage(props: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "Product",
     name: artwork.title,
-    description: artwork.description || `${artwork.title} — Original abstract painting by Ester Batllori.`,
+    description: artwork.description || (artwork.type === "print"
+      ? `${artwork.title} is an abstract painting by Ester Batllori. Available as a fine art print.`
+      : `${artwork.title} is an abstract painting by Ester Batllori. Available as an original artwork.`),
     image: artwork.imageUrl,
     url: `https://esteriicreates.com/${slug}`,
-    brand: { "@type": "Brand", name: "esterii creates" },
+    brand: { "@type": "Brand", name: "Ester Batllori" },
     offers: {
       "@type": "Offer",
       price: (artwork.price / 100).toFixed(2),

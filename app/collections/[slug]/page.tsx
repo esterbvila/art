@@ -2,7 +2,6 @@ import { and, asc, eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { siteConfig } from "@/app/site-config";
 import { db } from "@/drizzle/client";
 import { artworkSchema, collectionSchema } from "@/drizzle/schema";
 import { getArtworksByCollection } from "@/features/artwork/artwork-actions";
@@ -62,16 +61,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const description =
     collection.descriptionCollection ||
-    `${collection.name} — A collection of original abstract paintings by ${siteConfig.name}.`;
+    `A curated collection of abstract paintings by Ester Batllori.`;
 
   return {
-    title: `${collection.name} — ${siteConfig.name}`,
+    title: `${collection.name} — Abstract Paintings`,
     description,
     alternates: {
       canonical: `https://esteriicreates.com/collections/${collection.slug}`,
     },
     openGraph: {
-      title: `${collection.name} — ${siteConfig.name}`,
+      title: `${collection.name} — Abstract Paintings`,
       description,
       type: "website",
       url: `https://esteriicreates.com/collections/${collection.slug}`,

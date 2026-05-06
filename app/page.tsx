@@ -9,15 +9,16 @@ import Hero from "@/features/hero";
 import PrintsSection from "@/features/prints/prints-section";
 
 export const metadata = {
-  title: "Ester Batllori — Abstract Paintings",
+  title: "Abstract Paintings & Fine Art Prints by Ester Batllori",
   description:
-    "Original abstract paintings exploring emotion, intuition and subconscious landscapes. Each piece is a one-of-a-kind original.",
+    "Original abstract paintings and fine art prints by Ester Batllori, available to buy online. Expressive, intuitive artworks inspired by emotion and subconscious landscapes.",
   alternates: {
     canonical: "https://esteriicreates.com",
   },
   openGraph: {
-    title: "Ester Batllori — Abstract Paintings",
-    description: "Original abstract paintings exploring emotion, intuition and subconscious landscapes.",
+    title: "Abstract Paintings & Fine Art Prints by Ester Batllori",
+    description:
+      "Original abstract paintings and fine art prints by Ester Batllori, available to buy online. Expressive, intuitive artworks inspired by emotion and subconscious landscapes.",
     type: "website",
     url: "https://esteriicreates.com",
     images: [
@@ -32,8 +33,9 @@ export const metadata = {
     card: "summary_large_image",
     site: "@esterii_creates",
     creator: "@esterii_creates",
-    title: "Ester Batllori — Abstract Paintings",
-    description: "Original abstract paintings exploring emotion, intuition and subconscious landscapes.",
+    title: "Abstract Paintings & Fine Art Prints by Ester Batllori",
+    description:
+      "Original abstract paintings and fine art prints by Ester Batllori, available to buy online. Expressive, intuitive artworks inspired by emotion and subconscious landscapes.",
     images: ["https://esteriicreates.com/og-image.png"],
   },
   icons: {
