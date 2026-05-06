@@ -453,51 +453,119 @@
         },
         {
           "type": "frame",
-          "id": "lqQ1L",
-          "name": "Gallery Section",
+          "id": "RakfI",
+          "name": "Featured Divider",
           "width": "fill_container",
-          "layout": "vertical",
-          "gap": 40,
-          "padding": [
-            60,
-            48,
-            80,
-            48
-          ],
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "HuAtp",
+          "name": "Featured Collection",
+          "width": "fill_container",
+          "height": 600,
           "children": [
             {
               "type": "frame",
-              "id": "RFi48",
-              "name": "Frame 1",
+              "id": "JkMbk",
+              "name": "Cover Image",
+              "metadata": {
+                "type": "unsplash",
+                "username": "kkalerry",
+                "link": "https://unsplash.com/@kkalerry",
+                "author": "Klara Kulikova"
+              },
+              "clip": true,
               "width": "fill_container",
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "https://images.unsplash.com/photo-1614189647266-8fbdad9c72de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI5Mzh8&ixlib=rb-4.1.0&q=80&w=1080",
+                "mode": "fill"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "gc9qu",
+              "name": "Collection Info",
+              "width": 520,
+              "height": "fill_container",
               "layout": "vertical",
-              "gap": 6,
+              "padding": [
+                60,
+                48
+              ],
+              "justifyContent": "space_between",
               "children": [
                 {
                   "type": "frame",
-                  "id": "NCJ3M",
-                  "name": "Gallery Header",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
+                  "id": "9L3i6",
+                  "name": "Text Block",
+                  "width": 331,
+                  "layout": "vertical",
+                  "gap": 20,
                   "children": [
                     {
-                      "type": "text",
-                      "id": "ns844",
-                      "name": "galTitle",
-                      "fill": "$text-secondary",
-                      "content": "COLLECTIONS",
-                      "fontFamily": "Funnel Sans",
-                      "fontSize": 16,
-                      "fontWeight": "normal",
-                      "letterSpacing": 3
+                      "type": "frame",
+                      "id": "xSVEB",
+                      "name": "Label Row",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "eudMI",
+                          "name": "labelLine",
+                          "width": 32,
+                          "height": 1,
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "0267F",
+                          "name": "label",
+                          "fill": "$text-tertiary",
+                          "content": "FEATURED COLLECTION",
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 11,
+                          "fontWeight": "500",
+                          "letterSpacing": 3
+                        }
+                      ]
                     },
                     {
                       "type": "text",
-                      "id": "f2WKc",
-                      "name": "galCount",
+                      "id": "rctEB",
+                      "name": "title",
+                      "fill": "$text-primary",
+                      "content": "Autumn\nin Britz",
+                      "lineHeight": 0.95,
+                      "fontFamily": "Cormorant Garamond",
+                      "fontSize": 56,
+                      "fontWeight": "300",
+                      "letterSpacing": -1.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "VP979",
+                      "name": "desc",
                       "fill": "$text-secondary",
-                      "content": "3 collections",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light — drawn from the landscape surrounding a former hospital complex in Britz, Berlin.",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "8dMFK",
+                      "name": "meta",
+                      "fill": "$text-tertiary",
+                      "content": "12 works  ·  From 115€",
                       "fontFamily": "Funnel Sans",
                       "fontSize": 12,
                       "fontWeight": "normal",
@@ -506,277 +574,118 @@
                   ]
                 },
                 {
-                  "type": "text",
-                  "id": "Fr3VH",
-                  "name": "galTitle",
-                  "fill": "$text-secondary",
-                  "content": "Browse original artworks organized by thematic collections.",
-                  "fontFamily": "Funnel Sans",
-                  "fontSize": 12,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "m5cc8",
-              "name": "Collections Grid",
-              "width": "fill_container",
-              "gap": 32,
-              "children": [
-                {
                   "type": "frame",
-                  "id": "NQ4xw",
-                  "name": "Collection 1",
-                  "width": "fill_container",
+                  "id": "UZZ71",
+                  "name": "Bottom Block",
                   "layout": "vertical",
+                  "gap": 20,
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "cA7AH",
-                      "name": "Cover Image",
-                      "clip": true,
-                      "width": "fill_container",
-                      "height": 380,
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "./images/generated-1772982214957.png",
-                        "mode": "fill"
-                      }
+                      "type": "text",
+                      "id": "hYi7p",
+                      "name": "previewLabel",
+                      "fill": "$text-tertiary",
+                      "content": "FROM THE COLLECTION",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 2
                     },
                     {
                       "type": "frame",
-                      "id": "hStQH",
-                      "name": "Info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": [
-                        24,
-                        0,
-                        0,
-                        0
-                      ],
+                      "id": "OwifU",
+                      "name": "Preview Row",
+                      "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "FhCoV",
-                          "name": "col1title",
-                          "fill": "$text-primary",
-                          "content": "Inner Landscapes",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 22,
-                          "fontWeight": "600",
-                          "letterSpacing": -0.5
+                          "type": "frame",
+                          "id": "huTLx",
+                          "name": "thumb1",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "bekkybekks",
+                            "link": "https://unsplash.com/@bekkybekks",
+                            "author": "Bekky Bekks"
+                          },
+                          "clip": true,
+                          "width": 100,
+                          "height": 100,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "https://images.unsplash.com/photo-1609378800753-6a3c08233b51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI5NjR8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "mode": "fill"
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "fa62D",
-                          "name": "headerTagline",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
-                          "lineHeight": 1.7,
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 14,
-                          "fontWeight": "normal",
-                          "fontStyle": "italic"
+                          "type": "frame",
+                          "id": "gSS8c",
+                          "name": "thumb2",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "grievek1610begur",
+                            "link": "https://unsplash.com/@grievek1610begur",
+                            "author": "Kevin Grieve"
+                          },
+                          "clip": true,
+                          "width": 100,
+                          "height": 100,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "https://images.unsplash.com/photo-1613107461506-bd97d8f0eb5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI5NjR8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "mode": "fill"
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "eOWca",
-                          "name": "col1count",
-                          "fill": "$text-tertiary",
-                          "content": "6 works · From 280€",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 12,
-                          "fontWeight": "normal",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "kX7rA",
-                          "name": "col1cta",
-                          "fill": "$accent",
-                          "content": "View Collection →",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 13,
-                          "fontWeight": "500",
-                          "letterSpacing": 0.5
+                          "type": "frame",
+                          "id": "or2zI",
+                          "name": "thumb3",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "smithsonian",
+                            "link": "https://unsplash.com/@smithsonian",
+                            "author": "Smithsonian"
+                          },
+                          "clip": true,
+                          "width": 100,
+                          "height": 100,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "https://images.unsplash.com/photo-1775313089045-82de47198832?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI5NjV8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "mode": "fill"
+                          }
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "k57A7",
-                  "name": "Collection 2",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "qhIOD",
-                      "name": "Cover Image",
-                      "clip": true,
-                      "width": "fill_container",
-                      "height": 380,
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "./images/generated-1772982239220.png",
-                        "mode": "fill"
-                      }
                     },
                     {
                       "type": "frame",
-                      "id": "6VRNV",
-                      "name": "Info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": [
-                        24,
-                        0,
-                        0,
-                        0
-                      ],
+                      "id": "wp8Vx",
+                      "name": "CTA Row",
+                      "gap": 8,
+                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "rSE6b",
-                          "name": "col2title",
-                          "fill": "$text-primary",
-                          "content": "Nature Studies",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 22,
-                          "fontWeight": "600",
-                          "letterSpacing": -0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "6Z5FE",
-                          "name": "headerTagline",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
-                          "lineHeight": 1.7,
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 14,
-                          "fontWeight": "normal",
-                          "fontStyle": "italic"
-                        },
-                        {
-                          "type": "text",
-                          "id": "lyn9h",
-                          "name": "col2count",
-                          "fill": "$text-tertiary",
-                          "content": "5 works · From 180€",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 12,
-                          "fontWeight": "normal",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "4y6s5",
-                          "name": "col2cta",
+                          "id": "7yibV",
+                          "name": "ctaText",
                           "fill": "$accent",
-                          "content": "View Collection →",
+                          "content": "View Collection",
                           "fontFamily": "Funnel Sans",
                           "fontSize": 13,
                           "fontWeight": "500",
                           "letterSpacing": 0.5
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "n8C9A",
-                  "name": "Collection 3",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "Gr7gg",
-                      "name": "Cover Image",
-                      "clip": true,
-                      "width": "fill_container",
-                      "height": 380,
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "./images/generated-1772982265503.png",
-                        "mode": "fill"
-                      }
-                    },
-                    {
-                      "type": "frame",
-                      "id": "gOq7D",
-                      "name": "Info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": [
-                        24,
-                        0,
-                        0,
-                        0
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "KpfeC",
-                          "name": "col3title",
-                          "fill": "$text-primary",
-                          "content": "Body & Identity",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 22,
-                          "fontWeight": "600",
-                          "letterSpacing": -0.5
                         },
                         {
                           "type": "text",
-                          "id": "8HP72",
-                          "name": "headerTagline",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
-                          "lineHeight": 1.7,
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 14,
-                          "fontWeight": "normal",
-                          "fontStyle": "italic"
-                        },
-                        {
-                          "type": "text",
-                          "id": "p83gF",
-                          "name": "col3count",
-                          "fill": "$text-tertiary",
-                          "content": "5 works · From 360€",
-                          "fontFamily": "Funnel Sans",
-                          "fontSize": 12,
-                          "fontWeight": "normal",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "zrZYY",
-                          "name": "col3cta",
+                          "id": "LCIJZ",
+                          "name": "ctaArrow",
                           "fill": "$accent",
-                          "content": "View Collection →",
+                          "content": "→",
                           "fontFamily": "Funnel Sans",
                           "fontSize": 13,
-                          "fontWeight": "500",
-                          "letterSpacing": 0.5
+                          "fontWeight": "500"
                         }
                       ]
                     }
@@ -6141,6 +6050,1251 @@
                           "fontWeight": "normal"
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "iT82Y",
+      "x": 6492,
+      "y": 0,
+      "name": "Collection Page v3 - Desktop",
+      "width": 1440,
+      "fill": "$bg-main",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "CIRqt",
+          "name": "Navigation",
+          "width": "fill_container",
+          "padding": [
+            28,
+            48
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "awVFG",
+              "name": "brand",
+              "fill": "$text-primary",
+              "content": "esterii creates",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "Xrprm",
+              "name": "Nav Links",
+              "gap": 40,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "cXsWO",
+                  "name": "nl1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "Xo4Mr",
+                  "name": "nl2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "R0f2O",
+                  "name": "nl3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "oog2K",
+                  "name": "nl4",
+                  "fill": "$accent",
+                  "content": "Inquire",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i2e7i",
+                  "name": "cartIcon",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "shopping-bag",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-primary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Kbs1S",
+          "name": "Top Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "4KElx",
+          "name": "Collection Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            80,
+            48,
+            64,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "RMV7Z",
+              "name": "Label Row",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rBzxu",
+                  "name": "labelLine",
+                  "width": 40,
+                  "height": 1,
+                  "fill": "$text-tertiary"
+                },
+                {
+                  "type": "text",
+                  "id": "0upRb",
+                  "name": "label",
+                  "fill": "$text-tertiary",
+                  "content": "COLLECTION",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "letterSpacing": 3
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "jCCRn",
+              "name": "title",
+              "fill": "$text-primary",
+              "content": "Autumn\nin Britz",
+              "lineHeight": 0.9,
+              "fontFamily": "Cormorant Garamond",
+              "fontSize": 96,
+              "fontWeight": "300",
+              "letterSpacing": -3
+            },
+            {
+              "type": "frame",
+              "id": "p53um",
+              "name": "Desc Row",
+              "width": "fill_container",
+              "gap": 80,
+              "justifyContent": "space_between",
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wnK6s",
+                  "name": "Desc Left",
+                  "width": 520,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AnmaK",
+                      "name": "tagline",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0ZjZ4",
+                      "name": "meta",
+                      "fill": "$text-tertiary",
+                      "content": "12 works  ·  Prices from 115€",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "UE5ku",
+                  "name": "descRight",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": 380,
+                  "content": "This 12-work series draws inspiration from the landscape surrounding my apartment in Britz, Berlin, within a former hospital complex dating from the late 19th century.",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "SVN2L",
+          "name": "Hero Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "15P8T",
+          "name": "Artwork Grid Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            56,
+            48,
+            80,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "H24It",
+              "name": "Featured Row",
+              "width": "fill_container",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2h15S",
+                  "name": "Featured Artwork",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "iddye",
+                      "name": "featImg",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "steve_j",
+                        "link": "https://unsplash.com/@steve_j",
+                        "author": "Steve A Johnson"
+                      },
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 520,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1547310253-17a25eadf7a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI2NTN8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "18K1G",
+                      "name": "featInfo",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "IJNtY",
+                          "name": "featLeft",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "kmHfZ",
+                              "name": "featTitle",
+                              "fill": "$text-primary",
+                              "content": "Memories of Egypt",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "hI3kg",
+                              "name": "featDesc",
+                              "fill": "$text-tertiary",
+                              "content": "Acrylic on paper, 24×30\"",
+                              "lineHeight": 1.4,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "33CNu",
+                          "name": "featPrice",
+                          "fill": "$text-primary",
+                          "content": "360€",
+                          "lineHeight": 1.3,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F47Jn",
+                  "name": "Side Column",
+                  "width": 420,
+                  "layout": "vertical",
+                  "gap": 32,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cYcgV",
+                      "name": "Card 2",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "oZI8Z",
+                          "name": "card2Img",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "steve_j",
+                            "link": "https://unsplash.com/@steve_j",
+                            "author": "Steve A Johnson"
+                          },
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 230,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "https://images.unsplash.com/photo-1525690399065-b436c4100577?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI2NjN8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "mode": "fill"
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "DrvS7",
+                          "name": "card2Info",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "sBPTO",
+                              "name": "card2Left",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pmm6b",
+                                  "name": "card2Title",
+                                  "fill": "$text-primary",
+                                  "content": "Everything is possible",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Funnel Sans",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "K2rxw",
+                                  "name": "card2Desc",
+                                  "fill": "$text-tertiary",
+                                  "content": "Acrylic and alcohol pen, 20×20\"",
+                                  "lineHeight": 1.4,
+                                  "fontFamily": "Funnel Sans",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "FJfO1",
+                              "name": "card2Price",
+                              "fill": "$text-primary",
+                              "content": "480€",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qmLgJ",
+                      "name": "Card 3",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "SBawg",
+                          "name": "card3Img",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "marylooo",
+                            "link": "https://unsplash.com/@marylooo",
+                            "author": "Maria Kovalets"
+                          },
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 230,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "https://images.unsplash.com/photo-1737058002138-69061fe2cef6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI2NjR8&ixlib=rb-4.1.0&q=80&w=1080",
+                            "mode": "fill"
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "suBf2",
+                          "name": "card3Info",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "RxTEg",
+                              "name": "card3Left",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Wgqqp",
+                                  "name": "card3Title",
+                                  "fill": "$text-primary",
+                                  "content": "Endometriosis",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Funnel Sans",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ngJJW",
+                                  "name": "card3Desc",
+                                  "fill": "$text-tertiary",
+                                  "content": "Acrylic on paper, 30×40\"",
+                                  "lineHeight": 1.4,
+                                  "fontFamily": "Funnel Sans",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "2gJo9",
+                              "name": "card3Price",
+                              "fill": "$text-primary",
+                              "content": "280€",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oA6OF",
+              "name": "Bottom Row",
+              "width": "fill_container",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VK6YS",
+                  "name": "Card 4",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LhQIX",
+                      "name": "card4Img",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "steve_j",
+                        "link": "https://unsplash.com/@steve_j",
+                        "author": "Steve A Johnson"
+                      },
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 320,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1691849721937-949dc0774adb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI2NzJ8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "8d4K9",
+                      "name": "card4Info",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "0NWGs",
+                          "name": "card4Left",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "klcqY",
+                              "name": "card4Title",
+                              "fill": "$text-primary",
+                              "content": "Sonnstiges Rain",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "eVq65",
+                              "name": "card4Desc",
+                              "fill": "$text-tertiary",
+                              "content": "Oil on canvas, 24×24\"",
+                              "lineHeight": 1.4,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "h6BYW",
+                          "name": "card4Price",
+                          "fill": "$text-primary",
+                          "content": "180€",
+                          "lineHeight": 1.3,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cBUAd",
+                  "name": "Card 5",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "4yGF1",
+                      "name": "card5Img",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "john_cardamone",
+                        "link": "https://unsplash.com/@john_cardamone",
+                        "author": "John Cardamone"
+                      },
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 320,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1754327377119-431987975104?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI2ODJ8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SkMMk",
+                      "name": "card5Info",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Z3EkC",
+                          "name": "card5Left",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "X6rgj",
+                              "name": "card5Title",
+                              "fill": "$text-primary",
+                              "content": "Touched by the sun",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "YdbUT",
+                              "name": "card5Desc",
+                              "fill": "$text-tertiary",
+                              "content": "Acrylic on canvas, 36×48\"",
+                              "lineHeight": 1.4,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "nk1vB",
+                          "name": "card5Price",
+                          "fill": "$text-primary",
+                          "content": "680€",
+                          "lineHeight": 1.3,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "myzDL",
+                  "name": "Card 6",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "SXdtc",
+                      "name": "card6Img",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "heijnsbroek_abstract_art",
+                        "link": "https://unsplash.com/@heijnsbroek_abstract_art",
+                        "author": "Fons Heijnsbroek"
+                      },
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 320,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1722091682618-e39655b25789?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwODI2ODN8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nmnbL",
+                      "name": "card6Info",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "HFxJB",
+                          "name": "card6Left",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "PK6qr",
+                              "name": "card6Title",
+                              "fill": "$text-primary",
+                              "content": "The pink panther",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Z5WiG",
+                              "name": "card6Desc",
+                              "fill": "$text-tertiary",
+                              "content": "Mixed media, 30×36\"",
+                              "lineHeight": 1.4,
+                              "fontFamily": "Funnel Sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "GUpvi",
+                          "name": "card6Price",
+                          "fill": "$text-primary",
+                          "content": "660€",
+                          "lineHeight": 1.3,
+                          "fontFamily": "Funnel Sans",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f7cyt",
+              "name": "View All Row",
+              "width": "fill_container",
+              "padding": [
+                16,
+                0,
+                0,
+                0
+              ],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ypKxr",
+                  "name": "viewAllLink",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mHX01",
+                      "name": "viewAllText",
+                      "fill": "$text-secondary",
+                      "content": "View all 12 works",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "GCuK5",
+                      "name": "viewAllArrow",
+                      "fill": "$text-secondary",
+                      "content": "→",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "R3AQX",
+          "name": "Footer Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "$divider"
+        },
+        {
+          "type": "frame",
+          "id": "8J4bU",
+          "name": "Footer",
+          "width": "fill_container",
+          "padding": [
+            40,
+            48,
+            48,
+            48
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "3Vk4s",
+              "name": "Footer Left",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CtUqy",
+                  "name": "fBrand",
+                  "fill": "$text-primary",
+                  "content": "Ester Batllori",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "r2UlG",
+                  "name": "fSub",
+                  "fill": "$text-tertiary",
+                  "content": "Original abstract paintings",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Cp15c",
+              "name": "Footer Nav",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tvZIb",
+                  "name": "fn1",
+                  "fill": "$text-secondary",
+                  "content": "Works",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ReDlM",
+                  "name": "fn2",
+                  "fill": "$text-secondary",
+                  "content": "About",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "qzReP",
+                  "name": "fn3",
+                  "fill": "$text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "z8ebz",
+              "name": "fCopy",
+              "fill": "$text-tertiary",
+              "content": "© 2026",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "lqQ1L",
+      "x": 5750,
+      "y": 3958,
+      "name": "Gallery Section",
+      "width": "fill_container(1440)",
+      "layout": "vertical",
+      "gap": 40,
+      "padding": [
+        60,
+        48,
+        80,
+        48
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "RFi48",
+          "name": "Frame 1",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "frame",
+              "id": "NCJ3M",
+              "name": "Gallery Header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ns844",
+                  "name": "galTitle",
+                  "fill": "$text-secondary",
+                  "content": "COLLECTIONS",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "f2WKc",
+                  "name": "galCount",
+                  "fill": "$text-secondary",
+                  "content": "3 collections",
+                  "fontFamily": "Funnel Sans",
+                  "fontSize": 12,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Fr3VH",
+              "name": "galTitle",
+              "fill": "$text-secondary",
+              "content": "Browse original artworks organized by thematic collections.",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "m5cc8",
+          "name": "Collections Grid",
+          "width": "fill_container",
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "NQ4xw",
+              "name": "Collection 1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cA7AH",
+                  "name": "Cover Image",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 380,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./images/generated-1772982214957.png",
+                    "mode": "fill"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "hStQH",
+                  "name": "Info",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    24,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FhCoV",
+                      "name": "col1title",
+                      "fill": "$text-primary",
+                      "content": "Inner Landscapes",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 22,
+                      "fontWeight": "600",
+                      "letterSpacing": -0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "fa62D",
+                      "name": "headerTagline",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eOWca",
+                      "name": "col1count",
+                      "fill": "$text-tertiary",
+                      "content": "6 works · From 280€",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "kX7rA",
+                      "name": "col1cta",
+                      "fill": "$accent",
+                      "content": "View Collection →",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "k57A7",
+              "name": "Collection 2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qhIOD",
+                  "name": "Cover Image",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 380,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./images/generated-1772982239220.png",
+                    "mode": "fill"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "6VRNV",
+                  "name": "Info",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    24,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rSE6b",
+                      "name": "col2title",
+                      "fill": "$text-primary",
+                      "content": "Nature Studies",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 22,
+                      "fontWeight": "600",
+                      "letterSpacing": -0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "6Z5FE",
+                      "name": "headerTagline",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lyn9h",
+                      "name": "col2count",
+                      "fill": "$text-tertiary",
+                      "content": "5 works · From 180€",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "4y6s5",
+                      "name": "col2cta",
+                      "fill": "$accent",
+                      "content": "View Collection →",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "n8C9A",
+              "name": "Collection 3",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Gr7gg",
+                  "name": "Cover Image",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 380,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./images/generated-1772982265503.png",
+                    "mode": "fill"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "gOq7D",
+                  "name": "Info",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    24,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KpfeC",
+                      "name": "col3title",
+                      "fill": "$text-primary",
+                      "content": "Body & Identity",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 22,
+                      "fontWeight": "600",
+                      "letterSpacing": -0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "8HP72",
+                      "name": "headerTagline",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A quiet abstraction of brick, yellow foliage, green vegetation and grey autumn light in Britz, Berlin.",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "p83gF",
+                      "name": "col3count",
+                      "fill": "$text-tertiary",
+                      "content": "5 works · From 360€",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "zrZYY",
+                      "name": "col3cta",
+                      "fill": "$accent",
+                      "content": "View Collection →",
+                      "fontFamily": "Funnel Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
                     }
                   ]
                 }

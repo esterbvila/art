@@ -15,7 +15,7 @@ export default function AboutArtist() {
       </div>
 
       <div className="flex flex-col justify-center gap-5 px-5 pt-8 pb-10 md:p-10 lg:gap-6 lg:p-18">
-        <p className="font-normal font-sans text-[13px] text-text-tertiary uppercase tracking-wide3">The Artist</p>
+        <p className="font-normal font-sans text-[14px] text-text-tertiary uppercase tracking-wide3">The Artist</p>
 
         <h2
           className="font-heading font-normal text-text-primary leading-tight95"
