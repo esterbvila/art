@@ -19,7 +19,7 @@ export default function AnnouncementBanner() {
 
   return (
     <div
-      className="relative flex cursor-pointer items-center justify-center bg-accent px-10 py-2.5 transition-opacity hover:opacity-90"
+      className="relative flex cursor-pointer items-center justify-center text-center bg-accent px-7 py-2.5 transition-opacity hover:opacity-90"
       onClick={handleClick}
     >
       <p className="font-medium font-sans text-[13px] text-text-light tracking-[0.5px]">

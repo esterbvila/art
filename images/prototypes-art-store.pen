@@ -1,5 +1,5 @@
 {
-  "version": "2.8",
+  "version": "2.11",
   "children": [
     {
       "type": "frame",
@@ -342,7 +342,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177032591.png",
+                        "url": "images/generated-1773177032591.png",
                         "mode": "fill"
                       }
                     },
@@ -371,7 +371,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177042451.png",
+                        "url": "images/generated-1773177042451.png",
                         "mode": "fill"
                       }
                     },
@@ -400,7 +400,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177067493.png",
+                        "url": "images/generated-1773177067493.png",
                         "mode": "fill"
                       }
                     },
@@ -429,7 +429,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177089074.png",
+                        "url": "images/generated-1773177089074.png",
                         "mode": "fill"
                       }
                     },
@@ -1392,7 +1392,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177163626.png",
+                        "url": "images/generated-1773177163626.png",
                         "mode": "fill"
                       }
                     },
@@ -1421,7 +1421,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177181876.png",
+                        "url": "images/generated-1773177181876.png",
                         "mode": "fill"
                       }
                     },
@@ -1450,7 +1450,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177200866.png",
+                        "url": "images/generated-1773177200866.png",
                         "mode": "fill"
                       }
                     },
@@ -1479,7 +1479,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1773177220395.png",
+                        "url": "images/generated-1773177220395.png",
                         "mode": "fill"
                       }
                     },
@@ -1590,7 +1590,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1772982214957.png",
+                        "url": "images/generated-1772982214957.png",
                         "mode": "fill"
                       }
                     },
@@ -1676,7 +1676,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1772982239220.png",
+                        "url": "images/generated-1772982239220.png",
                         "mode": "fill"
                       }
                     },
@@ -1762,7 +1762,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1772982265503.png",
+                        "url": "images/generated-1772982265503.png",
                         "mode": "fill"
                       }
                     },
@@ -2598,7 +2598,7 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1774129260709.png",
+                    "url": "images/generated-1774129260709.png",
                     "mode": "fill"
                   }
                 },
@@ -2619,7 +2619,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774129093351.png",
+                        "url": "images/generated-1774129093351.png",
                         "mode": "fill"
                       }
                     },
@@ -2633,7 +2633,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774129117373.png",
+                        "url": "images/generated-1774129117373.png",
                         "mode": "fill"
                       }
                     }
@@ -2656,7 +2656,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774131237324.png",
+                        "url": "images/generated-1774131237324.png",
                         "mode": "fill"
                       }
                     },
@@ -2670,7 +2670,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774131260821.png",
+                        "url": "images/generated-1774131260821.png",
                         "mode": "fill"
                       }
                     }
@@ -3312,7 +3312,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774126738907.png",
+                        "url": "images/generated-1774126738907.png",
                         "mode": "fill"
                       }
                     },
@@ -3339,7 +3339,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774126764206.png",
+                        "url": "images/generated-1774126764206.png",
                         "mode": "fill"
                       }
                     },
@@ -3366,7 +3366,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774126773774.png",
+                        "url": "images/generated-1774126773774.png",
                         "mode": "fill"
                       }
                     },
@@ -4200,7 +4200,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774126844001.png",
+                        "url": "images/generated-1774126844001.png",
                         "mode": "fill"
                       }
                     },
@@ -4227,7 +4227,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1774126868393.png",
+                        "url": "images/generated-1774126868393.png",
                         "mode": "fill"
                       }
                     },
@@ -4471,7 +4471,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "./images/generated-1773602839742.png",
+            "url": "images/generated-1773602839742.png",
             "mode": "fill"
           },
           "children": [
@@ -5062,7 +5062,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "./images/generated-1773602946312.png",
+            "url": "images/generated-1773602946312.png",
             "mode": "fill"
           },
           "children": [
@@ -5595,7 +5595,7 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1773665617425.png",
+                    "url": "images/generated-1773665617425.png",
                     "mode": "fill"
                   },
                   "cornerRadius": 2
@@ -7059,7 +7059,7 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1772982214957.png",
+                    "url": "images/generated-1772982214957.png",
                     "mode": "fill"
                   }
                 },
@@ -7145,7 +7145,7 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1772982239220.png",
+                    "url": "images/generated-1772982239220.png",
                     "mode": "fill"
                   }
                 },
@@ -7231,7 +7231,7 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1772982265503.png",
+                    "url": "images/generated-1772982265503.png",
                     "mode": "fill"
                   }
                 },
